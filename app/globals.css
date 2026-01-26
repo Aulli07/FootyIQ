@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.text-primary {
+  color: rgb(8, 129, 8);
+}
