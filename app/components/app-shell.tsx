@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import Header from "./header";
 import Footer from "./footer";
 
-
 export const comparisonList = [
   {
     id: "ronaldo",
@@ -170,19 +169,13 @@ export const comparisonList = [
 ];
 
 
-export default function AppShell({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppShell({ children }: { children: React.ReactNode }) {
   const [headerText, setHeaderText] = useState("FOOTY IQ");
-
-  
 
   return (
     <>
       <Header headerText={headerText} />
-      {children}
+      <div>{children}</div>
       <Footer setHeaderText={setHeaderText} />
     </>
   );

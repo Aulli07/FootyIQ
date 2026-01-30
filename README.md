@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Notes
+
+- TypeScript dynamic-key indexing issue: [docs/compare-stats-key-typing.md](docs/compare-stats-key-typing.md)
+
 First, run the development server:
 
 ```bash

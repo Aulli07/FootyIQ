@@ -20,8 +20,8 @@ const Header = ({ headerText }: { headerText: string }) => {
           {headerText}
         </h1>
       </div>
-      <div className="flex gap-8">
-        <Link
+      <div className="flex">
+        {/* <Link
           href={searchHref}
           className="relative h-7 w-7"
           onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -33,7 +33,7 @@ const Header = ({ headerText }: { headerText: string }) => {
             fill
             className="relative object-cover"
           />
-        </Link>
+        </Link> */}
         <div className="relative h-7 w-7">
           <Image
             src="/images/light-mode.png"

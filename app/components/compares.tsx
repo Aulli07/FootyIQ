@@ -1,9 +1,12 @@
 import Image from "next/image";
-import { ComparableLegend } from "./comparison-card";
+
 import { poppins } from "../fonts";
 
-const Compares = ({ compareList }: { compareList: ComparableLegend[][] }) => {
-  return compareList.map((players: ComparableLegend[], index: number) => {
+import { PlayerType } from "../types/players";
+
+const Compares = ({ compareList }: { compareList: PlayerType[][] }) => {
+  
+  return compareList.map((players, index) => {
     const left = players[0];
     const right = players[1];
 

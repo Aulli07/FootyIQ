@@ -1,6 +1,12 @@
 import Image from "next/image";
+
 import { useEffect, useState } from "react";
+
 import { oswald, poppins } from "../fonts";
+
+import { PlayerType } from "../types/players";
+
+import VotesBar from "./comparison-votes-bar";
 
 // function RandomId() {
 //   const [id, setId] = useState<number | null>(null);
@@ -13,29 +19,30 @@ import { oswald, poppins } from "../fonts";
 //   return <span>{id}</span>;
 // }
 
-export type ComparableLegend = {
-  id: string;
-  image: string;
-  name: string;
-  age: number;
-  height: number;
-  nationality: string;
-  rating: number;
-  positionPlayed: string;
-};
+// export type ComparableLegend = {
+//   id: string;
+//   image: string;
+//   name: string;
+//   age: number;
+//   height: number;
+//   nationality: string;
+//   rating: number;
+//   positionPlayed: string;
+// };
 
 // T must have those fields defined in ComparableLegend
 
 // LegendsData is an array of pairs of legends to compare and its relation with T is that each legend in the pair is of type T into multiple arrays
-type ComparisonProps<T extends ComparableLegend> = {
-  legendsData: T[][];
+type ComparisonProps<T extends PlayerType> = {
+  playersData: T[][];
   title?: string;
 };
 
-const Comparison = <T extends ComparableLegend>({
-  legendsData,
-  title = "Legends",
+const Comparison = <T extends PlayerType>({
+  playersData,
+  title,
 }: ComparisonProps<T>) => {
+  
   const renderLegend = (legend: T) => (
     <div key={legend.id} className="flex flex-row">
       <div className="p-2 flex flex-col w-32 items-center gap-2">
@@ -51,9 +58,9 @@ const Comparison = <T extends ComparableLegend>({
           </div>
 
           {/* rating badge */}
-          <div className={`absolute -bottom-1 -right-1 z-10 h-7 w-7 rounded-full bg-emerald-600 text-white text-xs font-sans font-semibold tabular-nums shadow-md ring-2 ring-black/30 flex items-center justify-center ${poppins.className}`}>
+          {/* <div className={`absolute -bottom-1 -right-1 z-10 h-7 w-7 rounded-full bg-emerald-600 text-white text-xs font-sans font-semibold tabular-nums shadow-md ring-2 ring-black/30 flex items-center justify-center ${poppins.className}`}>
             {legend.rating}
-          </div>
+          </div> */}
         </div>
 
         <p className={`w-full text-center text-xs font-semibold ${poppins.className} text-white leading-tight truncate`}>
@@ -75,28 +82,28 @@ const Comparison = <T extends ComparableLegend>({
     </div>
   );
 
-  const getPreferenceForPair = (pair: T[]) => {
-    const left = pair[0];
-    const right = pair[1];
+  // const getPreferenceForPair = (pair: T[]) => {
+  //   const left = pair[0];
+  //   const right = pair[1];
 
-    if (!left || !right) {
-      return {
-        left,
-        right,
-        leftPct: 50,
-        rightPct: 50,
-      };
-    }
+  //   if (!left || !right) {
+  //     return {
+  //       left,
+  //       right,
+  //       leftPct: 50,
+  //       rightPct: 50,
+  //     };
+  //   }
 
-    const total = Math.max(1, left.rating + right.rating);
-    const leftPct = Math.max(
-      0,
-      Math.min(100, Math.round((left.rating / total) * 100)),
-    );
-    const rightPct = 100 - leftPct;
+  //   const total = Math.max(1, left.rating + right.rating);
+  //   const leftPct = Math.max(
+  //     0,
+  //     Math.min(100, Math.round((left.rating / total) * 100)),
+  //   );
+  //   const rightPct = 100 - leftPct;
 
-    return { left, right, leftPct, rightPct };
-  };
+  //   return { left, right, leftPct, rightPct };
+  // };
 
   return (
     <div className="px-5 py-2 flex flex-col gap-3">
@@ -104,10 +111,10 @@ const Comparison = <T extends ComparableLegend>({
         <p className={`font-heading text-lg tracking-wide text-white ${oswald.className}`}>{title}</p>
       </div>
       <div className="flex flex-row gap-3 overflow-x-auto pb-4 flex-nowrap">
-        {legendsData.map((legendPair, index) => {
-          const pref = getPreferenceForPair(legendPair);
-          const left = legendPair[0];
-          const right = legendPair[1];
+        {playersData.map((playerPair, index) => {
+          // const pref = getPreferenceForPair(playerPair);
+          const left = playerPair[0];
+          const right = playerPair[1];
 
           return (
             <div
@@ -147,7 +154,9 @@ const Comparison = <T extends ComparableLegend>({
                 /> */}
               </div>
 
-              <div className="w-full flex flex-col gap-1">
+              <VotesBar playerPair={playerPair} />
+
+              {/* <div className="w-full flex flex-col gap-1">
                 <div className={`mt-1 flex justify-between items-center text-xxs text-white/70 ${poppins.className}`}>
                   <span className={`max-w-[45%] truncate text-xs ${poppins.className}`}>
                     {pref.left?.name.split(" ")[0][0] +
@@ -179,7 +188,7 @@ const Comparison = <T extends ComparableLegend>({
                 <span className="right-0 text-xs font-sans text-white/20">
                   *Based on user's votes
                 </span>
-              </div>
+              </div> */}
             </div>
           );
         })}
