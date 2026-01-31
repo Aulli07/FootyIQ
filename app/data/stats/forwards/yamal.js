@@ -1,8 +1,8 @@
 export const yamalStats = {
   id: "yamal",
-  fullStats: [
+  seasons: [
     {
-      season: "2024/2025",
+      season: "24/25",
       clubId: "barcelona",
       competitions: [
         {
@@ -31,5 +31,5 @@ export const yamalStats = {
     averageRating: 8.9,
     titlesWon: 7,
     awards: 4,
-  }
+  },
 };

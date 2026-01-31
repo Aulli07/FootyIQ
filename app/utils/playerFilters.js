@@ -14,9 +14,6 @@ export function getTotalComparisons(playersList) {
       const toComparePerson = playersList[j];
 
       searchesList.push([comparedPerson, toComparePerson]);
-      // if (comparedPerson.id !== toComparePerson.id) {
-      //   searchesList.push([comparedPerson, toComparePerson]);
-      // }
     }
   }
 

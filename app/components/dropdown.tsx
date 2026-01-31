@@ -2,21 +2,27 @@ import Image from "next/image";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { poppins } from "../fonts";
 import { createPortal } from "react-dom";
-import { PlayerOption } from "../compare/page";
+
+import { players } from "../data/players";
+import { PlayerType } from "../types/players";
+import { playerStats } from "../data/playerStats";
 
 type DropDownProps =
   | {
       type: "season";
       label: string;
-      options: string[];
+      setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
+      playerSlot: number;
+      selectedPlayers?: Array<PlayerType | null>;
+      // options: string[];
     }
   | {
       type: "player";
       label: string;
-      options: PlayerOption[];
+      // options: PlayerOption[];
       playerSlot: number;
       setSelectedPlayers: React.Dispatch<
-        React.SetStateAction<Array<PlayerOption | null>>
+        React.SetStateAction<Array<PlayerType | null>>
       >;
     };
 
@@ -35,8 +41,21 @@ export function DropDown(props: DropDownProps) {
 
   const selectedPlayer =
     props.type === "player"
-      ? (props.options.find((opt) => opt.name === selected) ?? null)
+      ? (players.find((player) => player.name === selected) ?? null)
       : null;
+
+  const seasonOptions =
+    props.type === "season"
+      ? (() => {
+          const selectedId = props.selectedPlayers?.[props.playerSlot]?.id;
+          const stats = selectedId
+            ? playerStats.find((player) => player.id === selectedId)
+            : undefined;
+
+          const seasons = stats?.seasons?.map((s) => s.season) ?? [];
+          return ["All-time", ...seasons];
+        })()
+      : [];
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -48,8 +67,8 @@ export function DropDown(props: DropDownProps) {
 
     const rect = trigger.getBoundingClientRect();
     setMenuRect({
-      top: rect.bottom + 8,
-      left: rect.left,
+      top: rect.bottom - 28,
+      left: rect.left + 20,
       width: rect.width,
     });
   };
@@ -89,12 +108,19 @@ export function DropDown(props: DropDownProps) {
 
     if (props.type === "player") {
       const nextPlayer =
-        props.options.find((opt) => opt.name === value) ?? null;
+        players.find((player) => player.name === value) ?? null;
       props.setSelectedPlayers((prev) => {
         const next = [...prev];
         next[props.playerSlot] = nextPlayer;
         return next;
       });
+    } else {
+      props.setSelectedSeasons((prev) => {
+        const next = [...prev];
+        next[props.playerSlot] = value;
+        return next;
+      });
+      // Handle season selection if needed
     }
   };
 
@@ -124,13 +150,9 @@ export function DropDown(props: DropDownProps) {
                 className="object-cover relative"
               />
             </div>
-
-            {/* <p className={`${poppins.className} text-xs text-white/80 mt-3`}>
-              {fieldBoxDetails.fieldText}
-            </p> */}
           </button>
           <p className={`${poppins.className} text-sm text-white/80 mt-3`}>
-            {selectedPlayer?.name ?? "Search a player"}
+            {selectedPlayer?.name ?? props.label}
           </p>
         </div>
       ) : (
@@ -159,7 +181,7 @@ export function DropDown(props: DropDownProps) {
           <ul
             ref={menuRef}
             style={{
-              position: "fixed",
+              position: "absolute",
               top: menuRect.top,
               left: menuRect.left,
               width: menuRect.width,
@@ -167,25 +189,34 @@ export function DropDown(props: DropDownProps) {
             className="z-[99999] overflow-hidden rounded-md bg-black/90 backdrop-blur border border-white/15 shadow-2xl ring-1 ring-white/10 max-h-60 overflow-y-auto"
           >
             {props.type === "season"
-              ? props.options.map((option) => (
+              ? seasonOptions.map((season) => (
                   <li
-                    key={option}
-                    onClick={() => handleSelect(option)}
+                    key={season}
+                    onClick={() => handleSelect(season)}
                     className={`px-3 py-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
                   >
-                    {option}
+                    {season}
                   </li>
                 ))
-              : props.options.map((option) => (
+              : // playerStats.find((player) => selectedPlayers?.id == player.id)?.seasons.map((season) => (
+                //     <li
+                //       key={season.season}
+                //       onClick={() => handleSelect(season.season)}
+                //       className={`px-3 py-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
+                //     >
+                //       {season.season}
+                //     </li>
+                //   ))
+                players.map((player) => (
                   <li
-                    key={option.id}
-                    onClick={() => handleSelect(option.name)}
+                    key={player.id}
+                    onClick={() => handleSelect(player.name)}
                     className={`flex flex-row justify-start items-center gap-2 py-2 px-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
                   >
                     <div className="w-11 h-11 object-cover rounded-full relative shrink-0">
                       <Image
-                        src={option.image}
-                        alt={option.name}
+                        src={player.image}
+                        alt={player.name}
                         fill
                         sizes="44px"
                         className="rounded-full object-cover"
@@ -195,7 +226,7 @@ export function DropDown(props: DropDownProps) {
                     <p
                       className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
                     >
-                      {option.name}
+                      {player.name}
                     </p>
                   </li>
                 ))}
@@ -205,3 +236,13 @@ export function DropDown(props: DropDownProps) {
     </div>
   );
 }
+
+// function SeasonDropDown({selectedPlayer} : { selectedPlayer : PlayerType }) {
+//   playerStats.forEach((player) => {
+//     player
+//     // if (selectedPlayer?.id == player.id) {
+//     //   player.
+//     // }
+//   })
+//   // playerStats.find(player => selectedPlayer?.id === player.id)
+// }

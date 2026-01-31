@@ -2,7 +2,7 @@ export const ronaldoStats = {
   id: "ronaldo",
   seasons: [
     {
-      season: "2023/2024",
+      season: "23/24",
       clubId: "alnassr",
       competitions: [
         {

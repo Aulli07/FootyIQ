@@ -2,7 +2,7 @@ export const benzemaStats = {
   id: "benzema",
   seasons: [
     {
-      season: "2023/2024",
+      season: "23/24",
       clubId: "alittihad",
       competitions: [
         {

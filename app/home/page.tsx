@@ -24,18 +24,6 @@ type inputBarProps = {
   setInputText: React.Dispatch<React.SetStateAction<string>>;
 };
 
-// This is the type for every player's details for means of identification
-// type ComparableSearch = {
-//   id: string;
-//   image: string;
-//   name: string;
-//   age: number;
-//   height: number;
-//   nationality: string;
-//   rating: number;
-//   positionPlayed: string;
-// };
-
 // This is the search bar component that displays the actual bar right at the top
 function SearchBar() {
   const [inputText, setInputText] = useState<string>("");

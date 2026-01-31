@@ -2,7 +2,7 @@ export const doueStats = {
   id: "doue",
   seasons: [
     {
-      season: "2024/2025",
+      season: "24/25",
       clubId: "psg",
       competitions: [
         {
@@ -31,5 +31,5 @@ export const doueStats = {
     averageRating: 8.6,
     titlesWon: 5,
     awards: 3,
-  },
+  }
 };

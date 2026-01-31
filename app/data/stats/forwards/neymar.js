@@ -2,7 +2,7 @@ export const neymarStats = {
   id: "neymar",
   seasons: [
     {
-      season: "2023/2024",
+      season: "23/24",
       clubId: "santos",
       competitions: [
         {
@@ -31,5 +31,5 @@ export const neymarStats = {
     averageRating: 9.2,
     titlesWon: 28,
     awards: 14,
-  },
+  }
 };

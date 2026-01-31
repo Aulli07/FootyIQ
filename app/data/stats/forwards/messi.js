@@ -2,7 +2,7 @@ export const messiStats = {
   id: "messi",
   seasons: [
     {
-      season: "2023/2024",
+      season: "23/24",
       clubId: "intermiami",
       competitions: [
         {
