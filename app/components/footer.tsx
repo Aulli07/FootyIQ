@@ -5,11 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { poppins } from "../fonts";
 
-function Footer ({
-  setHeaderText,
-}: {
-  setHeaderText: (text: string) => void;
-}) {
+function Footer() {
   const pathname = usePathname();
   const footerLinks = [
     {
@@ -43,25 +39,47 @@ function Footer ({
       height: 7,
     },
   ];
-  const isActive = (to: string) => pathname === to;
+  const normalizePath = (p: string) =>
+    p.length > 1 ? p.replace(/\/+$/, "") : p;
+  const current = normalizePath(pathname);
+  const isActive = (to: string) => {
+    const target = normalizePath(to);
+    if (target === "/") return current === "/";
+    return current === target || current.startsWith(target + "/");
+  };
 
   return (
-    <main className="bg-black w-full fixed bottom-0 flex flex-row justify-between pl-6 pr-6 pt-3 pb-3 border-t border-gray-700">
-      {footerLinks.map((link) => (
-        <Link href={link.to} key={link.to}>
-          <div className="flex flex-col gap-1 items-center">
+    <nav className="bg-black/95 backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 py-3 border-t border-white/10">
+      {footerLinks.map((link) => {
+        const active = isActive(link.to);
+        return (
+          <Link
+            href={link.to}
+            key={link.to}
+            className="flex flex-col gap-1 items-center select-none"
+            aria-current={active ? "page" : undefined}
+          >
             <div className="relative w-6 h-6">
-              <Image src={isActive(link.to) ? link.activeIcon : link.icon} alt={link.alt} fill sizes="32px" className="relative w-6 h-6" onClick={() => {
-                setHeaderText(link.header);
-              }}/>
+              <Image
+                src={active ? link.activeIcon : link.icon}
+                alt={link.alt}
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
             </div>
-          
-            <p className={`text-white ${poppins.className}`}>{link.title}</p>
-          </div>
-        </Link>
-      ))}
-      
-    </main>
+
+            <p
+              className={`${poppins.className} text-sm ${
+                active ? "text-white" : "text-white/70"
+              }`}
+            >
+              {link.title}
+            </p>
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
 

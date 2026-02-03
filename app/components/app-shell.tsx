@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-
-import Header from "./header";
+import React from "react";
 import Footer from "./footer";
 
 export const comparisonList = [
@@ -168,15 +166,11 @@ export const comparisonList = [
   },
 ];
 
-
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const [headerText, setHeaderText] = useState("FOOTY IQ");
-
   return (
-    <>
-      <Header headerText={headerText} />
-      <div>{children}</div>
-      <Footer setHeaderText={setHeaderText} />
-    </>
+    <div className="min-h-screen text-white">
+      <div className="pb-24">{children}</div>
+      <Footer />
+    </div>
   );
 }

@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 import { oswald } from "../fonts";
 
-const Header = ({ headerText }: { headerText: string }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const searchHref = isSearchOpen ? "/home" : "/";
-
+const Header = ({
+  headerText,
+  showLightMode = false,
+}: {
+  headerText: string;
+  showLightMode?: boolean;
+}) => {
   return (
     <div className="flex flex-row items-center justify-between p-5 backdrop-blur">
       <div>
@@ -20,29 +20,22 @@ const Header = ({ headerText }: { headerText: string }) => {
           {headerText}
         </h1>
       </div>
-      <div className="flex">
-        {/* <Link
-          href={searchHref}
-          className="relative h-7 w-7"
-          onClick={() => setIsSearchOpen(!isSearchOpen)}
-        >
-          <Image
-            src="/images/search.png"
-            alt="no-img"
-            sizes="32px"
-            fill
-            className="relative object-cover"
-          />
-        </Link> */}
-        <div className="relative h-7 w-7">
-          <Image
-            src="/images/light-mode.png"
-            alt="light-mode"
-            fill
-            sizes="32px"
-            onClick={() => {}}
-          />
-        </div>
+
+      <div className="flex items-center">
+        {showLightMode ? (
+          <div className="relative h-7 w-7">
+            <Image
+              src="/images/light-mode.png"
+              alt="light-mode"
+              fill
+              sizes="32px"
+              className="object-cover"
+              onClick={() => {}}
+            />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

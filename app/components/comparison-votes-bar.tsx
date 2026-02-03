@@ -13,27 +13,25 @@ const formatShortName = (name?: string) => {
   return `${parts[0]?.[0] ?? ""}. ${parts.slice(1).join(" ")}`.trim();
 };
 
-const aggregatePlayerStats = (seasons: StatsType[]) => {
-  const totalGoals = seasons.reduce(
-    (sum, season) => sum + (Number(season.career.totalGoals) || 0),
-    0,
-  );
+const aggregatePlayerStats = (player: StatsType | null) => {
+  // const totalGoals = seasons.reduce(
+  //   (sum, season) => sum + (Number(season.career.totalGoals) || 0),
+  //   0,
+  // );
+  const totalGoals = player?.career.totalGoals || 0;
 
-  const totalAppearances = seasons.reduce(
-    (sum, season) => sum + (Number(season.career.totalAppearances) || 0),
-    0,
-  );
+  const totalAppearances = player?.career.totalAppearances || 0;
 
-  const weightedRatingSum = seasons.reduce((sum, season) => {
-    const apps = Number(season.career.totalAppearances) || 0;
+  const weightedRatingSum = () => {
+    // const apps = Number(season.career.totalAppearances) || 0;
 
-    const rating = Number(season.career.averageRating) || 0;
+    const rating = Number(player?.career.averageRating) || 0;
     
-    if (!Number.isFinite(rating) || apps <= 0) return sum;
-    return sum + rating * apps;
-  }, 0);
+    if (!Number.isFinite(rating) || totalAppearances <= 0) return 0;
+    return rating * totalAppearances;
+  };
 
-  const avgRating = totalAppearances > 0 ? weightedRatingSum / totalAppearances : 0;
+  const avgRating = totalAppearances > 0 ? weightedRatingSum() / totalAppearances : 0;
 
   return { totalGoals, totalAppearances, avgRating };
 };
@@ -55,10 +53,11 @@ const getPreferenceForPair = (pair: PlayerType[]) => {
   // We intentionally avoid hardcoding player keys by using dynamic indexing (left.id/right.id).
   const statsByPlayerId = playerStats as unknown as Record<string, StatsType[]>;
 
-  const playerStatsMap = new Map (Object.entries(statsByPlayerId).map(([id, fullStats]) => [id, fullStats]));
+  const leftPlayerStats = playerStats.find((stat) => stat.id === left.id) || null;
+  const rightPlayerStats = playerStats.find((stat) => stat.id === right.id) || null;
 
-  const leftAgg = aggregatePlayerStats(playerStatsMap.get(left.id) ?? []);
-  const rightAgg = aggregatePlayerStats(playerStatsMap.get(right.id) ?? []);
+  const leftAgg = aggregatePlayerStats(leftPlayerStats)
+  const rightAgg = aggregatePlayerStats(rightPlayerStats)
 
   // Use average rating as a proxy until vote data exists.
   const total = Math.max(1, leftAgg.avgRating + rightAgg.avgRating);

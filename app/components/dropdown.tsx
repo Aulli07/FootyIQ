@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
-import { poppins } from "../fonts";
 import { createPortal } from "react-dom";
 
+import { poppins } from "../fonts";
 import { players } from "../data/players";
 import { PlayerType } from "../types/players";
 import { playerStats } from "../data/playerStats";
@@ -14,16 +14,18 @@ type DropDownProps =
       setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
       playerSlot: number;
       selectedPlayers?: Array<PlayerType | null>;
-      // options: string[];
+      selectedSeasons: Array<string>
     }
   | {
       type: "player";
       label: string;
-      // options: PlayerOption[];
       playerSlot: number;
       setSelectedPlayers: React.Dispatch<
         React.SetStateAction<Array<PlayerType | null>>
       >;
+      selectedPlayers: Array<PlayerType | null>
+      setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
+      
     };
 
 export function DropDown(props: DropDownProps) {
@@ -39,7 +41,7 @@ export function DropDown(props: DropDownProps) {
     width: 0,
   });
 
-  const selectedPlayer =
+  let selectedPlayer =
     props.type === "player"
       ? (players.find((player) => player.name === selected) ?? null)
       : null;
@@ -120,7 +122,6 @@ export function DropDown(props: DropDownProps) {
         next[props.playerSlot] = value;
         return next;
       });
-      // Handle season selection if needed
     }
   };
 
@@ -132,7 +133,25 @@ export function DropDown(props: DropDownProps) {
       }`}
     >
       {props.type === "player" ? (
-        <div className="flex flex-col justify-center items-center">
+        <div className="relative flex flex-col justify-center items-center">
+          {/* <img
+            src="/images/swap-light-fill.png"
+            alt="no pic"
+            className="absolute right-2 top-0 object-cover w-7 h-7"
+            onClick={() => {
+              props.setSelectedPlayers((prev) => {
+                const next = [...prev];
+                next[props.playerSlot] = null;
+                return next;
+              });
+              props.setSelectedSeasons((prev) => {
+                const next = [...prev];
+                next[props.playerSlot] = "All-time";
+                return next;
+              });
+            }}
+          /> */}
+
           <button
             ref={triggerRef}
             type="button"
@@ -141,9 +160,9 @@ export function DropDown(props: DropDownProps) {
             aria-expanded={isOpen}
             className="w-full flex justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 rounded-full"
           >
-            <div className="relative h-23 w-23 rounded-full overflow-hidden ring-2 ring-white/10 flex justify-center items-center bg-black/20">
+            <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-400/30 flex justify-center items-center bg-black/20 focus-within:ring-4 focus-within:ring-emerald-400/15">
               <Image
-                src={selectedPlayer?.image ?? "/images/add.png"}
+                src={props.selectedPlayers?.[props.playerSlot]?.image ?? "/images/add.png"}
                 alt={selectedPlayer?.name ?? "add"}
                 sizes="80px"
                 fill
@@ -151,8 +170,8 @@ export function DropDown(props: DropDownProps) {
               />
             </div>
           </button>
-          <p className={`${poppins.className} text-sm text-white/80 mt-3`}>
-            {selectedPlayer?.name ?? props.label}
+          <p className={`flex justify-center items-center ${poppins.className} text-sm text-white/80 mt-3`}>
+            {props.selectedPlayers?.[props.playerSlot]?.name ?? props.label}
           </p>
         </div>
       ) : (
@@ -164,7 +183,7 @@ export function DropDown(props: DropDownProps) {
           aria-expanded={isOpen}
           className={`w-full bg-white/5 border border-white/15 rounded-md px-3 py-2 text-left flex justify-between items-center ${poppins.className} text-sm text-white/90 hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40`}
         >
-          <span className="truncate pr-2">{selected}</span>
+          <span className="truncate pr-2">{props.selectedSeasons?.[props.playerSlot] ?? "All-time"}</span>
           <Image
             src="/images/arrow-drop-down.png"
             alt="arrow"
@@ -198,15 +217,7 @@ export function DropDown(props: DropDownProps) {
                     {season}
                   </li>
                 ))
-              : // playerStats.find((player) => selectedPlayers?.id == player.id)?.seasons.map((season) => (
-                //     <li
-                //       key={season.season}
-                //       onClick={() => handleSelect(season.season)}
-                //       className={`px-3 py-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
-                //     >
-                //       {season.season}
-                //     </li>
-                //   ))
+              : 
                 players.map((player) => (
                   <li
                     key={player.id}
@@ -237,12 +248,3 @@ export function DropDown(props: DropDownProps) {
   );
 }
 
-// function SeasonDropDown({selectedPlayer} : { selectedPlayer : PlayerType }) {
-//   playerStats.forEach((player) => {
-//     player
-//     // if (selectedPlayer?.id == player.id) {
-//     //   player.
-//     // }
-//   })
-//   // playerStats.find(player => selectedPlayer?.id === player.id)
-// }
