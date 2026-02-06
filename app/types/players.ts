@@ -8,9 +8,6 @@ export interface PlayerType {
   preferredFoot: string,
   image: string,
   status: string,
-  currentClub: {
-    id: string,
-    name: string,
-    country: string
-  }
+  team: string,
+  footyRating: number
 }

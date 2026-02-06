@@ -2,7 +2,7 @@ export const doueStats = {
   id: "doue",
   seasons: [
     {
-      season: "24/25",
+      season: "23/24",
       clubId: "psg",
       competitions: [
         {
@@ -10,14 +10,28 @@ export const doueStats = {
           name: "Ligue 1",
           stats: {
             appearances: 21,
+            age: 19,
+            height: 178,
+            team: "Paris Saint-Germain",
+            matchesPlayed: 21,
+            footyRating: 8.6,
             goals: 6,
             assists: 5,
             minutes: 1500,
             shots: 39,
+            totalShots: 39,
             shotsOnTarget: 18,
             keyPasses: 22,
-            dribblesCompleted: 33,
+            chancesCreated: 22,
+            dribbles: 33,
+            interceptions: 0,
+            tackles: 0,
+            dribbledPast: 0,
+            clearances: 0,
+            groundDuelsWon: 0,
+            blockedShots: 0,
             yellowCards: 1,
+            yellowToRedCards: 0,
             redCards: 0,
           },
         },
@@ -31,5 +45,5 @@ export const doueStats = {
     averageRating: 8.6,
     titlesWon: 5,
     awards: 3,
-  }
+  },
 };

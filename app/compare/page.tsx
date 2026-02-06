@@ -3,15 +3,17 @@
 // Importing the font families, image modules, react change modules and modal modules for this page
 import { oswald, poppins } from "../fonts";
 import { useState } from "react";
+
 import { DropDown } from "../components/dropdown";
 import Header from "../components/header";
+import ShowFullStat from "../components/show-stat";
 
 import { PlayerType } from "../types/players";
 import { StatsType } from "../types/stats";
 
 import { playerStats } from "../data/playerStats";
 
-function AddFieldBox({
+export function AddFieldBox({
   playerSlot,
   selectedPlayers,
   setSelectedPlayers,
@@ -70,108 +72,14 @@ function AddFieldBox({
   );
 }
 
-function ShowStat({
-  players,
-  seasons,
-}: {
-  players: Array<PlayerType | null>;
-  seasons: Array<string>;
-}) {
-  const statsToCompare = [
-    { key: "appearances", label: "Appearances" },
-    { key: "goals", label: "Goals" },
-    { key: "assists", label: "Assists" },
-    { key: "minutes", label: "Minutes Played" },
-    { key: "shots", label: "Shots" },
-    { key: "shotsOnTarget", label: "Shots On Target" },
-    { key: "keyPasses", label: "Key Passes" },
-    { key: "dribblesCompleted", label: "Dribbles Completed" },
-    { key: "averageRating", label: "Average Rating" },
-    { key: "yellowCards", label: "Yellow Cards" },
-    { key: "redCards", label: "Red Cards" },
-  ];
 
-  return (
-    <>
-      {statsToCompare.map((stat, index) => (
-        <StatBlock
-          key={stat.key}
-          identifier={stat.key}
-          label={stat.label}
-          playerA={players[0]}
-          playerB={players[1]}
-          seasonA={seasons[0]}
-          seasonB={seasons[1]}
-        />
-      ))}
-    </>
-  );
-}
-
-function StatBlock({
-  label,
-  identifier,
-  playerA,
-  playerB,
-  seasonA,
-  seasonB,
-}: {
-  label: string;
-  identifier: string;
-  playerA: PlayerType | null;
-  playerB: PlayerType | null;
-  seasonA: string;
-  seasonB: string;
-}) {
-  const statA = playerA
-    ? playerStats.find((p) => p?.id === playerA?.id) || null
-    : null;
-  const statB = playerB
-    ? playerStats.find((p) => p?.id === playerB?.id) || null
-    : null;
-
-  const getStatValueForA = (stat: StatsType | null, season: string) => {
-    if (!stat) return "-";
-    if (season === "All-time") {
-      return stat.career[
-        ("total" + label.replace(/\s+/g, "")) as keyof StatsType["career"]
-      ];
-    } else {
-      const seasonData = stat.seasons.find((s) => s.season === season);
-      if (!seasonData) return "-";
-      let total = 0;
-      seasonData.competitions.forEach((comp) => {
-        total += comp.stats[identifier as keyof typeof comp.stats] || 0;
-      });
-      return total;
-    }
-  };
-  const valueA = getStatValueForA(statA, seasonA);
-  const valueB = getStatValueForA(statB, seasonB);
-
-  return (
-    <div className="relative z-0 flex justify-between items-center py-2 px-3 border-b border-white/10">
-      <p className={`text-white/70 ${poppins.className} text-sm text-center`}>
-        {valueA ?? "-"}
-      </p>
-      <p
-        className={`text-white ${poppins.className} text-sm font-medium text-center`}
-      >
-        {label}
-      </p>
-      <p className={`text-white/70 ${poppins.className} text-sm text-center`}>
-        {valueB ?? "-"}
-      </p>
-    </div>
-  );
-}
 const Compare = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<
     Array<PlayerType | null>
   >([null, null]);
   const [selectedSeasons, setSelectedSeasons] = useState<Array<string>>([
-    "All-time",
-    "All-time",
+    "23/24",
+    "23/24",
   ]);
 
   return (
@@ -207,7 +115,7 @@ const Compare = () => {
         </div>
         <div className="relative z-0 text-white/70 flex flex-col text-center gap-3 px-3">
           <div className="relative z-0 flex flex-col gap-4 p-2 w-full border border-white/20 rounded-lg bg-white/5 shadow-lg backdrop-blur">
-            <ShowStat players={selectedPlayers} seasons={selectedSeasons} />
+            <ShowFullStat players={selectedPlayers} seasons={selectedSeasons} />
           </div>
         </div>
 

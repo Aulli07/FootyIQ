@@ -9,11 +9,8 @@ export const players = [
     preferredFoot: "Right",
     image: "/images/ronaldo.jpg",
     status: "Legend",
-    currentClub: {
-      id: "alnassr",
-      name: "Al Nassr",
-      country: "Saudi Arabia"
-    }
+    team: "Al Nassr",
+    footyRating: 9.5
   },
   {
     id: "messi",
@@ -25,11 +22,8 @@ export const players = [
     preferredFoot: "Left",
     image: "/images/messi.jpg",
     status: "Legend",
-    currentClub: {
-      id: "intermiami",
-      name: "Inter Miami",
-      country: "USA"
-    }
+    team: "Inter Miami",
+    footyRating: 9.5
   },
 
   {
@@ -42,11 +36,8 @@ export const players = [
     preferredFoot: "Right",
     image: "/images/neymar.jpg",
     status: "Legend",
-    currentClub: {
-      id: "santos",
-      name: "Santos FC",
-      country: "Brazil"
-    }
+    team: "Santos FC",
+    footyRating: 9.0 
   },
 
   {
@@ -59,11 +50,8 @@ export const players = [
     preferredFoot: "Right",
     image: "/images/benzema.jpg",
     status: "Legend",
-    currentClub: {
-      id: "alittihad",
-      name: "Al-Ittihad",
-      country: "Saudi Arabia"
-    }
+    team: "Al-Ittihad",
+    footyRating: 9.1
   },
 
   {
@@ -76,11 +64,8 @@ export const players = [
     preferredFoot: "Right",
     image: "/images/desire-doue.png",
     status: "Top Prospect",
-    currentClub: {
-      id: "psg",
-      name: "Paris Saint-Germain",
-      country: "France"
-    }
+    team: "Paris Saint-Germain",
+    footyRating: 8.5
   },
 
   {
@@ -93,10 +78,7 @@ export const players = [
     preferredFoot: "Left",
     image: "/images/lamine-yamal.jpg",
     status: "Top Prospect",
-    currentClub: {
-      id: "barcelona",
-      name: "FC Barcelona",
-      country: "Spain"
-    }
+    team: "Barcelona",
+    footyRating: 8.7
   }
 ]

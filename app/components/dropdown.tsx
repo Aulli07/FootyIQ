@@ -14,7 +14,7 @@ type DropDownProps =
       setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
       playerSlot: number;
       selectedPlayers?: Array<PlayerType | null>;
-      selectedSeasons: Array<string>
+      selectedSeasons: Array<string>;
     }
   | {
       type: "player";
@@ -23,9 +23,8 @@ type DropDownProps =
       setSelectedPlayers: React.Dispatch<
         React.SetStateAction<Array<PlayerType | null>>
       >;
-      selectedPlayers: Array<PlayerType | null>
+      selectedPlayers: Array<PlayerType | null>;
       setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
-      
     };
 
 export function DropDown(props: DropDownProps) {
@@ -55,7 +54,7 @@ export function DropDown(props: DropDownProps) {
             : undefined;
 
           const seasons = stats?.seasons?.map((s) => s.season) ?? [];
-          return ["All-time", ...seasons];
+          return [...seasons];
         })()
       : [];
 
@@ -128,7 +127,7 @@ export function DropDown(props: DropDownProps) {
   return (
     <div
       ref={containerRef}
-      className={`${props.type === "player" ? "relative w-44" : "relative w-32"} ${
+      className={`${props.type === "player" ? "relative w-44" : "relative w-full"} ${
         isOpen ? "z-[9999]" : "z-0"
       }`}
     >
@@ -162,7 +161,10 @@ export function DropDown(props: DropDownProps) {
           >
             <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-400/30 flex justify-center items-center bg-black/20 focus-within:ring-4 focus-within:ring-emerald-400/15">
               <Image
-                src={props.selectedPlayers?.[props.playerSlot]?.image ?? "/images/add.png"}
+                src={
+                  props.selectedPlayers?.[props.playerSlot]?.image ??
+                  "/images/add.png"
+                }
                 alt={selectedPlayer?.name ?? "add"}
                 sizes="80px"
                 fill
@@ -170,7 +172,9 @@ export function DropDown(props: DropDownProps) {
               />
             </div>
           </button>
-          <p className={`flex justify-center items-center ${poppins.className} text-sm text-white/80 mt-3`}>
+          <p
+            className={`flex justify-center items-center ${poppins.className} text-sm text-white/80 mt-3`}
+          >
             {props.selectedPlayers?.[props.playerSlot]?.name ?? props.label}
           </p>
         </div>
@@ -181,9 +185,11 @@ export function DropDown(props: DropDownProps) {
           onClick={() => setIsOpen((v) => !v)}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
-          className={`w-full bg-white/5 border border-white/15 rounded-md px-3 py-2 text-left flex justify-between items-center ${poppins.className} text-sm text-white/90 hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40`}
+          className={`w-full bg-white/5 border border-white/15 rounded-md px-3 py-2 text-left flex justify-between items-center ${poppins.className} text-sm text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40`}
         >
-          <span className="truncate pr-2">{props.selectedSeasons?.[props.playerSlot] ?? "All-time"}</span>
+          <span className="truncate pr-2">
+            {props.selectedSeasons?.[props.playerSlot] ?? "All-time"}
+          </span>
           <Image
             src="/images/arrow-drop-down.png"
             alt="arrow"
@@ -217,8 +223,7 @@ export function DropDown(props: DropDownProps) {
                     {season}
                   </li>
                 ))
-              : 
-                players.map((player) => (
+              : players.map((player) => (
                   <li
                     key={player.id}
                     onClick={() => handleSelect(player.name)}
@@ -247,4 +252,3 @@ export function DropDown(props: DropDownProps) {
     </div>
   );
 }
-

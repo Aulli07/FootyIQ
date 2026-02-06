@@ -2,7 +2,7 @@ export const yamalStats = {
   id: "yamal",
   seasons: [
     {
-      season: "24/25",
+      season: "23/24",
       clubId: "barcelona",
       competitions: [
         {
@@ -10,14 +10,28 @@ export const yamalStats = {
           name: "La Liga",
           stats: {
             appearances: 24,
+            age: 18,
+            height: 170,
+            team: "FC Barcelona",
+            matchesPlayed: 24,
+            footyRating: 8.9,
             goals: 7,
             assists: 9,
             minutes: 1700,
             shots: 44,
+            totalShots: 44,
             shotsOnTarget: 21,
             keyPasses: 31,
-            dribblesCompleted: 46,
+            chancesCreated: 31,
+            dribbles: 46,
+            interceptions: 0,
+            tackles: 0,
+            dribbledPast: 0,
+            clearances: 0,
+            groundDuelsWon: 0,
+            blockedShots: 0,
             yellowCards: 2,
+            yellowToRedCards: 0,
             redCards: 0,
           },
         },

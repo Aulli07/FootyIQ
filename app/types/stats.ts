@@ -1,12 +1,23 @@
 export interface PlayerCompetitionStats {
-  appearances: number;
+  age: number;
+  height: number;
+  team: string;
+  footyRating: number;  
+  matchesPlayed: number;
   goals: number;
   assists: number;
   minutes: number;
   shots: number;
   shotsOnTarget: number;
   keyPasses: number;
-  dribblesCompleted: number;
+  chancesCreated: number;
+  dribbles: number;
+  interceptions: number;
+  tackles: number;
+  dribbledPast: number;
+  clearances: number;
+  groundDuelsWon: number;
+  blockedShots: number;
   yellowCards: number;
   redCards: number;
 }

@@ -7,6 +7,7 @@ import { oswald, poppins } from "../fonts";
 import { PlayerType } from "../types/players";
 
 import VotesBar from "./comparison-votes-bar";
+import Link from "next/link";
 
 // function RandomId() {
 //   const [id, setId] = useState<number | null>(null);
@@ -146,12 +147,7 @@ const Comparison = <T extends PlayerType>({
               </div>
 
               <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2">
-                <span className={`text-md ${poppins.className}`}>Compare</span>
-                {/* <img
-                  src="/images/compare-arrows.png"
-                  alt="no pic"
-                  className="object-cover relative"
-                /> */}
+                <Link href={{pathname: "/view-comparison", query: {leftPlayerId: left.id, rightPlayerId: right.id},}}><span className={`text-md ${poppins.className}`}>Compare</span></Link>
               </div>
 
               <VotesBar playerPair={playerPair} />

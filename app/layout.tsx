@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${oswald.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${oswald.variable}`.trim()}>
       <body className="flex flex-col bg-black min-h-screen font-sans">
         <AppShell>{children}</AppShell>
       </body>
