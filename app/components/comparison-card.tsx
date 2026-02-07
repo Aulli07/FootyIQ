@@ -147,10 +147,14 @@ const Comparison = <T extends PlayerType>({
               </div>
 
               <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2">
-                <Link href={{pathname: "/view-comparison", query: {leftPlayerId: left.id, rightPlayerId: right.id},}}><span className={`text-md ${poppins.className}`}>Compare</span></Link>
+                <Link href={{pathname: "/view-comparison", query: {leftPlayerId: left.id, rightPlayerId: right.id},}}><span className={`text-md ${poppins.className} font-semibold tracking-wide `}>Compare</span></Link>
               </div>
 
-              <VotesBar playerPair={playerPair} />
+              <div className="flex flex-row justify-end items-center">
+                <p className={`${poppins.className} text-sm font-medium text-white/50 font-italic`}>20.8K votes</p>
+              </div>
+
+              {/* <VotesBar playerPair={playerPair} /> */}
 
               {/* <div className="w-full flex flex-col gap-1">
                 <div className={`mt-1 flex justify-between items-center text-xxs text-white/70 ${poppins.className}`}>

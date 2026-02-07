@@ -7,36 +7,11 @@ import { oswald, poppins } from "../fonts";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const generalStats = [
-  { key: "age", label: "Age" },
-  { key: "heightCm", label: "Height" },
-  { key: "position", label: "Position" },
-  { key: "team", label: "Team" },
-  { key: "footyRating", label: "Footy IQ Rating" },
-];
+import { generalStats } from "../data/stats/statlabels";
+import { attackingStats } from "../data/stats/statlabels";
+import { defendingStats } from "../data/stats/statlabels";
+import { cardStats } from "../data/stats/statlabels";
 
-const attackingStats = [
-  { key: "goals", label: "Goals" },
-  { key: "assists", label: "Assists" },
-  { key: "totalShots", label: "Total Shots" },
-  { key: "shotsOnTarget", label: "Shots On Target" },
-  { key: "chancesCreated", label: "Big Chances Created" },
-  { key: "dribbles", label: "Successful Dribbles" },
-];
-
-const defendingStats = [
-  { key: "interceptions", label: "Interceptions" },
-  { key: "tackles", label: "Tackles" },
-  { key: "dribbledPast", label: "Dribbled Past" },
-  { key: "clearances", label: "Clearances" },
-  { key: "groundDuelsWon", label: "Ground Duels Won" },
-  { key: "blockedShots", label: "Blocked Shots" },
-];
-
-const cardStats = [
-  { key: "yellowCards", label: "Yellow Cards" },
-  { key: "redCards", label: "Red Cards" },
-];
 
 function StatsBoard({
   players,
@@ -66,89 +41,6 @@ function StatsBoard({
     </div>
   );
 }
-
-// function AttackingStats({
-//   players,
-//   seasons,
-// }: {
-//   players: Array<PlayerType | null>;
-//   seasons: Array<string>;
-// }) {
-//   return (
-//     <div className="flex flex-col gap-2 w-full relative">
-//       {attackingStats.map((stat, index) => (
-//         <StatBlock
-//           key={stat.key}
-//           identifier={stat.key}
-//           label={stat.label}
-//           playerA={players[0]}
-//           playerB={players[1]}
-//           seasonA={seasons[0]}
-//           seasonB={seasons[1]}
-//           isGeneral={true}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
-// function DefendingStats({
-//   players,
-//   seasons,
-//   stats,
-// }: {
-//   players: Array<PlayerType | null>;
-//   seasons: Array<string>;
-//   stats: { key: string; label: string }[];
-// }) {
-//   return (
-//     <div className="flex flex-col gap-2 w-full relative">
-//       {defendingStats.map((stat, index) => (
-//         <StatBlock
-//           key={stat.key}
-//           identifier={stat.key}
-//           label={stat.label}
-//           playerA={players[0]}
-//           playerB={players[1]}
-//           seasonA={seasons[0]}
-//           seasonB={seasons[1]}
-//           isGeneral={true}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
-// function OtherStats({
-//   players,
-//   seasons,
-// }: {
-//   players: Array<PlayerType | null>;
-//   seasons: Array<string>;
-// }) {
-//   return (
-//     <div className="flex flex-col gap-2 w-full relative">
-//       {cardStats.map((stat, index) => (
-//         <StatBlock
-//           key={stat.key}
-//           identifier={stat.key}
-//           label={stat.label}
-//           playerA={players[0]}
-//           playerB={players[1]}
-//           seasonA={seasons[0]}
-//           seasonB={seasons[1]}
-//           isGeneral={true}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
-// function Insights() {
-//   return (
-//     <div>alwell</div>
-//   )
-// }
 
 export default function ShowFullStat({
   players,
@@ -209,7 +101,7 @@ export default function ShowFullStat({
     <div className={`relative flex flex-col gap-3 ${poppins.className}`}>
       <div className="flex flex-col gap-3 mt-3">
         <div className="flex flex-row gap-3 w-full relative overflow-x-auto pb-4">
-          {compareTabs.map((tab, index) => (
+          {compareTabs.map((tab) => (
             <button
               key={tab.key}
               type="button"

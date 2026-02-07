@@ -56,7 +56,7 @@ export function AddFieldBox({
         playerSlot={playerSlot}
         setSelectedPlayers={setSelectedPlayers}
         selectedPlayers={selectedPlayers}
-        // selectedSeasons={selectedSeasons}
+        // selectedSeasons={selectedSeasons
         setSelectedSeasons={setSelectedSeasons}
       />
 

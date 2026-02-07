@@ -73,25 +73,24 @@ const getPreferenceForPair = (pair: PlayerType[]) => {
 
 
 export default function VotesBar({ playerPair }: { playerPair: PlayerType[] }) {
-  
   const pref = getPreferenceForPair(playerPair);
 
   return (
-    <div className="w-full flex flex-col gap-1">
+    <div className="w-full flex flex-col gap-2 relative">
       <div
-        className={`mt-1 flex justify-between items-center text-xxs text-white/70 ${poppins.className}`}
+        className={`flex justify-between items-center text-white/70 ${poppins.className}`}
       >
-        <span className={`max-w-[45%] truncate text-xs ${poppins.className}`}>
+        <span className={`max-w-[45%] truncate text-sm ${poppins.className}`}>
           {formatShortName(pref.left?.name)} {pref.leftPct}%
         </span>
         <span
-          className={`max-w-[45%] truncate text-right text-xs ${poppins.className}`}
+          className={`max-w-[45%] truncate text-right text-sm ${poppins.className}`}
         >
           {pref.rightPct}% {formatShortName(pref.right?.name)}
         </span>
       </div>
 
-      <div className="relative w-full h-2 rounded-lg bg-white/10 overflow-hidden border border-white/10">
+      <div className="relative w-full h-2.5 rounded-lg bg-white/10 overflow-hidden border border-white/10">
         <div
           className="h-full bg-green-500"
           style={{ width: `${pref.leftPct}%` }}
@@ -104,7 +103,7 @@ export default function VotesBar({ playerPair }: { playerPair: PlayerType[] }) {
         />
       </div>
 
-      <span className="right-0 text-xs font-sans text-white/20">
+      <span className={`relative text-right text-sm ${poppins.className} text-white/60`}>
         *Based on player ratings
       </span>
     </div>

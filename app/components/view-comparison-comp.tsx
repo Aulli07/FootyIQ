@@ -8,59 +8,7 @@ import Image from "next/image";
 
 import { PlayerType } from "../types/players";
 import ShowFullStat from "./show-stat";
-
-
-
-// const generalStats = [
-//   { key: "age", label: "Age" }, 
-//   { key: "heightCm", label: "Height" },
-//   { key: "position", label: "Position"},
-//   { key: "team", label: "Team"},
-//   { key: "footyRating", label: "Footy IQ Rating"}
-// ]
-
-// const attackingStats = [
-//   { key: "goals", label: "Goals"},
-//   { key: 'assists', label: "Assists"},
-//   { key: "totalShots", label: "Total Shots"},
-//   { key: "shotsOnTarget", label: "Shots On Target"},
-//   { key: "chancesCreated", label: "Big Chances Created"},
-//   { key: "dribbles", label: "Successful Dribbles"}
-// ]
-
-// const defendingStats = [
-//   { key: "interceptions", label: "Interceptions"},
-//   { key: "tackles", label: "Tackles"},
-//   { key: "dribbledPast", label: "Dribbled Past"},
-//   { key: "clearances", label: "Clearances"},
-//   { key: "groundDuelsWon", label: "Ground Duels Won"},
-//   { key: "blockedShots", label: "Blocked Shots"}
-// ]
-
-// const cardStats = [
-//   { key: "yellowCards", label: "Yellow Cards"},
-//   { key: "redCards", label: "Red Cards"}
-// ]
-
-// function GeneralStats({ players, seasons }: { players: Array<PlayerType | null>; seasons: Array<string> }) {
-//   return (
-    
-//     <div className="flex flex-col gap-2 w-full relative">
-//       {generalStats.map((stat, index) => (
-//         <StatBlock
-//           key={stat.key}
-//           identifier={stat.key}
-//           label={stat.label}
-//           playerA={players[0]}
-//           playerB={players[1]}
-//           seasonA={seasons[0]}
-//           seasonB={seasons[1]}
-//           isGeneral = {true}
-//         />
-//       ))}
-//     </div>
-//   )
-// }
+import VotesBar from "./comparison-votes-bar";
 
 
 function FixedFieldBox({
@@ -116,7 +64,7 @@ export default function ViewComparison({
   // const compareStatsField = ["General", "Attacking", "Defending", "Cards", "AI Insights"];
   
   return (
-    <main className="p-5">
+    <main className="px-3 pt-5 pb-5">
       <div className="flex flex-col gap-5">
         <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
           <img
@@ -135,10 +83,25 @@ export default function ViewComparison({
             <FixedFieldBox player={rightPlayer} season="23/24" />
           </div>
 
-          <ShowFullStat
+          <div className="px-3">
+            <ShowFullStat
             players={[leftPlayer, rightPlayer]}
             seasons={["23/24", "23/24"]}
           />
+          </div>
+          {/* <ShowFullStat
+            players={[leftPlayer, rightPlayer]}
+            seasons={["23/24", "23/24"]}
+          /> */}
+
+          <div className="grid grid-rows-2 px-3 mt-5">
+            <div className="flex justify-left items-center">
+              <p className={`text-white/80 ${oswald.className} text-md font-medium`}>
+                User Votes
+              </p>
+            </div>
+            <VotesBar playerPair={[leftPlayer, rightPlayer]} />
+          </div>
 
           {/* <div className="flex flex-col gap-3 mt-3">
             <div className="flex flex-row gap-3 w-full relative overflow-x-auto pb-4">

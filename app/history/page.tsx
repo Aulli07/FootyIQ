@@ -1,12 +1,25 @@
 "use client";
 
+import { useState } from "react";
+
 import Header from "../components/header";
+import SearchBar from "../components/search-bar";
+
+import { totalComparedPlayers } from "../page";
+import Compares from "../components/compares";
 
 const History = () => {
+  const [isSearch, setIsSearch] = useState(false);
+
   return (
-    <main className="w-full px-4 pt-2 text-white">
+    <main className="w-full px-3 pt-2 text-white">
       <Header headerText="History" />
-      <div className="pt-6 text-lg">This is the history page</div>
+      <SearchBar setIsSearch={setIsSearch} isSearch={isSearch} comparedPlayers={totalComparedPlayers}/>
+      <div className="px-3 mt-3">
+        <Compares compareList={totalComparedPlayers.slice(0, 10)} />
+      </div>
+      
+
     </main>
   );
 };

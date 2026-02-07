@@ -29,12 +29,12 @@ function Footer() {
       height: 7,
     },
     {
-      to: "/history",
+      to: "/talks",
       icon: "/images/history-light.png",
       activeIcon: "/images/history-light-fill.png",
-      alt: "history-icon",
-      header: "History",
-      title: "History",
+      alt: "talks-icon",
+      header: "Talks",
+      title: "Talks",
       width: 7,
       height: 7,
     },
@@ -71,8 +71,8 @@ function Footer() {
 
             <p
               className={`${poppins.className} text-sm ${
-                active ? "text-white" : "text-white/70"
-              }`}
+                active ? "text-white text-md" : "text-white/70"
+              } font-semibold tracking-wide`}
             >
               {link.title}
             </p>
