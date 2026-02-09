@@ -57,40 +57,15 @@ function PersonalTalks() {
     </div>
   );
 }
-      {/* <div className="flex justify-start items-start gap-4 w-full">
-        <div>
-          <div className="relative h-12 w-12 object-cover">
-            <Image src="/images/ronaldo.jpg" alt="Ronaldo" sizes="32px" fill className="object-cover rounded-full border border-emerald-700 shadow-md" />
-          </div>
-        </div>
-        <div className="flex flex-col ml-1 gap-2">
-          <div className="flex items-center h-4">
-            <p className={`text-md text-white/80 ${poppins.className} tracking-wide`}>Alwell Chukwuka</p>
-            <span className="ml-2 px-1.5 py-0.5 text-xs text-white bg-emerald-700 rounded">2 mins ago</span>
-          </div>
-
-          <p className={`text-sm text-white ${poppins.className} tracking-wide`}>Hey, I just wanted to say that your performance in the last match was incredible! Your dribbling skills and quick thinking on the field really stood out. Keep up the great work!</p>
-
-          <div className="flex justify-between items-center w-[90%] mt-3">
-            <div className="flex items-center gap-2">
-              <Image src="/images/like-light.png" alt="Like" width={20} height={20} className="object-cover" />
-              <span className={`text-sm text-white/70 ${poppins.className}`}>12</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Image src="/images/comment-light.png" alt="Comment" width={20} height={20} className="object-cover" />
-              <span className={`text-sm text-white/70 ${poppins.className}`}>4</span>
-            </div>  
-            <div className="flex items-center gap-2">   
-              <Image src="/images/view-light.png" alt="View" width={20} height={20} className="object-cover" />
-              <span className={`text-sm text-white/70 ${poppins.className}`}>200</span>
-            </div>
-
-          </div>
-        </div>
-      </div> */}
 
 function PublicTalks() {
-  return <div className="text-white font-medium">This is public</div>;
+  return (
+    <div>
+      {Posts.map((post) => (
+        <PostDisplay key={post.id} post={post} />
+      ))}
+    </div>
+  )
 }
 
 
@@ -151,20 +126,6 @@ const Talks = () => {
         </motion.div>
       </AnimatePresence>
       </div>
-      {/* <AnimatePresence mode="wait">
-        <motion.div
-        key={talkTab}
-        initial={{ x: 48, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -48, opacity: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="flex flex-row justify-center items-center"
-      >
-        {talkTab === "You" && <PersonalTalks />}
-        {talkTab === "You" && <PublicTalks />}
-      </motion.div>
-      </AnimatePresence> */}
-      {/* <div className="pt-6 text-lg">This is the talks page</div> */}
     </main>
   );
 };

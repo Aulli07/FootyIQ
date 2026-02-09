@@ -2,10 +2,15 @@ import Image from "next/image";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 
-import { poppins } from "../fonts";
+import { oswald, poppins } from "../fonts";
 import { players } from "../data/players";
 import { PlayerType } from "../types/players";
 import { playerStats } from "../data/playerStats";
+
+import SearchBar from "./search-bar";
+import { totalComparedPlayers } from "../page";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 type DropDownProps =
   | {
@@ -29,6 +34,9 @@ type DropDownProps =
 
 export function DropDown(props: DropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isDropSearch, setIsDropSearch] = useState(false);
+
   const [selected, setSelected] = useState(props.label || "Select");
   const [menuRect, setMenuRect] = useState<{
     top: number;
@@ -133,24 +141,6 @@ export function DropDown(props: DropDownProps) {
     >
       {props.type === "player" ? (
         <div className="relative flex flex-col justify-center items-center">
-          {/* <img
-            src="/images/swap-light-fill.png"
-            alt="no pic"
-            className="absolute right-2 top-0 object-cover w-7 h-7"
-            onClick={() => {
-              props.setSelectedPlayers((prev) => {
-                const next = [...prev];
-                next[props.playerSlot] = null;
-                return next;
-              });
-              props.setSelectedSeasons((prev) => {
-                const next = [...prev];
-                next[props.playerSlot] = "All-time";
-                return next;
-              });
-            }}
-          /> */}
-
           <button
             ref={triggerRef}
             type="button"
@@ -200,53 +190,74 @@ export function DropDown(props: DropDownProps) {
         </button>
       )}
 
-      {isOpen &&
-        typeof document !== "undefined" &&
+      {typeof document !== "undefined" &&
         createPortal(
-          <ul
-            ref={menuRef}
-            style={{
-              position: "absolute",
-              top: menuRect.top,
-              left: menuRect.left,
-              width: menuRect.width,
-            }}
-            className="z-[99999] overflow-hidden rounded-md bg-black/90 backdrop-blur border border-white/15 shadow-2xl ring-1 ring-white/10 max-h-60 overflow-y-auto"
-          >
-            {props.type === "season"
-              ? seasonOptions.map((season) => (
-                  <li
-                    key={season}
-                    onClick={() => handleSelect(season)}
-                    className={`px-3 py-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
-                  >
-                    {season}
-                  </li>
-                ))
-              : players.map((player) => (
-                  <li
-                    key={player.id}
-                    onClick={() => handleSelect(player.name)}
-                    className={`flex flex-row justify-start items-center gap-2 py-2 px-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
-                  >
-                    <div className="w-11 h-11 object-cover rounded-full relative shrink-0">
-                      <Image
-                        src={player.image}
-                        alt={player.name}
-                        fill
-                        sizes="44px"
-                        className="rounded-full object-cover"
-                      />
+          <AnimatePresence>
+            {isOpen && (
+              <motion.ul
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 20 }}
+                exit={{ opacity: 0, y: 100 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+                ref={menuRef}
+                style={{ position: "absolute" }}
+                className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 max-h-100 overflow-y-auto w-full bottom-0"
+              >
+                {props.type === "season" ? (
+                  seasonOptions.map((season) => (
+                    <li
+                      key={season}
+                      onClick={() => handleSelect(season)}
+                      className={`px-3 py-2 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90`}
+                    >
+                      {season}
+                    </li>
+                  ))
+                ) : (
+                  <div className="flex flex-col gap-4 p-2">
+                    <SearchBar
+                      setIsSearch={setIsDropSearch}
+                      isSearch={isDropSearch}
+                      comparedPlayers={totalComparedPlayers}
+                    />
+                    <div className="flex justify-start items-center">
+                      <p
+                        className={`${oswald.className} font-semibold text-md text-white`}
+                      >
+                        Suggested
+                      </p>
                     </div>
 
-                    <p
-                      className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
-                    >
-                      {player.name}
-                    </p>
-                  </li>
-                ))}
-          </ul>,
+                    <div className="flex flex-col gap-2">
+                      {players.map((player) => (
+                        <li
+                          key={player.id}
+                          onClick={() => handleSelect(player.name)}
+                          className={`flex justify-start items-center gap-2 p-1 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90 border-b-1 border-white/20 `}
+                        >
+                          <div className="w-9 h-9 object-cover rounded-full relative shrink-0">
+                            <Image
+                              src={player.image}
+                              alt={player.name}
+                              fill
+                              sizes="44px"
+                              className="rounded-full object-cover"
+                            />
+                          </div>
+
+                          <p
+                            className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
+                          >
+                            {player.name}
+                          </p>
+                        </li>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.ul>
+            )}
+          </AnimatePresence>,
           document.body,
         )}
     </div>

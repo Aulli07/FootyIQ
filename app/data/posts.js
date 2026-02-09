@@ -8,7 +8,7 @@ export const Posts = [
       avatarUrl: "/images/ronaldo.jpg",
     },
     content: "Premier League title charge loading... 🚀⚽️",
-    createdAt: "2026-02-08T18:00:00Z",
+    createdAt: "2026-02-09T18:00:00Z",
     stats: {
       likes: 1243,
       comments: 212,
@@ -24,7 +24,7 @@ export const Posts = [
       avatarUrl: "/images/messi.jpg",
     },
     content: "Goals are like WiFi. You don’t see them, but you feel them.",
-    createdAt: "2026-02-08T17:20:00Z",
+    createdAt: "2026-02-09T17:20:00Z",
     stats: {
       likes: 2400,
       comments: 540,
@@ -40,7 +40,7 @@ export const Posts = [
       avatarUrl: "/images/ronaldo.jpg",
     },
     content: "We are just getting started! The best is yet to come. Time to make history! #ManCity\n Non-stop celebrations in Manchester tonight! 🏆🎉",
-    createdAt: "2026-02-08T18:00:00Z",
+    createdAt: "2026-02-09T18:00:00Z",
     stats: {
       likes: 200,
       comments: 50,
@@ -56,7 +56,7 @@ export const Posts = [
       avatarUrl: "/images/ronaldo.jpg",
     },    
     content: "Arsenal are gong to be four-time bottlers this season! 😂😂😂. You just wait and see",
-    createdAt: "2026-02-08T18:00:00Z",
+    createdAt: "2026-02-09T18:00:00Z",
     stats: {
       likes: 500,
       comments: 120,

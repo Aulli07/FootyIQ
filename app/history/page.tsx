@@ -8,12 +8,22 @@ import SearchBar from "../components/search-bar";
 import { totalComparedPlayers } from "../page";
 import Compares from "../components/compares";
 
+import { oswald } from "../fonts";
+
 const History = () => {
   const [isSearch, setIsSearch] = useState(false);
 
   return (
     <main className="w-full px-3 pt-2 text-white">
-      <Header headerText="History" />
+      <div className="flex justify-start items-center gap-2 text-white mb-5">
+        <img
+          src="/images/go-back-light.png"
+          alt="go back"
+          className="h-8 w-8 object-cover cursor-pointer"
+        />
+        <p className={`text-xl ${oswald.className} font-semibold py-3`}>History</p>
+      </div>
+      {/* <Header headerText="History" /> */}
       <SearchBar setIsSearch={setIsSearch} isSearch={isSearch} comparedPlayers={totalComparedPlayers}/>
       <div className="px-3 mt-3">
         <Compares compareList={totalComparedPlayers.slice(0, 10)} />

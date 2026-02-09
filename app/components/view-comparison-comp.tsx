@@ -60,8 +60,6 @@ export default function ViewComparison({
   if (!leftPlayer || !rightPlayer) {
     return <div className="p-4">Player not found</div>;
   }
-
-  // const compareStatsField = ["General", "Attacking", "Defending", "Cards", "AI Insights"];
   
   return (
     <main className="px-3 pt-5 pb-5">
