@@ -1,31 +1,26 @@
-import { filterSearchedPlayers } from "../utils/playerFilters";
-import { getTotalComparisons } from "../utils/playerFilters";
-
 import { poppins } from "../fonts";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 import { PlayerType } from "../types/players";
-import { players } from "../data/players";
 
 import Compares from "./compares";
+import { GetSearchedPlayers } from "./searched-players";
 
 // const totalComparedPlayers = getTotalComparisons(players);
 
 function SearchBar({
   setIsSearch,
   isSearch,
-  comparedPlayers
+  comparedPlayers,
 }: {
-  setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSearch: Dispatch<SetStateAction<boolean>>;
   isSearch: boolean;
-  comparedPlayers: PlayerType[][]
+  comparedPlayers: PlayerType[][];
 }) {
   const [inputText, setInputText] = useState<string>("");
-
-  // This filters the searched player's comparisons from the total
-  const foundPlayers = filterSearchedPlayers(inputText);
 
   return (
     <div className="px-3 flex flex-col gap-3 overflow-hidden">
@@ -50,47 +45,53 @@ function SearchBar({
         />
       </div>
 
-      {/* This works to   check if input is empty, if it is not, it displays teh found players*/}
-      {inputText.trim() !== "" ? (
-        <div className="flex-1 min-h-0">
-          <DisplayFoundPlayers
-            foundPlayers={foundPlayers}
-            emptySearch={`No matches for "${inputText}"`}
-            comparedPlayers = {comparedPlayers}
-          />
-        </div>
-      ) : (
-        <div className="flex-1 min-h-0" />
-      )}
+      {/* If input isn't empty, show searched results */}
+      <GetSearchedPlayers query={inputText}>
+        {(foundPlayers) =>
+          inputText.trim() !== "" ? (
+            <div className="flex-1 min-h-0">
+              <SearchedPlayersResults
+                foundPlayers={foundPlayers}
+                emptySearch={`No matches for "${inputText}"`}
+                comparedPlayers={comparedPlayers}
+              />
+            </div>
+          ) : (
+            <div className="flex-1 min-h-0" />
+          )
+        }
+      </GetSearchedPlayers>
     </div>
   );
 }
 
-function DisplayFoundPlayers({
+export function SearchedPlayersResults({
   // Assigning each element to its individual type,
   // foundPlayers is an array of player objects while emptySearch is simply a string
   foundPlayers,
   emptySearch,
-  comparedPlayers
+  comparedPlayers,
 }: {
   foundPlayers: Array<PlayerType>;
   emptySearch: string;
-  comparedPlayers: PlayerType[][]
+  comparedPlayers: PlayerType[][];
 }) {
-  // Stores the individual player's comparisons in the system
-  const foundPlayerComparisons: Array<Array<PlayerType>> = [];
+  const foundPlayerComparisons: Array<Array<PlayerType>> = useMemo(() => {
+    const comparisons: Array<Array<PlayerType>> = [];
 
-  // Block of code to make player comparisons
-  foundPlayers.forEach((player) => {
-    comparedPlayers.forEach((compares) => {
-      let left = compares[0];
-      let right = compares[1];
+    foundPlayers.forEach((player) => {
+      comparedPlayers.forEach((compares) => {
+        const left = compares[0];
+        const right = compares[1];
 
-      if (player.id == left.id || player.id == right.id) {
-        foundPlayerComparisons.push(compares);
-      }
+        if (player.id === left.id || player.id === right.id) {
+          comparisons.push(compares);
+        }
+      });
     });
-  });
+
+    return comparisons;
+  }, [foundPlayers, comparedPlayers]);
 
   // The display of found player's comparisons
   return (
@@ -120,8 +121,8 @@ function InputBar({
   setIsSearch,
   isSearch,
 }: {
-  setInputText: React.Dispatch<React.SetStateAction<string>>;
-  setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  setInputText: Dispatch<SetStateAction<string>>;
+  setIsSearch: Dispatch<SetStateAction<boolean>>;
   isSearch: boolean;
 }) {
   return (

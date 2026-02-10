@@ -7,8 +7,7 @@ import { players } from "../data/players";
 import { PlayerType } from "../types/players";
 import { playerStats } from "../data/playerStats";
 
-import SearchBar from "./search-bar";
-import { totalComparedPlayers } from "../page";
+import { GetSearchedPlayers } from "./searched-players";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -35,7 +34,7 @@ type DropDownProps =
 export function DropDown(props: DropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isDropSearch, setIsDropSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const [selected, setSelected] = useState(props.label || "Select");
   const [menuRect, setMenuRect] = useState<{
@@ -114,6 +113,7 @@ export function DropDown(props: DropDownProps) {
   const handleSelect = (value: string) => {
     setSelected(value);
     setIsOpen(false);
+    setSearchQuery("");
 
     if (props.type === "player") {
       const nextPlayer =
@@ -198,7 +198,7 @@ export function DropDown(props: DropDownProps) {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 20 }}
                 exit={{ opacity: 0, y: 100 }}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
                 ref={menuRef}
                 style={{ position: "absolute" }}
                 className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 max-h-100 overflow-y-auto w-full bottom-0"
@@ -215,44 +215,113 @@ export function DropDown(props: DropDownProps) {
                   ))
                 ) : (
                   <div className="flex flex-col gap-4 p-2">
-                    <SearchBar
-                      setIsSearch={setIsDropSearch}
-                      isSearch={isDropSearch}
-                      comparedPlayers={totalComparedPlayers}
-                    />
-                    <div className="flex justify-start items-center">
-                      <p
-                        className={`${oswald.className} font-semibold text-md text-white`}
-                      >
-                        Suggested
-                      </p>
+                    <div className="relative">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 z-[9999]">
+                        <div className="relative h-5 w-5">
+                          <Image
+                            src="/images/search.png"
+                            fill
+                            sizes="20px"
+                            alt="search"
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        placeholder="Search for players"
+                        className={`w-full h-12 rounded-2xl bg-white/5 text-white placeholder:text-white/40 border border-white/30 pl-12 pr-4 text-[14px] ${poppins.className} shadow-lg backdrop-blur outline-none transition focus:border-emerald-400/40 focus:ring-4 focus:ring-emerald-400/15`}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      {players.map((player) => (
-                        <li
-                          key={player.id}
-                          onClick={() => handleSelect(player.name)}
-                          className={`flex justify-start items-center gap-2 p-1 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90 border-b-1 border-white/20 `}
-                        >
-                          <div className="w-9 h-9 object-cover rounded-full relative shrink-0">
-                            <Image
-                              src={player.image}
-                              alt={player.name}
-                              fill
-                              sizes="44px"
-                              className="rounded-full object-cover"
-                            />
-                          </div>
+                    <GetSearchedPlayers query={searchQuery}>
+                      {(foundPlayers) =>
+                        searchQuery.trim() !== "" ? (
+                          <>
+                            <div className="flex justify-start items-center">
+                              <p
+                                className={`${oswald.className} font-semibold text-md text-white`}
+                              >
+                                Matches
+                              </p>
+                            </div>
 
-                          <p
-                            className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
-                          >
-                            {player.name}
-                          </p>
-                        </li>
-                      ))}
-                    </div>
+                            {foundPlayers.length === 0 ? (
+                              <p
+                                className={`${poppins.className} text-xs text-white/70 px-1`}
+                              >
+                                {`No matches for "${searchQuery}"`}
+                              </p>
+                            ) : (
+                              <div className="flex flex-col gap-2">
+                                {foundPlayers.map((player) => (
+                                  <li
+                                    key={player.id}
+                                    onClick={() => handleSelect(player.name)}
+                                    className={`flex justify-start items-center gap-2 p-1 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90 border-b-1 border-white/20 `}
+                                  >
+                                    <div className="w-9 h-9 object-cover rounded-full relative shrink-0">
+                                      <Image
+                                        src={player.image}
+                                        alt={player.name}
+                                        fill
+                                        sizes="44px"
+                                        className="rounded-full object-cover"
+                                      />
+                                    </div>
+
+                                    <p
+                                      className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
+                                    >
+                                      {player.name}
+                                    </p>
+                                  </li>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex justify-start items-center">
+                              <p
+                                className={`${oswald.className} font-semibold text-md text-white`}
+                              >
+                                Suggested
+                              </p>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                              {players.map((player) => (
+                                <li
+                                  key={player.id}
+                                  onClick={() => handleSelect(player.name)}
+                                  className={`flex justify-start items-center gap-2 p-1 hover:bg-white/10 cursor-pointer ${poppins.className} text-sm text-white/90 border-b-1 border-white/20 `}
+                                >
+                                  <div className="w-9 h-9 object-cover rounded-full relative shrink-0">
+                                    <Image
+                                      src={player.image}
+                                      alt={player.name}
+                                      fill
+                                      sizes="44px"
+                                      className="rounded-full object-cover"
+                                    />
+                                  </div>
+
+                                  <p
+                                    className={`truncate ${poppins.className} text-xs text-white/90 whitespace-nowrap leading-relaxed`}
+                                  >
+                                    {player.name}
+                                  </p>
+                                </li>
+                              ))}
+                            </div>
+                          </>
+                        )
+                      }
+                    </GetSearchedPlayers>
                   </div>
                 )}
               </motion.ul>
