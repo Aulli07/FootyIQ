@@ -178,7 +178,7 @@ export function DropDown(props: DropDownProps) {
           className={`w-full bg-white/5 border border-white/15 rounded-md px-3 py-2 text-left flex justify-between items-center ${poppins.className} text-sm text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40`}
         >
           <span className="truncate pr-2">
-            {props.selectedSeasons?.[props.playerSlot] ?? "All-time"}
+            {props.selectedSeasons?.[props.playerSlot] ?? "Season"}
           </span>
           <Image
             src="/images/arrow-drop-down.png"
@@ -201,7 +201,7 @@ export function DropDown(props: DropDownProps) {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 ref={menuRef}
                 style={{ position: "absolute" }}
-                className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 max-h-100 overflow-y-auto w-full bottom-0"
+                className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 min-h-100 overflow-y-auto w-full bottom-0"
               >
                 {props.type === "season" ? (
                   seasonOptions.map((season) => (

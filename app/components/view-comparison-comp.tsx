@@ -9,7 +9,14 @@ import Image from "next/image";
 import { PlayerType } from "../types/players";
 import ShowFullStat from "./show-stat";
 import VotesBar from "./comparison-votes-bar";
+import TitleSection from "./pageTitleSection";
 
+import { Posts } from "../data/posts";
+import { PostType } from "../types/posts";
+import { PostDisplay } from "../talks/page";
+
+import ComparisonVotesSection from "./comp-votes-section";
+import ComparisonTalksSection from "./comp-talks-section";
 
 function FixedFieldBox({
   player,
@@ -47,6 +54,32 @@ function FixedFieldBox({
   );
 }
 
+// export function ComparisonVotesSection({leftPlayer, rightPlayer} : {leftPlayer: PlayerType | null, rightPlayer: PlayerType | null}) {
+//   return (
+//     <div className="flex flex-col gap-3 px-4 mt-3 ">
+//       <TitleSection title="User Votes" />
+//       <VotesBar players={[leftPlayer, rightPlayer]} />
+//     </div>
+//   )
+// }
+
+// export function ComparisonCommentsSection({leftPlayer, rightPlayer} : {leftPlayer: PlayerType | null, rightPlayer: PlayerType | null}) {
+
+//   const postsInDiscussion = Posts.filter(post => 
+//     post.playersInDiscussion.includes(leftPlayer?.name || "") && post.playersInDiscussion.includes(rightPlayer?.name || "") 
+//   );
+//   return (
+//     <div className="flex flex-col gap-3 h-full w-full mt-5">
+//       <TitleSection title="Comments" />
+//       <div className="flex flex-col gap-3 px-4 mt-3">
+//         {postsInDiscussion.map((post) => (
+//           <PostDisplay key={post.id} post={post} />
+//         ))}
+//       </div>
+//     </div> 
+//   )
+// }
+
 export default function ViewComparison({
   leftPlayerId,
   rightPlayerId,
@@ -70,7 +103,7 @@ export default function ViewComparison({
             alt="go back"
             className="h-8 w-8 object-cover cursor-pointer"
           />
-          <p className={`text-md ${oswald.className} font-semibold`}>
+          <p className={`text-lg ${oswald.className} font-semibold`}>
             {leftPlayer.id.toUpperCase()} & {rightPlayer.id.toUpperCase()}{" "}
             COMPARISON
           </p>
@@ -87,19 +120,23 @@ export default function ViewComparison({
             seasons={["23/24", "23/24"]}
           />
           </div>
+
+          <ComparisonVotesSection leftPlayer={leftPlayer} rightPlayer={rightPlayer} />
+
+          <ComparisonTalksSection leftPlayer={leftPlayer} rightPlayer={rightPlayer} />
           {/* <ShowFullStat
             players={[leftPlayer, rightPlayer]}
             seasons={["23/24", "23/24"]}
           /> */}
 
-          <div className="grid grid-rows-2 px-3 mt-5">
+          {/* <div className="grid grid-rows-2 px-3 mt-5">
             <div className="flex justify-left items-center">
               <p className={`text-white/80 ${oswald.className} text-md font-medium`}>
                 User Votes
               </p>
             </div>
             <VotesBar playerPair={[leftPlayer, rightPlayer]} />
-          </div>
+          </div> */}
 
           {/* <div className="flex flex-col gap-3 mt-3">
             <div className="flex flex-row gap-3 w-full relative overflow-x-auto pb-4">

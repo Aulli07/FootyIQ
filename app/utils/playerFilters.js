@@ -20,6 +20,14 @@ export function getTotalComparisons(playersList) {
   return searchesList;
 }
 
+
+
+export function getLegends() {
+  const legendsList = computeLegends(playerStats);
+  const legendsComparisons = getTotalComparisons(legendsList);
+  return legendsComparisons;
+}
+
 export function computeLegends(statsList = playerStats) {
   return statsList
     .filter((stats) => {
@@ -34,6 +42,12 @@ export function computeLegends(statsList = playerStats) {
     })
     .map((stats) => playersById[stats.id])
     .filter(Boolean);
+}
+
+export function getHotProspects() {
+  const hotProspectsList = computeHotProspects(playerStats);
+  const hotProspectsComparisons = getTotalComparisons(hotProspectsList);
+  return hotProspectsComparisons;
 }
 
 export function computeHotProspects(statsList = playerStats) {

@@ -11,6 +11,8 @@ import { generalStats } from "../data/stats/statlabels";
 import { attackingStats } from "../data/stats/statlabels";
 import { defendingStats } from "../data/stats/statlabels";
 import { cardStats } from "../data/stats/statlabels";
+import ComparisonVotesSection from "./comp-votes-section";
+import VotesBar from "./comparison-votes-bar";
 
 
 function StatsBoard({
@@ -133,6 +135,7 @@ export default function ShowFullStat({
           </motion.div>
         </AnimatePresence>
       </div>
+      {/* <VotesBar players={players} /> */}
     </div>
   );
 }
@@ -192,13 +195,6 @@ function StatBlock({
           (comp.stats[identifier as keyof PlayerCompetitionStats] as number) ||
           0;
       }
-      // if (
-      //   comp.stats[identifier as keyof PlayerCompetitionStats] !== undefined
-      // ) {
-      //   total +=
-      //     (comp.stats[identifier as keyof PlayerCompetitionStats] as number) ||
-      //     0;
-      // }
     });
 
     return total;

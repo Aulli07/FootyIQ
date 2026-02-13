@@ -7,6 +7,7 @@ export type PostType = {
     avatarUrl: string;
   }
   content: string;
+  playersInDiscussion: Array<string>;
   createdAt: string;
   stats: {
     likes: number;

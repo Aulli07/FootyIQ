@@ -12,6 +12,9 @@ import { PlayerType } from "../types/players";
 import { StatsType } from "../types/stats";
 
 import { playerStats } from "../data/playerStats";
+import TitleSection from "../components/pageTitleSection"
+import ComparisonVotesSection from "../components/comp-votes-section";
+import ComparisonTalksSection from "../components/comp-talks-section";
 
 export function AddFieldBox({
   playerSlot,
@@ -114,31 +117,17 @@ const Compare = () => {
           />
         </div>
         <div className="relative z-0 text-white/70 flex flex-col text-center gap-3 px-3">
-          <div className="relative z-0 flex flex-col gap-4 p-2 w-full border border-white/20 rounded-lg bg-white/5 shadow-lg backdrop-blur">
+          <div className="relative z-0 flex flex-col gap-4 p-2 w-full ">
             <ShowFullStat players={selectedPlayers} seasons={selectedSeasons} />
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 h-full w-full">
-          <div className="flex justify-center items-center">
-            <p
-              className={`text-white ${oswald.className} text-lg font-semibold`}
-            >
-              Comments
-            </p>
-          </div>
+        <ComparisonVotesSection leftPlayer={selectedPlayers[0]} rightPlayer={selectedPlayers[1]}/>
 
-          <div className="w-full border border-white/15 rounded-xl bg-white/5 shadow-lg backdrop-blur p-4">
-            <p
-              className={`text-white/60 ${poppins.className} text-sm text-center`}
-            >
-              No comments yet.
-            </p>
-          </div>
-        </div>
+        <ComparisonTalksSection leftPlayer={selectedPlayers[0]} rightPlayer={selectedPlayers[1]} />
       </div>
     </main>
   );
-};
+}
 
 export default Compare;

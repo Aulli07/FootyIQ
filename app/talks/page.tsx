@@ -12,7 +12,7 @@ import { PostType } from "../types/posts";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-function PostDisplay({ post }: { post: PostType }) {
+export function PostDisplay({ post }: { post: PostType }) {
   return (
     <div className="flex justify-start items-start gap-4 w-full border-b border-white/30 pb-7 pt-3">
       <div>

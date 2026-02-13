@@ -36,16 +36,16 @@ const aggregatePlayerStats = (player: StatsType | null) => {
   return { totalGoals, totalAppearances, avgRating };
 };
 
-const getPreferenceForPair = (pair: PlayerType[]) => {
-  const left = pair[0];
-  const right = pair[1];
+const getPreferenceForPair = (pair: Array<PlayerType | null>) => {
+  const left = pair?.[0]
+  const right = pair?.[1]
 
   if (!left || !right) {
     return {
       left,
       right,
-      leftPct: 50,
-      rightPct: 50,
+      leftPct: 0,
+      rightPct: 0,
     };
   }
 
@@ -72,40 +72,32 @@ const getPreferenceForPair = (pair: PlayerType[]) => {
 
 
 
-export default function VotesBar({ playerPair }: { playerPair: PlayerType[] }) {
-  const pref = getPreferenceForPair(playerPair);
+export default function VotesBar({ players }: { players: Array<PlayerType | null> }) {
+  const pref = getPreferenceForPair(players);
 
   return (
-    <div className="w-full flex flex-col gap-2 relative">
-      <div
-        className={`flex justify-between items-center text-white/70 ${poppins.className}`}
-      >
+    <div className="flex flex-col gap-2 relative p-4 border border-white/20 rounded-lg bg-white/5 shadow-lg backdrop-blur">
+      <div className={`flex justify-between items-center text-white/70 ${poppins.className}`}>
         <span className={`max-w-[45%] truncate text-sm ${poppins.className}`}>
           {formatShortName(pref.left?.name)} {pref.leftPct}%
         </span>
-        <span
-          className={`max-w-[45%] truncate text-right text-sm ${poppins.className}`}
-        >
+        <span className={`max-w-[45%] truncate text-right text-sm ${poppins.className}`}>
           {pref.rightPct}% {formatShortName(pref.right?.name)}
         </span>
       </div>
 
       <div className="relative w-full h-2.5 rounded-lg bg-white/10 overflow-hidden border border-white/10">
         <div
-          className="h-full bg-green-500"
+          className="bg-green-500 w-full h-full absolute left-0 top-0 flex transition-all duration-500 ease-in-out"
           style={{ width: `${pref.leftPct}%` }}
           aria-label="Left player preference"
         />
         <div
-          className="absolute inset-y-0 right-0 bg-white/90"
+          className="bg-white/70 w-full h-full absolute right-0 top-0 flex transition-all duration-500 ease-in-out"
           style={{ width: `${pref.rightPct}%` }}
           aria-label="Right player preference"
         />
       </div>
-
-      <span className={`relative text-right text-sm ${poppins.className} text-white/60`}>
-        *Based on player ratings
-      </span>
     </div>
   );
 }
