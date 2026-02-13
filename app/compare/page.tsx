@@ -23,7 +23,6 @@ export function AddFieldBox({
   setSelectedSeasons,
   selectedSeasons,
 }: {
-  // fieldBoxDetails: fieldBoxType;
   playerSlot: number;
   selectedPlayers: Array<PlayerType | null>;
   setSelectedPlayers: React.Dispatch<

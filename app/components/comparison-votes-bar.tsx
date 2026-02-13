@@ -3,7 +3,6 @@ import { StatsType } from "../types/stats";
 
 import { poppins } from "../fonts";
 import { playerStats } from "../data/playerStats";
-// import { PlayerStatsType } from "../types/playerStatsType";
 
 
 const formatShortName = (name?: string) => {
@@ -14,19 +13,11 @@ const formatShortName = (name?: string) => {
 };
 
 const aggregatePlayerStats = (player: StatsType | null) => {
-  // const totalGoals = seasons.reduce(
-  //   (sum, season) => sum + (Number(season.career.totalGoals) || 0),
-  //   0,
-  // );
   const totalGoals = player?.career.totalGoals || 0;
-
   const totalAppearances = player?.career.totalAppearances || 0;
 
   const weightedRatingSum = () => {
-    // const apps = Number(season.career.totalAppearances) || 0;
-
     const rating = Number(player?.career.averageRating) || 0;
-    
     if (!Number.isFinite(rating) || totalAppearances <= 0) return 0;
     return rating * totalAppearances;
   };

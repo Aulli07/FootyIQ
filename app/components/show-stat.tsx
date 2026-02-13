@@ -11,8 +11,6 @@ import { generalStats } from "../data/stats/statlabels";
 import { attackingStats } from "../data/stats/statlabels";
 import { defendingStats } from "../data/stats/statlabels";
 import { cardStats } from "../data/stats/statlabels";
-import ComparisonVotesSection from "./comp-votes-section";
-import VotesBar from "./comparison-votes-bar";
 
 
 function StatsBoard({
@@ -135,7 +133,6 @@ export default function ShowFullStat({
           </motion.div>
         </AnimatePresence>
       </div>
-      {/* <VotesBar players={players} /> */}
     </div>
   );
 }
