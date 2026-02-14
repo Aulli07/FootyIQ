@@ -12,7 +12,7 @@ import { players } from "../data/players";
 import { useSearchParams } from "next/navigation";
 import { PlayerType } from "../types/players";
 
-import { ComparesCard } from "../components/compares";
+import { ComparesCard } from "../components/top-compare-cards";
 
 export default function ViewComparison() {
   const searchParams = useSearchParams();

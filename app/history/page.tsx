@@ -6,7 +6,7 @@ import Header from "../components/header";
 import SearchBar from "../components/search-bar";
 
 import { totalComparedPlayers } from "../page";
-import Compares from "../components/compares";
+import Compares from "../components/top-compare-cards";
 
 import { oswald } from "../fonts";
 
@@ -21,15 +21,18 @@ const History = () => {
           alt="go back"
           className="h-8 w-8 object-cover cursor-pointer"
         />
-        <p className={`text-xl ${oswald.className} font-semibold py-3`}>History</p>
+        <p className={`text-xl ${oswald.className} font-semibold py-3`}>
+          History
+        </p>
       </div>
-      {/* <Header headerText="History" /> */}
-      <SearchBar setIsSearch={setIsSearch} isSearch={isSearch} comparedPlayers={totalComparedPlayers}/>
+      <SearchBar
+        setIsSearch={setIsSearch}
+        isSearch={isSearch}
+        comparedPlayers={totalComparedPlayers}
+      />
       <div className="px-3 mt-3">
         <Compares compareList={totalComparedPlayers.slice(0, 10)} />
       </div>
-      
-
     </main>
   );
 };

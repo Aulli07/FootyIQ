@@ -1,6 +1,9 @@
 import { players } from "../data/players";
 import { playerStats } from "../data/playerStats";
 
+import { Posts } from "../data/posts";
+
+
 const playersById = Object.fromEntries(
   players.map((player) => [player.id, player]),
 );
@@ -83,4 +86,14 @@ function containsAllPlayers(input, description) {
 
   let descriptionList = description.split(" ");
   return descriptionList.some((text) => text.startsWith(input));
+}
+
+export function getPostsInDiscussion(leftPlayer, rightPlayer) {
+  const postsInDiscussion = Posts.filter(
+    (post) =>
+      post.playersInDiscussion.includes(leftPlayer?.name || "") &&
+      post.playersInDiscussion.includes(rightPlayer?.name || ""),
+  );
+
+  return postsInDiscussion;
 }

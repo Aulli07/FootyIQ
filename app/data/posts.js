@@ -11,7 +11,7 @@ export const Posts = [
     playersInDiscussion: [
       "Cristiano Ronaldo", "Lionel Messi"
     ],
-    createdAt: "2026-02-13T14:00:00Z",
+    createdAt: "2026-02-14T14:00:00Z",
     stats: {
       likes: 1243,
       comments: 212,
@@ -30,7 +30,7 @@ export const Posts = [
     playersInDiscussion: [
       "Erling Haaland", "Kylian Mbappe"
     ],
-    createdAt: "2026-02-13T14:20:00Z",
+    createdAt: "2026-02-14T14:20:00Z",
     stats: {
       likes: 2400,
       comments: 540,
@@ -49,7 +49,7 @@ export const Posts = [
     playersInDiscussion: [
       "Cristiano Ronaldo", "Lionel Messi"
     ],
-    createdAt: "2026-02-13T14:00:00Z",
+    createdAt: "2026-02-14T14:00:00Z",
     stats: {
       likes: 200,
       comments: 50,
@@ -68,7 +68,64 @@ export const Posts = [
     playersInDiscussion: [
       "Cristiano Ronaldo", "Lionel Messi"
     ],
-    createdAt: "2026-02-13T14:00:00Z",
+    createdAt: "2026-02-14T14:00:00Z",
+    stats: {
+      likes: 500,
+      comments: 120,
+      views: 8000,
+    },
+  },
+  {
+    id: "01",
+    user: {
+      id: "u1",
+      name: "Alwell Chukwuka",  
+      username: "aulli07",
+      avatarUrl: "/images/ronaldo.jpg",
+    },    
+    content: "Arsenal are gong to be four-time bottlers this season! 😂😂😂. You just wait and see",
+    playersInDiscussion: [
+      "Cristiano Ronaldo", "Lionel Messi"
+    ],
+    createdAt: "2026-02-14T14:00:00Z",
+    stats: {
+      likes: 500,
+      comments: 120,
+      views: 8000,
+    },
+  },
+  {
+    id: "01",
+    user: {
+      id: "u1",
+      name: "Alwell Chukwuka",  
+      username: "aulli07",
+      avatarUrl: "/images/ronaldo.jpg",
+    },    
+    content: "Arsenal are gong to be four-time bottlers this season! 😂😂😂. You just wait and see",
+    playersInDiscussion: [
+      "Cristiano Ronaldo", "Lionel Messi"
+    ],
+    createdAt: "2026-02-14T14:00:00Z",
+    stats: {
+      likes: 500,
+      comments: 120,
+      views: 8000,
+    },
+  },
+  {
+    id: "01",
+    user: {
+      id: "u1",
+      name: "Alwell Chukwuka",  
+      username: "aulli07",
+      avatarUrl: "/images/ronaldo.jpg",
+    },    
+    content: "Arsenal are gong to be four-time bottlers this season! 😂😂😂. You just wait and see",
+    playersInDiscussion: [
+      "Cristiano Ronaldo", "Lionel Messi"
+    ],
+    createdAt: "2026-02-14T14:00:00Z",
     stats: {
       likes: 500,
       comments: 120,

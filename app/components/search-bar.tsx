@@ -6,10 +6,9 @@ import type { Dispatch, SetStateAction } from "react";
 
 import { PlayerType } from "../types/players";
 
-import Compares from "./compares";
+import Compares from "./top-compare-cards";
 import { GetSearchedPlayers } from "./searched-players";
 
-// const totalComparedPlayers = getTotalComparisons(players);
 
 function SearchBar({
   setIsSearch,

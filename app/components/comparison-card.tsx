@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: PlayerType, rightPlayer: PlayerType}) {
+
    const renderLegend = (legend: PlayerType) => (
     <div key={legend.id} className="flex flex-row">
       <div className="p-2 flex flex-col w-32 items-center gap-2">
@@ -25,6 +26,8 @@ export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: 
       </div>
     </div>
    )
+
+   
   return (
     <div
       className="flex flex-col gap-5 p-3 rounded-xl border border-white/10 bg-white/5 shadow-sm backdrop-blur"

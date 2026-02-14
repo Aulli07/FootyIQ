@@ -12,7 +12,7 @@ import { PlayerType } from "../types/players";
 import { StatsType } from "../types/stats";
 
 import { playerStats } from "../data/playerStats";
-import TitleSection from "../components/pageTitleSection"
+import TitleSection from "../components/page-title-section";
 import ComparisonVotesSection from "../components/comp-votes-section";
 import ComparisonTalksSection from "../components/comp-talks-section";
 
@@ -74,7 +74,6 @@ export function AddFieldBox({
   );
 }
 
-
 const Compare = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<
     Array<PlayerType | null>
@@ -121,12 +120,18 @@ const Compare = () => {
           </div>
         </div>
 
-        <ComparisonVotesSection leftPlayer={selectedPlayers[0]} rightPlayer={selectedPlayers[1]}/>
+        <ComparisonVotesSection
+          leftPlayer={selectedPlayers[0]}
+          rightPlayer={selectedPlayers[1]}
+        />
 
-        <ComparisonTalksSection leftPlayer={selectedPlayers[0]} rightPlayer={selectedPlayers[1]} />
+        <ComparisonTalksSection
+          leftPlayer={selectedPlayers[0]}
+          rightPlayer={selectedPlayers[1]}
+        />
       </div>
     </main>
   );
-}
+};
 
 export default Compare;
