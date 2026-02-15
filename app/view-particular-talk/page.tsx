@@ -35,8 +35,8 @@ export default function ParticularPost() {
   }
 
   return (
-    <main className="px-3 md:px-6 pb-10 pt-5 min-h-[88vh] text-white">
-      <div className="max-w-3xl mx-auto flex flex-col gap-6">
+    <main className="px-4 md:px-6 pb-10 pt-5 min-h-[88vh] text-white">
+      <div className="max-w-3xl mx-auto flex flex-col ">
         <div className="flex justify-start items-center gap-4 text-white border-b border-white/25 pb-5">
           <button
             type="button"
@@ -59,7 +59,7 @@ export default function ParticularPost() {
           </div>
         </div>
 
-        <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 min-h-[46vh]">
+        <article className="w-full border border-white/20 rounded-2xl bg-white/4 backdrop-blur p-5 md:p-7 mt-5">
           <div className="flex justify-start items-start gap-4">
             <div className="relative h-14 w-14">
               <Image
@@ -71,31 +71,25 @@ export default function ParticularPost() {
               />
             </div>
 
-            <div className="flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <p
-                  className={`text-lg text-white ${poppins.className} font-semibold`}
-                >
-                  {post.user.name}
-                </p>
-                <p className={`text-sm text-white/60 ${poppins.className}`}>
-                  @{post.user.username}
-                </p>
-                <span className="text-white/40">•</span>
-                <p className={`text-sm text-white/70 ${poppins.className}`}>
-                  {timeAgo(post.createdAt)}
-                </p>
+            <div className="flex flex-wrap gap-4">
+              <div>
+                <p className={`text-lg text-white ${poppins.className} font-semibold`}>{post.user.name}</p>
+                <p className={`text-sm text-white/60 ${poppins.className}`}>@{post.user.username}</p>
               </div>
 
-              <p
-                className={`mt-5 text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}
-              >
-                {post.content}
-              </p>
-            </div>
+              <div className="flex border border-white/20 justify-left h-8 items-center">
+                <span className="text-white/40">•</span>
+                <p className={`text-sm text-white/70 ${poppins.className}`}>{timeAgo(post.createdAt)}</p>
+              </div>
+            </div>              
           </div>
 
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 mt-4 flex items-center justify-between w-[90%] py-3">
+          <div>
+            <p className={`mt-5 text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}>{post.content}</p>
+          </div>
+          
+
+          {/* <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 mt-4 flex items-center justify-between w-[90%] py-3">
             <div className="flex items-center gap-2">
               <Image
                 src="/images/comment-light.png"
@@ -132,10 +126,46 @@ export default function ParticularPost() {
                 {post.stats.views}
               </span>
             </div>
-          </div>
+          </div> */}
         </article>
 
-        <section className="w-full border border-white/20 rounded-2xl bg-white/5 p-5 md:p-6">
+        <div className="py-3 px-2 flex gap-5 border-y border-white/50 mt-4">
+          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.likes} Likes</p>
+          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.comments} Comments</p>
+          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.views} Views</p>
+        </div>
+
+        <div className="flex items-center justify-between w-[100%] py-3 px-4 border border-white/20 rounded-2xl bg-white/4 backdrop-blur px-10 my-6">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/images/comment-light.png"
+              alt="Comment"
+              width={18}
+              height={18}
+              className="object-cover"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <Image
+              src="/images/like-light.png"
+              alt="Like"
+              width={18}
+              height={18}
+              className="object-cover"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <Image
+              src="/images/view-light.png"
+              alt="View"
+              width={18}
+              height={18}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <section className="mt-6 w-full border border-white/20 rounded-2xl bg-white/5 p-5 md:p-6">
           <div className="flex items-center justify-between pb-4 border-b border-white/20">
             <h2 className={`${oswald.className} text-xl text-white`}>
               COMMENTS
@@ -145,25 +175,26 @@ export default function ParticularPost() {
             </p>
           </div>
 
-          <div className="mt-4 rounded-xl border border-white/20 bg-black/20 p-4">
-            <textarea
-              placeholder="Write a comment..."
-              className={`${poppins.className} w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none min-h-24 resize-none`}
-            />
-            <div className="pt-3 flex justify-end">
-              <button
-                type="button"
-                className={`${poppins.className} px-4 py-2 rounded-full text-sm font-medium bg-emerald-600 hover:bg-emerald-500 transition-colors`}
-              >
-                Post comment
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-5 min-h-24 rounded-xl border border-dashed border-white/20 bg-black/15 p-4">
+          <div className="relative mt-5 rounded-xl border border-dashed border-white/20 bg-black/15 p-4 ">
             <p className={`${poppins.className} text-sm text-white/70`}>
               No comments yet. Be the first to add one.
             </p>
+          </div>
+
+
+          <div className="fixed z-1 bottom-0 left-0 right-0 flex items-center rounded-xl border border-white/30 bg-black/20 px-5 py-2">
+            <input
+              placeholder="Write a comment..."
+              className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}
+            />
+            <div>
+              <button
+                type="button"
+                className={`${poppins.className} py-2 rounded-lg text-xs font-medium bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5 `}
+              >
+                Post
+              </button>
+            </div>
           </div>
         </section>
       </div>

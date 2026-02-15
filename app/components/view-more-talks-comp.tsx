@@ -17,11 +17,6 @@ export default function MoreTalks({leftPlayerId, rightPlayerId}: {leftPlayerId: 
   return (
     <div className="px-3 pt-5 pb-5 flex flex-col gap-5">
       <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
-        {/* <img
-          src="/images/go-back-light.png"
-          alt="go back"
-          className="h-8 w-8 object-cover cursor-pointer"
-        /> */}
         <button
           type="button"
           onClick={() => window.history.back()}

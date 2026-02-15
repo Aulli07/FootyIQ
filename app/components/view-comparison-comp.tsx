@@ -65,11 +65,19 @@ export default function ViewComparison({
     <main className="px-3 pt-5 pb-5">
       <div className="flex flex-col gap-5">
         <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
-          <img
-            src="/images/go-back-light.png"
-            alt="go back"
-            className="h-8 w-8 object-cover cursor-pointer"
-          />
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="cursor-pointer"
+          >
+            <Image
+              src="/images/go-back-light.png"
+              alt="go back"
+              width={30}
+              height={30}
+              className="object-cover"
+            />
+          </button>
           <p className={`text-lg ${oswald.className} font-semibold`}>
             {leftPlayer.id.toUpperCase()} & {rightPlayer.id.toUpperCase()}{" "}
             COMPARISON
