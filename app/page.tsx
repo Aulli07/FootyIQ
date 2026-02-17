@@ -103,7 +103,7 @@ function HomePage() {
 export default function Home() {
   return (
     <main className="w-full px-3 pt-2 text-white">
-      <Header headerText="FOOTY IQ" showLightMode showHistory />
+      <Header headerText="FOOTY IQ" showLightMode />
       <HomePage />
     </main>
   );

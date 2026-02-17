@@ -38,6 +38,16 @@ function Footer() {
       width: 7,
       height: 7,
     },
+    {
+      to: "/history",
+      icon: "/images/history-light.png",
+      activeIcon: "/images/history-light-fill.png",
+      alt: "history-icon",
+      header: "History",
+      title: "History",
+      width: 7,
+      height: 7,
+    },
   ];
   const normalizePath = (p: string) =>
     p.length > 1 ? p.replace(/\/+$/, "") : p;
@@ -49,7 +59,7 @@ function Footer() {
   };
 
   return (
-    <nav className="bg-black/90 backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 py-3 border-t border-white">
+    <nav className="bg-black/90 backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 py-5 border-t border-white/50">
       {footerLinks.map((link) => {
         const active = isActive(link.to);
         return (

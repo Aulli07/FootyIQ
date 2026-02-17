@@ -4,7 +4,10 @@ import Image from "next/image";
 import { Posts } from "../data/posts";
 import { useSearchParams } from "next/navigation";
 
+import Link from "next/link"
+
 import { oswald, poppins } from "../fonts";
+import PageTitle from "../components/page-title";
 
 export default function ParticularPost() {
   const searchParams = useSearchParams();
@@ -37,7 +40,8 @@ export default function ParticularPost() {
   return (
     <main className="px-4 md:px-6 text-white h-[calc(100vh-6rem)] overflow-y-auto">
       <div className="max-w-3xl mx-auto flex flex-col h-full">
-        <div className="flex justify-start items-center gap-4 text-white border-b border-white/20 h-20 ">
+        <PageTitle title="POST" />
+        {/* <div className="flex justify-start items-center gap-4 text-white border-b border-white/20 h-20 ">
           <button
             type="button"
             onClick={() => window.history.back()}
@@ -57,7 +61,7 @@ export default function ParticularPost() {
               View discussion
             </p>
           </div>
-        </div>
+        </div> */}
 
         <div className="pt-4 shrink-0">
           <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 shadow-[0_8px_28px_rgba(0,0,0,0.32)] flex flex-col h-auto ">
@@ -172,7 +176,7 @@ export default function ParticularPost() {
           </div>
 
           <div className="mt-5 flex-1 min-h-0 pr-1">
-            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+            <Link href={{pathname: "/view-particular-talk"}} className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
               <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
                 <Image
                   src="/images/comment-light.png"
@@ -192,7 +196,7 @@ export default function ParticularPost() {
                   Be the first to drop your thoughts on this post.
                 </p>
               </div>
-            </div>
+            </Link>
             <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
               <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
                 <Image

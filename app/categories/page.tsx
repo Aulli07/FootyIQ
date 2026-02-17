@@ -13,6 +13,7 @@ import { useSearchParams } from "next/navigation";
 import { PlayerType } from "../types/players";
 
 import { ComparesCard } from "../components/top-compare-cards";
+import PageTitle from "../components/page-title";
 
 export default function ViewComparison() {
   const searchParams = useSearchParams();
@@ -35,12 +36,7 @@ export default function ViewComparison() {
     <main className="px-3 pt-5 pb-5">
       <div className="flex flex-col gap-5">
         <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
-          <img
-            src="/images/go-back-light.png"
-            alt="go back"
-            className="h-8 w-8 object-cover cursor-pointer"
-          />
-          <p className={`text-xl ${oswald.className} font-semibold`}>{title}</p>
+          <PageTitle title={title} />
         </div>
         <div className="flex flex-col gap-4 px-4">
           {playersInField.map((pair) =>

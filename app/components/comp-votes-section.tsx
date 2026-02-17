@@ -1,5 +1,5 @@
 import { PlayerType } from "../types/players";
-import TitleSection from "./page-title-section";
+import TitleSection from "./page-section-title";
 import VotesBar from "./comparison-votes-bar";
 
 export default function ComparisonVotesSection({

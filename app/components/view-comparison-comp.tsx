@@ -10,6 +10,7 @@ import ShowFullStat from "./show-stat";
 
 import ComparisonVotesSection from "./comp-votes-section";
 import ComparisonTalksSection from "./comp-talks-section";
+import PageTitle from "./page-title";
 
 function FixedFieldBox({
   player,
@@ -64,7 +65,10 @@ export default function ViewComparison({
   return (
     <main className="px-3 pt-5 pb-5">
       <div className="flex flex-col gap-5">
-        <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
+        {/* <PageTitle title={{{leftPlayer.id.toUpperCase()} {rightPlayer.id.toUpperCase()}{" "}
+            COMPARISON} /> */}
+        <PageTitle title={leftPlayer.id.toUpperCase() + "&" + rightPlayer.id.toUpperCase() + "COMPARISON"} /> 
+        {/* <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
           <button
             type="button"
             onClick={() => window.history.back()}
@@ -82,7 +86,7 @@ export default function ViewComparison({
             {leftPlayer.id.toUpperCase()} & {rightPlayer.id.toUpperCase()}{" "}
             COMPARISON
           </p>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-4 mt-6">
           <div className="grid grid-cols-2 gap-3 px-2">
             <FixedFieldBox player={leftPlayer} season="23/24" />

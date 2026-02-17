@@ -1,6 +1,6 @@
 import { PlayerType } from "../types/players";
 import { Posts } from "../data/posts";
-import TitleSection from "./page-title-section";
+import TitleSection from "./page-section-title";
 import { PostDisplay } from "./post-display";
 import { poppins } from "../fonts";
 import Link from "next/link";

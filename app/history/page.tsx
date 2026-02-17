@@ -17,13 +17,13 @@ const History = () => {
 
   return (
     <main className="w-full px-3 pt-2 text-white">
-      <div className="flex justify-start items-center gap-2 text-white mb-5">
+      {/* <div className="flex justify-start items-center gap-2 text-white mb-5"> */}
         {/* <img
           src="/images/go-back-light.png"
           alt="go back"
           className="h-8 w-8 object-cover cursor-pointer"
         /> */}
-        <button
+        {/* <button
           type="button"
           onClick={() => window.history.back()}
           className="cursor-pointer"
@@ -39,7 +39,8 @@ const History = () => {
         <p className={`text-xl ${oswald.className} font-semibold py-3`}>
           History
         </p>
-      </div>
+      </div> */}
+      <Header headerText="History" />
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}

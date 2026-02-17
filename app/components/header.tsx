@@ -8,11 +8,11 @@ import Link from "next/link";
 const Header = ({
   headerText,
   showLightMode = false,
-  showHistory = false,
+  // showHistory = false,
 }: {
   headerText: string;
   showLightMode?: boolean;
-  showHistory?: boolean;
+  // showHistory?: boolean;
 }) => {
   return (
     <div className="flex flex-row items-center justify-between px-3 pt-5 pb-7 backdrop-blur">
@@ -38,23 +38,6 @@ const Header = ({
           </div>
         ) : (
           <div />
-        )}
-
-        {showHistory ? (
-          <Link href={{pathname: "/history"}} className="ml-7">
-            <div className="relative h-7 w-7">
-              <Image 
-                src="/images/history-light.png"
-                alt="history"
-                fill
-                sizes="32px"
-                className="object-cover"
-                onClick={() => {}}
-              />
-            </div>
-          </Link>
-        ) : (
-          <div /> 
         )}
       </div>  
     </div>
