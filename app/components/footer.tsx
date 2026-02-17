@@ -49,7 +49,7 @@ function Footer() {
   };
 
   return (
-    <nav className="bg-black/95 backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 py-3 border-t border-white/10">
+    <nav className="bg-black/90 backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 py-3 border-t border-white">
       {footerLinks.map((link) => {
         const active = isActive(link.to);
         return (

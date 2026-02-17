@@ -35,13 +35,13 @@ export default function ParticularPost() {
   }
 
   return (
-    <main className="px-4 md:px-6 pb-10 pt-5 min-h-[88vh] text-white">
-      <div className="max-w-3xl mx-auto flex flex-col ">
-        <div className="flex justify-start items-center gap-4 text-white border-b border-white/25 pb-5">
+    <main className="px-4 md:px-6 text-white h-[calc(100vh-6rem)] overflow-y-auto">
+      <div className="max-w-3xl mx-auto flex flex-col h-full">
+        <div className="flex justify-start items-center gap-4 text-white border-b border-white/20 h-20 ">
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="cursor-pointer"
+            className="cursor-pointer rounded-full p-1.5 hover:bg-white/10 transition-colors"
           >
             <Image
               src="/images/go-back-light.png"
@@ -59,113 +59,109 @@ export default function ParticularPost() {
           </div>
         </div>
 
-        <article className="w-full border border-white/20 rounded-2xl bg-white/4 backdrop-blur p-5 md:p-7 mt-5">
-          <div className="flex justify-start items-start gap-4">
-            <div className="relative h-14 w-14">
-              <Image
-                src={post.user.avatarUrl}
-                alt={post.user.name}
-                fill
-                sizes="56px"
-                className="object-cover rounded-full border border-emerald-700 shadow-md"
-              />
+        <div className="pt-4 shrink-0">
+          <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 shadow-[0_8px_28px_rgba(0,0,0,0.32)] flex flex-col h-auto ">
+            <div className="flex justify-start items-start gap-4">
+              <div className="relative h-14 w-14">
+                <Image
+                  src={post.user.avatarUrl}
+                  alt={post.user.name}
+                  fill
+                  sizes="56px"
+                  className="object-cover rounded-full border border-emerald-700 shadow-md"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-start gap-3 md:gap-4">
+                <div>
+                  <p
+                    className={`text-lg text-white ${poppins.className} font-semibold`}
+                  >
+                    {post.user.name}
+                  </p>
+                  <p className={`text-sm text-white/60 ${poppins.className}`}>
+                    @{post.user.username}
+                  </p>
+                </div>
+
+                <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-8 items-center gap-2">
+                  <p className={`text-sm text-white/70 ${poppins.className}`}>
+                    {timeAgo(post.createdAt)}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <div>
-                <p className={`text-lg text-white ${poppins.className} font-semibold`}>{post.user.name}</p>
-                <p className={`text-sm text-white/60 ${poppins.className}`}>@{post.user.username}</p>
-              </div>
+            <div>
+              <p
+                className={`mt-5 text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}
+              >
+                {post.content}
+              </p>
+            </div>
+          </article>
+        </div>
 
-              <div className="flex border border-white/20 justify-left h-8 items-center">
-                <span className="text-white/40">•</span>
-                <p className={`text-sm text-white/70 ${poppins.className}`}>{timeAgo(post.createdAt)}</p>
-              </div>
-            </div>              
-          </div>
+        <div className="py-4 px-1 flex gap-2 md:gap-3 shrink-0">
+          <p
+            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1 flex items-center`}
+          >
+            {post.stats.likes} likes
+          </p>
+          <p
+            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1`}
+          >
+            {post.stats.comments} comments
+          </p>
+          <p
+            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1`}
+          >
+            {post.stats.views} views
+          </p>
+        </div>
 
-          <div>
-            <p className={`mt-5 text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}>{post.content}</p>
-          </div>
-          
-
-          {/* <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 mt-4 flex items-center justify-between w-[90%] py-3">
-            <div className="flex items-center gap-2">
+        <div className="h-20 shrink-0">
+          <div className="flex items-center justify-between w-[100%] py-1 px-10 border border-white/20 rounded-2xl bg-white/4 backdrop-blur">
+            <button
+              type="button"
+              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
+            >
               <Image
                 src="/images/comment-light.png"
                 alt="Comment"
-                width={18}
-                height={18}
+                width={25}
+                height={25}
                 className="object-cover"
               />
-              <span className={`text-sm text-white/80 ${poppins.className}`}>
-                {post.stats.comments}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
+            </button>
+            <button
+              type="button"
+              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
+            >
               <Image
                 src="/images/like-light.png"
                 alt="Like"
-                width={18}
-                height={18}
+                width={25}
+                height={25}
                 className="object-cover"
               />
-              <span className={`text-sm text-white/80 ${poppins.className}`}>
-                {post.stats.likes}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
+            </button>
+            <button
+              type="button"
+              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
+            >
               <Image
                 src="/images/view-light.png"
                 alt="View"
-                width={18}
-                height={18}
+                width={25}
+                height={25}
                 className="object-cover"
               />
-              <span className={`text-sm text-white/80 ${poppins.className}`}>
-                {post.stats.views}
-              </span>
-            </div>
-          </div> */}
-        </article>
-
-        <div className="py-3 px-2 flex gap-5 border-y border-white/50 mt-4">
-          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.likes} Likes</p>
-          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.comments} Comments</p>
-          <p className={`${poppins.className} text-sm text-white/70 font-medium`}>{post.stats.views} Views</p>
-        </div>
-
-        <div className="flex items-center justify-between w-[100%] py-3 px-4 border border-white/20 rounded-2xl bg-white/4 backdrop-blur px-10 my-6">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/comment-light.png"
-              alt="Comment"
-              width={18}
-              height={18}
-              className="object-cover"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/like-light.png"
-              alt="Like"
-              width={18}
-              height={18}
-              className="object-cover"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/view-light.png"
-              alt="View"
-              width={18}
-              height={18}
-              className="object-cover"
-            />
+            </button>
           </div>
         </div>
-
-        <section className="mt-6 w-full border border-white/20 rounded-2xl bg-white/5 p-5 md:p-6">
+        
+        <section className="mt-5 w-full flex-1 min-h-0 flex flex-col">
           <div className="flex items-center justify-between pb-4 border-b border-white/20">
             <h2 className={`${oswald.className} text-xl text-white`}>
               COMMENTS
@@ -175,25 +171,170 @@ export default function ParticularPost() {
             </p>
           </div>
 
-          <div className="relative mt-5 rounded-xl border border-dashed border-white/20 bg-black/15 p-4 ">
-            <p className={`${poppins.className} text-sm text-white/70`}>
-              No comments yet. Be the first to add one.
-            </p>
+          <div className="mt-5 flex-1 min-h-0 pr-1">
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
+            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/comment-light.png"
+                  alt="comment"
+                  width={16}
+                  height={16}
+                  className="object-cover"
+                />
+              </div>
+              <div className="space-y-1">
+                <p
+                  className={`${poppins.className} text-sm text-white/80 font-medium`}
+                >
+                  No comments yet
+                </p>
+                <p className={`${poppins.className} text-xs text-white/55`}>
+                  Be the first to drop your thoughts on this post.
+                </p>
+              </div>
+            </div>
           </div>
 
-
-          <div className="fixed z-1 bottom-0 left-0 right-0 flex items-center rounded-xl border border-white/30 bg-black/20 px-5 py-2">
-            <input
-              placeholder="Write a comment..."
-              className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}
-            />
-            <div>
-              <button
-                type="button"
-                className={`${poppins.className} py-2 rounded-lg text-xs font-medium bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5 `}
-              >
-                Post
-              </button>
+          <div className="z-[999] fixed bottom-23 left-3 right-4 shrink-0 flex items-center gap-3 bg-black">
+            <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-black/90 px-4 py-2 shadow-inner shadow-emerald-500/10">
+              <input
+                placeholder="Write a comment..."
+                className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}
+              />
+              <div>
+                <button
+                  type="button"
+                  className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`}
+                >
+                  Post
+                </button>
+              </div>
             </div>
           </div>
         </section>

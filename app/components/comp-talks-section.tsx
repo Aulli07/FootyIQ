@@ -1,7 +1,7 @@
 import { PlayerType } from "../types/players";
 import { Posts } from "../data/posts";
 import TitleSection from "./page-title-section";
-import { PostDisplay } from "../talks/page";
+import { PostDisplay } from "./post-display";
 import { poppins } from "../fonts";
 import Link from "next/link";
 import { getPostsInDiscussion } from "../utils/playerFilters";
@@ -14,7 +14,6 @@ export default function ComparisonTalksSection({
   leftPlayer: PlayerType | null;
   rightPlayer: PlayerType | null;
 }) {
-
   const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
 
   return (
@@ -25,8 +24,21 @@ export default function ComparisonTalksSection({
           <PostDisplay key={post.id} post={post} />
         ))}
       </div>
-      <Link href={{pathname: "/view-more-talks", query: {leftPlayerId: leftPlayer?.id, rightPlayerId: rightPlayer?.id},}} className="flex justify-end items-center px-4">
-        <span className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}>View More Talks</span>
+      <Link
+        href={{
+          pathname: "/view-more-talks",
+          query: {
+            leftPlayerId: leftPlayer?.id,
+            rightPlayerId: rightPlayer?.id,
+          },
+        }}
+        className="flex justify-end items-center px-4"
+      >
+        <span
+          className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}
+        >
+          View More Talks
+        </span>
       </Link>
     </div>
   );
