@@ -2,10 +2,10 @@ import Image from "next/image";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 
-import { oswald, poppins } from "../fonts";
-import { players } from "../data/players";
-import { PlayerType } from "../types/players";
-import { playerStats } from "../data/playerStats";
+import { oswald, poppins } from "../app/fonts";
+import { players } from "../app/data/players";
+import { PlayerType } from "../app/types/players";
+import { playerStats } from "../app/data/playerStats";
 
 import { GetSearchedPlayers } from "./searched-players";
 

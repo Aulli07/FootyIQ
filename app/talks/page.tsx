@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "../components/header";
+import Header from "../../components/header";
 
 import { useState } from "react";
 import { poppins } from "../fonts";
@@ -9,7 +9,7 @@ import { Posts } from "../data/posts";
 import { PostType } from "../types/posts";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { PostDisplay } from "../components/post-display";
+import { PostDisplay } from "../../components/post-display";
 
 function PersonalTalks() {
   let personalPosts = Posts as PostType[]; // Type assertion

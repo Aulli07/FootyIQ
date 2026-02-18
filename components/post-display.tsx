@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { poppins } from "../fonts";
-import { PostType } from "../types/posts";
+import { poppins } from "../app/fonts";
+import { PostType } from "../app/types/posts";
 
 export function PostDisplay({ post }: { post: PostType }) {
   return (

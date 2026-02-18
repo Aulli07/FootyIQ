@@ -1,4 +1,4 @@
-import { PlayerType } from "../types/players";
+import { PlayerType } from "../app/types/players";
 import TitleSection from "./page-section-title";
 import VotesBar from "./comparison-votes-bar";
 

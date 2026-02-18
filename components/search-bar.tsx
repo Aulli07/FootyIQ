@@ -1,14 +1,13 @@
-import { poppins } from "../fonts";
+import { poppins } from "../app/fonts";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
-import { PlayerType } from "../types/players";
+import { PlayerType } from "../app/types/players";
 
 import Compares from "./top-compare-cards";
 import { GetSearchedPlayers } from "./searched-players";
-
 
 function SearchBar({
   setIsSearch,

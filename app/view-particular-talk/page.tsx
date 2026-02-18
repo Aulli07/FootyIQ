@@ -4,10 +4,10 @@ import Image from "next/image";
 import { Posts } from "../data/posts";
 import { useSearchParams } from "next/navigation";
 
-import Link from "next/link"
+import Link from "next/link";
 
 import { oswald, poppins } from "../fonts";
-import PageTitle from "../components/page-title";
+import PageTitle from "../../components/page-title";
 
 export default function ParticularPost() {
   const searchParams = useSearchParams();
@@ -164,7 +164,7 @@ export default function ParticularPost() {
             </button>
           </div>
         </div>
-        
+
         <section className="mt-5 w-full flex-1 min-h-0 flex flex-col">
           <div className="flex items-center justify-between pb-4 border-b border-white/20">
             <h2 className={`${oswald.className} text-xl text-white`}>
@@ -176,7 +176,10 @@ export default function ParticularPost() {
           </div>
 
           <div className="mt-5 flex-1 min-h-0 pr-1">
-            <Link href={{pathname: "/view-particular-talk"}} className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+            <Link
+              href={{ pathname: "/view-particular-talk" }}
+              className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3"
+            >
               <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
                 <Image
                   src="/images/comment-light.png"

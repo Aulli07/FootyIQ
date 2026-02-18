@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import type { ReactNode } from "react";
 
-import { filterSearchedPlayers } from "../utils/playerFilters";
-import type { PlayerType } from "../types/players";
+import { filterSearchedPlayers } from "../app/utils/playerFilters";
+import type { PlayerType } from "../app/types/players";
 
 export function GetSearchedPlayers({
   query,

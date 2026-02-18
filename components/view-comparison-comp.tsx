@@ -1,11 +1,11 @@
 "use client";
 
-import { players } from "../data/players";
-import { oswald, poppins } from "../fonts";
+import { players } from "../app/data/players";
+import { oswald, poppins } from "../app/fonts";
 
 import Image from "next/image";
 
-import { PlayerType } from "../types/players";
+import { PlayerType } from "../app/types/players";
 import ShowFullStat from "./show-stat";
 
 import ComparisonVotesSection from "./comp-votes-section";
@@ -61,32 +61,18 @@ export default function ViewComparison({
   if (!leftPlayer || !rightPlayer) {
     return <div className="p-4">Player not found</div>;
   }
-  
+
   return (
     <main className="px-3 pt-5 pb-5">
       <div className="flex flex-col gap-5">
-        {/* <PageTitle title={{{leftPlayer.id.toUpperCase()} {rightPlayer.id.toUpperCase()}{" "}
-            COMPARISON} /> */}
-        <PageTitle title={leftPlayer.id.toUpperCase() + "&" + rightPlayer.id.toUpperCase() + "COMPARISON"} /> 
-        {/* <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
-          <button
-            type="button"
-            onClick={() => window.history.back()}
-            className="cursor-pointer"
-          >
-            <Image
-              src="/images/go-back-light.png"
-              alt="go back"
-              width={30}
-              height={30}
-              className="object-cover"
-            />
-          </button>
-          <p className={`text-lg ${oswald.className} font-semibold`}>
-            {leftPlayer.id.toUpperCase()} & {rightPlayer.id.toUpperCase()}{" "}
-            COMPARISON
-          </p>
-        </div> */}
+        <PageTitle
+          title={
+            leftPlayer.id.toUpperCase() +
+            " & " +
+            rightPlayer.id.toUpperCase() +
+            " COMPARISON"
+          }
+        />
         <div className="flex flex-col gap-4 mt-6">
           <div className="grid grid-cols-2 gap-3 px-2">
             <FixedFieldBox player={leftPlayer} season="23/24" />
@@ -95,16 +81,23 @@ export default function ViewComparison({
 
           <div className="px-3">
             <ShowFullStat
-            players={[leftPlayer, rightPlayer]}
-            seasons={["23/24", "23/24"]}
-          />
+              players={[leftPlayer, rightPlayer]}
+              seasons={["23/24", "23/24"]}
+            />
           </div>
 
-          <ComparisonVotesSection leftPlayer={leftPlayer} rightPlayer={rightPlayer} />
+          <ComparisonVotesSection
+            leftPlayer={leftPlayer}
+            rightPlayer={rightPlayer}
+          />
 
-          <ComparisonTalksSection leftPlayer={leftPlayer} rightPlayer={rightPlayer} />
+          <ComparisonTalksSection
+            leftPlayer={leftPlayer}
+            rightPlayer={rightPlayer}
+          />
         </div>
       </div>
     </main>
-  )
+  );
 }
+git 

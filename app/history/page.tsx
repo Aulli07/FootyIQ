@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-import Header from "../components/header";
-import SearchBar from "../components/search-bar";
+import Header from "../../components/header";
+import SearchBar from "../../components/search-bar";
 
 import { totalComparedPlayers } from "../page";
-import Compares from "../components/top-compare-cards";
+import Compares from "../../components/top-compare-cards";
 
 import { oswald } from "../fonts";
 
@@ -18,12 +18,12 @@ const History = () => {
   return (
     <main className="w-full px-3 pt-2 text-white">
       {/* <div className="flex justify-start items-center gap-2 text-white mb-5"> */}
-        {/* <img
+      {/* <img
           src="/images/go-back-light.png"
           alt="go back"
           className="h-8 w-8 object-cover cursor-pointer"
         /> */}
-        {/* <button
+      {/* <button
           type="button"
           onClick={() => window.history.back()}
           className="cursor-pointer"

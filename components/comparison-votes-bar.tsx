@@ -1,9 +1,8 @@
-import { PlayerType } from "../types/players";
-import { StatsType } from "../types/stats";
+import { PlayerType } from "../app/types/players";
+import { StatsType } from "../app/types/stats";
 
-import { poppins } from "../fonts";
-import { playerStats } from "../data/playerStats";
-
+import { poppins } from "../app/fonts";
+import { playerStats } from "../app/data/playerStats";
 
 const formatShortName = (name?: string) => {
   if (!name) return "";
@@ -22,14 +21,15 @@ const aggregatePlayerStats = (player: StatsType | null) => {
     return rating * totalAppearances;
   };
 
-  const avgRating = totalAppearances > 0 ? weightedRatingSum() / totalAppearances : 0;
+  const avgRating =
+    totalAppearances > 0 ? weightedRatingSum() / totalAppearances : 0;
 
   return { totalGoals, totalAppearances, avgRating };
 };
 
 const getPreferenceForPair = (pair: Array<PlayerType | null>) => {
-  const left = pair?.[0]
-  const right = pair?.[1]
+  const left = pair?.[0];
+  const right = pair?.[1];
 
   if (!left || !right) {
     return {
@@ -44,11 +44,13 @@ const getPreferenceForPair = (pair: Array<PlayerType | null>) => {
   // We intentionally avoid hardcoding player keys by using dynamic indexing (left.id/right.id).
   const statsByPlayerId = playerStats as unknown as Record<string, StatsType[]>;
 
-  const leftPlayerStats = playerStats.find((stat) => stat.id === left.id) || null;
-  const rightPlayerStats = playerStats.find((stat) => stat.id === right.id) || null;
+  const leftPlayerStats =
+    playerStats.find((stat) => stat.id === left.id) || null;
+  const rightPlayerStats =
+    playerStats.find((stat) => stat.id === right.id) || null;
 
-  const leftAgg = aggregatePlayerStats(leftPlayerStats)
-  const rightAgg = aggregatePlayerStats(rightPlayerStats)
+  const leftAgg = aggregatePlayerStats(leftPlayerStats);
+  const rightAgg = aggregatePlayerStats(rightPlayerStats);
 
   // Use average rating as a proxy until vote data exists.
   const total = Math.max(1, leftAgg.avgRating + rightAgg.avgRating);
@@ -61,18 +63,24 @@ const getPreferenceForPair = (pair: Array<PlayerType | null>) => {
   return { left, right, leftPct, rightPct };
 };
 
-
-
-export default function VotesBar({ players }: { players: Array<PlayerType | null> }) {
+export default function VotesBar({
+  players,
+}: {
+  players: Array<PlayerType | null>;
+}) {
   const pref = getPreferenceForPair(players);
 
   return (
     <div className="flex flex-col gap-2 relative p-4 border border-white/20 rounded-lg bg-white/5 shadow-lg backdrop-blur">
-      <div className={`flex justify-between items-center text-white/70 ${poppins.className}`}>
+      <div
+        className={`flex justify-between items-center text-white/70 ${poppins.className}`}
+      >
         <span className={`max-w-[45%] truncate text-sm ${poppins.className}`}>
           {formatShortName(pref.left?.name)} {pref.leftPct}%
         </span>
-        <span className={`max-w-[45%] truncate text-right text-sm ${poppins.className}`}>
+        <span
+          className={`max-w-[45%] truncate text-right text-sm ${poppins.className}`}
+        >
           {pref.rightPct}% {formatShortName(pref.right?.name)}
         </span>
       </div>

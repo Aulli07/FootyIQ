@@ -1,11 +1,11 @@
-import { PlayerType } from "../types/players";
-import { Posts } from "../data/posts";
+import { PlayerType } from "../app/types/players";
+import { Posts } from "../app/data/posts";
 import TitleSection from "./page-section-title";
 import { PostDisplay } from "./post-display";
-import { poppins } from "../fonts";
+import { poppins } from "../app/fonts";
 import Link from "next/link";
-import { getPostsInDiscussion } from "../utils/playerFilters";
-import { PostType } from "../types/posts";
+import { getPostsInDiscussion } from "../app/utils/playerFilters";
+import { PostType } from "../app/types/posts";
 
 export default function ComparisonTalksSection({
   leftPlayer,

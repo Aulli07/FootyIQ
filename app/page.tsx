@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
-import Header from "./components/header";
-import Comparison from "./components/comparison-row";
-import Compares from "./components/top-compare-cards";
-import HomeTitleSection from "./components/section-title";
-import SearchBar from "./components/search-bar";
+import Header from "../components/header";
+import Comparison from "../components/comparison-row";
+import Compares from "../components/top-compare-cards";
+import HomeTitleSection from "../components/section-title";
+import SearchBar from "../components/search-bar";
 
 import { useState } from "react";
 
@@ -29,11 +29,11 @@ function LegendsSection() {
   return (
     <Link
       href={{
-        pathname: "/categories",
+        pathname: "/legends",
         query: { fieldType: legendType, title: legendTitle },
       }}
     >
-      <Comparison playersData={legends} title={legendTitle} />
+      <Comparison playersData={legends} title={legendTitle} categoryType={legendType}/>
     </Link>
   );
 }
@@ -46,11 +46,11 @@ function HotProspectsSection() {
   return (
     <Link
       href={{
-        pathname: "/categories",
+        pathname: "/hot-prospects",
         query: { fieldType: hotProspectsType, title: hotProspectsTitle },
       }}
     >
-      <Comparison playersData={hotProspects} title={hotProspectsTitle} />
+      <Comparison playersData={hotProspects} title={hotProspectsTitle} categoryType={hotProspectsType} />
     </Link>
   );
 }
@@ -59,7 +59,7 @@ function TopComparisonList() {
   const allComparisons = getTotalComparisons(players);
   const topSearchComparisons: Array<Array<PlayerType>> = [];
 
-  const topComparisonsType = "topComp";
+  const topComparisonsType = "topComparisons";
   const topComparisonsTitle = "Top Comparisons";
 
   for (let i = 0; i < 5; i++) {
@@ -72,11 +72,11 @@ function TopComparisonList() {
       <HomeTitleSection title="Top Comparisons" />
       <Link
         href={{
-          pathname: "/categories",
+          pathname: "/top-comparisons",
           query: { fieldType: topComparisonsType, title: topComparisonsTitle },
         }}
       >
-        <Compares compareList={topSearchComparisons} />
+        <Compares compareList={topSearchComparisons} categoryType={topComparisonsType}/>
       </Link>
     </div>
   );

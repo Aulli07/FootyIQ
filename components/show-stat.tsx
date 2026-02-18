@@ -1,17 +1,16 @@
-import { PlayerType } from "../types/players";
-import { playerStats } from "../data/playerStats";
-import { players } from "../data/players";
-import { PlayerCompetitionStats, StatsType } from "../types/stats";
+import { PlayerType } from "../app/types/players";
+import { playerStats } from "../app/data/playerStats";
+import { players } from "../app/data/players";
+import { PlayerCompetitionStats, StatsType } from "../app/types/stats";
 
-import { oswald, poppins } from "../fonts";
+import { oswald, poppins } from "../app/fonts";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { generalStats } from "../data/stats/statlabels";
-import { attackingStats } from "../data/stats/statlabels";
-import { defendingStats } from "../data/stats/statlabels";
-import { cardStats } from "../data/stats/statlabels";
-
+import { generalStats } from "../app/data/stats/statlabels";
+import { attackingStats } from "../app/data/stats/statlabels";
+import { defendingStats } from "../app/data/stats/statlabels";
+import { cardStats } from "../app/data/stats/statlabels";
 
 function StatsBoard({
   players,

@@ -1,12 +1,19 @@
-import { poppins } from "../fonts";
-import { PlayerType } from "../types/players";
+import { poppins } from "../app/fonts";
+import { PlayerType } from "../app/types/players";
 
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: PlayerType, rightPlayer: PlayerType}) {
-
-   const renderLegend = (legend: PlayerType) => (
+export default function ComparisonCard({
+  leftPlayer,
+  rightPlayer,
+  categoryType
+}: {
+  leftPlayer: PlayerType;
+  rightPlayer: PlayerType;
+  categoryType: string | null
+}) {
+  const renderLegend = (legend: PlayerType) => (
     <div key={legend.id} className="flex flex-row">
       <div className="p-2 flex flex-col w-32 items-center gap-2">
         <div className="relative h-18 w-18 flex">
@@ -20,18 +27,17 @@ export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: 
             />
           </div>
         </div>
-        <p className={`w-full text-center text-xs font-semibold ${poppins.className} text-white leading-tight truncate`}>
+        <p
+          className={`w-full text-center text-xs font-semibold ${poppins.className} text-white leading-tight truncate`}
+        >
           {legend.name}
         </p>
       </div>
     </div>
-   )
+  );
 
-   
   return (
-    <div
-      className="flex flex-col gap-5 p-3 rounded-xl border border-white/10 bg-white/5 shadow-sm backdrop-blur"
-    >
+    <div className="flex flex-col gap-5 p-3 rounded-xl border border-white/10 bg-white/5 shadow-sm backdrop-blur">
       <div className="relative flex flex-row items-start justify-between gap-6 px-1">
         <div className="flex-1 flex justify-center">
           {leftPlayer && renderLegend(leftPlayer)}
@@ -42,7 +48,9 @@ export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: 
           <div className="pointer-events-none absolute left-1/2 top-6 -translate-x-1/2 z-10">
             <div className="relative">
               <div className="h-10 w-10 rounded-full bg-white/10 border border-white/20 shadow-md backdrop-blur flex items-center justify-center ring-1 ring-emerald-400/20">
-                <span className={`text-xs ${poppins.className} tracking-widest text-white/90`}>
+                <span
+                  className={`text-xs ${poppins.className} tracking-widest text-white/90`}
+                >
                   VS
                 </span>
               </div>
@@ -57,12 +65,30 @@ export default function ComparisonCard({leftPlayer, rightPlayer} : {leftPlayer: 
       </div>
 
       <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2">
-        <Link href={{pathname: "/view-comparison", query: {leftPlayerId: leftPlayer.id, rightPlayerId: rightPlayer.id},}}><span className={`text-md ${poppins.className} font-semibold tracking-wide `}>Compare</span></Link>
+        <Link
+          href={{
+            pathname: "/" + categoryType + "/" + leftPlayer.id + "-vs-" + rightPlayer.id,
+            query: {
+              leftPlayerId: leftPlayer.id,
+              rightPlayerId: rightPlayer.id,
+            },
+          }}
+        >
+          <span
+            className={`text-md ${poppins.className} font-semibold tracking-wide `}
+          >
+            Compare
+          </span>
+        </Link>
       </div>
 
       <div className="flex flex-row justify-end items-center">
-        <p className={`${poppins.className} text-sm font-medium text-white/50 font-italic`}>20.8K votes</p>
+        <p
+          className={`${poppins.className} text-sm font-medium text-white/50 font-italic`}
+        >
+          20.8K votes
+        </p>
       </div>
     </div>
-  )
+  );
 }

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { oswald } from "../fonts";
+import { oswald } from "../app/fonts";
 import Link from "next/link";
 
 const Header = ({
@@ -39,7 +39,7 @@ const Header = ({
         ) : (
           <div />
         )}
-      </div>  
+      </div>
     </div>
   );
 };

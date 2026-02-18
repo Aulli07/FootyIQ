@@ -4,17 +4,17 @@
 import { oswald, poppins } from "../fonts";
 import { useState } from "react";
 
-import { DropDown } from "../components/dropdown";
-import Header from "../components/header";
-import ShowFullStat from "../components/show-stat";
+import { DropDown } from "../../components/dropdown";
+import Header from "../../components/header";
+import ShowFullStat from "../../components/show-stat";
 
 import { PlayerType } from "../types/players";
 import { StatsType } from "../types/stats";
 
 import { playerStats } from "../data/playerStats";
-import TitleSection from "../components/page-section-title";
-import ComparisonVotesSection from "../components/comp-votes-section";
-import ComparisonTalksSection from "../components/comp-talks-section";
+import TitleSection from "../../components/page-section-title";
+import ComparisonVotesSection from "../../components/comp-votes-section";
+import ComparisonTalksSection from "../../components/comp-talks-section";
 
 export function AddFieldBox({
   playerSlot,

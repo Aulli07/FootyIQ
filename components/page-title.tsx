@@ -1,8 +1,7 @@
-import { oswald } from "../fonts";
+import { oswald } from "../app/fonts";
 import Image from "next/image";
 
-
-export default function PageTitle({title} : {title : string | null}) {
+export default function PageTitle({ title }: { title: string | null }) {
   return (
     <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
       <button
@@ -20,5 +19,5 @@ export default function PageTitle({title} : {title : string | null}) {
       </button>
       <p className={`text-lg ${oswald.className} font-semibold`}>{title}</p>
     </div>
-  )
+  );
 }

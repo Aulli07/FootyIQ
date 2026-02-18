@@ -1,6 +1,6 @@
 import "./globals.css";
 import React from "react";
-import AppShell from "./components/app-shell";
+import AppShell from "../components/app-shell";
 import { oswald, poppins } from "./fonts";
 
 export const metadata = {
