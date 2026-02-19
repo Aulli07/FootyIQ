@@ -13,6 +13,10 @@ export default function ComparisonCard({
   rightPlayer: PlayerType;
   categoryType: string | null
 }) {
+
+  const viewComparisonPath = leftPlayer.id + "-vs-" + rightPlayer.id;
+  // const dynamicPathname =  "/" + categoryType + "/" + leftPlayer.id + "-vs-" + rightPlayer.id;
+
   const renderLegend = (legend: PlayerType) => (
     <div key={legend.id} className="flex flex-row">
       <div className="p-2 flex flex-col w-32 items-center gap-2">
@@ -67,11 +71,11 @@ export default function ComparisonCard({
       <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2">
         <Link
           href={{
-            pathname: "/" + categoryType + "/" + leftPlayer.id + "-vs-" + rightPlayer.id,
+            pathname: `/${categoryType}/${viewComparisonPath}`,
             query: {
               leftPlayerId: leftPlayer.id,
-              rightPlayerId: rightPlayer.id,
-            },
+              rightPlayerId: rightPlayer.id
+            }
           }}
         >
           <span

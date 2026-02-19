@@ -29,7 +29,7 @@ function LegendsSection() {
   return (
     <Link
       href={{
-        pathname: "/legends",
+        pathname: `/${legendType}`,
         query: { fieldType: legendType, title: legendTitle },
       }}
     >
@@ -46,7 +46,7 @@ function HotProspectsSection() {
   return (
     <Link
       href={{
-        pathname: "/hot-prospects",
+        pathname: `/${hotProspectsType}`,
         query: { fieldType: hotProspectsType, title: hotProspectsTitle },
       }}
     >
@@ -71,10 +71,7 @@ function TopComparisonList() {
     <div className="px-3 gap-3 flex flex-col">
       <HomeTitleSection title="Top Comparisons" />
       <Link
-        href={{
-          pathname: "/top-comparisons",
-          query: { fieldType: topComparisonsType, title: topComparisonsTitle },
-        }}
+        href={`/${topComparisonsType}`}
       >
         <Compares compareList={topSearchComparisons} categoryType={topComparisonsType}/>
       </Link>

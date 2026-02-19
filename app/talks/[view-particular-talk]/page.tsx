@@ -1,20 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { Posts } from "../data/posts";
-import { useSearchParams } from "next/navigation";
+import { Posts } from "../../data/posts";
+import { useSearchParams, useParams } from "next/navigation";
 
 import Link from "next/link";
 
-import { oswald, poppins } from "../fonts";
-import PageTitle from "../../components/page-title";
+import { oswald, poppins } from "../../fonts";
+import PageTitle from "../../../components/page-title";
 
-export default function ParticularPost() {
-  const searchParams = useSearchParams();
-  const postId = searchParams.get("postId");
+export default function ParticularPost () {
+  const params = useParams<{ "view-particular-talk": string }>();
+  const postId = params["view-particular-talk"];
+  // const searchParams = useSearchParams();
+  // const postId = searchParams.get("postId");
 
   const post = Posts.find((post) => post.id === postId);
-
   const timeAgo = (date: string) => {
     const elapsedInMinutes = Math.floor(
       (new Date().getTime() - new Date(date).getTime()) / (1000 * 60),
@@ -41,27 +42,6 @@ export default function ParticularPost() {
     <main className="px-4 md:px-6 text-white h-[calc(100vh-6rem)] overflow-y-auto">
       <div className="max-w-3xl mx-auto flex flex-col h-full">
         <PageTitle title="POST" />
-        {/* <div className="flex justify-start items-center gap-4 text-white border-b border-white/20 h-20 ">
-          <button
-            type="button"
-            onClick={() => window.history.back()}
-            className="cursor-pointer rounded-full p-1.5 hover:bg-white/10 transition-colors"
-          >
-            <Image
-              src="/images/go-back-light.png"
-              alt="go back"
-              width={30}
-              height={30}
-              className="object-cover"
-            />
-          </button>
-          <div>
-            <p className={`text-lg ${oswald.className} font-semibold`}>POST</p>
-            <p className={`${poppins.className} text-xs text-white/60`}>
-              View discussion
-            </p>
-          </div>
-        </div> */}
 
         <div className="pt-4 shrink-0">
           <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 shadow-[0_8px_28px_rgba(0,0,0,0.32)] flex flex-col h-auto ">

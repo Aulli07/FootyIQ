@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function PageTitle({ title }: { title: string | null }) {
   return (
-    <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 pb-6">
+    <div className="flex justify-start items-center gap-4 text-white border-b border-white/70 py-5">
       <button
         type="button"
         onClick={() => window.history.back()}
