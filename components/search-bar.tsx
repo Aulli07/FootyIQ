@@ -21,7 +21,7 @@ function SearchBar({
   const [inputText, setInputText] = useState<string>("");
 
   return (
-    <div className="px-3 flex flex-col gap-3 overflow-hidden">
+    <div className="flex flex-col gap-3 overflow-hidden">
       <div className="relative">
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-[9999]">
           <div className="relative h-6 w-6">
@@ -106,7 +106,7 @@ export function SearchedPlayersResults({
         </div>
       ) : (
         <div className="flex-1 min-h-0 overflow-auto">
-          <Compares compareList={foundPlayerComparisons} />
+          <Compares compareList={foundPlayerComparisons} categoryType="search" />
         </div>
       )}
     </div>

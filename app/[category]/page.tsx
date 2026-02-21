@@ -16,9 +16,6 @@ import { ComparesCard } from "../../components/top-compare-cards";
 import PageTitle from "../../components/page-title";
 
 export type categoryType = keyof (typeof titles);
-// const searchParams = useSearchParams();
-// const fieldType = searchParams.get("fieldType");
-// const title = searchParams.get("title");
 
 const titles  =  {
   legends: "Legends",
@@ -29,18 +26,6 @@ const titles  =  {
 const ViewComparison = async ({params} : {params: Promise<{ 
 category : categoryType}>}) => {
   const category: categoryType = (await params).category
-  // type categoryType = keyof (typeof titles);
-  // const category: categoryType = (await params).category
-  // // const searchParams = useSearchParams();
-  // // const fieldType = searchParams.get("fieldType");
-  // // const title = searchParams.get("title");
-
-  // const titles  =  {
-  //   legends: "Legends",
-  //   hotProspects: "Hot Prospects",
-  //   topComparisons: "Top Comparisons"
-  // } as const;
-
 
   let playersInField: PlayerType[][] = [];
 
@@ -62,7 +47,7 @@ category : categoryType}>}) => {
         <div className="flex flex-col gap-4 px-4">
           {playersInField.map((pair) =>
             category === "topComparisons" ? (
-              <ComparesCard leftPlayer={pair[0]} rightPlayer={pair[1]} />
+              <ComparesCard leftPlayer={pair[0]} rightPlayer={pair[1]} categoryType={category}/>
             ) : (
               <ComparisonCard leftPlayer={pair[0]} rightPlayer={pair[1]} categoryType={category}/>
             ),

@@ -1,36 +1,40 @@
-// import { PostType } from "../app/types/posts";
-// import { PostDisplay } from "./post-display";
+"use client";
 
-// import { oswald } from "../app/fonts";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
-// import { getPostsInDiscussion } from "../app/utils/playerFilters";
-// import { players } from "../app/data/players";
+import { players } from "@/app/data/players";
+import { getPostsInDiscussion } from "@/app/utils/playerFilters";
+import { PostType } from "@/app/types/posts";
 
-// import Image from "next/image";
-// import PageTitle from "./page-title";
+import PageTitle from "./page-title";
+import { PostDisplay } from "./post-display";
 
-// export default function MoreTalks({
-//   leftPlayerId,
-//   rightPlayerId,
-// }: {
-//   leftPlayerId: string | null;
-//   rightPlayerId: string | null;
-// }) {
-//   const leftPlayer = players.find((player) => player.id === leftPlayerId);
-//   const rightPlayer = players.find((player) => player.id === rightPlayerId);
+export default function ViewMoreTalksContent() {
+  const searchParams = useSearchParams();
+  const leftPlayerId = searchParams.get("leftPlayerId");
+  const rightPlayerId = searchParams.get("rightPlayerId");
 
-//   const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
+  const leftPlayer = players.find((player) => player.id === leftPlayerId);
+  const rightPlayer = players.find((player) => player.id === rightPlayerId);
 
-//   return (
-//     <div className="px-3 pt-5 pb-5 flex flex-col gap-5">
-//       <PageTitle
-//         title={`TALKS ON ${leftPlayer?.id.toUpperCase()} AND ${rightPlayer?.id.toUpperCase()}`}
-//       />
-//       <div className="flex flex-col gap-4 px-4 mt-1">
-//         {postsInDiscussion.map((post: PostType) => (
-//           <PostDisplay key={post.id} post={post} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
+  const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
+
+  return (
+    <div className="px-3 pt-5 pb-5 flex flex-col gap-5">
+      <PageTitle
+        title={`TALKS ON ${leftPlayer?.id.toUpperCase()} AND ${rightPlayer?.id.toUpperCase()}`}
+      />
+
+      <div className="flex flex-col gap-4 px-4 mt-1">
+        {postsInDiscussion.map((post: PostType) => (
+          <Link href={{ pathname: `/talks/${post.id}`, query: { postId: post.id } }}
+          key={post.id}
+        >
+          <PostDisplay post={post} />
+        </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

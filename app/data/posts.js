@@ -1,5 +1,6 @@
 export const Posts = [
   {
+    isPersonal: false,
     id: "01",
     user: {
       id: "u1",
@@ -19,6 +20,7 @@ export const Posts = [
     },
   },
   {
+    isPersonal: true,
     id: "02",
     user: {
       id: "u2",
@@ -38,7 +40,8 @@ export const Posts = [
     },
   },
   {
-    id: "01",
+    isPersonal: true,
+    id: "03",
     user: {
       id: "u1",
       name: "Alwell Chukwuka",
@@ -57,7 +60,8 @@ export const Posts = [
     },
   },
   {
-    id: "01",
+    isPersonal: false,
+    id: "04",
     user: {
       id: "u1",
       name: "Alwell Chukwuka",  
@@ -76,7 +80,8 @@ export const Posts = [
     },
   },
   {
-    id: "01",
+    isPersonal: false,
+    id: "05",
     user: {
       id: "u1",
       name: "Alwell Chukwuka",  
@@ -95,7 +100,8 @@ export const Posts = [
     },
   },
   {
-    id: "01",
+    isPersonal: false,
+    id: "06",
     user: {
       id: "u1",
       name: "Alwell Chukwuka",  
@@ -114,7 +120,8 @@ export const Posts = [
     },
   },
   {
-    id: "01",
+    isPersonal: true,
+    id: "07",
     user: {
       id: "u1",
       name: "Alwell Chukwuka",  

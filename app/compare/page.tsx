@@ -15,6 +15,7 @@ import { playerStats } from "../data/playerStats";
 import TitleSection from "../../components/page-section-title";
 import ComparisonVotesSection from "../../components/comp-votes-section";
 import ComparisonTalksSection from "../../components/comp-talks-section";
+import { useParams } from "next/navigation";
 
 export function AddFieldBox({
   playerSlot,
@@ -83,6 +84,9 @@ const Compare = () => {
     "23/24",
   ]);
 
+  const params = useParams<{"compare": string}>();
+  const comparePath = params["compare"];
+ 
   return (
     <main className="flex flex-col w-full px-3">
       <Header headerText="Compare" />
@@ -128,6 +132,7 @@ const Compare = () => {
         <ComparisonTalksSection
           leftPlayer={selectedPlayers[0]}
           rightPlayer={selectedPlayers[1]}
+          uniqueFullPath="/compare"
         />
       </div>
     </main>

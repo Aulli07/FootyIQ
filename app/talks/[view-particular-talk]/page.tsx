@@ -2,18 +2,17 @@
 
 import Image from "next/image";
 import { Posts } from "../../data/posts";
-import { useSearchParams, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 import Link from "next/link";
 
 import { oswald, poppins } from "../../fonts";
 import PageTitle from "../../../components/page-title";
 
-export default function ParticularPost () {
-  const params = useParams<{ "view-particular-talk": string }>();
+export default function ParticularPost() {
+  const params = useParams<{ "view-particular-talk": string, talks: string }>();
   const postId = params["view-particular-talk"];
-  // const searchParams = useSearchParams();
-  // const postId = searchParams.get("postId");
+  const talks = params.talks;
 
   const post = Posts.find((post) => post.id === postId);
   const timeAgo = (date: string) => {
@@ -38,13 +37,47 @@ export default function ParticularPost () {
     );
   }
 
+  const statChips = [
+    { label: "likes", value: post.stats.likes },
+    { label: "comments", value: post.stats.comments },
+    { label: "views", value: post.stats.views },
+  ];
+
+  const quickActions = [
+    { alt: "Comment", src: "/images/comment-light.png" },
+    { alt: "Like", src: "/images/like-light.png" },
+    { alt: "View", src: "/images/view-light.png" },
+  ];
+
+  const emptyCardContent = (
+    <>
+      <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+        <Image
+          src="/images/comment-light.png"
+          alt="comment"
+          width={16}
+          height={16}
+          className="object-cover"
+        />
+      </div>
+      <div className="space-y-1">
+        <p className={`${poppins.className} text-sm text-white/80 font-medium`}>
+          No comments yet
+        </p>
+        <p className={`${poppins.classNagme} text-xs text-white/55`}>
+          Be the first to drop your thoughts on this post.
+        </p>
+      </div>
+    </>
+  );
+
   return (
     <main className="px-4 md:px-6 text-white h-[calc(100vh-6rem)] overflow-y-auto">
-      <div className="max-w-3xl mx-auto flex flex-col h-full">
+      <div className="max-w-3xl mx-auto flex flex-col h-full gap-1">
         <PageTitle title="POST" />
 
-        <div className="pt-4 shrink-0">
-          <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 shadow-[0_8px_28px_rgba(0,0,0,0.32)] flex flex-col h-auto ">
+        <div className="pt-4 shrink-0 px-3">
+          <article className="w-full border border-white/20 rounded-2xl bg-white/5 backdrop-blur p-5 md:p-7 shadow-[0_8px_28px_rgba(0,0,0,0.32)] flex flex-col h-auto space-y-5">
             <div className="flex justify-start items-start gap-4">
               <div className="relative h-14 w-14">
                 <Image
@@ -78,7 +111,7 @@ export default function ParticularPost () {
 
             <div>
               <p
-                className={`mt-5 text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}
+                className={`text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}
               >
                 {post.content}
               </p>
@@ -86,67 +119,39 @@ export default function ParticularPost () {
           </article>
         </div>
 
-        <div className="py-4 px-1 flex gap-2 md:gap-3 shrink-0">
-          <p
-            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1 flex items-center`}
-          >
-            {post.stats.likes} likes
-          </p>
-          <p
-            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1`}
-          >
-            {post.stats.comments} comments
-          </p>
-          <p
-            className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1`}
-          >
-            {post.stats.views} views
-          </p>
+        <div className="py-4 px-3 flex gap-2 md:gap-3 shrink-0 flex-wrap">
+          {statChips.map((chip) => (
+            <p
+              key={chip.label}
+              className={`${poppins.className} text-xs text-white/75 font-medium border border-white/20 bg-white/5 rounded-full px-3 py-1 flex items-center`}
+            >
+              {chip.value} {chip.label}
+            </p>
+          ))}
         </div>
 
-        <div className="h-20 shrink-0">
+        <div className="h-20 shrink-0 px-3">
           <div className="flex items-center justify-between w-[100%] py-1 px-10 border border-white/20 rounded-2xl bg-white/4 backdrop-blur">
-            <button
-              type="button"
-              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
-            >
-              <Image
-                src="/images/comment-light.png"
-                alt="Comment"
-                width={25}
-                height={25}
-                className="object-cover"
-              />
-            </button>
-            <button
-              type="button"
-              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
-            >
-              <Image
-                src="/images/like-light.png"
-                alt="Like"
-                width={25}
-                height={25}
-                className="object-cover"
-              />
-            </button>
-            <button
-              type="button"
-              className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
-            >
-              <Image
-                src="/images/view-light.png"
-                alt="View"
-                width={25}
-                height={25}
-                className="object-cover"
-              />
-            </button>
+            {quickActions.map((action) => (
+              <button
+                key={action.alt}
+                type="button"
+                className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors"
+              >
+                <Image
+                  src={action.src}
+                  alt={action.alt}
+                  width={25}
+                  height={25}
+                  className="object-cover"
+                />
+              </button>
+            ))}
           </div>
         </div>
 
-        <section className="mt-5 w-full flex-1 min-h-0 flex flex-col">
-          <div className="flex items-center justify-between pb-4 border-b border-white/20">
+        <section className="mt-5 w-full flex-1 min-h-0 flex flex-col px-3">
+          <div className="flex items-center justify-between pb-4 px-1 border-b border-white/20">
             <h2 className={`${oswald.className} text-xl text-white`}>
               COMMENTS
             </h2>
@@ -155,30 +160,12 @@ export default function ParticularPost () {
             </p>
           </div>
 
-          <div className="mt-5 flex-1 min-h-0 pr-1">
+          <div className="mt-5 flex-1 min-h-0 pr-1 space-y-3 pb-4">
             <Link
-              href={{ pathname: "/view-particular-talk" }}
+              href={{ pathname: `/talks/${talks}/view-particular-talk`, query: { postId: post.id } }}
               className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3"
             >
-              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <Image
-                  src="/images/comment-light.png"
-                  alt="comment"
-                  width={16}
-                  height={16}
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-1">
-                <p
-                  className={`${poppins.className} text-sm text-white/80 font-medium`}
-                >
-                  No comments yet
-                </p>
-                <p className={`${poppins.className} text-xs text-white/55`}>
-                  Be the first to drop your thoughts on this post.
-                </p>
-              </div>
+              {emptyCardContent}
             </Link>
             <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
               <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
@@ -308,7 +295,7 @@ export default function ParticularPost () {
             </div>
           </div>
 
-          <div className="z-[999] fixed bottom-23 left-3 right-4 shrink-0 flex items-center gap-3 bg-black">
+          <div className="sticky bottom-0 mt-2 shrink-0 flex items-center gap-3 bg-gradient-to-t from-black via-black to-transparent pt-3 pb-2">
             <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-black/90 px-4 py-2 shadow-inner shadow-emerald-500/10">
               <input
                 placeholder="Write a comment..."

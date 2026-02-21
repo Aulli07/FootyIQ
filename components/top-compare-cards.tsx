@@ -3,6 +3,7 @@ import Image from "next/image";
 import { poppins } from "../app/fonts";
 
 import { PlayerType } from "../app/types/players";
+import Link from "next/link";
 
 const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], categoryType: string }) => {
   return (
@@ -11,7 +12,7 @@ const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], 
         const left = players[0];
         const right = players[1];
 
-        return <ComparesCard leftPlayer={left} rightPlayer={right} />;
+        return <ComparesCard leftPlayer={left} rightPlayer={right} categoryType={categoryType} />;
       })}
     </div>
   );
@@ -20,10 +21,15 @@ const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], 
 export function ComparesCard({
   leftPlayer,
   rightPlayer,
+  categoryType
 }: {
   leftPlayer: PlayerType;
   rightPlayer: PlayerType;
+  categoryType: string;
 }) {
+
+  const viewComparisonPath = leftPlayer.id + "-vs-" + rightPlayer.id;
+
   return (
     <div
       key={`${leftPlayer.id}-${rightPlayer.id}`}
@@ -76,13 +82,23 @@ export function ComparesCard({
         </div>
       </div>
 
-      <div className="relative flex items-center">
-        <p
-          className={`bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded px-3 py-1 ${poppins.className} text-sm`}
-        >
-          View
-        </p>
-      </div>
+      <Link
+        href={{
+          pathname: `/${categoryType}/${viewComparisonPath}`,
+          query: {
+            leftPlayerId: leftPlayer.id,
+            rightPlayerId: rightPlayer.id
+          }
+        }}
+      >
+        <div className="relative flex items-center">
+          <p
+            className={`bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded px-3 py-1 ${poppins.className} text-sm`}
+          >
+            View
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }

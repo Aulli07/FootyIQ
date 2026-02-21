@@ -11,14 +11,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { PostDisplay } from "../../components/post-display";
 
-function PersonalTalks() {
+export function PersonalTalks() {
   let personalPosts = Posts as PostType[]; // Type assertion
-  personalPosts = Posts.filter((post) => post.id === "01"); // Example filter for personal posts
+  personalPosts = Posts.filter((post) => post.isPersonal === true); // Example filter for personal posts
 
   return (
-    <div className="display flex flex-col gap-4">
+    <div className="display flex flex-col gap-5">
       {personalPosts.map((post) => (
-        <PostDisplay key={post.id} post={post} />
+        <Link
+          href={{ pathname: `/talks/${post.id}`, query: { postId: post.id } }}
+          key={post.id}
+        >
+          <PostDisplay post={post} />
+        </Link>
       ))}
     </div>
   );
@@ -28,7 +33,9 @@ function PublicTalks() {
   return (
     <div className="display flex flex-col gap-4">
       {Posts.map((post) => (
-        <PostDisplay key={post.id} post={post} />
+        <Link href={{ pathname: `/talks/${post.id}`, query: { postId: post.id } }} key={post.id}>
+          <PostDisplay post={post} />
+        </Link>
       ))}
     </div>
   );

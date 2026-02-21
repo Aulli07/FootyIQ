@@ -10,6 +10,7 @@ import PageTitle from "@/components/page-title";
 
 import ShowFullStat from "@/components/show-stat";
 import ComparisonVotesSection from "@/components/comp-votes-section";
+import ComparisonTalksSection from "@/components/comp-talks-section";
 
 import Link from "next/link";
 import { getPostsInDiscussion } from "@/app/utils/playerFilters";
@@ -21,12 +22,12 @@ export default function ViewComparisonPage() {
   const params = useParams<{ category: string; viewComparison: string }>();
   const category = params?.category;
   const viewComparison = params?.viewComparison;
+  const fullPath = `/${category}/${viewComparison}`;
 
   const searchParams = useSearchParams();
   const leftPlayerId = searchParams.get("leftPlayerId");
   const rightPlayerId = searchParams.get("rightPlayerId");
 
-    // <ViewComparison leftPlayerId={leftPlayerId} rightPlayerId={rightPlayerId} />
 
   const leftPlayer = players.find((p) => p.id === leftPlayerId);
   const rightPlayer = players.find((p) => p.id === rightPlayerId);
@@ -67,8 +68,9 @@ export default function ViewComparisonPage() {
           <ComparisonTalksSection
             leftPlayer={leftPlayer}
             rightPlayer={rightPlayer}
-            categoryPath={category ?? ""}
-            viewComparisonPath={viewComparison ?? ""}
+            uniqueFullPath={fullPath ?? ""}
+            // categoryPath={category ?? ""}
+            // viewComparisonPath={viewComparison ?? ""}
           />
         </div>
       </div>
@@ -166,43 +168,43 @@ function FixedFieldBox({
 //   );
 // }
 
-function ComparisonTalksSection({
-  leftPlayer,
-  rightPlayer,
-  categoryPath,
-  viewComparisonPath
-}: {
-  leftPlayer: PlayerType | null;
-  rightPlayer: PlayerType | null;
-  categoryPath: string;
-  viewComparisonPath: string
-}) {
-  const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
+// function ComparisonTalksSection({
+//   leftPlayer,
+//   rightPlayer,
+//   categoryPath,
+//   viewComparisonPath
+// }: {
+//   leftPlayer: PlayerType | null;
+//   rightPlayer: PlayerType | null;
+//   categoryPath: string;
+//   viewComparisonPath: string
+// }) {
+//   const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
 
-  return (
-    <div className="flex flex-col gap-3 h-full w-full mt-5">
-      <TitleSection title="Talks" />
-      <div className="flex flex-col gap-4 px-4 mt-1">
-        {postsInDiscussion.slice(0, 3).map((post: PostType) => (
-          <PostDisplay key={post.id} post={post} />
-        ))}
-      </div>
-      <Link
-        href={{
-          pathname: `/${categoryPath}/${viewComparisonPath}/view-more-talks`,
-          query: {
-            leftPlayerId: leftPlayer?.id,
-            rightPlayerId: rightPlayer?.id,
-          },
-        }}
-        className="flex justify-end items-center px-4"
-      >
-        <span
-          className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}
-        >
-          View More Talks
-        </span>
-      </Link>
-    </div>
-  );
-}
+//   return (
+//     <div className="flex flex-col gap-3 h-full w-full mt-5">
+//       <TitleSection title="Talks" />
+//       <div className="flex flex-col gap-4 px-4 mt-1">
+//         {postsInDiscussion.slice(0, 3).map((post: PostType) => (
+//           <PostDisplay key={post.id} post={post} />
+//         ))}
+//       </div>
+//       <Link
+//         href={{
+//           pathname: `/${categoryPath}/${viewComparisonPath}/view-more-talks`,
+//           query: {
+//             leftPlayerId: leftPlayer?.id,
+//             rightPlayerId: rightPlayer?.id,
+//           },
+//         }}
+//         className="flex justify-end items-center px-4"
+//       >
+//         <span
+//           className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}
+//         >
+//           View More Talks
+//         </span>
+//       </Link>
+//     </div>
+//   );
+// }

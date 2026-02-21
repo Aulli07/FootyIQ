@@ -1,5 +1,5 @@
 import ViewMoreTalksContent from "@/components/view-more-talks-comp";
 
-export default function ViewMorePage() {
+export default function CompareViewMoreTalksPage() {
   return <ViewMoreTalksContent />;
 }
