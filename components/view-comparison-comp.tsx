@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 // import { players } from "../app/data/players";
 // import { oswald, poppins } from "../app/fonts";

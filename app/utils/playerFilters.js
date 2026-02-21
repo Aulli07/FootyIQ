@@ -1,7 +1,7 @@
 import { players } from "../data/players";
 import { playerStats } from "../data/playerStats";
 
-import { Posts } from "../data/posts";
+import { AllTalks } from "../data/talks";
 
 
 const playersById = Object.fromEntries(
@@ -23,7 +23,15 @@ export function getTotalComparisons(playersList) {
   return searchesList;
 }
 
+export const timeAgo = (date) => {
+  const elapsedInMinutes = Math.floor(
+    (new Date().getTime() - new Date(date).getTime()) / (1000 * 60),
+  );
 
+  if (elapsedInMinutes < 60) return `${Math.max(elapsedInMinutes, 1)}m`;
+  if (elapsedInMinutes < 1440) return `${Math.floor(elapsedInMinutes / 60)}h`;
+  return `${Math.floor(elapsedInMinutes / 1440)}d`;
+};
 
 export function getLegends() {
   const legendsList = computeLegends(playerStats);
@@ -89,7 +97,7 @@ function containsAllPlayers(input, description) {
 }
 
 export function getPostsInDiscussion(leftPlayer, rightPlayer) {
-  const postsInDiscussion = Posts.filter(
+  const postsInDiscussion = AllTalks.filter(
     (post) =>
       post.playersInDiscussion.includes(leftPlayer?.name || "") &&
       post.playersInDiscussion.includes(rightPlayer?.name || ""),

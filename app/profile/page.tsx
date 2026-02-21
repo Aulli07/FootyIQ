@@ -11,35 +11,51 @@ import { PersonalTalks } from "../talks/page";
 import SearchBar from "../../components/search-bar";
 import { totalComparedPlayers } from "../page";
 import Compares from "../../components/top-compare-cards";
+import Header from "../../components/header";
 
-function Profile () {
+import { users } from "../data/users";
+import { userType } from "../types/users";
+import Link from "next/link";
+
+import { follows } from "../data/follows";
+
+
+export function Profile ({ userId }: { userId?: string }) {
 
   const talkTabs = [
-      { key: "talks", label: "Talks" },
-      { key: "history", label: "History" },
-      { key: "friends", label: "Friends"}
-    ] as const;
-  
-    type talkTabType = (typeof talkTabs)[number]["key"];
-  
-    const [talkTab, setTalkTab] = useState<talkTabType>("talks");
-  
-    const profileTabContent = {
-      talks: <PersonalTalks />,
-      history: <History />,
-      friends: <div className="p-4">Friends content</div>,
-    };
+    { key: "talks", label: "Talks" },
+    { key: "history", label: "History" },
+    { key: "friends", label: "Friends"}
+  ] as const;
+
+  type talkTabType = (typeof talkTabs)[number]["key"];
+
+  const [talkTab, setTalkTab] = useState<talkTabType>("talks");
+
+  const profileTabContent = {
+    talks: <PersonalTalks />,
+    history: <History />,
+    friends: <Friends id={userId || ""}/>,
+  };
+
+  const user = users.find(user => user.id === userId) as userType;
+
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const dateObj = new Date(user?.dateJoined || "");
+  const month = months[dateObj.getMonth()];
+  const year = dateObj.getFullYear();
+  const formattedDate = `Joined ${month} ${year}`;
   
   return (
     <main className="px-4">
-      <PageTitle title="Profile" />
+      <Header headerText="Profile" />
 
       <div className="flex flex-col gap-2 px-3 py-6  ">
         <div className="flex gap-4 items-center justify-start h-27">
           <div className="relative h-18 w-18 flex">
             <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
               <Image
-                src="/images/ronaldo.jpg"
+                src={user?.avatarUrl}
                 alt="profile-pic"
                 fill
                 sizes="68px"
@@ -49,21 +65,21 @@ function Profile () {
           </div>
           <div className="flex flex-col gap-2">
             <div className="items-left">
-              <p className={`text-xl ${poppins.className} font-semibold`}>dev_boy</p>
+              <p className={`text-xl ${poppins.className} font-semibold`}>{user?.name}</p>
             </div>
             <div className="items-left">
-              <p className={`text-sm ${poppins.className} font-semibold`}>@c_aulli</p>
+              <p className={`text-sm ${poppins.className} font-semibold`}>@{user?.username}</p>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-3">
           <div className="text-wrap min-h-10">
-            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>I'm a passionate football fan and developer. I love creating apps that bring fans closer to their favorite teams and players.</p>
+            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>{user?.bio || "No bio available."}</p>
           </div>
           <div className="flex gap-1 items-center">
             <img src="/images/history-light-fill.png" alt="bio-date-icon" className="h-5 w-5 inline" />
 
-            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>Joined January 2024</p>
+            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>{formattedDate}</p>
           </div>
         </div>  
       </div>
@@ -112,7 +128,6 @@ const History = () => {
 
   return (
     <main className="w-full pt-2 text-white flex flex-col gap-2">
-      {/* <Header headerText="History" /> */}
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}
@@ -125,4 +140,83 @@ const History = () => {
   );
 };
 
-export default Profile;
+
+
+
+const Friends = ({ id }: { id: string }) => {
+
+  const getFollowers = (userId: string) => {
+    const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
+
+    return users.filter(u => followingIds.includes(u.id));
+  }
+
+  const followers = getFollowers(id);
+
+  return (
+    <section className="w-full pt-2 pb-3 text-white">
+      <div className="flex items-center justify-between pb-3 px-1">
+        <p className={`${poppins.className} text-sm font-semibold text-white/90`}>
+          Connected Friends
+        </p>
+        <p className={`${poppins.className} text-xs font-medium text-white/60`}>
+          {followers.length} total
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        {followers.map((friend) => (
+          <Link href={{ pathname: `/profile/${friend.username}` }} key={friend.id}>
+            <article
+              key={friend.id}
+              className="w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur px-4 py-3 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="relative h-12 w-12 overflow-hidden rounded-full border border-emerald-500/35 shrink-0">
+                  <Image
+                    src={friend.avatarUrl}
+                    alt={friend.name}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="min-w-0">
+                  <p
+                    className={`${poppins.className} text-sm sm:text-base font-semibold text-white truncate`}
+                  >
+                    {friend.name}
+                  </p>
+                  <p
+                    className={`${poppins.className} text-xs sm:text-sm font-medium text-white/60 truncate`}
+                  >
+                    @{friend.username}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                aria-label={`Open options for ${friend.name}`}
+                className="h-9 w-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center text-white/85 text-xl leading-none"
+              >
+                ⋯
+              </button>
+            </article>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+
+
+
+function FullProfile() {
+  const user = users.find(user => user.username === "alwell");
+  return <Profile userId={user?.id || ""} />;
+}
+
+export default FullProfile;

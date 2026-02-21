@@ -5,36 +5,48 @@ import Header from "../../components/header";
 import { useState } from "react";
 import { poppins } from "../fonts";
 
-import { Posts } from "../data/posts";
-import { PostType } from "../types/posts";
+import { AllTalks } from "../data/talks";
+import { TalkType } from "../types/talks";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { PostDisplay } from "../../components/post-display";
+import { users } from "../data/users";
+import { follows } from "../data/follows";
+
 
 export function PersonalTalks() {
-  let personalPosts = Posts as PostType[]; // Type assertion
-  personalPosts = Posts.filter((post) => post.isPersonal === true); // Example filter for personal posts
+  let personalPosts = AllTalks as TalkType[]; // Type assertion
+
+  personalPosts = AllTalks.filter((post) => post.authorId === "u-1"); // Example filter for personal posts
 
   return (
     <div className="display flex flex-col gap-5">
-      {personalPosts.map((post) => (
+      {personalPosts.map((talk) => (
         <Link
-          href={{ pathname: `/talks/${post.id}`, query: { postId: post.id } }}
-          key={post.id}
+          href={{ pathname: `/talks/${talk.id}` }}
+          key={talk.id}
         >
-          <PostDisplay post={post} />
+          <PostDisplay talk={talk} />
         </Link>
       ))}
     </div>
   );
 }
 
-function PublicTalks() {
+function PublicTalks({userId} : {userId : string}) {
+  const getFollowerPosts = (userId: string | null) => {
+    const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
+
+    return AllTalks.filter(talk => followingIds.includes(talk.authorId));
+  }
+
+  const followerPosts = getFollowerPosts(userId)
+
   return (
     <div className="display flex flex-col gap-4">
-      {Posts.map((post) => (
-        <Link href={{ pathname: `/talks/${post.id}`, query: { postId: post.id } }} key={post.id}>
-          <PostDisplay post={post} />
+      {followerPosts.map((talk) => (
+        <Link href={{ pathname: `/talks/${talk.id}`}} key={talk.id}>
+          <PostDisplay talk={talk} />
         </Link>
       ))}
     </div>
@@ -43,17 +55,17 @@ function PublicTalks() {
 
 const Talks = () => {
   const talkTabs = [
-    { key: "Personal", label: "Personal" },
-    { key: "Public", label: "Public" },
+    { key: "for_you", label: "For You" },
+    { key: "following", label: "Following" },
   ] as const;
 
   type talkTabType = (typeof talkTabs)[number]["key"];
 
-  const [talkTab, setTalkTab] = useState<talkTabType>("Personal");
+  const [talkTab, setTalkTab] = useState<talkTabType>("for_you");
 
   const talkTabContent = {
-    Personal: <PersonalTalks />,
-    Public: <PublicTalks />,
+    for_you: <PersonalTalks />,
+    following: <PublicTalks userId="u-1"/>,
   };
 
   return (

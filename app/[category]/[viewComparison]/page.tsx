@@ -14,7 +14,7 @@ import ComparisonTalksSection from "@/components/comp-talks-section";
 
 import Link from "next/link";
 import { getPostsInDiscussion } from "@/app/utils/playerFilters";
-import { PostType } from "@/app/types/posts";
+import { TalkType } from "@/app/types/talks";
 import TitleSection from "@/components/page-section-title";
 import { PostDisplay } from "@/components/post-display";
 

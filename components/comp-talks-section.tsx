@@ -1,11 +1,11 @@
 import { PlayerType } from "../app/types/players";
-import { Posts } from "../app/data/posts";
+import { AllTalks } from "../app/data/talks";
 import TitleSection from "./page-section-title";
 import { PostDisplay } from "./post-display";
 import { poppins } from "../app/fonts";
 import Link from "next/link";
 import { getPostsInDiscussion } from "../app/utils/playerFilters";
-import { PostType } from "../app/types/posts";
+import { TalkType } from "../app/types/talks";
 
 export default function ComparisonTalksSection({
   leftPlayer,
@@ -22,8 +22,8 @@ export default function ComparisonTalksSection({
     <div className="flex flex-col gap-3 h-full w-full mt-5">
       <TitleSection title="Talks" />
       <div className="flex flex-col gap-4 px-4 mt-1">
-        {postsInDiscussion.slice(0, 3).map((post: PostType) => (
-          <PostDisplay key={post.id} post={post} />
+        {postsInDiscussion.slice(0, 3).map((talk: TalkType) => (
+          <PostDisplay key={talk.id} talk={talk} />
         ))}
       </div>
       <Link

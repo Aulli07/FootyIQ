@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Posts } from "../../data/posts";
+import { AllTalks } from "../../data/talks";
+import { users } from "../../data/users";
+
 import { useParams } from "next/navigation";
 
 import Link from "next/link";
@@ -9,23 +11,18 @@ import Link from "next/link";
 import { oswald, poppins } from "../../fonts";
 import PageTitle from "../../../components/page-title";
 
+import { timeAgo } from "@/app/utils/playerFilters";
+
 export default function ParticularPost() {
   const params = useParams<{ "view-particular-talk": string, talks: string }>();
-  const postId = params["view-particular-talk"];
+  const talkId = params["view-particular-talk"];
   const talks = params.talks;
 
-  const post = Posts.find((post) => post.id === postId);
-  const timeAgo = (date: string) => {
-    const elapsedInMinutes = Math.floor(
-      (new Date().getTime() - new Date(date).getTime()) / (1000 * 60),
-    );
+  const talk = AllTalks.find((talk) => talk.id === talkId);
+  const user = users.find((user) => user.id === talk?.authorId);
 
-    if (elapsedInMinutes < 60) return `${Math.max(elapsedInMinutes, 1)}m`;
-    if (elapsedInMinutes < 1440) return `${Math.floor(elapsedInMinutes / 60)}h`;
-    return `${Math.floor(elapsedInMinutes / 1440)}d`;
-  };
 
-  if (!post) {
+  if (!talk) {
     return (
       <main className="px-4 py-6 min-h-[80vh] text-white">
         <div className="max-w-3xl mx-auto border border-white/20 rounded-2xl bg-white/5 p-6">
@@ -38,9 +35,9 @@ export default function ParticularPost() {
   }
 
   const statChips = [
-    { label: "likes", value: post.stats.likes },
-    { label: "comments", value: post.stats.comments },
-    { label: "views", value: post.stats.views },
+    { label: "likes", value: talk.stats.likes },
+    { label: "comments", value: talk.stats.comments },
+    { label: "views", value: talk.stats.views },
   ];
 
   const quickActions = [
@@ -64,7 +61,7 @@ export default function ParticularPost() {
         <p className={`${poppins.className} text-sm text-white/80 font-medium`}>
           No comments yet
         </p>
-        <p className={`${poppins.classNagme} text-xs text-white/55`}>
+        <p className={`${poppins.className} text-xs text-white/55`}>
           Be the first to drop your thoughts on this post.
         </p>
       </div>
@@ -81,8 +78,8 @@ export default function ParticularPost() {
             <div className="flex justify-start items-start gap-4">
               <div className="relative h-14 w-14">
                 <Image
-                  src={post.user.avatarUrl}
-                  alt={post.user.name}
+                  src={user?.avatarUrl ?? "/images/default-avatar.png"}
+                  alt={user?.name ?? "User Avatar"}
                   fill
                   sizes="56px"
                   className="object-cover rounded-full border border-emerald-700 shadow-md"
@@ -94,16 +91,16 @@ export default function ParticularPost() {
                   <p
                     className={`text-lg text-white ${poppins.className} font-semibold`}
                   >
-                    {post.user.name}
+                    {user?.name}
                   </p>
                   <p className={`text-sm text-white/60 ${poppins.className}`}>
-                    @{post.user.username}
+                    @{user?.username}
                   </p>
                 </div>
 
                 <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-8 items-center gap-2">
                   <p className={`text-sm text-white/70 ${poppins.className}`}>
-                    {timeAgo(post.createdAt)}
+                    {timeAgo(talk.createdAt)}
                   </p>
                 </div>
               </div>
@@ -113,7 +110,7 @@ export default function ParticularPost() {
               <p
                 className={`text-base md:text-lg leading-8 text-white/90 ${poppins.className}`}
               >
-                {post.content}
+                {talk.content}
               </p>
             </div>
           </article>
@@ -162,7 +159,7 @@ export default function ParticularPost() {
 
           <div className="mt-5 flex-1 min-h-0 pr-1 space-y-3 pb-4">
             <Link
-              href={{ pathname: `/talks/${talks}/view-particular-talk`, query: { postId: post.id } }}
+              href={{ pathname: `/talks/${talk.id}/view-particular-talk`}}
               className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3"
             >
               {emptyCardContent}

@@ -1,4 +1,4 @@
-export type PostType = {
+export type TalkType = {
   id: string;
   user: {
     id: string;
@@ -6,6 +6,7 @@ export type PostType = {
     username: string;
     avatarUrl: string;
   }
+  authorId: string;
   content: string;
   playersInDiscussion: Array<string>;
   createdAt: string;
