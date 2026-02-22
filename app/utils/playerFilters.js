@@ -2,6 +2,16 @@ import { players } from "../data/players";
 import { playerStats } from "../data/playerStats";
 
 import { AllTalks } from "../data/talks";
+import { follows } from "../data/follows";
+
+export function getFollowers(userId) {
+  const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
+
+  const followerIds = follows.filter(f => f.followingId === userId).map(f => f.followerId)
+
+  return {followingIds, followerIds}
+
+} 
 
 
 const playersById = Object.fromEntries(

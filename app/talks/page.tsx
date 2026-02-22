@@ -2,7 +2,7 @@
 
 import Header from "../../components/header";
 
-import { useState } from "react";
+import { useMemo, useState, useEffect, use } from "react";
 import { poppins } from "../fonts";
 
 import { AllTalks } from "../data/talks";
@@ -13,11 +13,90 @@ import { PostDisplay } from "../../components/post-display";
 import { users } from "../data/users";
 import { follows } from "../data/follows";
 
+import { getFollowers } from "../utils/playerFilters";
 
-export function PersonalTalks() {
+const MAIN_USER_ID = "u-1";
+
+
+
+function shuffleTalks (talks : Array<TalkType>,  setShuffled : React.Dispatch<React.SetStateAction<Array<TalkType>>>, shuffled : Array<TalkType>) {
+
+  useEffect(() => {
+    const arr = [...talks];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    setShuffled(arr);
+  }, [])
+
+  console.log('I am here')
+  return shuffled;
+}
+
+const getFollowerCountMap = () => {
+  const followerCountMap: Record<string, number> = {};
+
+  for (const follow of follows) {
+    const userBeingFollowedId = follow.followingId;
+
+    if (!followerCountMap[userBeingFollowedId]) {
+      followerCountMap[userBeingFollowedId] = 0;
+    }
+
+    followerCountMap[userBeingFollowedId] += 1;
+  }
+
+  return followerCountMap;
+};
+
+const getForYouScore = ({
+  talk,
+  followingIds,
+  followerCountMap,
+}: {
+  talk: TalkType;
+  followingIds: string[];
+  followerCountMap: Record<string, number>;
+}) => {
+  const now = Date.now();
+  const createdAt = new Date(talk.createdAt).getTime();
+  const ageInHours = Number.isNaN(createdAt)
+    ? 72
+    : Math.max(0, (now - createdAt) / (1000 * 60 * 60));
+
+  const recencyScore = 320 / (1 + ageInHours / 9);
+  const engagementScore =
+    talk.stats.likes * 1 + talk.stats.comments * 2 + talk.stats.views * 0.04;
+
+  const isFollowingAuthor = followingIds.includes(talk.authorId);
+  const followingBoost = isFollowingAuthor ? 260 : 25;
+  const popularityBoost = (followerCountMap[talk.authorId] ?? 0) * 120;
+
+  const author = users.find((user) => user.id === talk.authorId);
+  const joinedAt = author ? new Date(author.dateJoined).getTime() : 0;
+  const accountAgeDays = joinedAt
+    ? (now - joinedAt) / (1000 * 60 * 60 * 24)
+    : 9999;
+  const recentCreatorBoost = accountAgeDays <= 800 ? 70 : 0;
+
+  const randomBoost = Math.random() * 160;
+
+  return (
+    recencyScore +
+    engagementScore +
+    followingBoost +
+    popularityBoost +
+    recentCreatorBoost +
+    randomBoost
+  );
+};
+
+
+export function PersonalTalks({id} : {id?: string}) {
   let personalPosts = AllTalks as TalkType[]; // Type assertion
 
-  personalPosts = AllTalks.filter((post) => post.authorId === "u-1"); // Example filter for personal posts
+  personalPosts = AllTalks.filter((post) => post.authorId === id); // Example filter for personal posts
 
   return (
     <div className="display flex flex-col gap-5">
@@ -33,18 +112,64 @@ export function PersonalTalks() {
   );
 }
 
-function PublicTalks({userId} : {userId : string}) {
-  const getFollowerPosts = (userId: string | null) => {
-    const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
+function ForYouTalks() {
+  const [ shuffled, setShuffled ] = useState<Array<TalkType>>([]);
 
+  const talksForYou = useMemo(() => {
+    const { followingIds } = getFollowers(MAIN_USER_ID);
+    const followerCountMap = getFollowerCountMap();
+
+    const scoredTalks = AllTalks.filter((talk) => talk.authorId !== MAIN_USER_ID)
+      .map((talk) => ({
+        talk,
+        score: getForYouScore({
+          talk,
+          followingIds,
+          followerCountMap,
+        }),
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 30)
+      .map((item) => item.talk);
+
+    const followingTalks = scoredTalks.filter((talk) =>
+      followingIds.includes(talk.authorId),
+    );
+    const otherTalks = scoredTalks.filter(
+      (talk) => !followingIds.includes(talk.authorId),
+    );
+
+    const mostlyFollowing = followingTalks.slice(0, 20);
+    const exploreChunk = otherTalks.slice(0, 10);
+
+    return [...mostlyFollowing, ...exploreChunk]
+
+  }, []);
+
+  const shuffledTalks = shuffleTalks(talksForYou, setShuffled, shuffled);
+
+  return (
+    <div className="display flex flex-col gap-5">
+      {shuffledTalks.map((talk) => (
+        <Link href={{ pathname: `/talks/${talk.id}` }} key={talk.id}>
+          <PostDisplay talk={talk} />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+function PublicTalks({userId} : {userId : string}) {
+  const getFollowingPosts = (userId: string | null) => {
+    const { followingIds } = getFollowers(userId)
     return AllTalks.filter(talk => followingIds.includes(talk.authorId));
   }
 
-  const followerPosts = getFollowerPosts(userId)
+  const followingPosts = getFollowingPosts(userId)
 
   return (
     <div className="display flex flex-col gap-4">
-      {followerPosts.map((talk) => (
+      {followingPosts.map((talk) => (
         <Link href={{ pathname: `/talks/${talk.id}`}} key={talk.id}>
           <PostDisplay talk={talk} />
         </Link>
@@ -64,8 +189,8 @@ const Talks = () => {
   const [talkTab, setTalkTab] = useState<talkTabType>("for_you");
 
   const talkTabContent = {
-    for_you: <PersonalTalks />,
-    following: <PublicTalks userId="u-1"/>,
+    for_you: <ForYouTalks />,
+    following: <PublicTalks userId={MAIN_USER_ID} />,
   };
 
   return (

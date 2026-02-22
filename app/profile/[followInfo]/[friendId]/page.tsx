@@ -1,7 +1,7 @@
 "use client"
 
 import { users } from "@/app/data/users";
-import { Profile } from "../page"
+import { Profile } from "../../page"
 import { useParams } from "next/navigation";
 
 export default function FriendProfilePage() {
