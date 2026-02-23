@@ -18,8 +18,20 @@ export default function ComparisonTalksSection({
 }) {
   const postsInDiscussion = getPostsInDiscussion(leftPlayer, rightPlayer);
 
+  if (postsInDiscussion.length === 0) {
+    return (
+      <div className="flex flex-col gap-3 justify-center items-center h-full w-full mt-5 px-3">
+        <TitleSection title="Talks" />
+        <p className={`text-white/70 ${poppins.className} text-sm`}>
+          No talks found for this comparison. 
+          Be the first to start the discussion!
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col gap-3 h-full w-full mt-5">
+    <div className="flex flex-col gap-3 h-full w-full mt-5 px-3">
       <TitleSection title="Talks" />
       <div className="flex flex-col gap-4 px-4 mt-1">
         {postsInDiscussion.slice(0, 3).map((talk: TalkType) => (

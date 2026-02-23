@@ -2,7 +2,7 @@
 
 import Header from "../../components/header";
 
-import { useMemo, useState, useEffect, use } from "react";
+import { useState } from "react";
 import { poppins } from "../fonts";
 
 import { AllTalks } from "../data/talks";
@@ -17,22 +17,16 @@ import { getFollowers } from "../utils/playerFilters";
 
 const MAIN_USER_ID = "u-1";
 
+const shuffleArray = (talks: TalkType[]) => {
+  const arr = [...talks];
 
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
 
-function shuffleTalks (talks : Array<TalkType>,  setShuffled : React.Dispatch<React.SetStateAction<Array<TalkType>>>, shuffled : Array<TalkType>) {
-
-  useEffect(() => {
-    const arr = [...talks];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    setShuffled(arr);
-  }, [])
-
-  console.log('I am here')
-  return shuffled;
-}
+  return arr;
+};
 
 const getFollowerCountMap = () => {
   const followerCountMap: Record<string, number> = {};
@@ -92,8 +86,39 @@ const getForYouScore = ({
   );
 };
 
+const buildForYouTalks = () => {
+  const { followingIds } = getFollowers(MAIN_USER_ID);
+  const followerCountMap = getFollowerCountMap();
 
-export function PersonalTalks({id} : {id?: string}) {
+  const scoredTalks = AllTalks.filter((talk) => talk.authorId !== MAIN_USER_ID)
+    .map((talk) => ({
+      talk,
+      score: getForYouScore({
+        talk,
+        followingIds,
+        followerCountMap,
+      }),
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 30)
+    .map((item) => item.talk);
+
+  const followingTalks = scoredTalks.filter((talk) =>
+    followingIds.includes(talk.authorId),
+  );
+  const otherTalks = scoredTalks.filter(
+    (talk) => !followingIds.includes(talk.authorId),
+  );
+
+  const mostlyFollowing = followingTalks.slice(0, 20);
+  const exploreChunk = otherTalks.slice(0, 10);
+
+  return shuffleArray([...mostlyFollowing, ...exploreChunk]);
+};
+
+const SHUFFLED_FOR_YOU_TALKS = buildForYouTalks();
+
+export function PersonalTalks({ id }: { id?: string }) {
   let personalPosts = AllTalks as TalkType[]; // Type assertion
 
   personalPosts = AllTalks.filter((post) => post.authorId === id); // Example filter for personal posts
@@ -101,56 +126,6 @@ export function PersonalTalks({id} : {id?: string}) {
   return (
     <div className="display flex flex-col gap-5">
       {personalPosts.map((talk) => (
-        <Link
-          href={{ pathname: `/talks/${talk.id}` }}
-          key={talk.id}
-        >
-          <PostDisplay talk={talk} />
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-function ForYouTalks() {
-  const [ shuffled, setShuffled ] = useState<Array<TalkType>>([]);
-
-  const talksForYou = useMemo(() => {
-    const { followingIds } = getFollowers(MAIN_USER_ID);
-    const followerCountMap = getFollowerCountMap();
-
-    const scoredTalks = AllTalks.filter((talk) => talk.authorId !== MAIN_USER_ID)
-      .map((talk) => ({
-        talk,
-        score: getForYouScore({
-          talk,
-          followingIds,
-          followerCountMap,
-        }),
-      }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 30)
-      .map((item) => item.talk);
-
-    const followingTalks = scoredTalks.filter((talk) =>
-      followingIds.includes(talk.authorId),
-    );
-    const otherTalks = scoredTalks.filter(
-      (talk) => !followingIds.includes(talk.authorId),
-    );
-
-    const mostlyFollowing = followingTalks.slice(0, 20);
-    const exploreChunk = otherTalks.slice(0, 10);
-
-    return [...mostlyFollowing, ...exploreChunk]
-
-  }, []);
-
-  const shuffledTalks = shuffleTalks(talksForYou, setShuffled, shuffled);
-
-  return (
-    <div className="display flex flex-col gap-5">
-      {shuffledTalks.map((talk) => (
         <Link href={{ pathname: `/talks/${talk.id}` }} key={talk.id}>
           <PostDisplay talk={talk} />
         </Link>
@@ -159,18 +134,30 @@ function ForYouTalks() {
   );
 }
 
-function PublicTalks({userId} : {userId : string}) {
-  const getFollowingPosts = (userId: string | null) => {
-    const { followingIds } = getFollowers(userId)
-    return AllTalks.filter(talk => followingIds.includes(talk.authorId));
-  }
+function ForYouTalks() {
+  return (
+    <div className="display flex flex-col gap-5">
+      {SHUFFLED_FOR_YOU_TALKS.map((talk) => (
+        <Link href={{ pathname: `/talks/${talk.id}` }} key={talk.id}>
+          <PostDisplay talk={talk} />
+        </Link>
+      ))}
+    </div>
+  );
+}
 
-  const followingPosts = getFollowingPosts(userId)
+function PublicTalks({ userId }: { userId: string }) {
+  const getFollowingPosts = (userId: string | null) => {
+    const { followingIds } = getFollowers(userId);
+    return AllTalks.filter((talk) => followingIds.includes(talk.authorId));
+  };
+
+  const followingPosts = getFollowingPosts(userId);
 
   return (
     <div className="display flex flex-col gap-4">
       {followingPosts.map((talk) => (
-        <Link href={{ pathname: `/talks/${talk.id}`}} key={talk.id}>
+        <Link href={{ pathname: `/talks/${talk.id}` }} key={talk.id}>
           <PostDisplay talk={talk} />
         </Link>
       ))}

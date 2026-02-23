@@ -1,12 +1,6 @@
 export const AllTalks = [
   {
     id: "t-1",
-    // user: {
-    //   id: "u-1",
-    //   name: "Alwell Chukwuka",
-    //   username: "alwell",
-    //   avatarUrl: "/images/ronaldo.jpg",
-    // },
     authorId: "u-1",
     content: "Premier League title charge loading... 🚀⚽️",
     playersInDiscussion: ["Cristiano Ronaldo", "Lionel Messi"],
@@ -15,12 +9,6 @@ export const AllTalks = [
   },
   {
     id: "t-2",
-    // user: {
-    //   id: "u-3",
-    //   name: "Joshua Kalu",
-    //   username: "josh_kalu",
-    //   avatarUrl: "/images/neymar.jpg",
-    // },
     authorId: "u-3",
     content: "Goals are like WiFi. You don’t see them, but you feel them.",
     playersInDiscussion: ["Erling Haaland", "Kylian Mbappe"],
@@ -29,12 +17,6 @@ export const AllTalks = [
   },
   {
     id: "t-3",
-    // user: {
-    //   id: "u-4",
-    //   name: "Timileyin Adebayo",
-    //   username: "timi-steeze",
-    //   avatarUrl: "/images/lamine-yamal.jpg",
-    // },
     authorId: "u-4",
     content: "Man City still have the cleanest midfield rotations in Europe this month.",
     playersInDiscussion: ["Rodri", "Kevin De Bruyne"],
@@ -43,12 +25,6 @@ export const AllTalks = [
   },
   {
     id: "t-4",
-    // user: {
-    //   id: "u-2",
-    //   name: "Tofunmi Akinyemi",
-    //   username: "tofunmi",
-    //   avatarUrl: "/images/messi.jpg",
-    // },
     authorId: "u-2",
     content: "Arsenal will compete deep, but squad depth in April is still their big test.",
     playersInDiscussion: ["Bukayo Saka", "Martin Odegaard"],
@@ -57,12 +33,6 @@ export const AllTalks = [
   },
   {
     id: "t-5",
-    // user: {
-    //   id: "u-3",
-    //   name: "Joshua Kalu",
-    //   username: "josh_kalu",
-    //   avatarUrl: "/images/neymar.jpg",
-    // },
     authorId: "u-3",
     content: "Mbappe in transition is still unfair. Defenders are just guessing at this point.",
     playersInDiscussion: ["Kylian Mbappe", "Vinicius Junior"],
@@ -71,12 +41,6 @@ export const AllTalks = [
   },
   {
     id: "t-6",
-    // user: {
-    //   id: "u-2",
-    //   name: "Tofunmi Akinyemi",
-    //   username: "tofunmi",
-    //   avatarUrl: "/images/messi.jpg",
-    // },
     authorId: "u-2",
     content: "Rice + Odegaard control is elite. They just need one more killer finisher.",
     playersInDiscussion: ["Declan Rice", "Martin Odegaard"],
@@ -85,12 +49,6 @@ export const AllTalks = [
   },
   {
     id: "t-7",
-    // user: {
-    //   id: "u-1",
-    //   name: "Alwell Chukwuka",
-    //   username: "alwell",
-    //   avatarUrl: "/images/ronaldo.jpg",
-    // },
     authorId: "u-1",
     content: "Who is your Ballon d'Or top 3 right now? Mine is wild this year 👀",
     playersInDiscussion: ["Jude Bellingham", "Kylian Mbappe"],
@@ -99,12 +57,6 @@ export const AllTalks = [
   },
   {
     id: "t-8",
-    // user: {
-    //   id: "u-5",
-    //   name: "Daniel Fredrick",
-    //   username: "daniel_fredrick",
-    //   avatarUrl: "/images/benzema.jpg",
-    // },
     authorId: "u-5",
     content: "Give Lautaro his flowers. Big games, big moments, every single week.",
     playersInDiscussion: ["Lautaro Martinez", "Victor Osimhen"],
@@ -113,12 +65,6 @@ export const AllTalks = [
   },
   {
     id: "t-9",
-    // user: {
-    //   id: "u-6",
-    //   name: "Brandon Smith",
-    //   username: "smithee",
-    //   avatarUrl: "/images/desire-doue.png",
-    // },
     authorId: "u-6",
     content: "Young stars to watch: Doue, Yamal, and Endrick. Future is bright.",
     playersInDiscussion: ["Desire Doue", "Lamine Yamal"],
@@ -127,12 +73,6 @@ export const AllTalks = [
   },
   {
     id: "t-10",
-    // user: {
-    //   id: "u-4",
-    //   name: "Timileyin Adebayo",
-    //   username: "timi-steeze",
-    //   avatarUrl: "/images/lamine-yamal.jpg",
-    // },
     authorId: "u-4",
     content: "If your winger can’t beat a man 1v1, your whole attack becomes predictable.",
     playersInDiscussion: ["Neymar Jr", "Lamine Yamal"],
@@ -141,12 +81,6 @@ export const AllTalks = [
   },
   {
     id: "t-11",
-    // user: {
-    //   id: "u-2",
-    //   name: "Tofunmi Akinyemi",
-    //   username: "tofunmi",
-    //   avatarUrl: "/images/messi.jpg",
-    // },
     authorId: "u-2",
     content: "Set-pieces decide titles. Every top side should treat them like gold.",
     playersInDiscussion: ["Harry Kane", "Virgil van Dijk"],
@@ -155,12 +89,6 @@ export const AllTalks = [
   },
   {
     id: "t-12",
-    // user: {
-    //   id: "u-3",
-    //   name: "Joshua Kalu",
-    //   username: "josh_kalu",
-    //   avatarUrl: "/images/neymar.jpg",
-    // },
     authorId: "u-3",
     content: "When Haaland gets one chance, defenders already know what time it is.",
     playersInDiscussion: ["Erling Haaland", "Kevin De Bruyne"],
@@ -169,12 +97,6 @@ export const AllTalks = [
   },
   {
     id: "t-13",
-    // user: {
-    //   id: "u-5",
-    //   name: "Daniel Fredrick",
-    //   username: "daniel_fredrick",
-    //   avatarUrl: "/images/benzema.jpg",
-    // },
     authorId: "u-5",
     content: "Bellingham’s late runs are genuinely unstoppable when Madrid switch tempo.",
     playersInDiscussion: ["Jude Bellingham", "Luka Modric"],
@@ -183,12 +105,6 @@ export const AllTalks = [
   },
   {
     id: "t-14",
-    // user: {
-    //   id: "u-6",
-    //   name: "Brandon Smith",
-    //   username: "smithee",
-    //   avatarUrl: "/images/desire-doue.png",
-    // },
     authorId: "u-6",
     content: "Counter-attacking football is still the cleanest way to punish high lines.",
     playersInDiscussion: ["Kylian Mbappe", "Mohamed Salah"],
@@ -197,12 +113,6 @@ export const AllTalks = [
   },
   {
     id: "t-15",
-    // user: {
-    //   id: "u-4",
-    //   name: "Timileyin Adebayo",
-    //   username: "timi-steeze",
-    //   avatarUrl: "/images/lamine-yamal.jpg",
-    // },
     authorId: "u-4",
     content: "Serie A tactical battles are underappreciated. Some of the best coaching there.",
     playersInDiscussion: ["Rafael Leao", "Lautaro Martinez"],
@@ -211,12 +121,6 @@ export const AllTalks = [
   },
   {
     id: "t-16",
-    // user: {
-    //   id: "u-3",
-    //   name: "Joshua Kalu",
-    //   username: "josh_kalu",
-    //   avatarUrl: "/images/neymar.jpg",
-    // },
     authorId: "u-3",
     content: "Messi vision ages like fine wine. Decision speed still world class.",
     playersInDiscussion: ["Lionel Messi", "Angel Di Maria"],
@@ -225,12 +129,6 @@ export const AllTalks = [
   },
   {
     id: "t-17",
-    // user: {
-    //   id: "u-2",
-    //   name: "Tofunmi Akinyemi",
-    //   username: "tofunmi",
-    //   avatarUrl: "/images/messi.jpg",
-    // },
     authorId: "u-2",
     content: "Press resistance is the new pace. Midfielders must survive chaos now.",
     playersInDiscussion: ["Pedri", "Bernardo Silva"],
@@ -239,12 +137,6 @@ export const AllTalks = [
   },
   {
     id: "t-18",
-    // user: {
-    //   id: "u-1",
-    //   name: "Alwell Chukwuka",
-    //   username: "alwell",
-    //   avatarUrl: "/images/ronaldo.jpg",
-    // },
     authorId: "u-1",
     content: "I still believe classic number 9s will dominate again in the next cycle.",
     playersInDiscussion: ["Harry Kane", "Victor Osimhen"],
@@ -253,12 +145,6 @@ export const AllTalks = [
   },
   {
     id: "t-19",
-    // user: {
-    //   id: "u-5",
-    //   name: "Daniel Fredrick",
-    //   username: "daniel_fredrick",
-    //   avatarUrl: "/images/benzema.jpg",
-    // },
     authorId: "u-5",
     content: "Defenders are struggling with inverted fullbacks every weekend now.",
     playersInDiscussion: ["Trent Alexander-Arnold", "Joao Cancelo"],
@@ -267,12 +153,6 @@ export const AllTalks = [
   },
   {
     id: "t-20",
-    // user: {
-    //   id: "u-6",
-    //   name: "Brandon Smith",
-    //   username: "smithee",
-    //   avatarUrl: "/images/desire-doue.png",
-    // },
     authorId: "u-6",
     content: "My upset pick for UCL this season is still alive and I’m standing on it.",
     playersInDiscussion: ["Jamal Musiala", "Leroy Sane"],

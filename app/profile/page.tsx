@@ -60,8 +60,8 @@ export function Profile ({ userId }: { userId?: string }) {
     <main className="px-4">
       <Header headerText={(userId === "u-1") ? "MY PROFILE" : "USER PROFILE"} />
 
-      <div className="flex flex-col gap-3 px-3 py-3  ">
-        <div className="flex gap-4 items-center justify-start h-27">
+      <div className="flex flex-col gap-4 px-3 py-3  ">
+        <div className="flex gap-4 items-center justify-start min-h-25">
           <div className="relative h-18 w-18 flex">
             <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
               <Image

@@ -9,12 +9,11 @@ import Header from "../../components/header";
 import ShowFullStat from "../../components/show-stat";
 
 import { PlayerType } from "../types/players";
-import { StatsType } from "../types/stats";
 
-import { playerStats } from "../data/playerStats";
-import TitleSection from "../../components/page-section-title";
 import ComparisonVotesSection from "../../components/comp-votes-section";
 import ComparisonTalksSection from "../../components/comp-talks-section";
+import ComparisonShareSection from "../../components/comp-share-section";
+
 import { useParams } from "next/navigation";
 
 export function AddFieldBox({
@@ -124,19 +123,26 @@ const Compare = () => {
           </div>
         </div>
 
-        <ComparisonVotesSection
-          leftPlayer={selectedPlayers[0]}
-          rightPlayer={selectedPlayers[1]}
-        />
+        <div className="px-4 flex flex-col gap-10 w-full">
+          <ComparisonShareSection 
+            leftPlayer={selectedPlayers[0]}
+            rightPlayer={selectedPlayers[1]}
+          />
 
-        <ComparisonTalksSection
-          leftPlayer={selectedPlayers[0]}
-          rightPlayer={selectedPlayers[1]}
-          uniqueFullPath="/compare"
-        />
+          <ComparisonVotesSection
+            leftPlayer={selectedPlayers[0]}
+            rightPlayer={selectedPlayers[1]}
+          />
+
+          <ComparisonTalksSection
+            leftPlayer={selectedPlayers[0]}
+            rightPlayer={selectedPlayers[1]}
+            uniqueFullPath="/compare"
+          />
+        </div>
       </div>
     </main>
-  );
+  )
 };
 
 export default Compare;

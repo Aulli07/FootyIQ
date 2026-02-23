@@ -140,7 +140,7 @@ export function DropDown(props: DropDownProps) {
       }`}
     >
       {props.type === "player" ? (
-        <div className="relative flex flex-col justify-center items-center">
+        <div className="relative flex flex-col justify-center items-center gap-3">
           <button
             ref={triggerRef}
             type="button"
@@ -201,7 +201,7 @@ export function DropDown(props: DropDownProps) {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 ref={menuRef}
                 style={{ position: "absolute" }}
-                className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 min-h-100 overflow-y-auto w-full bottom-0"
+                className="absolute z-[99999] overflow-hidden rounded-md bg-black/50 backdrop-blur border-2 border-emerald-500 shadow-2xl ring-1 ring-white/10 min-h-100 overflow-y-auto w-full bottom-0 mt-2"
               >
                 {props.type === "season" ? (
                   seasonOptions.map((season) => (
