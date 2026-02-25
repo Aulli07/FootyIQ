@@ -149,16 +149,14 @@ export function DropDown(props: DropDownProps) {
             aria-expanded={isOpen}
             className="w-full flex justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 rounded-full"
           >
-            <div className="relative h-10 w-10 p-3 rounded-full overflow-hidden ring-2 ring-emerald-400/30 flex justify-center items-center bg-white/5 shadow-sm backdrop-blur focus-within:ring-4 focus-within:ring-emerald-400/15">
-              <Image
+            <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-400/30 flex justify-center items-center bg-white/5 shadow-sm backdrop-blur focus-within:ring-4 focus-within:ring-emerald-400/15">
+              <img
                 src={
                   props.selectedPlayers?.[props.playerSlot]?.image ??
                   "/images/add.png"
                 }
                 alt={selectedPlayer?.name ?? "add"}
-                sizes="32px"
-                fill
-                className="object-cover relative"
+                className="object-cover relative rounded-full"
               />
             </div>
           </button>
@@ -185,7 +183,7 @@ export function DropDown(props: DropDownProps) {
             alt="arrow"
             width={16}
             height={16}
-            className={`opacity-80 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`opacity-80 transition-transform ${isOpen ? "rotate-180" : ""} `}
           />
         </button>
       )}

@@ -5,14 +5,30 @@ import { poppins } from "../app/fonts";
 import { PlayerType } from "../app/types/players";
 import Link from "next/link";
 
-const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], categoryType: string }) => {
+const Compares = ({
+  compareList,
+  categoryType,
+  compactNames = false
+}: {
+  compareList: PlayerType[][];
+  categoryType: string;
+  compactNames?: boolean;
+}) => {
   return (
     <>
       {compareList.map((players, index) => {
         const left = players[0];
         const right = players[1];
 
-        return <ComparesCard leftPlayer={left} rightPlayer={right} categoryType={categoryType} />;
+        return (
+          <ComparesCard
+            key={`${left.id}-${right.id}-${index}`}
+            leftPlayer={left}
+            rightPlayer={right}
+            categoryType={categoryType}
+            compactNames={compactNames}
+          />
+        );
       })}
     </>
   );
@@ -21,13 +37,14 @@ const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], 
 export function ComparesCard({
   leftPlayer,
   rightPlayer,
-  categoryType
+  categoryType,
+  compactNames = false
 }: {
   leftPlayer: PlayerType;
   rightPlayer: PlayerType;
   categoryType: string;
+  compactNames?: boolean;
 }) {
-
   const viewComparisonPath = leftPlayer.id + "-vs-" + rightPlayer.id;
 
   return (
@@ -35,7 +52,7 @@ export function ComparesCard({
       key={`${leftPlayer.id}-${rightPlayer.id}`}
       className="relative flex flex-row items-center w-full border border-white/10 bg-white/5 shadow-lg backdrop-blur rounded-xl p-3"
     >
-      <div className="flex flex-col gap-1 w-full min-w-0">
+      <div className="flex flex-col gap-1 flex-1 min-w-0 pr-4">
         <div className="flex flex-row items-center">
           <div className="relative w-[88px] h-12">
             <div className="absolute left-0 top-0 h-12 w-12 rounded-full overflow-hidden ring-2 ring-white/10">
@@ -71,7 +88,7 @@ export function ComparesCard({
 
         <div className="flex items-center">
           <p
-            className={`text-white ${poppins.className} font-medium text-sm truncate`}
+            className={`text-white ${poppins.className} font-medium ${compactNames ? "text-xs" : "text-sm"} truncate max-w-[145px] sm:max-w-[170px]`}
           >
             {leftPlayer.name} x {rightPlayer.name}
           </p>

@@ -127,7 +127,7 @@ function InputBar({
     <input
       type="text"
       placeholder="Search for players or clubs"
-      className={`w-full h-14 rounded-2xl bg-white/5 text-white placeholder:text-white/40 border border-white/30 pl-12 pr-4 text-[15px] ${poppins.className} shadow-lg backdrop-blur outline-none transition focus:border-emerald-400/40 focus:ring-4 focus:ring-emerald-400/15`}
+      className={`w-full h-14 rounded-full bg-white/5 text-white placeholder:text-white/40 border border-white/30 pl-12 pr-4 text-[15px] ${poppins.className} shadow-lg backdrop-blur outline-none transition focus:border-emerald-400/40 focus:ring-4 focus:ring-emerald-400/15`}
       onChange={(e) => {
         setInputText(e.target.value);
         !isSearch ? setIsSearch(true) : setIsSearch(false);
