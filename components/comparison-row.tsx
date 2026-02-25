@@ -17,7 +17,8 @@ const Comparison = <T extends PlayerType>({
   categoryType
 }: ComparisonProps<T>) => {
   return (
-    <div className="px-5 py-2 flex flex-col gap-3">      <HomeTitleSection title={title} />
+    <div className="py-2 flex flex-col gap-3">
+      <HomeTitleSection title={title} />
       <div className="flex flex-row gap-3 overflow-x-auto pb-4 flex-nowrap">
         {playersData.map((playerPair) => {
           const leftPlayer = playerPair[0];

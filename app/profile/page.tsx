@@ -57,10 +57,8 @@ export function Profile ({ userId }: { userId?: string }) {
   ]
   
   return (
-    <main className="px-4">
-      <Header headerText={(userId === "u-1") ? "MY PROFILE" : "USER PROFILE"} />
-
-      <div className="flex flex-col gap-4 px-3 py-3  ">
+    <main className="px-4 flex flex-col gap-4">
+      <div className="flex flex-col gap-4 px-3 py-3 mt-4 ">
         <div className="flex gap-4 items-center justify-start min-h-25">
           <div className="relative h-18 w-18 flex">
             <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
@@ -102,7 +100,42 @@ export function Profile ({ userId }: { userId?: string }) {
           ))}
         </div> 
       </div>
-      <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
+          {talkTabs.map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              className="cursor-pointer relative px-3 py-2 text-md font-medium tracking-wide"
+              onClick={() => setTalkTab(tab.key)}
+            >
+              <span
+                className={`${poppins.className} text-sm text-white ${talkTab === tab.key ? "font-semibold" : "font-medium"}`}
+              >
+                {tab.label}
+
+                {talkTab === tab.key && (
+                  <motion.span
+                    layoutId="underline"
+                    initial={{ x: 0, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: 0, opacity: 0 }}
+                    className="absolute -bottom-0 left-0 right-0 h-1 bg-emerald-400 rounded-full"
+                  />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="overflow-hidden relative w-full px-3">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={talkTab}>
+              {profileTabContent[talkTab]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+      {/* <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
         {talkTabs.map((tab) => (
           <button
             key={tab.key}
@@ -127,14 +160,8 @@ export function Profile ({ userId }: { userId?: string }) {
             </span>
           </button>
         ))}
-      </div>
-      <div className="overflow-hidden relative w-full px-3">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={talkTab} className="mt-4">
-            {profileTabContent[talkTab]}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+        
+      </div> */}
     </main>
   )
 }

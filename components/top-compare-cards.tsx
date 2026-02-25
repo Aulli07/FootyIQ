@@ -7,14 +7,14 @@ import Link from "next/link";
 
 const Compares = ({ compareList, categoryType }: { compareList: PlayerType[][], categoryType: string }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <>
       {compareList.map((players, index) => {
         const left = players[0];
         const right = players[1];
 
         return <ComparesCard leftPlayer={left} rightPlayer={right} categoryType={categoryType} />;
       })}
-    </div>
+    </>
   );
 };
 

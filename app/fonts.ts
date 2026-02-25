@@ -1,4 +1,4 @@
-import { Oswald, Poppins } from "next/font/google";
+import { Poppins, Montserrat, Audiowide } from "next/font/google";
 
 export const poppins = Poppins({
   subsets: ["latin"],
@@ -7,9 +7,16 @@ export const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const oswald = Oswald({
+export const oswald = Montserrat({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-oswald",
+});
+
+export const orbitron = Audiowide({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-orbitron",
 });

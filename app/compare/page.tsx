@@ -123,7 +123,7 @@ const Compare = () => {
           </div>
         </div>
 
-        <div className="px-4 flex flex-col gap-10 w-full">
+        <div className="px-2 flex flex-col gap-10 w-full">
           <ComparisonShareSection 
             leftPlayer={selectedPlayers[0]}
             rightPlayer={selectedPlayers[1]}

@@ -68,12 +68,14 @@ function TopComparisonList() {
   }
 
   return (
-    <div className="px-3 gap-3 flex flex-col">
+    <div className="gap-3 flex flex-col">
       <HomeTitleSection title="Top Comparisons" />
       <Link
         href={`/${topComparisonsType}`}
       >
-        <Compares compareList={topSearchComparisons} categoryType={topComparisonsType}/>
+        <div className="flex flex-col gap-4">
+          <Compares compareList={topSearchComparisons} categoryType={topComparisonsType}/>
+        </div>
       </Link>
     </div>
   );
@@ -83,7 +85,7 @@ function HomePage() {
   const [isSearch, setIsSearch] = useState(false);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 px-6">
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}
@@ -99,7 +101,7 @@ function HomePage() {
 
 export default function Home() {
   return (
-    <main className="w-full px-3 pt-2 text-white">
+    <main className="w-full pt-2 text-white">
       <Header headerText="FOOTY IQ" showLightMode />
       <HomePage />
     </main>

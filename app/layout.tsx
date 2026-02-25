@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.variable} ${oswald.variable}`.trim()}>
-      <body className="flex flex-col bg-black min-h-screen font-sans">
+      <body className="flex flex-col bg-background-main min-h-screen font-sans">
         <AppShell>{children}</AppShell>
       </body>
     </html>

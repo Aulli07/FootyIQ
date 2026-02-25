@@ -53,7 +53,7 @@ export default function ComparisonCard({
             <div className="relative">
               <div className="h-10 w-10 rounded-full bg-white/10 border border-white/20 shadow-md backdrop-blur flex items-center justify-center ring-1 ring-emerald-400/20">
                 <span
-                  className={`text-xs ${poppins.className} tracking-widest text-white/90`}
+                  className={`text-xs ${poppins.className} tracking-widest text-white font-semibold`}
                 >
                   VS
                 </span>
@@ -68,7 +68,8 @@ export default function ComparisonCard({
         </div>
       </div>
 
-      <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2">
+      {/* <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-xl p-2"> */}
+      <div className="flex justify-center gap-2 bg-emerald-600 hover:bg-primary-hover border-[#1E293B] text-text-primary w-full rounded-xl p-2">
         <Link
           href={{
             pathname: `/${categoryType}/${viewComparisonPath}`,

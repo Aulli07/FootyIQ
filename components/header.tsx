@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { oswald } from "../app/fonts";
+import { oswald, orbitron } from "../app/fonts";
 import Link from "next/link";
 
 const Header = ({
@@ -15,7 +15,7 @@ const Header = ({
   // showHistory?: boolean;
 }) => {
   return (
-    <div className="flex flex-row items-center justify-between px-3 pt-5 pb-7 backdrop-blur">
+    <div className="flex flex-row items-center justify-between px-4 pt-5 pb-7 backdrop-blur">
       <div>
         <h1
           className={`font-semibold text-2xl ${oswald.className} leading-relaxed text-white`}
