@@ -87,15 +87,21 @@ export function computeHotProspects(statsList = playerStats) {
     .filter(Boolean);
 }
 
-export function filterSearchedPlayers(input) {
-  input = input.toLowerCase();
 
-  let foundPlayers = players.filter((player) =>
-    containsAllPlayers(input, player.name),
+
+export function getSearchedPlayers(totalPlayers, query) {
+  if (!query) return []
+
+  const normalizedQuery = query.toLowerCase();
+
+  let foundPlayers = totalPlayers.filter((player) =>
+    containsAllPlayers(normalizedQuery, player.name),
   );
 
   return foundPlayers;
 }
+
+
 
 // The retrieval of such players
 function containsAllPlayers(input, description) {
@@ -106,6 +112,9 @@ function containsAllPlayers(input, description) {
   return descriptionList.some((text) => text.startsWith(input));
 }
 
+
+
+
 export function getPostsInDiscussion(leftPlayer, rightPlayer) {
   const postsInDiscussion = AllTalks.filter(
     (post) =>
@@ -115,3 +124,20 @@ export function getPostsInDiscussion(leftPlayer, rightPlayer) {
 
   return postsInDiscussion;
 }
+
+export function foundComparisons(totalComparedPlayers, foundPlayers) {
+  const comparisons = [];
+  
+  foundPlayers.forEach((player) => {
+    totalComparedPlayers.forEach((compares) => {
+      const left = compares[0];
+      const right = compares[1];
+
+      if (player.id === left.id || player.id === right.id) {
+        comparisons.push(compares);
+      }
+    });
+  });
+
+  return comparisons;
+} 

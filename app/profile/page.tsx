@@ -18,7 +18,14 @@ import { userType } from "../types/users";
 import Link from "next/link";
 
 import { follows } from "../data/follows";
-import { getFollowers } from "../utils/playerFilters";
+import { foundComparisons, getFollowers } from "../utils/playerFilters";
+import { PlayerType } from "../types/players";
+
+import { getSearchedPlayers } from "../utils/playerFilters";
+import { useAsyncError } from "react-router-dom";
+
+import { players } from "../data/players";
+
 
 
 export function Profile ({ userId }: { userId?: string }) {
@@ -170,17 +177,26 @@ export function Profile ({ userId }: { userId?: string }) {
 
 
 const History = () => {
+
   const [isSearch, setIsSearch] = useState(false);
+  const [results, setResults] = useState<Array<Array<PlayerType>>>([])
+
+  function handleSearch(query: string) {
+    const compared = getSearchedPlayers(players, query);
+    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared)
+
+    setResults(fetchedComparisons)
+  }
 
   return (
     <main className="w-full pt-2 text-white flex flex-col gap-2">
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}
-        comparedPlayers={totalComparedPlayers}
+        onSearch={handleSearch}
       />
-      <div >
-        <Compares compareList={totalComparedPlayers.slice(0, 10)} categoryType="history"/>
+      <div>
+        <Compares compareList={results} categoryType="history"/>
       </div>
     </main>
   );

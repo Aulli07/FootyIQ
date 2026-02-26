@@ -13,10 +13,15 @@ import { useState } from "react";
 import { players } from "./data/players";
 import { PlayerType } from "./types/players";
 
+import SearchedComparisonResults from "@/components/search-comparison-results";
+import SearchInput from "../components/search-bar";
+
 import {
   getHotProspects,
   getTotalComparisons,
   getLegends,
+  getSearchedPlayers,
+  foundComparisons,
 } from "./utils/playerFilters";
 
 export const totalComparedPlayers = getTotalComparisons(players);
@@ -33,7 +38,11 @@ function LegendsSection() {
         query: { fieldType: legendType, title: legendTitle },
       }}
     >
-      <Comparison playersData={legends} title={legendTitle} categoryType={legendType}/>
+      <Comparison
+        playersData={legends}
+        title={legendTitle}
+        categoryType={legendType}
+      />
     </Link>
   );
 }
@@ -50,7 +59,11 @@ function HotProspectsSection() {
         query: { fieldType: hotProspectsType, title: hotProspectsTitle },
       }}
     >
-      <Comparison playersData={hotProspects} title={hotProspectsTitle} categoryType={hotProspectsType} />
+      <Comparison
+        playersData={hotProspects}
+        title={hotProspectsTitle}
+        categoryType={hotProspectsType}
+      />
     </Link>
   );
 }
@@ -70,11 +83,12 @@ function TopComparisonList() {
   return (
     <div className="gap-3 flex flex-col">
       <HomeTitleSection title="Top Comparisons" />
-      <Link
-        href={`/${topComparisonsType}`}
-      >
+      <Link href={`/${topComparisonsType}`}>
         <div className="flex flex-col gap-4">
-          <Compares compareList={topSearchComparisons} categoryType={topComparisonsType}/>
+          <Compares
+            compareList={topSearchComparisons}
+            categoryType={topComparisonsType}
+          />
         </div>
       </Link>
     </div>
@@ -83,14 +97,50 @@ function TopComparisonList() {
 
 function HomePage() {
   const [isSearch, setIsSearch] = useState(false);
+  const [results, setResults] = useState<Array<Array<PlayerType>>>([]);
+
+  function handleSearch(query: string) {
+    const compared = getSearchedPlayers(players, query);
+    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared)
+
+    setResults(fetchedComparisons)
+  }
 
   return (
     <div className="flex flex-col gap-3 px-6">
-      <SearchBar
+      <div>
+        <SearchInput
+          setIsSearch={setIsSearch}
+          isSearch={isSearch}
+          onSearch={handleSearch}
+        />
+
+        {isSearch && <SearchedComparisonResults data={results} />}
+      </div>
+    
+      {/* <SearchBar
+        setInputText={setInputText}
         setIsSearch={setIsSearch}
         isSearch={isSearch}
         comparedPlayers={totalComparedPlayers}
       />
+
+      <GetSearchedPlayers query={inputText}>
+        {(foundPlayers) =>
+          inputText.trim() !== "" ? (
+            <div className="flex-1 min-h-0">
+              <SearchedPlayersResults
+                foundPlayers={foundPlayers}
+                emptySearch={`No matches for "${inputText}"`}
+                comparedPlayers={totalComparedPlayers}
+              />
+            </div>
+          ) : (
+            <div className="flex-1 min-h-0" />
+          )
+        }
+      </GetSearchedPlayers> */}
+
       {!isSearch && <LegendsSection />}
       {!isSearch && <HotProspectsSection />}
       {!isSearch && <HotProspectsSection />}

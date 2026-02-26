@@ -15,6 +15,8 @@ import ComparisonTalksSection from "../../components/comp-talks-section";
 import ComparisonShareSection from "../../components/comp-share-section";
 
 import { useParams } from "next/navigation";
+import { players } from "../data/players";
+import { getSearchedPlayers } from "../utils/playerFilters";
 
 export function AddFieldBox({
   playerSlot,
@@ -22,6 +24,9 @@ export function AddFieldBox({
   setSelectedPlayers,
   setSelectedSeasons,
   selectedSeasons,
+  searchQuery,
+  setSearchQuery,
+  searchedPlayers,
 }: {
   playerSlot: number;
   selectedPlayers: Array<PlayerType | null>;
@@ -30,6 +35,9 @@ export function AddFieldBox({
   >;
   setSelectedSeasons: React.Dispatch<React.SetStateAction<Array<string>>>;
   selectedSeasons: Array<string>;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  searchedPlayers: Array<PlayerType>;
 }) {
   return (
     <div
@@ -58,8 +66,10 @@ export function AddFieldBox({
         playerSlot={playerSlot}
         setSelectedPlayers={setSelectedPlayers}
         selectedPlayers={selectedPlayers}
-        // selectedSeasons={selectedSeasons
         setSelectedSeasons={setSelectedSeasons}
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+        searchedPlayers={searchedPlayers}
       />
 
       <DropDown
@@ -82,10 +92,13 @@ const Compare = () => {
     "23/24",
     "23/24",
   ]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const params = useParams<{"compare": string}>();
+  const params = useParams<{ compare: string }>();
   const comparePath = params["compare"];
- 
+
+  const searchedPlayers = getSearchedPlayers(players, searchQuery);
+
   return (
     <main className="flex flex-col w-full px-3">
       <Header headerText="Compare" />
@@ -108,6 +121,9 @@ const Compare = () => {
             setSelectedPlayers={setSelectedPlayers}
             setSelectedSeasons={setSelectedSeasons}
             selectedSeasons={selectedSeasons}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            searchedPlayers={searchedPlayers}
           />
           <AddFieldBox
             playerSlot={1}
@@ -115,6 +131,9 @@ const Compare = () => {
             setSelectedPlayers={setSelectedPlayers}
             setSelectedSeasons={setSelectedSeasons}
             selectedSeasons={selectedSeasons}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            searchedPlayers={searchedPlayers}
           />
         </div>
         <div className="relative z-0 text-white/70 flex flex-col text-center gap-3 px-3">
@@ -124,7 +143,7 @@ const Compare = () => {
         </div>
 
         <div className="px-2 flex flex-col gap-10 w-full">
-          <ComparisonShareSection 
+          <ComparisonShareSection
             leftPlayer={selectedPlayers[0]}
             rightPlayer={selectedPlayers[1]}
           />
@@ -142,7 +161,7 @@ const Compare = () => {
         </div>
       </div>
     </main>
-  )
+  );
 };
 
 export default Compare;
