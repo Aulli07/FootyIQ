@@ -226,7 +226,7 @@ export function DropDown(props: DropDownProps) {
                     <InputBar
                       value={props.type === "player" ? props.searchQuery : ""}
                       placeholder="Search for players"
-                      inputClassName="w-full h-12 rounded-2xl bg-white/5 text-white placeholder:text-white/40 border border-white/30 pl-12 pr-4 text-[14px]"
+                      inputClassName="w-full h-12 rounded-full bg-white/5 text-white placeholder:text-white/40 border border-white/30 pl-12 pr-4 text-[14px]"
                       onValueChange={(value) =>
                         props.type === "player" &&
                         props.onSearchQueryChange(value)

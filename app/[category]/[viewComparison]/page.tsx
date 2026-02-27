@@ -14,7 +14,7 @@ import ComparisonTalksSection from "@/components/comp-talks-section";
 
 import Link from "next/link";
 import { getPostsInDiscussion } from "@/app/utils/playerFilters";
-import { TalkType } from "@/app/types/talks";
+import { TalkType } from "@/app/types/posts";
 import TitleSection from "@/components/page-section-title";
 import { PostDisplay } from "@/components/post-display";
 
@@ -27,7 +27,6 @@ export default function ViewComparisonPage() {
   const searchParams = useSearchParams();
   const leftPlayerId = searchParams.get("leftPlayerId");
   const rightPlayerId = searchParams.get("rightPlayerId");
-
 
   const leftPlayer = players.find((p) => p.id === leftPlayerId);
   const rightPlayer = players.find((p) => p.id === rightPlayerId);
@@ -77,7 +76,6 @@ export default function ViewComparisonPage() {
     </main>
   );
 }
-
 
 function FixedFieldBox({
   player,

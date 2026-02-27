@@ -25,6 +25,7 @@ import { getSearchedPlayers } from "../utils/playerFilters";
 import { useAsyncError } from "react-router-dom";
 
 import { players } from "../data/players";
+import AddPost from "@/components/add-post";
 
 
 
@@ -141,6 +142,7 @@ export function Profile ({ userId }: { userId?: string }) {
             </motion.div>
           </AnimatePresence>
         </div>
+        <AddPost />
       </div>
       {/* <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
         {talkTabs.map((tab) => (
@@ -188,15 +190,17 @@ const History = () => {
     setResults(fetchedComparisons)
   }
 
+  console.log(Boolean(results.length))
+
   return (
-    <main className="w-full pt-2 text-white flex flex-col gap-2">
+    <main className="w-full pt-2 text-white flex flex-col gap-5">
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}
         onSearch={handleSearch}
       />
-      <div>
-        <Compares compareList={results} categoryType="history"/>
+      <div className="flex flex-col gap-3">
+        <Compares compareList={(!results.length) ? totalComparedPlayers.slice(1,5) : results} categoryType="history"/>
       </div>
     </main>
   );

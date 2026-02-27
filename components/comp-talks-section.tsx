@@ -1,16 +1,16 @@
 import { PlayerType } from "../app/types/players";
-import { AllTalks } from "../app/data/talks";
+import { AllTalks } from "../app/data/posts";
 import TitleSection from "./page-section-title";
 import { PostDisplay } from "./post-display";
 import { poppins } from "../app/fonts";
 import Link from "next/link";
 import { getPostsInDiscussion } from "../app/utils/playerFilters";
-import { TalkType } from "../app/types/talks";
+import { TalkType } from "../app/types/posts";
 
 export default function ComparisonTalksSection({
   leftPlayer,
   rightPlayer,
-  uniqueFullPath
+  uniqueFullPath,
 }: {
   leftPlayer: PlayerType | null;
   rightPlayer: PlayerType | null;
@@ -23,8 +23,8 @@ export default function ComparisonTalksSection({
       <div className="flex flex-col gap-3 justify-center items-center h-full w-full mt-5 px-3">
         <TitleSection title="Talks" />
         <p className={`text-white/70 ${poppins.className} text-sm`}>
-          No talks found for this comparison. 
-          Be the first to start the discussion!
+          No talks found for this comparison. Be the first to start the
+          discussion!
         </p>
       </div>
     );

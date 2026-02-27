@@ -1,19 +1,38 @@
+import Likes from "./post-stats/likes";
+import Comments from "./post-stats/comments";
+import Views from "./post-stats/views"
+
+// const likesByPost = Likes.reduce((acc, like) => {
+//   if (!acc[like.postId]) {
+//     acc[like.postId] = 0
+//   }
+//   acc[like.postId]++
+//   return acc
+// })
+
+// const commentsByPost = Comments.reduce((acc, comment) => {
+//   if (!acc[comment.postId]) {
+//     acc[comment.postId] = 0
+//   }
+//   acc[comment.postId]++
+//   return acc
+// })
+
+
 export const AllTalks = [
   {
     id: "t-1",
     authorId: "u-1",
     content: "Premier League title charge loading... 🚀⚽️",
     playersInDiscussion: ["Cristiano Ronaldo", "Lionel Messi"],
-    createdAt: "2026-02-20T08:00:00Z",
-    stats: { likes: 1243, comments: 212, views: 10234 },
+    createdAt: "2026-02-20T08:00:00Z", 
   },
   {
     id: "t-2",
     authorId: "u-3",
     content: "Goals are like WiFi. You don’t see them, but you feel them.",
     playersInDiscussion: ["Erling Haaland", "Kylian Mbappe"],
-    createdAt: "2026-02-21T13:30:00Z",
-    stats: { likes: 2400, comments: 540, views: 18000 },
+    createdAt: "2026-02-21T13:30:00Z"
   },
   {
     id: "t-3",
@@ -21,7 +40,6 @@ export const AllTalks = [
     content: "Man City still have the cleanest midfield rotations in Europe this month.",
     playersInDiscussion: ["Rodri", "Kevin De Bruyne"],
     createdAt: "2026-02-21T21:00:00Z",
-    stats: { likes: 890, comments: 104, views: 9700 },
   },
   {
     id: "t-4",
@@ -29,7 +47,6 @@ export const AllTalks = [
     content: "Arsenal will compete deep, but squad depth in April is still their big test.",
     playersInDiscussion: ["Bukayo Saka", "Martin Odegaard"],
     createdAt: "2026-02-21T15:40:00Z",
-    stats: { likes: 620, comments: 133, views: 9100 },
   },
   {
     id: "t-5",
@@ -37,7 +54,6 @@ export const AllTalks = [
     content: "Mbappe in transition is still unfair. Defenders are just guessing at this point.",
     playersInDiscussion: ["Kylian Mbappe", "Vinicius Junior"],
     createdAt: "2026-02-21T12:00:00Z",
-    stats: { likes: 1400, comments: 302, views: 14800 },
   },
   {
     id: "t-6",
@@ -45,7 +61,6 @@ export const AllTalks = [
     content: "Rice + Odegaard control is elite. They just need one more killer finisher.",
     playersInDiscussion: ["Declan Rice", "Martin Odegaard"],
     createdAt: "2026-02-21T10:00:00Z",
-    stats: { likes: 760, comments: 111, views: 8800 },
   },
   {
     id: "t-7",
@@ -53,7 +68,6 @@ export const AllTalks = [
     content: "Who is your Ballon d'Or top 3 right now? Mine is wild this year 👀",
     playersInDiscussion: ["Jude Bellingham", "Kylian Mbappe"],
     createdAt: "2026-02-21T14:00:00Z",
-    stats: { likes: 410, comments: 70, views: 4300 },
   },
   {
     id: "t-8",
@@ -61,7 +75,6 @@ export const AllTalks = [
     content: "Give Lautaro his flowers. Big games, big moments, every single week.",
     playersInDiscussion: ["Lautaro Martinez", "Victor Osimhen"],
     createdAt: "2026-02-21T18:20:00Z",
-    stats: { likes: 340, comments: 64, views: 5100 },
   },
   {
     id: "t-9",
@@ -69,7 +82,6 @@ export const AllTalks = [
     content: "Young stars to watch: Doue, Yamal, and Endrick. Future is bright.",
     playersInDiscussion: ["Desire Doue", "Lamine Yamal"],
     createdAt: "2026-02-20T23:30:00Z",
-    stats: { likes: 280, comments: 39, views: 3900 },
   },
   {
     id: "t-10",
@@ -77,7 +89,6 @@ export const AllTalks = [
     content: "If your winger can’t beat a man 1v1, your whole attack becomes predictable.",
     playersInDiscussion: ["Neymar Jr", "Lamine Yamal"],
     createdAt: "2026-02-20T20:10:00Z",
-    stats: { likes: 720, comments: 98, views: 8600 },
   },
   {
     id: "t-11",
@@ -85,7 +96,6 @@ export const AllTalks = [
     content: "Set-pieces decide titles. Every top side should treat them like gold.",
     playersInDiscussion: ["Harry Kane", "Virgil van Dijk"],
     createdAt: "2026-02-20T16:00:00Z",
-    stats: { likes: 530, comments: 89, views: 7200 },
   },
   {
     id: "t-12",
@@ -93,7 +103,6 @@ export const AllTalks = [
     content: "When Haaland gets one chance, defenders already know what time it is.",
     playersInDiscussion: ["Erling Haaland", "Kevin De Bruyne"],
     createdAt: "2026-02-19T22:45:00Z",
-    stats: { likes: 1800, comments: 340, views: 20100 },
   },
   {
     id: "t-13",
@@ -101,7 +110,6 @@ export const AllTalks = [
     content: "Bellingham’s late runs are genuinely unstoppable when Madrid switch tempo.",
     playersInDiscussion: ["Jude Bellingham", "Luka Modric"],
     createdAt: "2026-02-19T18:05:00Z",
-    stats: { likes: 450, comments: 75, views: 6300 },
   },
   {
     id: "t-14",
@@ -109,7 +117,6 @@ export const AllTalks = [
     content: "Counter-attacking football is still the cleanest way to punish high lines.",
     playersInDiscussion: ["Kylian Mbappe", "Mohamed Salah"],
     createdAt: "2026-02-19T12:20:00Z",
-    stats: { likes: 300, comments: 41, views: 4200 },
   },
   {
     id: "t-15",
@@ -117,7 +124,6 @@ export const AllTalks = [
     content: "Serie A tactical battles are underappreciated. Some of the best coaching there.",
     playersInDiscussion: ["Rafael Leao", "Lautaro Martinez"],
     createdAt: "2026-02-18T21:00:00Z",
-    stats: { likes: 620, comments: 92, views: 7700 },
   },
   {
     id: "t-16",
@@ -125,7 +131,6 @@ export const AllTalks = [
     content: "Messi vision ages like fine wine. Decision speed still world class.",
     playersInDiscussion: ["Lionel Messi", "Angel Di Maria"],
     createdAt: "2026-02-18T17:30:00Z",
-    stats: { likes: 1600, comments: 280, views: 17400 },
   },
   {
     id: "t-17",
@@ -133,7 +138,6 @@ export const AllTalks = [
     content: "Press resistance is the new pace. Midfielders must survive chaos now.",
     playersInDiscussion: ["Pedri", "Bernardo Silva"],
     createdAt: "2026-02-18T13:40:00Z",
-    stats: { likes: 690, comments: 120, views: 9400 },
   },
   {
     id: "t-18",
@@ -141,7 +145,6 @@ export const AllTalks = [
     content: "I still believe classic number 9s will dominate again in the next cycle.",
     playersInDiscussion: ["Harry Kane", "Victor Osimhen"],
     createdAt: "2026-02-18T09:00:00Z",
-    stats: { likes: 360, comments: 55, views: 3900 },
   },
   {
     id: "t-19",
@@ -149,7 +152,6 @@ export const AllTalks = [
     content: "Defenders are struggling with inverted fullbacks every weekend now.",
     playersInDiscussion: ["Trent Alexander-Arnold", "Joao Cancelo"],
     createdAt: "2026-02-17T22:30:00Z",
-    stats: { likes: 390, comments: 58, views: 5000 },
   },
   {
     id: "t-20",
@@ -157,7 +159,6 @@ export const AllTalks = [
     content: "My upset pick for UCL this season is still alive and I’m standing on it.",
     playersInDiscussion: ["Jamal Musiala", "Leroy Sane"],
     createdAt: "2026-02-17T16:10:00Z",
-    stats: { likes: 260, comments: 34, views: 3500 },
   },
   {
     id: "t-21",
@@ -165,7 +166,6 @@ export const AllTalks = [
     content: "If your team can't defend rest-defense, transitions will kill you every weekend.",
     playersInDiscussion: ["Declan Rice", "Rodri"],
     createdAt: "2026-02-22T08:25:00Z",
-    stats: { likes: 802, comments: 150, views: 9800 },
   },
   {
     id: "t-22",
@@ -173,7 +173,6 @@ export const AllTalks = [
     content: "Haaland is not just a finisher. His movement creates panic before the pass.",
     playersInDiscussion: ["Erling Haaland", "Phil Foden"],
     createdAt: "2026-02-22T07:40:00Z",
-    stats: { likes: 1730, comments: 322, views: 18200 },
   },
   {
     id: "t-23",
@@ -181,7 +180,6 @@ export const AllTalks = [
     content: "Yamal's confidence at this age is absurd. Big-stage mentality.",
     playersInDiscussion: ["Lamine Yamal", "Nico Williams"],
     createdAt: "2026-02-22T06:10:00Z",
-    stats: { likes: 930, comments: 110, views: 10200 },
   },
   {
     id: "t-24",
@@ -189,7 +187,7 @@ export const AllTalks = [
     content: "People underrate hold-up play. It unlocks runners better than pure dribbling.",
     playersInDiscussion: ["Harry Kane", "Ollie Watkins"],
     createdAt: "2026-02-22T05:30:00Z",
-    stats: { likes: 410, comments: 57, views: 5200 },
+
   },
   {
     id: "t-25",
@@ -197,7 +195,6 @@ export const AllTalks = [
     content: "This season's dark horse for UCL is still Atletico. Perfectly built for chaos.",
     playersInDiscussion: ["Antoine Griezmann", "Alvaro Morata"],
     createdAt: "2026-02-22T04:45:00Z",
-    stats: { likes: 360, comments: 49, views: 4800 },
   },
   {
     id: "t-26",
@@ -205,7 +202,6 @@ export const AllTalks = [
     content: "Crossing accuracy is becoming a premium skill again with more compact blocks.",
     playersInDiscussion: ["Trent Alexander-Arnold", "Kieran Trippier"],
     createdAt: "2026-02-22T02:55:00Z",
-    stats: { likes: 650, comments: 101, views: 8100 },
   },
   {
     id: "t-27",
@@ -213,7 +209,6 @@ export const AllTalks = [
     content: "Messi's body orientation before receiving still teaches football IQ in one frame.",
     playersInDiscussion: ["Lionel Messi", "Bernardo Silva"],
     createdAt: "2026-02-21T23:40:00Z",
-    stats: { likes: 1580, comments: 275, views: 16900 },
   },
   {
     id: "t-28",
@@ -221,7 +216,6 @@ export const AllTalks = [
     content: "Inter's compact shape out of possession deserves way more discussion.",
     playersInDiscussion: ["Lautaro Martinez", "Nicolo Barella"],
     createdAt: "2026-02-21T22:15:00Z",
-    stats: { likes: 720, comments: 96, views: 7900 },
   },
   {
     id: "t-29",
@@ -229,7 +223,6 @@ export const AllTalks = [
     content: "Midfield duels decide tempo. Whoever wins second balls owns the match.",
     playersInDiscussion: ["Jude Bellingham", "Federico Valverde"],
     createdAt: "2026-02-21T19:50:00Z",
-    stats: { likes: 480, comments: 68, views: 5900 },
   },
   {
     id: "t-30",
@@ -237,7 +230,6 @@ export const AllTalks = [
     content: "Counter-pressing only works if your backline is brave enough to hold high.",
     playersInDiscussion: ["Virgil van Dijk", "Ruben Dias"],
     createdAt: "2026-02-21T17:25:00Z",
-    stats: { likes: 330, comments: 43, views: 4300 },
   },
   {
     id: "t-31",
@@ -245,7 +237,6 @@ export const AllTalks = [
     content: "Odegaard's scanning before touches is world-class and not talked about enough.",
     playersInDiscussion: ["Martin Odegaard", "Bruno Fernandes"],
     createdAt: "2026-02-21T11:20:00Z",
-    stats: { likes: 700, comments: 118, views: 9200 },
   },
   {
     id: "t-32",
@@ -253,7 +244,6 @@ export const AllTalks = [
     content: "Mbappe in half-space with one defender to beat is basically a cheat code.",
     playersInDiscussion: ["Kylian Mbappe", "Achraf Hakimi"],
     createdAt: "2026-02-21T09:45:00Z",
-    stats: { likes: 1450, comments: 244, views: 15050 },
   },
   {
     id: "t-33",
@@ -261,7 +251,6 @@ export const AllTalks = [
     content: "Young midfielders should watch how Pedri controls rhythm under pressure.",
     playersInDiscussion: ["Pedri", "Gavi"],
     createdAt: "2026-02-21T07:15:00Z",
-    stats: { likes: 860, comments: 120, views: 10100 },
   },
   {
     id: "t-34",
@@ -269,7 +258,6 @@ export const AllTalks = [
     content: "Bayern's chance creation is elite, but game control still swings too much.",
     playersInDiscussion: ["Jamal Musiala", "Leroy Sane"],
     createdAt: "2026-02-20T19:55:00Z",
-    stats: { likes: 430, comments: 61, views: 5500 },
   },
   {
     id: "t-35",
@@ -277,7 +265,6 @@ export const AllTalks = [
     content: "Aerial duel numbers matter more now with teams weaponizing second phases.",
     playersInDiscussion: ["Victor Osimhen", "Dusan Vlahovic"],
     createdAt: "2026-02-20T18:20:00Z",
-    stats: { likes: 290, comments: 37, views: 3800 },
   },
   {
     id: "t-36",
@@ -285,7 +272,6 @@ export const AllTalks = [
     content: "Set-piece coaching can shift an entire season's points outcome.",
     playersInDiscussion: ["James Ward-Prowse", "Kieran Trippier"],
     createdAt: "2026-02-20T14:30:00Z",
-    stats: { likes: 620, comments: 93, views: 7600 },
   },
   {
     id: "t-37",
@@ -293,7 +279,6 @@ export const AllTalks = [
     content: "When strikers occupy both center-backs, midfield arrivals become deadly.",
     playersInDiscussion: ["Karim Benzema", "Jude Bellingham"],
     createdAt: "2026-02-20T12:10:00Z",
-    stats: { likes: 1320, comments: 212, views: 13900 },
   },
   {
     id: "t-38",
@@ -301,7 +286,6 @@ export const AllTalks = [
     content: "Defending in wide channels is the real stress test for modern fullbacks.",
     playersInDiscussion: ["Joao Cancelo", "Alphonso Davies"],
     createdAt: "2026-02-20T10:05:00Z",
-    stats: { likes: 780, comments: 106, views: 9000 },
   },
   {
     id: "t-39",
@@ -309,7 +293,6 @@ export const AllTalks = [
     content: "Compactness between lines wins knock-out ties more than flashy possession.",
     playersInDiscussion: ["Rodri", "Toni Kroos"],
     createdAt: "2026-02-20T07:55:00Z",
-    stats: { likes: 470, comments: 69, views: 6100 },
   },
   {
     id: "t-40",
@@ -317,6 +300,5 @@ export const AllTalks = [
     content: "Do you prefer creators from central zones or from wide overloads?",
     playersInDiscussion: ["Kevin De Bruyne", "Martin Odegaard"],
     createdAt: "2026-02-20T06:40:00Z",
-    stats: { likes: 520, comments: 84, views: 6800 },
   },
 ];

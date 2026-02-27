@@ -99,6 +99,7 @@ const Compare = () => {
 
   const searchedPlayers = getSearchedPlayers(players, searchQuery);
 
+  console.log(typeof selectedPlayers[0])
   return (
     <main className="flex flex-col w-full px-3">
       <Header headerText="Compare" />
@@ -142,23 +143,28 @@ const Compare = () => {
           </div>
         </div>
 
-        <div className="px-2 flex flex-col gap-10 w-full">
-          <ComparisonShareSection
-            leftPlayer={selectedPlayers[0]}
-            rightPlayer={selectedPlayers[1]}
-          />
+        <ComparisonShareSection
+          leftPlayer={selectedPlayers[0]}
+          rightPlayer={selectedPlayers[1]}
+        />
 
-          <ComparisonVotesSection
-            leftPlayer={selectedPlayers[0]}
-            rightPlayer={selectedPlayers[1]}
-          />
+        {(!(selectedPlayers[0] === null) && !(selectedPlayers[1] === null)) && (
+          <div className="flex flex-col gap-5 w-full mt-7">
+            
 
-          <ComparisonTalksSection
-            leftPlayer={selectedPlayers[0]}
-            rightPlayer={selectedPlayers[1]}
-            uniqueFullPath="/compare"
-          />
-        </div>
+            <ComparisonVotesSection
+              leftPlayer={selectedPlayers[0]}
+              rightPlayer={selectedPlayers[1]}
+            />
+
+            <ComparisonTalksSection
+              leftPlayer={selectedPlayers[0]}
+              rightPlayer={selectedPlayers[1]}
+              uniqueFullPath="/compare"
+            />
+          </div>
+        )}
+        
       </div>
     </main>
   );

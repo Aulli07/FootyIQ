@@ -10,9 +10,4 @@ export type TalkType = {
   content: string;
   playersInDiscussion: Array<string>;
   createdAt: string;
-  stats: {
-    likes: number;
-    comments: number;
-    views: number;
-  }
 } 

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 import { players } from "@/app/data/players";
 import { getPostsInDiscussion } from "@/app/utils/playerFilters";
-import { TalkType } from "@/app/types/talks";
+import { TalkType } from "@/app/types/posts";
 
 import PageTitle from "./page-title";
 import { PostDisplay } from "./post-display";
@@ -28,11 +28,9 @@ export default function ViewMoreTalksContent() {
 
       <div className="flex flex-col gap-4 px-4 mt-1">
         {postsInDiscussion.map((talk: TalkType) => (
-          <Link href={{ pathname: `/talks/${talk.id}`}}
-          key={talk.id}
-        >
-          <PostDisplay talk={talk} />
-        </Link>
+          <Link href={{ pathname: `/talks/${talk.id}` }} key={talk.id}>
+            <PostDisplay talk={talk} />
+          </Link>
         ))}
       </div>
     </div>

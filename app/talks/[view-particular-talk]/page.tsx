@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { AllTalks } from "../../data/talks";
+import { AllTalks } from "../../data/posts";
 import { users } from "../../data/users";
 
 import { useParams } from "next/navigation";
@@ -12,15 +12,27 @@ import { oswald, poppins } from "../../fonts";
 import PageTitle from "../../../components/page-title";
 
 import { timeAgo } from "@/app/utils/playerFilters";
+import { TalkType } from "@/app/types/posts";
+
+import Stats from "@/app/utils/post-stats";
+
+export function PostTimeDesign({ talk }: { talk: TalkType }) {
+  return (
+    <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-6 items-center gap-2">
+      <p className={`text-xs text-white/70 ${poppins.className}`}>
+        {timeAgo(talk.createdAt)}
+      </p>
+    </div>
+  );
+}
 
 export default function ParticularPost() {
-  const params = useParams<{ "view-particular-talk": string, talks: string }>();
+  const params = useParams<{ "view-particular-talk": string; talks: string }>();
   const talkId = params["view-particular-talk"];
   const talks = params.talks;
 
   const talk = AllTalks.find((talk) => talk.id === talkId);
   const user = users.find((user) => user.id === talk?.authorId);
-
 
   if (!talk) {
     return (
@@ -35,9 +47,9 @@ export default function ParticularPost() {
   }
 
   const statChips = [
-    { label: "likes", value: talk.stats.likes },
-    { label: "comments", value: talk.stats.comments },
-    { label: "views", value: talk.stats.views },
+    { label: "likes", value: Stats.likesByPost[talk.id] ?? 0 },
+    { label: "comments", value: Stats.commentsByPost[talk.id] ?? 0 },
+    { label: "views", value: Stats.viewsByPost[talk.id] ?? 0 },
   ];
 
   const quickActions = [
@@ -97,12 +109,12 @@ export default function ParticularPost() {
                     @{user?.username}
                   </p>
                 </div>
-
-                <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-8 items-center gap-2">
+                <PostTimeDesign talk={talk} />
+                {/* <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-8 items-center gap-2">
                   <p className={`text-sm text-white/70 ${poppins.className}`}>
                     {timeAgo(talk.createdAt)}
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -164,7 +176,7 @@ export default function ParticularPost() {
             >
               {emptyCardContent}
             </Link> */}
-            <div className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3">
+            <div className="relative rounded-xl border border-white/20 bg-white/5 p-4 flex items-start gap-3">
               <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
                 <Image
                   src="/images/comment-light.png"
@@ -187,8 +199,8 @@ export default function ParticularPost() {
             </div>
           </div>
 
-          <div className="sticky bottom-0 mt-2 shrink-0 flex items-center gap-3 bg-gradient-to-t from-black via-black to-transparent pt-3 pb-2">
-            <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-black/90 px-4 py-2 shadow-inner shadow-emerald-500/10">
+          <div className="sticky bottom-0 mt-2 shrink-0 flex items-center gap-3 bg-gradient-to-t to-transparent pt-3 pb-2">
+            <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-background-main px-4 py-2 shadow-inner shadow-emerald-500/10">
               <input
                 placeholder="Write a comment..."
                 className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}

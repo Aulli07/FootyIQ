@@ -1,18 +1,20 @@
 import { players } from "../data/players";
 import { playerStats } from "../data/playerStats";
 
-import { AllTalks } from "../data/talks";
+import { AllTalks } from "../data/posts";
 import { follows } from "../data/follows";
 
 export function getFollowers(userId) {
-  const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
+  const followingIds = follows
+    .filter((f) => f.followerId === userId)
+    .map((f) => f.followingId);
 
-  const followerIds = follows.filter(f => f.followingId === userId).map(f => f.followerId)
+  const followerIds = follows
+    .filter((f) => f.followingId === userId)
+    .map((f) => f.followerId);
 
-  return {followingIds, followerIds}
-
-} 
-
+  return { followingIds, followerIds };
+}
 
 const playersById = Object.fromEntries(
   players.map((player) => [player.id, player]),
@@ -87,10 +89,8 @@ export function computeHotProspects(statsList = playerStats) {
     .filter(Boolean);
 }
 
-
-
 export function getSearchedPlayers(totalPlayers, query) {
-  if (!query) return []
+  if (!query) return [];
 
   const normalizedQuery = query.toLowerCase();
 
@@ -101,8 +101,6 @@ export function getSearchedPlayers(totalPlayers, query) {
   return foundPlayers;
 }
 
-
-
 // The retrieval of such players
 function containsAllPlayers(input, description) {
   input = input.toLowerCase();
@@ -111,9 +109,6 @@ function containsAllPlayers(input, description) {
   let descriptionList = description.split(" ");
   return descriptionList.some((text) => text.startsWith(input));
 }
-
-
-
 
 export function getPostsInDiscussion(leftPlayer, rightPlayer) {
   const postsInDiscussion = AllTalks.filter(
@@ -127,7 +122,7 @@ export function getPostsInDiscussion(leftPlayer, rightPlayer) {
 
 export function foundComparisons(totalComparedPlayers, foundPlayers) {
   const comparisons = [];
-  
+
   foundPlayers.forEach((player) => {
     totalComparedPlayers.forEach((compares) => {
       const left = compares[0];
@@ -140,4 +135,11 @@ export function foundComparisons(totalComparedPlayers, foundPlayers) {
   });
 
   return comparisons;
-} 
+}
+
+export function statsByPostId(stats) {
+  return stats.reduce((acc, stat) => {
+    acc[stat.postId] = (acc[stat.postId] ?? 0 ) + 1;
+    return acc
+  }, {})
+}

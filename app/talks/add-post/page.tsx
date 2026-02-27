@@ -12,8 +12,25 @@ import { getTotalComparisons } from "@/app/utils/playerFilters";
 import SearchBar from "@/components/search-bar";
 import { oswald } from "@/app/fonts";
 
+import { useState } from "react";
+import { getSearchedPlayers } from "@/app/utils/playerFilters";
+import { foundComparisons } from "@/app/utils/playerFilters";
+
+import { InputBar } from "@/components/search-bar";
+
 export default function AddPost() {
 
+  const [isSearch, setIsSearch] = useState(false);
+  const [results, setResults] = useState<Array<Array<PlayerType>>>([])
+
+  const [searchQuery, setSearchQuery] = useState<string>("")
+
+  function handleSearch(query: string) {
+    const compared = getSearchedPlayers(players, query);
+    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared)
+
+    setResults(fetchedComparisons)
+  }
   const allComparisons = getTotalComparisons(players);
   const topSearchComparisons: Array<Array<PlayerType>> = [];
 
@@ -35,14 +52,24 @@ export default function AddPost() {
         </div> 
 
         <div className="relative gap-3 flex flex-col justify-end">
-          <div className="flex flex-col gap-3 bg-white/5 shadow-sm backdrop-blur border border-white/20 rounded-lg py-3 px-3">
+          <div className="flex flex-col gap-3 bg-white/5 shadow-sm backdrop-blur border border-white/20 rounded-lg py-3 px-3 w-full">
             <div className="flex gap-3">
-              <div className="flex items-center gap-2">
-                <p className={`text-sm tracking-wide ${oswald.className} text-white font-heading font-semibold`}>Select comparison</p>
+              <div className="flex items-center w-full">
+                
+                <p className={`flex flex-1 text-[13px] tracking-wide ${oswald.className} text-white font-heading font-semibold`}>Select comparison</p>
+                <InputBar
+                    value={searchQuery}
+                    placeholder="Search for players"
+                    inputClassName="w-51 h-9 rounded-full bg-white/5 text-white placeholder:text-white/40 placeholder:text-[12px] pl-12 border border-white/30 text-[14px]"
+                    onValueChange={(value) => {
+                      setSearchQuery(value);
+                      handleSearch(value);
+                    }}
+                  />
               </div>
             </div>
             <div className="flex flex-row gap-3 overflow-x-auto pb-4 flex-nowrap">
-              <Compares compareList={topSearchComparisons} categoryType="topComaparisons"  />
+              <Compares compareList={(!results.length) ? totalComparedPlayers.slice(0, 5) : results} categoryType="topComaparisons" />
             </div>
           </div>
 

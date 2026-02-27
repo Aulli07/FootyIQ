@@ -108,7 +108,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col gap-3 px-6">
-      <div>
+      <div className="flex flex-col gap-4">
         <SearchInput
           setIsSearch={setIsSearch}
           isSearch={isSearch}

@@ -8,9 +8,9 @@ export default function SearchedComparisonResults({
   data: Array<Array<PlayerType>>;
 }) {
   return (
-    <section className="mt-3 w-full overflow-hidden">
-      {/* <div className="px-4 py-3 border-b border-white/10 bg-black/20 flex items-center justify-between">
-        <p className={`${oswald.className} text-sm tracking-wide text-white font-semibold`}>
+    <section className="w-full overflow-hidden">
+      <div className=" py-3 border-b border-white/10 bg-black/20 flex items-center justify-between">
+        <p className={`${oswald.className} text-[14px] tracking-wide text-white/80 font-semibold`}>
           Search Results
         </p>
         <span
@@ -18,7 +18,7 @@ export default function SearchedComparisonResults({
         >
           {data.length === 0 ? "No matches" : `${data.length} match${data.length > 1 ? "es" : ""}`}
         </span>
-      </div> */}
+      </div>
 
       {data.length === 0 ? (
         <div className="px-4 py-8 flex items-center justify-center">
@@ -30,7 +30,7 @@ export default function SearchedComparisonResults({
         </div>
       ) : (
         <div className="">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-5">
             <Compares compareList={data} categoryType="search" />
           </div>
         </div>

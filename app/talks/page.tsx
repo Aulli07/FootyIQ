@@ -5,8 +5,8 @@ import Header from "../../components/header";
 import { useState } from "react";
 import { poppins } from "../fonts";
 
-import { AllTalks } from "../data/talks";
-import { TalkType } from "../types/talks";
+import { AllTalks } from "../data/posts";
+import { TalkType } from "../types/posts";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { PostDisplay } from "../../components/post-display";
@@ -14,6 +14,9 @@ import { users } from "../data/users";
 import { follows } from "../data/follows";
 
 import { getFollowers } from "../utils/playerFilters";
+
+import AddPost from "@/components/add-post";
+import Stats from "../utils/post-stats";
 
 const MAIN_USER_ID = "u-1";
 
@@ -53,6 +56,11 @@ const getForYouScore = ({
   followingIds: string[];
   followerCountMap: Record<string, number>;
 }) => {
+
+  const totalLikes = Stats.likesByPost[talk.id] ?? 0;
+  const totalComments = Stats.commentsByPost[talk.id] ?? 0;
+  const totalViews = Stats.viewsByPost[talk.id] ?? 0;
+
   const now = Date.now();
   const createdAt = new Date(talk.createdAt).getTime();
   const ageInHours = Number.isNaN(createdAt)
@@ -61,7 +69,7 @@ const getForYouScore = ({
 
   const recencyScore = 320 / (1 + ageInHours / 9);
   const engagementScore =
-    talk.stats.likes * 1 + talk.stats.comments * 2 + talk.stats.views * 0.04;
+    totalLikes * 1 + totalComments * 2 + totalViews * 0.04;
 
   const isFollowingAuthor = followingIds.includes(talk.authorId);
   const followingBoost = isFollowingAuthor ? 260 : 25;
@@ -217,11 +225,13 @@ const Talks = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-      <Link href="/talks/add-post">
+
+      <AddPost />
+      {/* <Link href="/talks/add-post">
         <div className="fixed right-10 bottom-30 flex justify-center items-center rounded-full bg-emerald-600 hover:bg-emerald-700 p-4">
           <img src="/images/add.png" alt="add-talk" className="object-cover w-8 h-8" />
         </div>  
-      </Link>
+      </Link> */}
     </main>
   );
 };

@@ -3,14 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { poppins } from "../app/fonts";
-import { TalkType } from "../app/types/talks";
+import { TalkType } from "../app/types/posts";
 
 import { users } from "../app/data/users";
 
 import { timeAgo } from "@/app/utils/playerFilters";
 
+import { PostTimeDesign } from "@/app/talks/[view-particular-talk]/page";
+import Stats from "@/app/utils/post-stats";
+
 export function PostDisplay({ talk }: { talk: TalkType }) {
-  const user = users.find(user => user.id === talk.authorId);
+  const user = users.find((user) => user.id === talk.authorId);
 
   return (
     <Link
@@ -29,15 +32,13 @@ export function PostDisplay({ talk }: { talk: TalkType }) {
         </div>
       </div>
       <div className="flex flex-col ml-1 gap-2">
-        <div className="flex items-center h-4">
+        <div className="flex items-center h-4 gap-2">
           <p
             className={`text-md text-white ${poppins.className} tracking-wide font-semibold`}
           >
             {user?.name}
           </p>
-          <span className="ml-2 px-1.5 py-0.5 text-xs text-white/70 bg-emerald-700 rounded">
-            {timeAgo(talk?.createdAt)}
-          </span>
+          <PostTimeDesign talk={talk} />
         </div>
         <p
           className={`text-sm text-white/80 ${poppins.className} tracking-wide`}
@@ -54,7 +55,7 @@ export function PostDisplay({ talk }: { talk: TalkType }) {
               className="object-cover"
             />
             <span className={`text-sm text-white/70 ${poppins.className}`}>
-              {talk.stats.likes}
+              {Stats.likesByPost[talk.id] ?? 0}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -66,7 +67,7 @@ export function PostDisplay({ talk }: { talk: TalkType }) {
               className="object-cover"
             />
             <span className={`text-sm text-white/70 ${poppins.className}`}>
-              {talk.stats.comments}
+              {Stats.commentsByPost[talk.id]}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -78,7 +79,7 @@ export function PostDisplay({ talk }: { talk: TalkType }) {
               className="object-cover"
             />
             <span className={`text-sm text-white/70 ${poppins.className}`}>
-              {talk.stats.views}
+              {Stats.viewsByPost[talk.id]}
             </span>
           </div>
         </div>
