@@ -6,8 +6,6 @@ import { users } from "../../data/users";
 
 import { useParams } from "next/navigation";
 
-import Link from "next/link";
-
 import { oswald, poppins } from "../../fonts";
 import PageTitle from "../../../components/page-title";
 
@@ -15,6 +13,8 @@ import { timeAgo } from "@/app/utils/playerFilters";
 import { TalkType } from "@/app/types/posts";
 
 import Stats from "@/app/utils/post-stats";
+
+import Comments from "../../data/post-stats/comments";
 
 export function PostTimeDesign({ talk }: { talk: TalkType }) {
   return (
@@ -29,10 +29,13 @@ export function PostTimeDesign({ talk }: { talk: TalkType }) {
 export default function ParticularPost() {
   const params = useParams<{ "view-particular-talk": string; talks: string }>();
   const talkId = params["view-particular-talk"];
-  const talks = params.talks;
 
   const talk = AllTalks.find((talk) => talk.id === talkId);
   const user = users.find((user) => user.id === talk?.authorId);
+
+  const commentsData = Comments.filter(
+    (comment) => comment.postId === talk?.id,
+  );
 
   if (!talk) {
     return (
@@ -57,28 +60,6 @@ export default function ParticularPost() {
     { alt: "Like", src: "/images/like-light.png" },
     { alt: "View", src: "/images/view-light.png" },
   ];
-
-  const emptyCardContent = (
-    <>
-      <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
-        <Image
-          src="/images/comment-light.png"
-          alt="comment"
-          width={16}
-          height={16}
-          className="object-cover"
-        />
-      </div>
-      <div className="space-y-1">
-        <p className={`${poppins.className} text-sm text-white/80 font-medium`}>
-          No comments yet
-        </p>
-        <p className={`${poppins.className} text-xs text-white/55`}>
-          Be the first to drop your thoughts on this post.
-        </p>
-      </div>
-    </>
-  );
 
   return (
     <main className="px-4 md:px-6 text-white h-[calc(100vh-6rem)] overflow-y-auto">
@@ -110,11 +91,6 @@ export default function ParticularPost() {
                   </p>
                 </div>
                 <PostTimeDesign talk={talk} />
-                {/* <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-8 items-center gap-2">
-                  <p className={`text-sm text-white/70 ${poppins.className}`}>
-                    {timeAgo(talk.createdAt)}
-                  </p>
-                </div> */}
               </div>
             </div>
 
@@ -169,49 +145,138 @@ export default function ParticularPost() {
             </p>
           </div>
 
-          <div className="mt-5 flex-1 min-h-0 pr-1 space-y-3 pb-4">
-            {/* <Link
-              href={{ pathname: `/talks/${talk.id}/view-particular-talk`}}
-              className="relative rounded-xl border border-white/30 bg-black/90 p-4 flex items-start gap-3"
-            >
-              {emptyCardContent}
-            </Link> */}
-            <div className="relative rounded-xl border border-white/20 bg-white/5 p-4 flex items-start gap-3">
-              <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <Image
-                  src="/images/comment-light.png"
-                  alt="comment"
-                  width={16}
-                  height={16}
-                  className="object-cover"
-                />
+          <div className="mt-5 flex-1 min-h-0 pr-1 space-y-3 pb-36">
+            {commentsData.length > 0 ? (
+              commentsData.map((comment) => {
+                const commentAuthor = users.find(
+                  (item) => item.id === comment.userId,
+                );
+
+                const commentMentions = comment.mentions.map((mentionId) => {
+                  const mentionedUser = users.find(
+                    (user) => user.id === mentionId,
+                  );
+                  return mentionedUser?.username;
+                });
+
+                const validMentions = commentMentions.filter(Boolean);
+                // const commentLikes = Likes.filter(
+                //   (like) =>
+                //     like.postType === "commnt" && like.postId === comment.id,
+                // ).length;
+
+                return (
+                  <div
+                    key={comment.id}
+                    className="relative rounded-xl border border-white/30 bg-white/5 p-4 flex items-start justify-between gap-3"
+                  >
+                    <div className="flex items-start gap-3 flex-1 min-w-0">
+                      <div className="relative h-10 w-10 shrink-0">
+                        <Image
+                          src={
+                            commentAuthor?.avatarUrl ??
+                            "/images/default-avatar.png"
+                          }
+                          alt={commentAuthor?.name ?? "User Avatar"}
+                          fill
+                          sizes="40px"
+                          className="object-cover rounded-full border border-emerald-700"
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <p
+                            className={`${poppins.className} text-sm text-white font-medium truncate`}
+                          >
+                            {commentAuthor?.name ?? "Unknown user"}
+                          </p>
+                          <p
+                            className={`${poppins.className} text-xs text-white/60 truncate`}
+                          >
+                            @{commentAuthor?.username ?? "unknown"}
+                          </p>
+                        </div>
+                        <div className={`${poppins.className}`}>
+                          {validMentions.length > 0 && (
+                            <p className="text-sm leading-6">
+                              {validMentions.map((mention) => (
+                                <span
+                                  key={mention}
+                                  className="text-emerald-400 mr-1"
+                                >
+                                  @{mention}
+                                </span>
+                              ))}
+                            </p>
+                          )}
+                          <p className="text-sm text-white/75 leading-6 whitespace-pre-line">
+                            {comment.content}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="shrink-0 flex flex-col items-center justify-center gap-0.5 px-3 py-1 hover:bg-white/10 transition-colors h-20"
+                    >
+                      <span
+                        className={`${poppins.className} text-sm text-white/75`}
+                      >
+                        {Stats.likesByPost[comment.id] ?? 0}
+                      </span>
+                      <Image
+                        src="/images/like-light.png"
+                        alt="Like"
+                        width={25}
+                        height={25}
+                        className="object-cover"
+                      />
+                    </button>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="relative rounded-xl border border-white/30 bg-white/5 p-4 flex items-start gap-3">
+                <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                  <Image
+                    src="/images/comment-light.png"
+                    alt="comment"
+                    width={16}
+                    height={16}
+                    className="object-cover"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p
+                    className={`${poppins.className} text-sm text-white/80 font-medium`}
+                  >
+                    No comments yet
+                  </p>
+                  <p className={`${poppins.className} text-xs text-white/55`}>
+                    Be the first to drop your thoughts on this post.
+                  </p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <p
-                  className={`${poppins.className} text-sm text-white/80 font-medium`}
-                >
-                  No comments yet
-                </p>
-                <p className={`${poppins.className} text-xs text-white/55`}>
-                  Be the first to drop your thoughts on this post.
-                </p>
-              </div>
-            </div>
+            )}
           </div>
 
-          <div className="sticky bottom-0 mt-2 shrink-0 flex items-center gap-3 bg-gradient-to-t to-transparent pt-3 pb-2">
-            <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-background-main px-4 py-2 shadow-inner shadow-emerald-500/10">
-              <input
-                placeholder="Write a comment..."
-                className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}
-              />
-              <div>
-                <button
-                  type="button"
-                  className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`}
-                >
-                  Post
-                </button>
+          <div className="fixed bottom-20 left-0 right-0 z-40 px-4 md:px-6 py-3">
+            <div className="max-w-3xl mx-auto px-3">
+              <div className="w-full flex items-center gap-3 rounded-xl border-2 border-white/70 bg-background-main px-4 py-2 shadow-inner shadow-emerald-500/10">
+                <input
+                  placeholder="Write a comment..."
+                  className={`${poppins.className} flex w-full bg-transparent text-sm text-white placeholder:text-white/50 outline-none resize-none items-center justify-center`}
+                />
+                <div>
+                  <button
+                    type="button"
+                    className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`}
+                  >
+                    Post
+                  </button>
+                </div>
               </div>
             </div>
           </div>

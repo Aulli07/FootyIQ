@@ -1,4 +1,4 @@
-import statsByPostId from "./playerFilters";
+import { statsByPostId } from "./playerFilters";
 import Likes from "../data/post-stats/likes";
 import Comments from "../data/post-stats/comments";
 import Views from "../data/post-stats/views"

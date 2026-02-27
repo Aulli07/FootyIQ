@@ -3,6 +3,6 @@ export type CommentType = {
   postId: string;
   userId: string;
   content: string;
-  parentCommmentId: string;
+  mentions: string[];
   createdAt: number;
 }
