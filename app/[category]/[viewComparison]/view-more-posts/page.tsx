@@ -1,5 +1,5 @@
 import ViewMorePostsContent from "@/components/view-more-posts-comp";
 
-export default function ViewMorePage() {
+export default function ViewMorePostsPage() {
   return <ViewMorePostsContent />;
 }

@@ -10,13 +10,8 @@ import PageTitle from "@/components/page-title";
 
 import ShowFullStat from "@/components/show-stat";
 import ComparisonVotesSection from "@/components/comp-votes-section";
-import ComparisonTalksSection from "@/components/comp-talks-section";
+import ComparisonPostsSection from "@/components/comp-posts-section";
 
-import Link from "next/link";
-import { getPostsInDiscussion } from "@/app/utils/playerFilters";
-import { TalkType } from "@/app/types/posts";
-import TitleSection from "@/components/page-section-title";
-import { PostDisplay } from "@/components/post-display";
 
 export default function ViewComparisonPage() {
   const params = useParams<{ category: string; viewComparison: string }>();
@@ -64,7 +59,7 @@ export default function ViewComparisonPage() {
             rightPlayer={rightPlayer}
           />
 
-          <ComparisonTalksSection
+          <ComparisonPostsSection
             leftPlayer={leftPlayer}
             rightPlayer={rightPlayer}
             uniqueFullPath={fullPath ?? ""}
@@ -181,7 +176,7 @@ function FixedFieldBox({
 
 //   return (
 //     <div className="flex flex-col gap-3 h-full w-full mt-5">
-//       <TitleSection title="Talks" />
+//       <TitleSection title="Posts" />
 //       <div className="flex flex-col gap-4 px-4 mt-1">
 //         {postsInDiscussion.slice(0, 3).map((post: PostType) => (
 //           <PostDisplay key={post.id} post={post} />
@@ -189,7 +184,7 @@ function FixedFieldBox({
 //       </div>
 //       <Link
 //         href={{
-//           pathname: `/${categoryPath}/${viewComparisonPath}/view-more-talks`,
+//           pathname: `/${categoryPath}/${viewComparisonPath}/view-more-posts`,
 //           query: {
 //             leftPlayerId: leftPlayer?.id,
 //             rightPlayerId: rightPlayer?.id,
@@ -200,7 +195,7 @@ function FixedFieldBox({
 //         <span
 //           className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}
 //         >
-//           View More Talks
+//           View More Posts
 //         </span>
 //       </Link>
 //     </div>

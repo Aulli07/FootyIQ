@@ -19,7 +19,7 @@ import Views from "./post-stats/views"
 // })
 
 
-export const AllTalks = [
+export const AllPosts = [
   {
     id: "t-1",
     authorId: "u-1",

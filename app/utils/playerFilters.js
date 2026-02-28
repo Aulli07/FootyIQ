@@ -1,7 +1,7 @@
 import { players } from "../data/players";
 import { playerStats } from "../data/playerStats";
 
-import { AllTalks } from "../data/posts";
+import { AllPosts } from "../data/posts";
 import { follows } from "../data/follows";
 
 export function getFollowers(userId) {
@@ -107,11 +107,17 @@ function containsAllPlayers(input, description) {
   description = description.toLowerCase();
 
   let descriptionList = description.split(" ");
-  return descriptionList.some((text) => text.startsWith(input));
+  let described = descriptionList.join("")
+  let describedReverse = descriptionList.reverse().join("")
+
+  input = input.split(" ").join("");
+
+  return described.startsWith(input) || describedReverse.startsWith(input)
+  // return descriptionList.some((text) => text.startsWith(input));
 }
 
 export function getPostsInDiscussion(leftPlayer, rightPlayer) {
-  const postsInDiscussion = AllTalks.filter(
+  const postsInDiscussion = AllPosts.filter(
     (post) =>
       post.playersInDiscussion.includes(leftPlayer?.name || "") &&
       post.playersInDiscussion.includes(rightPlayer?.name || ""),

@@ -11,7 +11,7 @@ import ShowFullStat from "../../components/show-stat";
 import { PlayerType } from "../types/players";
 
 import ComparisonVotesSection from "../../components/comp-votes-section";
-import ComparisonTalksSection from "../../components/comp-talks-section";
+import ComparisonPostsSection from "../../components/comp-posts-section";
 import ComparisonShareSection from "../../components/comp-share-section";
 
 import { useParams } from "next/navigation";
@@ -157,7 +157,7 @@ const Compare = () => {
               rightPlayer={selectedPlayers[1]}
             />
 
-            <ComparisonTalksSection
+            <ComparisonPostsSection
               leftPlayer={selectedPlayers[0]}
               rightPlayer={selectedPlayers[1]}
               uniqueFullPath="/compare"

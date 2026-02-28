@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import PageTitle from "@/components/page-title";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import { poppins } from "../fonts";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { PersonalTalks } from "../talks/page";
+import { PersonalPosts } from "../posts/page";
 
 import SearchBar from "../../components/search-bar";
 import { totalComparedPlayers } from "../page";
@@ -17,53 +17,58 @@ import { users } from "../data/users";
 import { userType } from "../types/users";
 import Link from "next/link";
 
-import { follows } from "../data/follows";
 import { foundComparisons, getFollowers } from "../utils/playerFilters";
 import { PlayerType } from "../types/players";
 
 import { getSearchedPlayers } from "../utils/playerFilters";
-import { useAsyncError } from "react-router-dom";
 
 import { players } from "../data/players";
 import AddPost from "@/components/add-post";
 
-
-
-export function Profile ({ userId }: { userId?: string }) {
-
-  const talkTabs = [
-    { key: "talks", label: "Talks" },
+export function Profile({ userId }: { userId?: string }) {
+  const postTabs = [
+    { key: "posts", label: "Posts" },
     { key: "history", label: "History" },
-    // { key: "friends", label: "Friends"}
   ] as const;
 
-  type talkTabType = (typeof talkTabs)[number]["key"];
+  type postTabType = (typeof postTabs)[number]["key"];
 
-  const [talkTab, setTalkTab] = useState<talkTabType>("talks");
+  const [postTab, setPostTab] = useState<postTabType>("posts");
 
   const profileTabContent = {
-    talks: <PersonalTalks id={userId}/>,
+    posts: <PersonalPosts id={userId} />,
     history: <History />,
-    // friends: <Friends id={userId || ""}/>,
   };
 
-  const user = users.find(user => user.id === userId) as userType;
+  const user = users.find((user) => user.id === userId) as userType;
 
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const dateObj = new Date(user?.dateJoined || "");
   const month = months[dateObj.getMonth()];
   const year = dateObj.getFullYear();
   const formattedDate = `Joined ${month} ${year}`;
 
-
   const followers = getFollowers(userId).followerIds;
   const following = getFollowers(userId).followingIds;
 
   const followList = [
-    {label: "followers", number: followers.length},
-    {label: "following", number: following.length}
-  ]
-  
+    { label: "followers", number: followers.length },
+    { label: "following", number: following.length },
+  ];
+
   return (
     <main className="px-4 flex flex-col gap-4">
       <div className="flex flex-col gap-4 px-3 py-3 mt-4 ">
@@ -81,48 +86,73 @@ export function Profile ({ userId }: { userId?: string }) {
           </div>
           <div className="flex flex-col gap-2">
             <div className="items-left">
-              <p className={`text-xl ${poppins.className} font-semibold`}>{user?.name}</p>
+              <p className={`text-xl ${poppins.className} font-semibold`}>
+                {user?.name}
+              </p>
             </div>
             <div className="items-left">
-              <p className={`text-sm ${poppins.className} font-semibold`}>@{user?.username}</p>
+              <p className={`text-sm ${poppins.className} font-semibold`}>
+                @{user?.username}
+              </p>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-3">
           <div className="text-wrap min-h-10">
-            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>{user?.bio || "No bio available."}</p>
+            <p
+              className={`text-sm ${poppins.className} font-medium text-white/80`}
+            >
+              {user?.bio || "No bio available."}
+            </p>
           </div>
           <div className="flex gap-1 items-center">
-            <img src="/images/history-light-fill.png" alt="bio-date-icon" className="h-5 w-5 inline" />
+            <img
+              src="/images/history-light-fill.png"
+              alt="bio-date-icon"
+              className="h-5 w-5 inline"
+            />
 
-            <p className={`text-sm ${poppins.className} font-medium text-white/80`}>{formattedDate}</p>
+            <p
+              className={`text-sm ${poppins.className} font-medium text-white/80`}
+            >
+              {formattedDate}
+            </p>
           </div>
-        </div> 
+        </div>
         <div className="flex gap-3 min-w-0">
-          {followList.map(follow => (
-            <Link href={{ pathname: `/profile/${follow.label}`, query: {userId : userId}}} key={follow.label}>
-              <p className={`text-sm text-white fonnt-medium tracking-wide ${poppins.className} min-w-0`}>
-                <span className="font-bold">{following.length}</span> {follow.label}
+          {followList.map((follow) => (
+            <Link
+              href={{
+                pathname: `/profile/${follow.label}`,
+                query: { userId: userId },
+              }}
+              key={follow.label}
+            >
+              <p
+                className={`text-sm text-white fonnt-medium tracking-wide ${poppins.className} min-w-0`}
+              >
+                <span className="font-bold">{following.length}</span>{" "}
+                {follow.label}
               </p>
             </Link>
           ))}
-        </div> 
+        </div>
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
-          {talkTabs.map((tab) => (
+          {postTabs.map((tab) => (
             <button
               key={tab.key}
               type="button"
               className="cursor-pointer relative px-3 py-2 text-md font-medium tracking-wide"
-              onClick={() => setTalkTab(tab.key)}
+              onClick={() => setPostTab(tab.key)}
             >
               <span
-                className={`${poppins.className} text-sm text-white ${talkTab === tab.key ? "font-semibold" : "font-medium"}`}
+                className={`${poppins.className} text-sm text-white ${postTab === tab.key ? "font-semibold" : "font-medium"}`}
               >
                 {tab.label}
 
-                {talkTab === tab.key && (
+                {postTab === tab.key && (
                   <motion.span
                     layoutId="underline"
                     initial={{ x: 0, opacity: 0 }}
@@ -137,60 +167,25 @@ export function Profile ({ userId }: { userId?: string }) {
         </div>
         <div className="overflow-hidden relative w-full px-3">
           <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={talkTab}>
-              {profileTabContent[talkTab]}
-            </motion.div>
+            <motion.div key={postTab}>{profileTabContent[postTab]}</motion.div>
           </AnimatePresence>
         </div>
         <AddPost />
       </div>
-      {/* <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
-        {talkTabs.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            className="cursor-pointer relative px-3 py-2 text-md font-medium tracking-wide"
-            onClick={() => setTalkTab(tab.key)}
-          >
-            <span
-              className={`${poppins.className} text-sm text-white ${talkTab === tab.key ? "font-semibold" : "font-medium"}`}
-            >
-              {tab.label}
-
-              {talkTab === tab.key && (
-                <motion.span
-                  layoutId="underline"
-                  initial={{ x: 0, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 0, opacity: 0 }}
-                  className="absolute -bottom-0 left-0 right-0 h-1 bg-emerald-400 rounded-full"
-                />
-              )}
-            </span>
-          </button>
-        ))}
-        
-      </div> */}
     </main>
-  )
+  );
 }
 
-
-
-
 const History = () => {
-
   const [isSearch, setIsSearch] = useState(false);
-  const [results, setResults] = useState<Array<Array<PlayerType>>>([])
+  const [results, setResults] = useState<Array<Array<PlayerType>>>([]);
 
   function handleSearch(query: string) {
     const compared = getSearchedPlayers(players, query);
-    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared)
+    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared);
 
-    setResults(fetchedComparisons)
+    setResults(fetchedComparisons);
   }
-
-  console.log(Boolean(results.length))
 
   return (
     <main className="w-full pt-2 text-white flex flex-col gap-5">
@@ -200,88 +195,22 @@ const History = () => {
         onSearch={handleSearch}
       />
       <div className="flex flex-col gap-3">
-        <Compares compareList={(!results.length) ? totalComparedPlayers.slice(1,5) : results} categoryType="history"/>
+        {isSearch ? (
+          <Compares compareList={results} categoryType="history" />
+        ) : (
+          <Compares
+            compareList={totalComparedPlayers.slice(0, 5)}
+            categoryType="history"
+          />
+        )}
       </div>
     </main>
   );
 };
 
 
-
-
-// const Friends = ({ id }: { id: string }) => {
-
-//   const getFollowers = (userId: string) => {
-//     const followingIds = follows.filter(f => f.followerId === userId).map(f => f.followingId);
-
-//     return users.filter(u => followingIds.includes(u.id));
-//   }
-
-//   const followers = getFollowers(id);
-
-//   return (
-//     <section className="w-full pt-2 pb-3 text-white">
-//       <div className="flex items-center justify-between pb-3 px-1">
-//         <p className={`${poppins.className} text-sm font-semibold text-white/90`}>
-//           Connected Friends
-//         </p>
-//         <p className={`${poppins.className} text-xs font-medium text-white/60`}>
-//           {followers.length} total
-//         </p>
-//       </div>
-
-//       <div className="flex flex-col gap-3">
-//         {followers.map((friend) => (
-//           <Link href={{ pathname: `/profile/${friend.username}` }} key={friend.id}>
-//             <article
-//               key={friend.id}
-//               className="w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur px-4 py-3 flex items-center justify-between"
-//             >
-//               <div className="flex items-center gap-3 min-w-0">
-//                 <div className="relative h-12 w-12 overflow-hidden rounded-full border border-emerald-500/35 shrink-0">
-//                   <Image
-//                     src={friend.avatarUrl}
-//                     alt={friend.name}
-//                     fill
-//                     sizes="48px"
-//                     className="object-cover"
-//                   />
-//                 </div>
-
-//                 <div className="min-w-0">
-//                   <p
-//                     className={`${poppins.className} text-sm sm:text-base font-semibold text-white truncate`}
-//                   >
-//                     {friend.name}
-//                   </p>
-//                   <p
-//                     className={`${poppins.className} text-xs sm:text-sm font-medium text-white/60 truncate`}
-//                   >
-//                     @{friend.username}
-//                   </p>
-//                 </div>
-//               </div>
-
-//               <button
-//                 type="button"
-//                 aria-label={`Open options for ${friend.name}`}
-//                 className="h-9 w-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center text-white/85 text-xl leading-none"
-//               >
-//                 ⋯
-//               </button>
-//             </article>
-//           </Link>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
-
-
-
-
 function FullProfile() {
-  const user = users.find(user => user.username === "alwell");
+  const user = users.find((user) => user.username === "alwell");
   return <Profile userId={user?.id || ""} />;
 }
 

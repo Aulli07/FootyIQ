@@ -117,29 +117,6 @@ function HomePage() {
 
         {isSearch && <SearchedComparisonResults data={results} />}
       </div>
-    
-      {/* <SearchBar
-        setInputText={setInputText}
-        setIsSearch={setIsSearch}
-        isSearch={isSearch}
-        comparedPlayers={totalComparedPlayers}
-      />
-
-      <GetSearchedPlayers query={inputText}>
-        {(foundPlayers) =>
-          inputText.trim() !== "" ? (
-            <div className="flex-1 min-h-0">
-              <SearchedPlayersResults
-                foundPlayers={foundPlayers}
-                emptySearch={`No matches for "${inputText}"`}
-                comparedPlayers={totalComparedPlayers}
-              />
-            </div>
-          ) : (
-            <div className="flex-1 min-h-0" />
-          )
-        }
-      </GetSearchedPlayers> */}
 
       {!isSearch && <LegendsSection />}
       {!isSearch && <HotProspectsSection />}

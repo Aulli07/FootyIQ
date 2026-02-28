@@ -1,4 +1,4 @@
-export type TalkType = {
+export type PostType = {
   id: string;
   // user: {
   //   id: string;
