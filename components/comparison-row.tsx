@@ -1,5 +1,3 @@
-import { oswald } from "../app/fonts";
-
 import { PlayerType } from "../app/types/players";
 import ComparisonCard from "./comparison-card";
 

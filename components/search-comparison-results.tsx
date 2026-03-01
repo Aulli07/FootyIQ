@@ -22,9 +22,7 @@ export default function SearchedComparisonResults({
 
       {data.length === 0 ? (
         <div className="px-4 py-8 flex items-center justify-center">
-          <p
-            className={`${poppins.className} text-sm text-white/70 text-center`}
-          >
+          <p className={`${poppins.className} text-sm text-white/70 text-center`}>
             No comparison results found.
           </p>
         </div>

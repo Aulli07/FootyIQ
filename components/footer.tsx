@@ -48,18 +48,8 @@ function Footer() {
       width: 6,
       height: 6,
     },
-    // {
-    //   to: "/history",
-    //   icon: "/images/history-light.png",
-    //   activeIcon: "/images/his
-    // tory-light-fill.png",
-    //   alt: "history-icon",
-    //   header: "History",
-    //   title: "History",
-    //   width: 7,
-    //   height: 7,
-    // },
   ];
+  
   const normalizePath = (p: string) =>
     p.length > 1 ? p.replace(/\/+$/, "") : p;
   const current = normalizePath(pathname);

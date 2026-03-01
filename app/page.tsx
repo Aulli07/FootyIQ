@@ -6,7 +6,6 @@ import Header from "../components/header";
 import Comparison from "../components/comparison-row";
 import Compares from "../components/top-compare-cards";
 import HomeTitleSection from "../components/section-title";
-import SearchBar from "../components/search-bar";
 
 import { useState } from "react";
 

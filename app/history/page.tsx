@@ -12,22 +12,22 @@
 
 // import Image from "next/image";
 
-const History = () => {
-  const [isSearch, setIsSearch] = useState(false);
+// const History = () => {
+//   const [isSearch, setIsSearch] = useState(false);
 
-  return (
-    <main className="w-full px-3 pt-2 text-white">
-      {/* <Header headerText="History" /> */}
-      <SearchBar
-        setIsSearch={setIsSearch}
-        isSearch={isSearch}
-        comparedPlayers={totalComparedPlayers}
-      />
-      <div className="px-3 mt-3">
-        <Compares compareList={totalComparedPlayers.slice(0, 10)} categoryType="history"/>
-      </div>
-    </main>
-  );
-};
+//   return (
+//     <main className="w-full px-3 pt-2 text-white">
+//       {/* <Header headerText="History" /> */}
+//       <SearchBar
+//         setIsSearch={setIsSearch}
+//         isSearch={isSearch}
+//         comparedPlayers={totalComparedPlayers}
+//       />
+//       <div className="px-3 mt-3">
+//         <Compares compareList={totalComparedPlayers.slice(0, 10)} categoryType="history"/>
+//       </div>
+//     </main>
+//   );
+// };
 
-export default History;
+// export default History;

@@ -2,18 +2,16 @@
 
 import React from "react";
 import Image from "next/image";
-import { oswald, orbitron } from "../app/fonts";
-import Link from "next/link";
+import { oswald } from "../app/fonts";
 
 const Header = ({
   headerText,
   showLightMode = false,
-  // showHistory = false,
 }: {
   headerText: string;
   showLightMode?: boolean;
-  // showHistory?: boolean;
 }) => {
+  
   return (
     <div className="flex flex-row items-center justify-between px-4 pt-5 pb-7 backdrop-blur">
       <div>

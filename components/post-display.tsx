@@ -7,8 +7,6 @@ import { PostType } from "../app/types/posts";
 
 import { users } from "../app/data/users";
 
-import { timeAgo } from "@/app/utils/playerFilters";
-
 import { PostTimeDesign } from "@/app/posts/[view-particular-post]/page";
 import Stats from "@/app/utils/post-stats";
 

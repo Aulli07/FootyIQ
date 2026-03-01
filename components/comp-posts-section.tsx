@@ -47,9 +47,7 @@ export default function ComparisonPostsSection({
 				}}
 				className="flex justify-end items-center px-4"
 			>
-				<span
-					className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}
-				>
+				<span className={`${poppins.className} text-sm font-semibold border-b mt-2 text-white/70`}>
 					View More Posts
 				</span>
 			</Link>
