@@ -112,7 +112,7 @@ export function ComparesCard({
       >
         <div className="relative flex items-center">
           <p
-            className={`bg-primary hover:bg-primary-hover text-white text-center rounded px-3 py-1 border border-emerald-700/50 dark:border-emerald-300/20 transition-colors ${poppins.className} text-sm`}
+            className={`bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded px-3 py-1 border border-emerald-700/50 dark:border-emerald-300/20 transition-colors ${poppins.className} text-sm`}
           >
             View
           </p>

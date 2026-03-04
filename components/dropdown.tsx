@@ -173,7 +173,7 @@ export function DropDown(props: DropDownProps) {
             ) : (
               <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-500/35 dark:ring-emerald-400/30 flex justify-center items-center bg-light-background-card dark:bg-white/5 shadow-sm shadow-slate-300/45 dark:shadow-none backdrop-blur focus-within:ring-4 focus-within:ring-emerald-500/15 dark:focus-within:ring-emerald-400/15">
                 <img
-                  src={theme === "dark" ? "/images/add-dark.png" : "/images/add.png"}
+                  src={theme === "dark" ? "/images/add.png" : "/images/add-dark.png"}
                   alt="add"
                   className="object-cover relative rounded-full h-13 w-13"
                 />
