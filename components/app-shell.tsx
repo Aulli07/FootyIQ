@@ -167,6 +167,7 @@ import Footer from "./footer";
 // ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
+  
   return (
     <div className="min-h-screen text-white">
       <div className="pb-24">{children}</div>

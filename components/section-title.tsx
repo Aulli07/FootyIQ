@@ -4,7 +4,7 @@ export default function HomeTitleSection({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-2">
       <p
-        className={`text-lg tracking-wide ${oswald.className} text-white font-heading font-semibold`}
+        className={`text-lg tracking-wide ${oswald.className} text-light-text-primary dark:text-dark-text-primary font-heading font-semibold`}
       >
         {title}
       </p>

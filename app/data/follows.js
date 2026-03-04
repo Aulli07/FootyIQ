@@ -5,5 +5,9 @@ export const follows = [
   { followerId: "u-3", followingId: "u-1" },
   { followerId: "u-4", followingId: "u-1" },
   { followerId: "u-5", followingId: "u-2" },
+  { followerId: "u-1", followingId: "u-4" },
+  { followerId: "u-1", followingId: "u-5" },
   { followerId: "u-6", followingId: "u-3" },
+  { followerId: "u-4", followingId: "u-3" },
+  { followerId: "u-4", followingId: "u-5" },
 ];

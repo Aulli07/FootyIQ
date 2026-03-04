@@ -188,10 +188,10 @@ const Posts = () => {
   };
 
   return (
-    <main className="w-full px-6 pt-2 text-white">
+    <main className="w-full px-6 pt-2 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="Posts" />
 
-      <div className="flex flex-row justify-around items-center w-full border-b border-white/40">
+      <div className="flex flex-row justify-around items-center w-full border-b border-light-ui-border dark:border-white/40">
         {postTabs.map((tab) => (
           <button
             key={tab.key}
@@ -200,7 +200,7 @@ const Posts = () => {
             onClick={() => setPostTab(tab.key)}
           >
             <span
-              className={`${poppins.className} text-sm text-white ${postTab === tab.key ? "font-semibold" : "font-medium"}`}
+              className={`${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-primary ${postTab === tab.key ? "font-semibold" : "font-medium"}`}
             >
               {tab.label}
 

@@ -1,5 +1,3 @@
-import { big } from "framer-motion/client";
-
 export const users = [
   {
     id: "u-1",

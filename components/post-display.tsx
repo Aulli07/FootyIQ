@@ -16,7 +16,7 @@ export function PostDisplay({ post }: { post: PostType }) {
   return (
     <Link
       href={`/posts/${post.id}`}
-      className="flex justify-start items-start gap-4 w-full relative p-5 border border-white/20 rounded-lg bg-white/4 shadow-lg backdrop-blur"
+      className="flex justify-start items-start gap-4 w-full relative p-5 border border-light-ui-border rounded-lg bg-light-background-card shadow-md shadow-slate-300/35 backdrop-blur dark:border-white/20 dark:bg-white/4 dark:shadow-lg dark:shadow-black/20"
     >
       <div>
         <div className="relative h-12 w-12 object-cover">
@@ -32,14 +32,14 @@ export function PostDisplay({ post }: { post: PostType }) {
       <div className="flex flex-col ml-1 gap-2">
         <div className="flex items-center h-4 gap-2">
           <p
-            className={`text-md text-white ${poppins.className} tracking-wide font-semibold`}
+            className={`text-md text-light-text-primary dark:text-dark-text-primary ${poppins.className} tracking-wide font-semibold`}
           >
             {user?.name}
           </p>
           <PostTimeDesign post={post} />
         </div>
         <p
-          className={`text-sm text-white/80 ${poppins.className} tracking-wide`}
+          className={`text-sm text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} tracking-wide`}
         >
           {post.content}
         </p>
@@ -52,7 +52,9 @@ export function PostDisplay({ post }: { post: PostType }) {
               height={20}
               className="object-cover"
             />
-            <span className={`text-sm text-white/70 ${poppins.className}`}>
+            <span
+              className={`text-sm text-light-text-muted dark:text-dark-text-muted ${poppins.className}`}
+            >
               {Stats.likesByPost[post.id] ?? 0}
             </span>
           </div>
@@ -64,7 +66,9 @@ export function PostDisplay({ post }: { post: PostType }) {
               height={20}
               className="object-cover"
             />
-            <span className={`text-sm text-white/70 ${poppins.className}`}>
+            <span
+              className={`text-sm text-light-text-muted dark:text-dark-text-muted ${poppins.className}`}
+            >
               {Stats.commentsByPost[post.id] ?? 0}
             </span>
           </div>
@@ -76,7 +80,9 @@ export function PostDisplay({ post }: { post: PostType }) {
               height={20}
               className="object-cover"
             />
-            <span className={`text-sm text-white/70 ${poppins.className}`}>
+            <span
+              className={`text-sm text-light-text-muted dark:text-dark-text-muted ${poppins.className}`}
+            >
               {Stats.viewsByPost[post.id] ?? 0}
             </span>
           </div>

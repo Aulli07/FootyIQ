@@ -60,7 +60,7 @@ export default function ParticularPost() {
 	];
 
 	return (
-		<main className="px-4 md:px-6 pb-64 text-white overflow-y-auto">
+		<main className="px-4 md:px-6 text-white overflow-y-auto">
 			<div className="max-w-3xl mx-auto flex flex-col h-full gap-1">
 				<PageTitle title="POST" />
 
@@ -143,7 +143,7 @@ export default function ParticularPost() {
 						</p>
 					</div>
 
-					<div className="mt-3 flex-1 pr-1 min-h-0 pb-72 rounded-xl bg-white/[0.02]">
+					<div className="mt-3 flex-1 pr-1 min-h-0 rounded-xl bg-white/[0.02]">
 						{commentsData.length > 0 ? (
 							commentsData.map((comment) => {
 								const commentAuthor = users.find((item) => item.id === comment.userId);
@@ -241,7 +241,7 @@ export default function ParticularPost() {
 						)}
 					</div>
 
-					<div className="h-75" aria-hidden="true">a</div>
+					<div className="p-3 text-white/10 text-sm">a</div>
 
 					<div className="fixed bottom-20 left-0 right-0 z-40 px-4 md:px-6 py-3">
 						<div className="max-w-3xl mx-auto px-3">

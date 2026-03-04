@@ -106,8 +106,8 @@ export default function ShowFullStat({
               type="button"
               className={`flex justify-center items-center px-3 py-1 rounded-3xl border-2 h-10 cursor-pointer transition-colors ${
                 activeTab === tab.key
-                  ? "bg-emerald-500/15 border-emerald-400 text-white"
-                  : "bg-gray-200/30 border-white/70 text-white/80"
+                  ? "bg-emerald-500/15 border-emerald-500/60 dark:border-emerald-400 text-light-text-primary dark:text-dark-text-primary"
+                  : "bg-light-background-card border-light-ui-border text-light-text-secondary dark:bg-gray-200/30 dark:border-white/70 dark:text-dark-text-secondary"
               }`}
               onClick={() => setActiveTab(tab.key)}
             >
@@ -197,19 +197,19 @@ function StatBlock({
   }
 
   return (
-    <div className="relative z-0 flex items-center py-2 px-3 border-b border-white/10 w-full">
+    <div className="relative z-0 flex items-center py-2 px-3 border-b border-light-ui-border dark:border-white/10 w-full">
       <p
-        className={`text-white/70 ${poppins.className} text-sm flex-1 text-left py-1`}
+        className={`text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} text-sm flex-1 text-left py-1`}
       >
         {valueA ?? "-"}
       </p>
       <p
-        className={`text-white ${poppins.className} text-sm font-medium flex-1 text-center`}
+        className={`text-light-text-primary dark:text-dark-text-primary ${poppins.className} text-sm font-medium flex-1 text-center`}
       >
         {label}
       </p>
       <p
-        className={`text-white/70 ${poppins.className} text-sm text-right flex-1 py-1`}
+        className={`text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} text-sm text-right flex-1 py-1`}
       >
         {valueB ?? "-"}
       </p>

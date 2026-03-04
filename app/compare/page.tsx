@@ -41,7 +41,7 @@ export function AddFieldBox({
 }) {
   return (
     <div
-      className={`relative z-0 h-55 focus-within:z-[9999] flex flex-col justify-center items-center gap-3 rounded-lg px-2 border border-white/30 bg-black/20 ${poppins.className} shadow-lg backdrop-blur focus-within:border-emerald-400/40 focus-within:ring-4 focus-within:ring-emerald-400/15`}
+      className={`relative z-0 h-55 focus-within:z-[9999] flex flex-col justify-center items-center gap-3 rounded-lg px-2 border border-light-ui-border bg-light-background-card/80 dark:border-white/30 dark:bg-black/20 ${poppins.className} shadow-md shadow-slate-300/35 dark:shadow-lg dark:shadow-black/20 backdrop-blur focus-within:border-emerald-500/50 dark:focus-within:border-emerald-400/40 focus-within:ring-4 focus-within:ring-emerald-500/15 dark:focus-within:ring-emerald-400/15`}
     >
       <img
         src="/images/swap-light-fill.png"
@@ -99,13 +99,15 @@ const Compare = () => {
 
   const searchedPlayers = getSearchedPlayers(players, searchQuery);
 
-  console.log(typeof selectedPlayers[0])
+  console.log(typeof selectedPlayers[0]);
   return (
-    <main className="flex flex-col w-full px-3">
+    <main className="flex flex-col w-full px-3 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="Compare" />
       <div className="gap-3 flex flex-col gap-4 pt-6">
         <div className="relative flex justify-center items-center mb-5">
-          <p className={`text-white ${oswald.className} text-lg font-semibold`}>
+          <p
+            className={`text-light-text-primary dark:text-dark-text-primary ${oswald.className} text-lg font-semibold`}
+          >
             Player Comparison
           </p>
           <img
@@ -137,7 +139,7 @@ const Compare = () => {
             searchedPlayers={searchedPlayers}
           />
         </div>
-        <div className="relative z-0 text-white/70 flex flex-col text-center gap-3 px-3">
+        <div className="relative z-0 text-light-text-secondary dark:text-dark-text-secondary flex flex-col text-center gap-3 px-3">
           <div className="relative z-0 flex flex-col gap-4 p-2 w-full ">
             <ShowFullStat players={selectedPlayers} seasons={selectedSeasons} />
           </div>
@@ -148,10 +150,8 @@ const Compare = () => {
           rightPlayer={selectedPlayers[1]}
         />
 
-        {(!(selectedPlayers[0] === null) && !(selectedPlayers[1] === null)) && (
+        {!(selectedPlayers[0] === null) && !(selectedPlayers[1] === null) && (
           <div className="flex flex-col gap-5 w-full mt-7">
-            
-
             <ComparisonVotesSection
               leftPlayer={selectedPlayers[0]}
               rightPlayer={selectedPlayers[1]}
@@ -164,7 +164,6 @@ const Compare = () => {
             />
           </div>
         )}
-        
       </div>
     </main>
   );

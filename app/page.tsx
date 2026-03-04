@@ -80,7 +80,7 @@ function TopComparisonList() {
   }
 
   return (
-    <div className="gap-3 flex flex-col">
+    <div className="gap-3 flex flex-col rounded-2xl border border-light-ui-border bg-light-background-card/70 p-3 shadow-md shadow-slate-300/30 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
       <HomeTitleSection title="Top Comparisons" />
       <Link href={`/${topComparisonsType}`}>
         <div className="flex flex-col gap-4">
@@ -100,9 +100,9 @@ function HomePage() {
 
   function handleSearch(query: string) {
     const compared = getSearchedPlayers(players, query);
-    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared)
+    const fetchedComparisons = foundComparisons(totalComparedPlayers, compared);
 
-    setResults(fetchedComparisons)
+    setResults(fetchedComparisons);
   }
 
   return (
@@ -127,7 +127,7 @@ function HomePage() {
 
 export default function Home() {
   return (
-    <main className="w-full pt-2 text-white">
+    <main className="w-full pt-2 text-white ">
       <Header headerText="FOOTY IQ" showLightMode />
       <HomePage />
     </main>

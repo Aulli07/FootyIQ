@@ -71,9 +71,9 @@ export default function VotesBar({
   const pref = getPreferenceForPair(players);
 
   return (
-    <div className="flex flex-col gap-2 relative p-4 border border-white/20 rounded-lg bg-white/5 shadow-lg backdrop-blur">
+    <div className="flex flex-col gap-2 relative p-4 border border-light-ui-border dark:border-white/20 rounded-lg bg-light-background-card dark:bg-white/5 shadow-md shadow-slate-300/35 dark:shadow-lg dark:shadow-black/20 backdrop-blur">
       <div
-        className={`flex justify-between items-center text-white/70 ${poppins.className}`}
+        className={`flex justify-between items-center text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
       >
         <span className={`max-w-[45%] truncate text-sm ${poppins.className}`}>
           {formatShortName(pref.left?.name)} {pref.leftPct}%
@@ -85,14 +85,14 @@ export default function VotesBar({
         </span>
       </div>
 
-      <div className="relative w-full h-2.5 rounded-lg bg-white/10 overflow-hidden border border-white/10">
+      <div className="relative w-full h-2.5 rounded-lg bg-slate-200 dark:bg-white/10 overflow-hidden border border-slate-300 dark:border-white/10">
         <div
           className="bg-green-500 w-full h-full absolute left-0 top-0 flex transition-all duration-500 ease-in-out"
           style={{ width: `${pref.leftPct}%` }}
           aria-label="Left player preference"
         />
         <div
-          className="bg-white/70 w-full h-full absolute right-0 top-0 flex transition-all duration-500 ease-in-out"
+          className="bg-slate-500/65 dark:bg-white/70 w-full h-full absolute right-0 top-0 flex transition-all duration-500 ease-in-out"
           style={{ width: `${pref.rightPct}%` }}
           aria-label="Right player preference"
         />

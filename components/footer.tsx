@@ -1,55 +1,75 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { poppins } from "../app/fonts";
 
 function Footer() {
   const pathname = usePathname();
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  const isDark = currentTheme === "dark";
+
   const footerLinks = [
     {
       to: "/",
-      icon: "/images/home-light.png",
-      activeIcon: "/images/home-light-fill.png",
+      lightIcon: "/images/home-light.png",
+      darkIcon: "/images/home-dark.png",
+      lightActiveIcon: "/images/home-light-fill.png",
+      darkActiveIcon: "/images/home-dark-fill.png",
       alt: "home-icon",
       header: "Footy IQ",
       title: "Home",
-      width: 6,
-      height: 6,
+      width: 5,
+      height: 5,
     },
     {
       to: "/compare",
-      icon: "/images/swap-light.png",
-      activeIcon: "/images/swap-light-fill.png",
+      lightIcon: "/images/swap-light.png",
+      darkIcon: "/images/swap-dark.png",
+      lightActiveIcon: "/images/swap-light-fill.png",
+      darkActiveIcon: "/images/swap-dark-fill.png",
       alt: "compare-icon",
       header: "Compare",
       title: "Compare",
-      width: 6,
-      height: 6,
+      width: 5,
+      height: 5,
     },
     {
       to: "/posts",
-      icon: "/images/history-light.png",
-      activeIcon: "/images/history-light-fill.png",
+      lightIcon: "/images/history-light.png",
+      darkIcon: "/images/history-dark.png",
+      lightActiveIcon: "/images/history-light-fill.png",
+      darkActiveIcon: "/images/history-dark-fill.png",
       alt: "posts-icon",
       header: "Posts",
       title: "Posts",
-      width: 6,
-      height: 6,
+      width: 5,
+      height: 5,
     },
     {
       to: "/profile",
-      icon: "/images/history-light.png",
-      activeIcon: "/images/history-light-fill.png",
+      lightIcon: "/images/history-light.png",
+      darkIcon: "/images/history-dark.png",
+      lightActiveIcon: "/images/history-light-fill.png",
+      darkActiveIcon: "/images/history-dark-fill.png",
       alt: "profile-icon",
       header: "Profile",
       title: "Profile",
-      width: 6,
-      height: 6,
+      width: 5,
+      height: 5,
     },
   ];
-  
+
   const normalizePath = (p: string) =>
     p.length > 1 ? p.replace(/\/+$/, "") : p;
   const current = normalizePath(pathname);
@@ -60,9 +80,17 @@ function Footer() {
   };
 
   return (
-    <nav className="bg-[#0F172A] backdrop-blur w-full fixed bottom-0 left-0 right-0 z-50 flex flex-row justify-between px-6 border-t border-white/10 items-center h-20">
+    <nav className="bg-light-background-card dark:bg-dark-background-card/90 backdrop-blur fixed bottom-13 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-50 flex flex-row justify-between px-6 border border-light-ui-border dark:border-dark-ui-border rounded-full items-center h-17 w-[90%] shadow-md">
       {footerLinks.map((link) => {
         const active = isActive(link.to);
+        const iconSrc = active
+          ? isDark
+            ? link.lightActiveIcon
+            : link.darkActiveIcon
+          : isDark
+            ? link.lightIcon
+            : link.darkIcon;
+
         return (
           <Link
             href={link.to}
@@ -71,18 +99,23 @@ function Footer() {
             aria-current={active ? "page" : undefined}
           >
             <div className="relative w-6 h-6">
-              <Image
-                src={active ? link.activeIcon : link.icon}
-                alt={link.alt}
-                fill
-                sizes="32px"
-                className="object-cover"
-              />
+              {mounted ? (
+                <Image
+                  key={`${link.to}-${currentTheme}-${active ? "active" : "idle"}`}
+                  src={iconSrc}
+                  alt={link.alt}
+                  fill
+                  sizes="32px"
+                  className="object-cover"
+                />
+              ) : null}
             </div>
 
             <p
-              className={`${poppins.className} text-sm ${
-                active ? "text-white text-md" : "text-white/70"
+              className={`${poppins.className} text-xs ${
+                active
+                  ? "text-light-text-primary dark:text-dark-text-primary text-md"
+                  : "text-light-text-secondary dark:text-dark-text-secondary"
               } font-semibold tracking-wide`}
             >
               {link.title}

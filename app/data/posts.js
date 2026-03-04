@@ -1,24 +1,3 @@
-import Likes from "./post-stats/likes";
-import Comments from "./post-stats/comments";
-import Views from "./post-stats/views"
-
-// const likesByPost = Likes.reduce((acc, like) => {
-//   if (!acc[like.postId]) {
-//     acc[like.postId] = 0
-//   }
-//   acc[like.postId]++
-//   return acc
-// })
-
-// const commentsByPost = Comments.reduce((acc, comment) => {
-//   if (!acc[comment.postId]) {
-//     acc[comment.postId] = 0
-//   }
-//   acc[comment.postId]++
-//   return acc
-// })
-
-
 export const AllPosts = [
   {
     id: "t-1",
