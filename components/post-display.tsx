@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { poppins } from "../app/fonts";
 import { PostType } from "../app/types/posts";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 import { users } from "../app/data/users";
 
@@ -11,6 +13,16 @@ import { PostTimeDesign } from "@/app/posts/[view-particular-post]/page";
 import Stats from "@/app/utils/post-stats";
 
 export function PostDisplay({ post }: { post: PostType }) {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  const isDark = currentTheme === "dark";
+
   const user = users.find((user) => user.id === post.authorId);
 
   return (
@@ -46,7 +58,13 @@ export function PostDisplay({ post }: { post: PostType }) {
         <div className="flex justify-between items-center w-[90%] mt-3">
           <div className="flex items-center gap-2">
             <Image
-              src="/images/like-light.png"
+              src={
+                mounted
+                  ? isDark
+                    ? "/images/like-light.png"
+                    : "/images/like-dark.png"
+                  : "/images/like-dark.png"
+              }
               alt="Like"
               width={20}
               height={20}
@@ -60,7 +78,13 @@ export function PostDisplay({ post }: { post: PostType }) {
           </div>
           <div className="flex items-center gap-2">
             <Image
-              src="/images/comment-light.png"
+              src={
+                mounted
+                  ? isDark
+                    ? "/images/comment-light.png"
+                    : "/images/comment-dark.png"
+                  : "/images/comment-dark.png"
+              }
               alt="Comment"
               width={20}
               height={20}
@@ -74,7 +98,13 @@ export function PostDisplay({ post }: { post: PostType }) {
           </div>
           <div className="flex items-center gap-2">
             <Image
-              src="/images/view-light.png"
+              src={
+                mounted
+                  ? isDark
+                    ? "/images/view-light.png"
+                    : "/images/view-dark.png"
+                  : "/images/view-dark.png"
+              }
               alt="View"
               width={20}
               height={20}

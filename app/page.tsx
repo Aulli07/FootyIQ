@@ -127,7 +127,7 @@ function HomePage() {
 
 export default function Home() {
   return (
-    <main className="w-full pt-2 text-white ">
+    <main className="w-full pt-2 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="FOOTY IQ" showLightMode />
       <HomePage />
     </main>

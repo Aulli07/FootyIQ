@@ -12,7 +12,6 @@ import ShowFullStat from "@/components/show-stat";
 import ComparisonVotesSection from "@/components/comp-votes-section";
 import ComparisonPostsSection from "@/components/comp-posts-section";
 
-
 export default function ViewComparisonPage() {
   const params = useParams<{ category: string; viewComparison: string }>();
   const category = params?.category;
@@ -31,7 +30,7 @@ export default function ViewComparisonPage() {
   }
 
   return (
-    <main className="px-3 pt-5 pb-5">
+    <main className="px-3 pt-5 pb-5 text-light-text-primary dark:text-dark-text-primary">
       <div className="flex flex-col gap-5">
         <PageTitle
           title={
@@ -81,10 +80,10 @@ function FixedFieldBox({
 }) {
   return (
     <div
-      className={`relative z-0 h-55 flex flex-col justify-center items-center gap-3 rounded-lg px-2 border border-white/30 bg-black/20 ${poppins.className} shadow-lg backdrop-blur`}
+      className={`relative z-0 h-55 flex flex-col justify-center items-center gap-3 rounded-lg px-2 border border-light-ui-border bg-light-background-card/80 dark:border-white/30 dark:bg-black/20 ${poppins.className} shadow-md shadow-slate-300/35 dark:shadow-lg dark:shadow-black/20 backdrop-blur`}
     >
       <div className="relative flex flex-col justify-center items-center">
-        <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-400/30 flex justify-center items-center bg-black/20">
+        <div className="relative h-20 w-20 rounded-full overflow-hidden ring-2 ring-emerald-500/35 dark:ring-emerald-400/30 flex justify-center items-center bg-light-background-main dark:bg-black/20">
           <Image
             src={player.image}
             alt={player.name}
@@ -94,13 +93,13 @@ function FixedFieldBox({
           />
         </div>
         <p
-          className={`flex justify-center items-center ${poppins.className} text-sm text-white/80 mt-3`}
+          className={`flex justify-center items-center ${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-secondary mt-3`}
         >
           {player.name}
         </p>
       </div>
       <div
-        className={`w-full bg-white/5 border border-white/15 rounded-md px-3 py-2 text-left flex justify-center items-center ${poppins.className} text-sm text-white/90`}
+        className={`w-full bg-light-background-main dark:bg-white/5 border border-light-ui-border dark:border-white/15 rounded-md px-3 py-2 text-left flex justify-center items-center ${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-primary`}
       >
         <span className="truncate pr-2">{season}</span>
       </div>

@@ -3,7 +3,7 @@
 import PageTitle from "@/components/page-title";
 import Image from "next/image";
 import { poppins } from "../fonts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { PersonalPosts } from "../posts/page";
@@ -24,6 +24,8 @@ import { getSearchedPlayers } from "../utils/playerFilters";
 
 import { players } from "../data/players";
 import AddPost from "@/components/add-post";
+
+import { useTheme } from "next-themes";
 
 export function Profile({ userId }: { userId?: string }) {
   const postTabs = [
@@ -69,12 +71,21 @@ export function Profile({ userId }: { userId?: string }) {
     { label: "following", number: following.length },
   ];
 
+  const { theme } = useTheme()
+  const [ mounted, setMounted ] = useState<boolean>()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+ 
   return (
     <main className="px-4 flex flex-col gap-4">
       <div className="flex flex-col gap-4 px-3 py-3 mt-4 ">
         <div className="flex gap-4 items-center justify-start min-h-25">
           <div className="relative h-18 w-18 flex">
-            <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
+            <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-white/10">
               <Image
                 src={user?.avatarUrl}
                 alt="profile-pic"
@@ -100,20 +111,20 @@ export function Profile({ userId }: { userId?: string }) {
         <div className="flex flex-col gap-3">
           <div className="text-wrap min-h-10">
             <p
-              className={`text-sm ${poppins.className} font-medium text-white/80`}
+              className={`text-sm ${poppins.className} font-medium text-light-text-secondary dark:text-dark-text-secondary`}
             >
               {user?.bio || "No bio available."}
             </p>
           </div>
           <div className="flex gap-1 items-center">
             <img
-              src="/images/history-light-fill.png"
+              src={theme === "dark" ? "/images/history-light-fill.png" : "/images/history-dark-fill.png"}
               alt="bio-date-icon"
               className="h-5 w-5 inline"
             />
 
             <p
-              className={`text-sm ${poppins.className} font-medium text-white/80`}
+              className={`text-sm ${poppins.className} font-medium text-light-text-secondary dark:text-dark-text-secondary`}
             >
               {formattedDate}
             </p>
@@ -129,9 +140,9 @@ export function Profile({ userId }: { userId?: string }) {
               key={follow.label}
             >
               <p
-                className={`text-sm text-white fonnt-medium tracking-wide ${poppins.className} min-w-0`}
+                className={`text-sm text-light-text-primary dark:text-dark-text-primary font-medium tracking-wide ${poppins.className} min-w-0`}
               >
-                <span className="font-bold">{following.length}</span>{" "}
+                <span className="font-bold">{follow.number}</span>{" "}
                 {follow.label}
               </p>
             </Link>
@@ -139,7 +150,7 @@ export function Profile({ userId }: { userId?: string }) {
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        <div className="flex flex-row justify-around items-center w-full border-b border-white/30">
+        <div className="flex flex-row justify-around items-center w-full border-b border-light-ui-border dark:border-white/30">
           {postTabs.map((tab) => (
             <button
               key={tab.key}
@@ -148,7 +159,7 @@ export function Profile({ userId }: { userId?: string }) {
               onClick={() => setPostTab(tab.key)}
             >
               <span
-                className={`${poppins.className} text-sm text-white ${postTab === tab.key ? "font-semibold" : "font-medium"}`}
+                className={`${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-primary ${postTab === tab.key ? "font-semibold" : "font-medium"}`}
               >
                 {tab.label}
 
@@ -188,7 +199,7 @@ const History = () => {
   }
 
   return (
-    <main className="w-full pt-2 text-white flex flex-col gap-5">
+    <main className="w-full pt-2 text-light-text-primary dark:text-dark-text-primary flex flex-col gap-5">
       <SearchBar
         setIsSearch={setIsSearch}
         isSearch={isSearch}
@@ -207,7 +218,6 @@ const History = () => {
     </main>
   );
 };
-
 
 function FullProfile() {
   const user = users.find((user) => user.username === "alwell");

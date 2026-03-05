@@ -11,22 +11,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#1DB954",
-          hover: "#1ED760",
-        },
-        background: {
-          main: "#091020",
-          card: "#101b2b",
-        },
-        ui: {
-          border: "#334155",
-        },
-        text: {
-          primary: "#F8FAFC",
-          secondary: "#94A3B8",
-          muted: "#64748B",
-        },
+        // light: {
+        //   primary: {
+        //   DEFAULT: "#1DB954",
+        //   hover: "#1ED760",
+        //   },
+        //   background: {
+        //     main: "#091020",
+        //     card: "#101b2b",
+        //   },
+        //   ui: {
+        //     border: "#334155",
+        //   },
+        //   text: {
+        //     primary: "#F8FAFC",
+        //     secondary: "#94A3B8",
+        //     muted: "#64748B",
+        //   },
+        // },
         dark: {
           background: {
             main: "#091020",
@@ -41,6 +43,7 @@ module.exports = {
             muted: "#64748B",
           },
         },
+
         light: {
           background: {
             main: "#F8FAFC",
@@ -50,7 +53,8 @@ module.exports = {
             border: "#CBD5E1",
           },
           text: {
-            primary: "#0F172A",
+            // primary: "#0F172A",
+            primary: "#091020",
             secondary: "#334155",
             muted: "#64748B",
           },
