@@ -60,8 +60,8 @@ export function computeLegends(statsList = playerStats) {
       return (
         stats.career.averageRating >= 9.0 &&
         stats.career.totalGoals >= 500 &&
-        player.age >= 28
-      );
+        (new Date().getFullYear() - player.birthYear) >= 28
+      )
     })
     .map((stats) => playersById[stats.id])
     .filter(Boolean);
@@ -82,7 +82,7 @@ export function computeHotProspects(statsList = playerStats) {
       return (
         stats.career.averageRating >= 8.0 &&
         stats.career.totalGoals >= 70 &&
-        player.age < 28
+        (new Date().getFullYear() - player.birthYear) < 28
       );
     })
     .map((stats) => playersById[stats.id])

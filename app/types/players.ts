@@ -2,12 +2,15 @@ export interface PlayerType {
   id: string,
   name: string,
   nationality: string,
-  age: number,
+  birthYear: number,
   heightCm: number,
   position: string,
   preferredFoot: string,
   image: string,
   status: string,
   team: string,
-  footyRating: number
+  footyRating: number,
+  category: () => "top_prospect" | "prime" | "legend" | 'best' | 'good',
+  totalSearches: number,
+  totalVotes: number,
 }

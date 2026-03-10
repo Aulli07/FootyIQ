@@ -1,84 +1,292 @@
+import { getCategory } from "../utils/categoryFilter";
+
 export const players = [
   {
     id: "ronaldo",
     name: "Cristiano Ronaldo",
     nationality: "Portugal",
-    age: 40,
+    birthYear: 1985,
     heightCm: 183,
     position: "Forward",
     preferredFoot: "Right",
     image: "/images/ronaldo.jpg",
     status: "Legend",
     team: "Al Nassr",
-    footyRating: 9.5
+    footyRating: 9.5,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 120,
+    totalVotes: 600,
   },
   {
     id: "messi",
     name: "Lionel Messi",
     nationality: "Argentina",
-    age: 37,
+    birthYear: 1988,
     heightCm: 180,
     position: "Forward",
     preferredFoot: "Left",
     image: "/images/messi.jpg",
     status: "Legend",
     team: "Inter Miami",
-    footyRating: 9.5
+    footyRating: 9.5,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 100,
+    totalVotes: 455,
   },
-
   {
     id: "neymar",
     name: "Neymar Jr",
     nationality: "Brazil",
-    age: 32,
+    birthYear: 1992,
     heightCm: 175,
     position: "Forward",
     preferredFoot: "Right",
     image: "/images/neymar.jpg",
     status: "Legend",
-    team: "Santos FC",
-    footyRating: 9.0 
+    team: "Al-Hilal",
+    footyRating: 9.0,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 95,
+    totalVotes: 420,
   },
-
   {
     id: "benzema",
     name: "Karim Benzema",
     nationality: "France",
-    age: 35,
+    birthYear: 1987,
     heightCm: 185,
     position: "Forward",
     preferredFoot: "Right",
     image: "/images/benzema.jpg",
     status: "Legend",
     team: "Al-Ittihad",
-    footyRating: 9.1
+    footyRating: 9.1,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 88,
+    totalVotes: 380,
   },
-
   {
     id: "doue",
     name: "Desire Doue",
     nationality: "France",
-    age: 19,
+    birthYear: 2005,
     heightCm: 178,
     position: "Forward",
     preferredFoot: "Right",
     image: "/images/desire-doue.png",
     status: "Top Prospect",
     team: "Paris Saint-Germain",
-    footyRating: 8.5
+    footyRating: 8.5,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 65,
+    totalVotes: 250,
   },
-
   {
     id: "yamal",
     name: "Lamine Yamal",
     nationality: "Spain",
-    age: 18,
+    birthYear: 2007,
     heightCm: 170,
     position: "Forward",
     preferredFoot: "Left",
     image: "/images/lamine-yamal.jpg",
     status: "Top Prospect",
     team: "Barcelona",
-    footyRating: 8.7
-  }
-]
+    footyRating: 8.7,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 75,
+    totalVotes: 310,
+  },
+  {
+    id: "haaland",
+    name: "Erling Haaland",
+    nationality: "Norway",
+    birthYear: 2000,
+    heightCm: 194,
+    position: "Forward",
+    preferredFoot: "Right",
+    image: "/images/ronaldo.jpg",
+    status: "Prime",
+    team: "Manchester City",
+    footyRating: 9.2,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 110,
+    totalVotes: 520,
+  },
+  {
+    id: "mbappe",
+    name: "Kylian Mbappé",
+    nationality: "France",
+    birthYear: 1998,
+    heightCm: 178,
+    position: "Forward",
+    preferredFoot: "Right",
+    image: "/images/messi.jpg",
+    status: "Prime",
+    team: "Real Madrid",
+    footyRating: 9.3,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 125,
+    totalVotes: 580,
+  },
+  {
+    id: "vinicius",
+    name: "Vinícius Júnior",
+    nationality: "Brazil",
+    birthYear: 2000,
+    heightCm: 176,
+    position: "Forward",
+    preferredFoot: "Left",
+    image: "/images/neymar.jpg",
+    status: "Prime",
+    team: "Real Madrid",
+    footyRating: 9.1,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 102,
+    totalVotes: 470,
+  },
+  {
+    id: "lewandowski",
+    name: "Robert Lewandowski",
+    nationality: "Poland",
+    birthYear: 1988,
+    heightCm: 187,
+    position: "Forward",
+    preferredFoot: "Right",
+    image: "/images/benzema.jpg",
+    status: "Prime",
+    team: "Barcelona",
+    footyRating: 8.9,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 98,
+    totalVotes: 440,
+  },
+  {
+    id: "rodri",
+    name: "Rodri Hernández",
+    nationality: "Spain",
+    birthYear: 1996,
+    heightCm: 190,
+    position: "Midfielder",
+    preferredFoot: "Right",
+    image: "/images/desire-doue.png",
+    status: "Prime",
+    team: "Manchester City",
+    footyRating: 8.8,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 85,
+    totalVotes: 390,
+  },
+  {
+    id: "bellingham",
+    name: "Jude Bellingham",
+    nationality: "England",
+    birthYear: 2003,
+    heightCm: 186,
+    position: "Midfielder",
+    preferredFoot: "Right",
+    image: "/images/lamine-yamal.jpg",
+    status: "Top Prospect",
+    team: "Real Madrid",
+    footyRating: 8.6,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 92,
+    totalVotes: 420,
+  },
+  {
+    id: "alvarez",
+    name: "Julián Álvarez",
+    nationality: "Argentina",
+    birthYear: 2000,
+    heightCm: 173,
+    position: "Forward",
+    preferredFoot: "Right",
+    image: "/images/ronaldo.jpg",
+    status: "Prime",
+    team: "Atlético Madrid",
+    footyRating: 8.4,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 76,
+    totalVotes: 340,
+  },
+  {
+    id: "foden",
+    name: "Phil Foden",
+    nationality: "England",
+    birthYear: 2001,
+    heightCm: 171,
+    position: "Forward",
+    preferredFoot: "Left",
+    image: "/images/messi.jpg",
+    status: "Prime",
+    team: "Manchester City",
+    footyRating: 8.8,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 88,
+    totalVotes: 410,
+  },
+  {
+    id: "pedri",
+    name: "Pedri González",
+    nationality: "Spain",
+    birthYear: 2002,
+    heightCm: 174,
+    position: "Midfielder",
+    preferredFoot: "Left",
+    image: "/images/neymar.jpg",
+    status: "Top Prospect",
+    team: "Barcelona",
+    footyRating: 8.5,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 79,
+    totalVotes: 360,
+  },
+  {
+    id: "winaldum",
+    name: "Georginio Wijnaldum",
+    nationality: "Netherlands",
+    birthYear: 1990,
+    heightCm: 175,
+    position: "Midfielder",
+    preferredFoot: "Right",
+    image: "/images/benzema.jpg",
+    status: "Prime",
+    team: "Al-Ettifaq",
+    footyRating: 8.2,
+    category() {
+      return getCategory.call(this);
+    },
+    totalSearches: 68,
+    totalVotes: 310,
+  },
+];
