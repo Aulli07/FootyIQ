@@ -15,28 +15,16 @@ import ComparisonVotesSection from "../../components/comp-votes-section";
 import ComparisonPostsSection from "../../components/comp-posts-section";
 import ComparisonShareSection from "../../components/comp-share-section";
 
-import { useParams } from "next/navigation";
 import { getSearchedPlayers } from "../utils/playerFilters";
 import { getPlayersSubset } from "../engine/subset-selector";
-import { generatePlayersMatchup, getComparisons } from "../engine/comparison-generator";
+import {
+  generatePlayersMatchup,
+  getComparisons,
+} from "../engine/comparison-generator";
 import { SYSTEM_COMPARISON_THEMES } from "../data/comparison-themes";
+import { ComparisonResult } from "../engine/comparison-generator";
 
-
-// useEffect(() => {
-//   const PAGE_TITLES = ["top_prospect", "prime", "legend", "best", "good"];
-
-//   for (let i = 0; i < PAGE_TITLES.length; i++) {
-//     const playerSubset = getPlayersSubset(players, PAGE_TITLES[i]);
-//     const matchups = generatePlayersMatchup(playerSubset);
-//     const PLAYER_COMPARISONS = getComparisons(matchups);
-//     console.log(PLAYER_COMPARISONS)
-//   }
-// }, [])
-
-
-
-
-
+import { MatchupType } from "../engine/comparison-generator";
 
 
 export function AddFieldBox({
@@ -115,21 +103,26 @@ const Compare = () => {
   ]);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const params = useParams<{ compare: string }>();
-  const comparePath = params["compare"];
-
   const searchedPlayers = getSearchedPlayers(players, searchQuery);
 
+  const [comparisons, setComparisons] = useState<ComparisonResult[][]>([]);
 
   useEffect(() => {
-    for (let i = 0; i < SYSTEM_COMPARISON_THEMES.length; i++) {
+    const allComparisons: ComparisonResult[][] = [];
+
+    for (let i = 0; i < (SYSTEM_COMPARISON_THEMES.length); i++) {
       const currentTheme = SYSTEM_COMPARISON_THEMES[i];
       const playerSubset = getPlayersSubset(players, currentTheme);
-      const matchups = generatePlayersMatchup(playerSubset);
-      const PLAYER_COMPARISONS = getComparisons(matchups);
-      console.log(PLAYER_COMPARISONS)
+      console.log(playerSubset)
+      const matchups = generatePlayersMatchup(playerSubset, currentTheme.matchupType as MatchupType);
+      // console.log(matchups)
+      const PLAYER_COMPARISONS = getComparisons(matchups, currentTheme);
+      allComparisons.push(PLAYER_COMPARISONS);
     }
-  }, [])
+
+    setComparisons(allComparisons);
+    sessionStorage.setItem(`comparisons`, JSON.stringify(allComparisons));
+  }, []);
 
   return (
     <main className="flex flex-col w-full px-3 text-light-text-primary dark:text-dark-text-primary">

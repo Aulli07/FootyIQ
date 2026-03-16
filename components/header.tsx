@@ -46,7 +46,6 @@ const Header = ({
               sizes="32px"
               className="object-cover p-2.5 cursor-pointer"
               onClick={() => {
-                console.log(theme);
                 setTheme(theme === "dark" ? "light" : "dark");
               }}
             />

@@ -11,6 +11,7 @@ export type RankingStrategyType =
 export type ComparisonTheme = {
   id: string;
   title: string;
+  matchupType: string;
   filters: {
     categories?: PlayerCategory[];
     positions?: string[];
@@ -28,6 +29,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
   {
     id: "premier_league_best_strikers",
     title: "Premier League Best Strikers Edition",
+    matchupType: "competition",
     filters: {
       positions: ["Forward"],
       categories: ["prime", "legend", "best"],
@@ -39,6 +41,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
   {
     id: "champions_league_monsters",
     title: "Champions League Monsters",
+    matchupType: "competition",
     filters: {
       categories: ["prime", "legend", "best"],
       competitionIds: ["ucl"],
@@ -49,6 +52,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
   {
     id: "international_kings",
     title: "International Kings Edition",
+    matchupType: "competition",
     filters: {
       categories: ["prime", "legend", "best"],
       competitionIds: ["world_cup", "euros", "copa_america", "afcon"],
@@ -59,6 +63,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
   {
     id: "laliga_rising_forwards",
     title: "LaLiga Rising Forwards Edition",
+    matchupType: "competition",
     filters: {
       positions: ["Forward"],
       categories: ["top_prospect", "prime"],
@@ -70,6 +75,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
   {
     id: "saudi_pro_league_icons",
     title: "Saudi Pro League Icons",
+    matchupType: "career",
     filters: {
       positions: ["Forward"],
       categories: ["legend", "best"],

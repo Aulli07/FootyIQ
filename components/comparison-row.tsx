@@ -3,27 +3,38 @@ import ComparisonCard from "./comparison-card";
 
 import HomeTitleSection from "./section-title";
 
-type ComparisonProps<T extends PlayerType> = {
-  playersData: T[][];
+type ComparisonCardData = [PlayerType, PlayerType, string?, string?];
+
+type ComparisonProps = {
+  playersData: ComparisonCardData[];
   title: string;
-  categoryType: string | null
+  categoryType: string | null;
 };
 
-const Comparison = <T extends PlayerType>({
+const Comparison = ({
   playersData,
   title,
-  categoryType
-}: ComparisonProps<T>) => {
+  categoryType,
+}: ComparisonProps) => {
   return (
     <div className="py-2 flex flex-col gap-3">
       <HomeTitleSection title={title} />
       <div className="flex flex-row gap-3 overflow-x-auto pb-4 flex-nowrap">
-        {playersData.map((playerPair) => {
+        {playersData.map((playerPair, index) => {
           const leftPlayer = playerPair[0];
           const rightPlayer = playerPair[1];
+          const leftPlayerSeasonOrCompetition = playerPair[2];
+          const rightPlayerSeasonOrCompetition = playerPair[3];
 
           return (
-            <ComparisonCard leftPlayer={leftPlayer} rightPlayer={rightPlayer} categoryType={categoryType}/>
+            <ComparisonCard
+              key={`${leftPlayer.id}-${rightPlayer.id}-${index}`}
+              leftPlayer={leftPlayer}
+              rightPlayer={rightPlayer}
+              categoryType={categoryType}
+              leftPlayerSeasonOrCompetition={leftPlayerSeasonOrCompetition}
+              rightPlayerSeasonOrCompetition={rightPlayerSeasonOrCompetition}
+            />
           );
         })}
       </div>

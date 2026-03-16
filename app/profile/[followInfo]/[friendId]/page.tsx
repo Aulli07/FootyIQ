@@ -9,8 +9,6 @@ export default function FriendProfilePage() {
   const friendUsername = params.friendId; // Assuming the URL is /profile/[friendId], where friendId is the username
 
   const friendId = users.find(user => user.username === friendUsername)?.id
-
-  console.log("Friend ID:", friendId); // Log the friendId to verify it's being received correctly
   return (
     <Profile userId={friendId} />
   )

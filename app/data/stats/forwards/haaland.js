@@ -3,7 +3,7 @@ export const haalandStats = {
   seasons: [
     {
       season: "23/24",
-      clubId: "manchester_city",
+      clubId: "manchester_cty",
       competitions: [
         {
           id: "epl",
