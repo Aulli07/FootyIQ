@@ -4,6 +4,26 @@ export const rodriStats = {
     {
       season: "23/24",
       clubId: "manchester_city",
+      clubCareer: [
+        {
+          clubId: "manchester_city",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 49,
+            averageRating: 8.7,
+            totalGoals: 11,
+            totalAssists: 10,
+            totalMinutes: 4293,
+            totalShots: 61,
+            shotsOnTarget: 23,
+            keyPasses: 77,
+            chancesCreated: 77,
+            dribbles: 53,
+            yellowCards: 10,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",
@@ -103,6 +123,26 @@ export const rodriStats = {
     {
       season: "22/23",
       clubId: "manchester_city",
+      clubCareer: [
+        {
+          clubId: "manchester_city",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 48,
+            averageRating: 8.7,
+            totalGoals: 5,
+            totalAssists: 8,
+            totalMinutes: 4094,
+            totalShots: 44,
+            shotsOnTarget: 15,
+            keyPasses: 64,
+            chancesCreated: 64,
+            dribbles: 46,
+            yellowCards: 10,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",

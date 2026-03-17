@@ -4,6 +4,26 @@ export const pedriStats = {
     {
       season: "23/24",
       clubId: "barcelona",
+      clubCareer: [
+        {
+          clubId: "barcelona",
+          team: "Barcelona",
+          career: {
+            totalAppearances: 40,
+            averageRating: 8.5,
+            totalGoals: 8,
+            totalAssists: 12,
+            totalMinutes: 3178,
+            totalShots: 60,
+            shotsOnTarget: 27,
+            keyPasses: 73,
+            chancesCreated: 73,
+            dribbles: 67,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -103,6 +123,26 @@ export const pedriStats = {
     {
       season: "22/23",
       clubId: "barcelona",
+      clubCareer: [
+        {
+          clubId: "barcelona",
+          team: "Barcelona",
+          career: {
+            totalAppearances: 31,
+            averageRating: 8.4,
+            totalGoals: 5,
+            totalAssists: 7,
+            totalMinutes: 2490,
+            totalShots: 43,
+            shotsOnTarget: 18,
+            keyPasses: 50,
+            chancesCreated: 50,
+            dribbles: 48,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",

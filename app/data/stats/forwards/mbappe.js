@@ -4,6 +4,26 @@ export const mbappeStats = {
     {
       season: "23/24",
       clubId: "real_madrid",
+      clubCareer: [
+        {
+          clubId: "real_madrid",
+          team: "Real Madrid",
+          career: {
+            totalAppearances: 54,
+            averageRating: 9.2,
+            totalGoals: 43,
+            totalAssists: 18,
+            totalMinutes: 4641,
+            totalShots: 216,
+            shotsOnTarget: 107,
+            keyPasses: 69,
+            chancesCreated: 69,
+            dribbles: 111,
+            yellowCards: 7,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -128,12 +148,32 @@ export const mbappeStats = {
             yellowToRedCards: 0,
             redCards: 0,
           },
-        }
+        },
       ],
     },
     {
       season: "22/23",
       clubId: "psg",
+      clubCareer: [
+        {
+          clubId: "psg",
+          team: "Paris Saint-Germain",
+          career: {
+            totalAppearances: 42,
+            averageRating: 9.1,
+            totalGoals: 36,
+            totalAssists: 10,
+            totalMinutes: 3530,
+            totalShots: 164,
+            shotsOnTarget: 84,
+            keyPasses: 46,
+            chancesCreated: 46,
+            dribbles: 81,
+            yellowCards: 5,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "ligue1",

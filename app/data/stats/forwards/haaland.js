@@ -4,6 +4,26 @@ export const haalandStats = {
     {
       season: "23/24",
       clubId: "manchester_cty",
+      clubCareer: [
+        {
+          clubId: "manchester_cty",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 46,
+            averageRating: 9.1,
+            totalGoals: 40,
+            totalAssists: 7,
+            totalMinutes: 3926,
+            totalShots: 174,
+            shotsOnTarget: 91,
+            keyPasses: 30,
+            chancesCreated: 30,
+            dribbles: 29,
+            yellowCards: 3,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",
@@ -134,6 +154,26 @@ export const haalandStats = {
     {
       season: "22/23",
       clubId: "manchester_city",
+      clubCareer: [
+        {
+          clubId: "manchester_city",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 52,
+            averageRating: 9.3,
+            totalGoals: 52,
+            totalAssists: 9,
+            totalMinutes: 4106,
+            totalShots: 192,
+            shotsOnTarget: 103,
+            keyPasses: 32,
+            chancesCreated: 32,
+            dribbles: 26,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",

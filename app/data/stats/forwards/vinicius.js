@@ -4,6 +4,26 @@ export const viniciusStats = {
     {
       season: "23/24",
       clubId: "real_madrid",
+      clubCareer: [
+        {
+          clubId: "real_madrid",
+          team: "Real Madrid",
+          career: {
+            totalAppearances: 42,
+            averageRating: 9.0,
+            totalGoals: 26,
+            totalAssists: 17,
+            totalMinutes: 3452,
+            totalShots: 126,
+            shotsOnTarget: 57,
+            keyPasses: 64,
+            chancesCreated: 64,
+            dribbles: 114,
+            yellowCards: 9,
+            redCards: 1,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -103,6 +123,26 @@ export const viniciusStats = {
     {
       season: "22/23",
       clubId: "real_madrid",
+      clubCareer: [
+        {
+          clubId: "real_madrid",
+          team: "Real Madrid",
+          career: {
+            totalAppearances: 45,
+            averageRating: 8.9,
+            totalGoals: 21,
+            totalAssists: 13,
+            totalMinutes: 3604,
+            totalShots: 114,
+            shotsOnTarget: 50,
+            keyPasses: 52,
+            chancesCreated: 52,
+            dribbles: 101,
+            yellowCards: 9,
+            redCards: 1,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",

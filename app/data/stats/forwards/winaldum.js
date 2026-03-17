@@ -4,6 +4,26 @@ export const winaldumStats = {
     {
       season: "23/24",
       clubId: "alettifaq",
+      clubCareer: [
+        {
+          clubId: "alettifaq",
+          team: "Al-Ettifaq",
+          career: {
+            totalAppearances: 32,
+            averageRating: 8.2,
+            totalGoals: 9,
+            totalAssists: 7,
+            totalMinutes: 2572,
+            totalShots: 42,
+            shotsOnTarget: 17,
+            keyPasses: 39,
+            chancesCreated: 39,
+            dribbles: 27,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "spl",
@@ -72,6 +92,26 @@ export const winaldumStats = {
     {
       season: "22/23",
       clubId: "roma",
+      clubCareer: [
+        {
+          clubId: "roma",
+          team: "Roma",
+          career: {
+            totalAppearances: 26,
+            averageRating: 7.9,
+            totalGoals: 3,
+            totalAssists: 3,
+            totalMinutes: 1612,
+            totalShots: 22,
+            shotsOnTarget: 8,
+            keyPasses: 25,
+            chancesCreated: 25,
+            dribbles: 18,
+            yellowCards: 4,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "serie_a",

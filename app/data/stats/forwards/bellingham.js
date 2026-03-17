@@ -6,6 +6,26 @@ export const bellinghamStats = {
     {
       season: "23/24",
       clubId: "real_madrid",
+      clubCareer: [
+        {
+          clubId: "real_madrid",
+          team: "Real Madrid",
+          career: {
+            totalAppearances: 45,
+            averageRating: 8.6,
+            totalGoals: 18,
+            totalAssists: 14,
+            totalMinutes: 3750,
+            totalShots: 100,
+            shotsOnTarget: 50,
+            keyPasses: 35,
+            chancesCreated: 35,
+            dribbles: 60,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -58,7 +78,7 @@ export const bellinghamStats = {
             chancesCreated: 10,
             dribblesCompleted: 8,
             dribbles: 20,
-            interceptions: 5, 
+            interceptions: 5,
             tackles: 10,
             dribbledPast: 3,
             clearances: 2,
@@ -99,12 +119,32 @@ export const bellinghamStats = {
             yellowToRedCards: 0,
             redCards: 0,
           },
-        }
+        },
       ],
     },
     {
       season: "22/23",
       clubId: "real_madrid",
+      clubCareer: [
+        {
+          clubId: "real_madrid",
+          team: "Real Madrid",
+          career: {
+            totalAppearances: 33,
+            averageRating: 8.4,
+            totalGoals: 12,
+            totalAssists: 9,
+            totalMinutes: 2720,
+            totalShots: 70,
+            shotsOnTarget: 35,
+            keyPasses: 23,
+            chancesCreated: 23,
+            dribbles: 35,
+            yellowCards: 3,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -168,8 +208,8 @@ export const bellinghamStats = {
             redCards: 0,
           },
         },
-      ]
-    }
+      ],
+    },
   ],
   career: {
     totalGoals: 90,
@@ -177,6 +217,6 @@ export const bellinghamStats = {
     totalAppearances: 169,
     averageRating: 8.8,
     titlesWon: 8,
-    awards: 6
-  }
-}
+    awards: 6,
+  },
+};

@@ -4,6 +4,26 @@ export const messiStats = {
     {
       season: "23/24",
       clubId: "intermiami",
+      clubCareer: [
+        {
+          clubId: "intermiami",
+          team: "Inter Miami",
+          career: {
+            totalAppearances: 22,
+            averageRating: 9.4,
+            totalGoals: 18,
+            totalAssists: 11,
+            totalMinutes: 1890,
+            totalShots: 74,
+            shotsOnTarget: 40,
+            keyPasses: 48,
+            chancesCreated: 48,
+            dribbles: 36,
+            yellowCards: 2,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "mls",

@@ -1,13 +1,15 @@
 export interface PlayerCompetitionStats {
+  appearances: number;
   age: number;
   height: number;
   team: string;
-  footyRating: number;  
+  footyRating: number;
   matchesPlayed: number;
   goals: number;
   assists: number;
   minutes: number;
   shots: number;
+  totalShots: number;
   shotsOnTarget: number;
   keyPasses: number;
   chancesCreated: number;
@@ -19,6 +21,7 @@ export interface PlayerCompetitionStats {
   groundDuelsWon: number;
   blockedShots: number;
   yellowCards: number;
+  yellowToRedCards: number;
   redCards: number;
 }
 
@@ -28,9 +31,31 @@ export interface CompetitionStats {
   stats: PlayerCompetitionStats;
 }
 
+export interface ClubCareerStats {
+  totalAppearances: number;
+  averageRating: number;
+  totalGoals: number;
+  totalAssists: number;
+  totalMinutes: number;
+  totalShots: number;
+  shotsOnTarget: number;
+  keyPasses: number;
+  chancesCreated: number;
+  dribbles: number;
+  yellowCards: number;
+  redCards: number;
+}
+
+export interface ClubCareerEntry {
+  clubId: string;
+  team: string;
+  career: ClubCareerStats;
+}
+
 export interface SeasonStats {
   season: string;
   clubId: string;
+  clubCareer: ClubCareerEntry[];
   competitions: CompetitionStats[];
 }
 

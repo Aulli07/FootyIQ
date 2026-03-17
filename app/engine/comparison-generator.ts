@@ -3,7 +3,7 @@ import { playerStats } from "../data/playerStats";
 import { CareerStats, CompetitionStats, SeasonStats } from "../types/stats";
 import { ComparisonTheme } from "../data/comparison-themes";
 
-export type MatchupType = "season" | "competition" | "career";
+export type MatchupType = "season" | "competition" | "career" | "club-career";
 // type MatchupType = string;
 type Matchup = [PlayerType, PlayerType, MatchupType];
 
@@ -192,6 +192,10 @@ export function getComparisons(
       );
     }
 
+    if (matchupType === "club-career") {
+      const clubCareerA = getClubCareer(playerA, theme?.filters.competitionIds);
+      const clubCaraeerB = getClubCareer(playerB, theme?.filters.competitionIds)
+    }
     // if (matchupType === "career") {
     //   const careerA = getCareer(playerA);
     //   const careerB = getCareer(playerB);
@@ -365,4 +369,11 @@ function findBestSeasonDate(
   return { kind: "season", bestSeasonDate, bestCompetitionId };
 }
 
+
+function getClubCareer(
+  player: PlayerType,
+  competitionIds: string[] | undefined
+) {
+  
+}
 

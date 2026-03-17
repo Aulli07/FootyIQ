@@ -4,6 +4,26 @@ export const lewandowskiStats = {
     {
       season: "23/24",
       clubId: "barcelona",
+      clubCareer: [
+        {
+          clubId: "barcelona",
+          team: "Barcelona",
+          career: {
+            totalAppearances: 47,
+            averageRating: 8.8,
+            totalGoals: 29,
+            totalAssists: 11,
+            totalMinutes: 3929,
+            totalShots: 145,
+            shotsOnTarget: 72,
+            keyPasses: 35,
+            chancesCreated: 35,
+            dribbles: 19,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",
@@ -103,6 +123,26 @@ export const lewandowskiStats = {
     {
       season: "22/23",
       clubId: "barcelona",
+      clubCareer: [
+        {
+          clubId: "barcelona",
+          team: "Barcelona",
+          career: {
+            totalAppearances: 39,
+            averageRating: 8.9,
+            totalGoals: 26,
+            totalAssists: 8,
+            totalMinutes: 3245,
+            totalShots: 126,
+            shotsOnTarget: 65,
+            keyPasses: 25,
+            chancesCreated: 25,
+            dribbles: 15,
+            yellowCards: 6,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",

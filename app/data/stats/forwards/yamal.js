@@ -4,6 +4,26 @@ export const yamalStats = {
     {
       season: "23/24",
       clubId: "barcelona",
+      clubCareer: [
+        {
+          clubId: "barcelona",
+          team: "FC Barcelona",
+          career: {
+            totalAppearances: 24,
+            averageRating: 8.9,
+            totalGoals: 7,
+            totalAssists: 9,
+            totalMinutes: 1700,
+            totalShots: 44,
+            shotsOnTarget: 21,
+            keyPasses: 31,
+            chancesCreated: 31,
+            dribbles: 46,
+            yellowCards: 2,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "laliga",

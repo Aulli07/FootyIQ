@@ -4,6 +4,26 @@ export const alvarezStats = {
     {
       season: "23/24",
       clubId: "manchester_city",
+      clubCareer: [
+        {
+          clubId: "manchester_city",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 48,
+            averageRating: 8.4,
+            totalGoals: 28,
+            totalAssists: 15,
+            totalMinutes: 3900,
+            totalShots: 143,
+            shotsOnTarget: 71,
+            keyPasses: 48,
+            chancesCreated: 48,
+            dribbles: 58,
+            yellowCards: 8,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",
@@ -36,7 +56,7 @@ export const alvarezStats = {
             redCards: 0,
           },
         },
-        { 
+        {
           id: "ucl",
           name: "UEFA Champions League",
           stats: {
@@ -158,13 +178,33 @@ export const alvarezStats = {
             yellowCards: 1,
             yellowToRedCards: 0,
             redCards: 0,
-          }
-        }
-      ],  
+          },
+        },
+      ],
     },
     {
       season: "22/23",
       clubId: "river_plate",
+      clubCareer: [
+        {
+          clubId: "river_plate",
+          team: "River Plate",
+          career: {
+            totalAppearances: 20,
+            averageRating: 8.3,
+            totalGoals: 10,
+            totalAssists: 5,
+            totalMinutes: 1800,
+            totalShots: 40,
+            shotsOnTarget: 20,
+            keyPasses: 15,
+            chancesCreated: 15,
+            dribbles: 20,
+            yellowCards: 3,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "argentine_primera",
@@ -196,9 +236,9 @@ export const alvarezStats = {
             yellowToRedCards: 0,
             redCards: 0,
           },
-        }
+        },
       ],
-    }
+    },
   ],
   career: {
     totalGoals: 55,
@@ -208,4 +248,4 @@ export const alvarezStats = {
     titlesWon: 7,
     awards: 5,
   },
-}
+};

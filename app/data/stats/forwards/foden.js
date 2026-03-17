@@ -4,6 +4,26 @@ export const fodenStats = {
     {
       season: "23/24",
       clubId: "manchester_city",
+      clubCareer: [
+        {
+          clubId: "manchester_city",
+          team: "Manchester City",
+          career: {
+            totalAppearances: 40,
+            averageRating: 8.9,
+            totalGoals: 20,
+            totalAssists: 16,
+            totalMinutes: 3300,
+            totalShots: 110,
+            shotsOnTarget: 55,
+            keyPasses: 45,
+            chancesCreated: 45,
+            dribbles: 50,
+            yellowCards: 3,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "epl",

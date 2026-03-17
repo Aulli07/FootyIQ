@@ -188,14 +188,16 @@ function HomePage() {
         {isSearch && <SearchedComparisonResults data={results} />}
       </div>
 
-      {!isSearch &&
-        SYSTEM_COMPARISON_THEMES.map((theme) => (
-          <ThemeSection key={theme.id} theme={theme} comparisons={comparisons} />
-        ))}
+      <div className="mt-3">
+        {!isSearch &&
+          SYSTEM_COMPARISON_THEMES.map((theme) => (
+            <ThemeSection key={theme.id} theme={theme} comparisons={comparisons} />
+          ))}
 
-      {!isSearch && <TopComparisonList />}
+        {!isSearch && <TopComparisonList />}
+      </div>
     </div>
-  );
+  )
 }
 
 export default function Home() {

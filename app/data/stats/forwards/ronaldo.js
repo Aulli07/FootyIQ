@@ -4,6 +4,26 @@ export const ronaldoStats = {
     {
       season: "23/24",
       clubId: "alnassr",
+      clubCareer: [
+        {
+          clubId: "alnassr",
+          team: "Al Nassr",
+          career: {
+            totalAppearances: 38,
+            averageRating: 9.5,
+            totalGoals: 34,
+            totalAssists: 11,
+            totalMinutes: 3300,
+            totalShots: 137,
+            shotsOnTarget: 72,
+            keyPasses: 44,
+            chancesCreated: 44,
+            dribbles: 28,
+            yellowCards: 5,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "spl",

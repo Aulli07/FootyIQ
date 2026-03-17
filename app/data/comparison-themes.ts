@@ -84,14 +84,4 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
     },
     rankingStrategy: "goals_creator_heavy"
   },
-  // {
-  //   id: "mls_magic_makers",
-  //   title: "MLS Magic Makers",
-  //   filters: {
-  //     categories: ["legend", "best", "prime"],
-  //     competitionIds: ["mls"],
-  //     minRating: 8.5,
-  //   },
-  //   rankingStrategy: "overall"
-  // },
 ];

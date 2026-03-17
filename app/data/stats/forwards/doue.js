@@ -4,6 +4,26 @@ export const doueStats = {
     {
       season: "23/24",
       clubId: "psg",
+      clubCareer: [
+        {
+          clubId: "psg",
+          team: "Paris Saint-Germain",
+          career: {
+            totalAppearances: 21,
+            averageRating: 8.6,
+            totalGoals: 6,
+            totalAssists: 5,
+            totalMinutes: 1500,
+            totalShots: 39,
+            shotsOnTarget: 18,
+            keyPasses: 22,
+            chancesCreated: 22,
+            dribbles: 33,
+            yellowCards: 1,
+            redCards: 0,
+          },
+        },
+      ],
       competitions: [
         {
           id: "ligue1",
