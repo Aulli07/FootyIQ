@@ -1,3 +1,5 @@
+import { buildApiFootballStatsFromLegacy } from "../api-football-utils";
+
 export const lewandowskiStats = {
   id: "lewandowski",
   seasons: [
@@ -218,3 +220,5 @@ export const lewandowskiStats = {
     awards: 11,
   },
 };
+
+export const lewandowskiApiFootballStats = buildApiFootballStatsFromLegacy(lewandowskiStats);

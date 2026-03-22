@@ -1,12 +1,14 @@
+import { buildApiFootballStatsFromLegacy } from "../api-football-utils";
+
 export const haalandStats = {
   id: "haaland",
   seasons: [
     {
       season: "23/24",
-      clubId: "manchester_cty",
+      clubId: "manchester_city",
       clubCareer: [
         {
-          clubId: "manchester_cty",
+          clubId: "manchester_city",
           team: "Manchester City",
           career: {
             totalAppearances: 46,
@@ -311,3 +313,5 @@ export const haalandStats = {
     awards: 8,
   },
 };
+
+export const haalandApiFootballStats = buildApiFootballStatsFromLegacy(haalandStats);

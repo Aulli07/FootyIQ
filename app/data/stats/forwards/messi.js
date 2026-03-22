@@ -1,3 +1,5 @@
+import { buildApiFootballStatsFromLegacy } from "../api-football-utils";
+
 export const messiStats = {
   id: "messi",
   seasons: [
@@ -67,3 +69,5 @@ export const messiStats = {
     awards: 15,
   },
 };
+
+export const messiApiFootballStats = buildApiFootballStatsFromLegacy(messiStats);

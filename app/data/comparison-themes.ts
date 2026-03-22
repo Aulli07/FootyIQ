@@ -73,7 +73,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
     rankingStrategy: "goals_creator_heavy"
   },
   {
-    id: "saudi_pro_league_icons",
+    id: "spl_pro_league_icons",
     title: "Saudi Pro League Icons",
     matchupType: "career",
     filters: {
@@ -84,4 +84,5 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonTheme[] = [
     },
     rankingStrategy: "goals_creator_heavy"
   },
+
 ];

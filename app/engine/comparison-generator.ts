@@ -374,6 +374,17 @@ function getClubCareer(
   player: PlayerType,
   competitionIds: string[] | undefined
 ) {
+  const playerSeasons = playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
   
+  if (!playerSeasons || !competitionIds) {
+    return null;
+  }
+
+  // const filteredSeasons = playerSeasons.map(career => ({
+  //   ...career,
+  //   competitions: season.competitions.filter(comp => competitionIds.includes(comp.id))
+  // })).filter(season => season.competitions.length > 0); 
+
+  const playerCareerSeason = playerSeasons.map(season => season.clubCareer.filter(career => competitionIds.includes(season.)))
 }
 

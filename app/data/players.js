@@ -139,6 +139,34 @@ export const players = [
     status: "Prime",
     team: "Real Madrid",
     footyRating: 9.3,
+    apiFootball: {
+      get: "players",
+      parameters: {
+        id: "276",
+      },
+      response: [
+        {
+          player: {
+            id: 276,
+            name: "Kylian Mbappé",
+            firstname: "Kylian",
+            lastname: "Mbappé",
+            age: 27,
+            birth: {
+              date: "1998-12-20",
+              place: "Paris",
+              country: "France",
+            },
+            nationality: "France",
+            height: "178 cm",
+            weight: "73 kg",
+            injured: false,
+            photo: "/images/messi.jpg",
+          },
+          statisticsEndpoint: "/players/statistics?id=276",
+        },
+      ],
+    },
     category() {
       return getCategory.call(this);
     },
@@ -290,3 +318,67 @@ export const players = [
     totalVotes: 310,
   },
 ];
+
+function splitNameParts(fullName) {
+  const parts = String(fullName ?? "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return { firstname: "Unknown", lastname: "Player" };
+  }
+
+  if (parts.length === 1) {
+    return { firstname: parts[0], lastname: "" };
+  }
+
+  return {
+    firstname: parts[0],
+    lastname: parts.slice(1).join(" "),
+  };
+}
+
+function fallbackPlayerId(playerId) {
+  let hash = 0;
+  const value = String(playerId ?? "");
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash * 31 + value.charCodeAt(i)) % 100000;
+  }
+  return 1000 + hash;
+}
+
+export const playersApiFootball = {
+  get: "players",
+  parameters: {
+    search: "all",
+  },
+  errors: [],
+  results: players.length,
+  response: players.map((player) => {
+    const { firstname, lastname } = splitNameParts(player.name);
+    const apiPlayerId =
+      player?.apiFootball?.response?.[0]?.player?.id ?? fallbackPlayerId(player.id);
+
+    return {
+      player: {
+        id: apiPlayerId,
+        name: player.name,
+        firstname,
+        lastname,
+        age: new Date().getFullYear() - player.birthYear,
+        birth: {
+          date: `${player.birthYear}-01-01`,
+          place: null,
+          country: player.nationality,
+        },
+        nationality: player.nationality,
+        height: `${player.heightCm} cm`,
+        weight: null,
+        injured: false,
+        photo: player.image,
+      },
+      statisticsEndpoint: `/players/statistics?id=${apiPlayerId}`,
+    };
+  }),
+};
