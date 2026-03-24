@@ -70,4 +70,5 @@ export const neymarStats = {
   },
 };
 
-export const neymarApiFootballStats = buildApiFootballStatsFromLegacy(neymarStats);
+export const neymarApiFootballStats =
+  buildApiFootballStatsFromLegacy(neymarStats);

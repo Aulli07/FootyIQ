@@ -221,4 +221,5 @@ export const pedriStats = {
   },
 };
 
-export const pedriApiFootballStats = buildApiFootballStatsFromLegacy(pedriStats);
+export const pedriApiFootballStats =
+  buildApiFootballStatsFromLegacy(pedriStats);

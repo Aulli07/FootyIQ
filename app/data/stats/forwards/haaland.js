@@ -314,4 +314,5 @@ export const haalandStats = {
   },
 };
 
-export const haalandApiFootballStats = buildApiFootballStatsFromLegacy(haalandStats);
+export const haalandApiFootballStats =
+  buildApiFootballStatsFromLegacy(haalandStats);

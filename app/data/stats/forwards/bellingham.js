@@ -222,4 +222,5 @@ export const bellinghamStats = {
   },
 };
 
-export const bellinghamApiFootballStats = buildApiFootballStatsFromLegacy(bellinghamStats);
+export const bellinghamApiFootballStats =
+  buildApiFootballStatsFromLegacy(bellinghamStats);

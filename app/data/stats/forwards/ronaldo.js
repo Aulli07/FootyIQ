@@ -101,4 +101,5 @@ export const ronaldoStats = {
   },
 };
 
-export const ronaldoApiFootballStats = buildApiFootballStatsFromLegacy(ronaldoStats);
+export const ronaldoApiFootballStats =
+  buildApiFootballStatsFromLegacy(ronaldoStats);

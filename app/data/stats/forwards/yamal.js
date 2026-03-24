@@ -70,4 +70,5 @@ export const yamalStats = {
   },
 };
 
-export const yamalApiFootballStats = buildApiFootballStatsFromLegacy(yamalStats);
+export const yamalApiFootballStats =
+  buildApiFootballStatsFromLegacy(yamalStats);

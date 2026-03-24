@@ -70,4 +70,5 @@ export const messiStats = {
   },
 };
 
-export const messiApiFootballStats = buildApiFootballStatsFromLegacy(messiStats);
+export const messiApiFootballStats =
+  buildApiFootballStatsFromLegacy(messiStats);

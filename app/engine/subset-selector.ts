@@ -1,4 +1,4 @@
-import { playerStats } from "../data/playerStats";
+import { allPlayerStatsLegacy as playerStats } from "../data/stats";
 import {
   ComparisonTheme,
   RankingStrategyType,
@@ -14,7 +14,7 @@ function getPlayerCompetitionIds(playerId: string) {
   }
 
   return playerStatRecord.seasons.flatMap((season) =>
-    season.competitions.map((competition) => competition.id),
+    season.competitions.map((competition: CompetitionStats) => competition.id),
   );
 }
 

@@ -1,7 +1,7 @@
 import { PlayerType } from "../types/players";
-import { playerStats } from "../data/playerStats";
 import { CareerStats, CompetitionStats, SeasonStats } from "../types/stats";
 import { ComparisonTheme } from "../data/comparison-themes";
+import { allPlayerStatsLegacy as playerStats } from "../data/stats";
 
 export type MatchupType = "season" | "competition" | "career" | "club-career";
 // type MatchupType = string;
@@ -250,8 +250,10 @@ function getTopCompetition(
 
   const filteredSeasons = playerSeasons.map(season => ({
     ...season,
-    competitions: season.competitions.filter(comp => competitionIds.includes(comp.id))
-  })).filter(season => season.competitions.length > 0);
+    competitions: season.competitions.filter((competition: CompetitionStats) =>
+      competitionIds.includes(competition.id),
+    ),
+  })).filter((season: SeasonStats) => season.competitions.length > 0);
 
   // console.log(filteredSeasons)
   return findBestCompetition(filteredSeasons);
@@ -380,11 +382,11 @@ function getClubCareer(
     return null;
   }
 
-  // const filteredSeasons = playerSeasons.map(career => ({
-  //   ...career,
-  //   competitions: season.competitions.filter(comp => competitionIds.includes(comp.id))
-  // })).filter(season => season.competitions.length > 0); 
-
-  const playerCareerSeason = playerSeasons.map(season => season.clubCareer.filter(career => competitionIds.includes(season.)))
+  return playerSeasons.flatMap((season) =>
+    season.clubCareer.filter(
+      (career) =>
+        competitionIds.includes(career.clubId) || competitionIds.includes(season.clubId),
+    ),
+  );
 }
 

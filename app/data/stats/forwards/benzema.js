@@ -70,4 +70,5 @@ export const benzemaStats = {
   },
 };
 
-export const benzemaApiFootballStats = buildApiFootballStatsFromLegacy(benzemaStats);
+export const benzemaApiFootballStats =
+  buildApiFootballStatsFromLegacy(benzemaStats);

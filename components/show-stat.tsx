@@ -1,5 +1,5 @@
 import { PlayerType } from "../app/types/players";
-import { playerStats } from "../app/data/playerStats";
+import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
 import { players } from "../app/data/players";
 import { PlayerCompetitionStats, StatsType } from "../app/types/stats";
 
@@ -171,11 +171,26 @@ function StatBlock({
   let valueB: string | number | null = null;
 
   if (isGeneral) {
-    valueA = detailsA?.[identifier as keyof PlayerType] ?? null;
-    valueB = detailsB?.[identifier as keyof PlayerType] ?? null;
+    valueA = getPlayerDetailValue(detailsA, identifier);
+    valueB = getPlayerDetailValue(detailsB, identifier);
   } else {
     valueA = getStatValue(statA, seasonA);
     valueB = getStatValue(statB, seasonB);
+  }
+
+  function getPlayerDetailValue(
+    player: PlayerType | null,
+    key: string,
+  ): string | number | null {
+    const value = player?.[key as keyof PlayerType];
+
+    if (typeof value === "function" || value === undefined) {
+      return null;
+    }
+
+    return typeof value === "string" || typeof value === "number"
+      ? value
+      : null;
   }
 
   function getStatValue(stat: StatsType | null, season: string) {

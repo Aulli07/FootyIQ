@@ -221,4 +221,5 @@ export const viniciusStats = {
   },
 };
 
-export const viniciusApiFootballStats = buildApiFootballStatsFromLegacy(viniciusStats);
+export const viniciusApiFootballStats =
+  buildApiFootballStatsFromLegacy(viniciusStats);

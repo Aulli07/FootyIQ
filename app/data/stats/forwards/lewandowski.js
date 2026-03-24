@@ -221,4 +221,5 @@ export const lewandowskiStats = {
   },
 };
 
-export const lewandowskiApiFootballStats = buildApiFootballStatsFromLegacy(lewandowskiStats);
+export const lewandowskiApiFootballStats =
+  buildApiFootballStatsFromLegacy(lewandowskiStats);

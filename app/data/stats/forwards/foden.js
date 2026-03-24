@@ -102,4 +102,5 @@ export const fodenStats = {
   },
 };
 
-export const fodenApiFootballStats = buildApiFootballStatsFromLegacy(fodenStats);
+export const fodenApiFootballStats =
+  buildApiFootballStatsFromLegacy(fodenStats);

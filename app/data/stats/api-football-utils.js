@@ -66,7 +66,10 @@ function seasonToYear(season) {
 }
 
 function splitName(fullName) {
-  const pieces = String(fullName ?? "").trim().split(/\s+/).filter(Boolean);
+  const pieces = String(fullName ?? "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
   if (pieces.length === 0) return { firstname: "Unknown", lastname: "Player" };
   if (pieces.length === 1) return { firstname: pieces[0], lastname: "" };
   return {
@@ -84,7 +87,13 @@ function getLeagueId(competitionId) {
   return LEAGUE_ID_MAP[competitionId] ?? hashId(competitionId, 200);
 }
 
-function buildApiRow({ legacyStats, season, competition, playerProfile, playerApiId }) {
+function buildApiRow({
+  legacyStats,
+  season,
+  competition,
+  playerProfile,
+  playerApiId,
+}) {
   const leagueId = getLeagueId(competition.id);
   const seasonYear = seasonToYear(season.season);
   const teamName = legacyStats?.team ?? competition.name;
@@ -93,8 +102,10 @@ function buildApiRow({ legacyStats, season, competition, playerProfile, playerAp
     player: {
       id: playerApiId,
       name: playerProfile?.name ?? legacyStats.id,
-      firstname: playerProfile?.firstname ?? splitName(playerProfile?.name).firstname,
-      lastname: playerProfile?.lastname ?? splitName(playerProfile?.name).lastname,
+      firstname:
+        playerProfile?.firstname ?? splitName(playerProfile?.name).firstname,
+      lastname:
+        playerProfile?.lastname ?? splitName(playerProfile?.name).lastname,
       age: legacyStats.age,
       birth: {
         date: `${playerProfile?.birthYear ?? 2000}-01-01`,
@@ -183,8 +194,12 @@ function buildApiRow({ legacyStats, season, competition, playerProfile, playerAp
 }
 
 export function buildApiFootballStatsFromLegacy(legacyPlayerStats) {
-  const playerProfile = players.find((player) => player.id === legacyPlayerStats.id);
-  const { firstname, lastname } = splitName(playerProfile?.name ?? legacyPlayerStats.id);
+  const playerProfile = players.find(
+    (player) => player.id === legacyPlayerStats.id,
+  );
+  const { firstname, lastname } = splitName(
+    playerProfile?.name ?? legacyPlayerStats.id,
+  );
   const playerApiId =
     playerProfile?.apiFootball?.response?.[0]?.player?.id ??
     PLAYER_ID_MAP[legacyPlayerStats.id] ??

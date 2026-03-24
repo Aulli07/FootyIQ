@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { oswald, poppins } from "../app/fonts";
 import { players } from "../app/data/players";
 import { PlayerType } from "../app/types/players";
-import { playerStats } from "../app/data/playerStats";
+import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
 import { InputBar } from "./search-bar";
 
 import { useTheme } from "next-themes";

@@ -2,7 +2,7 @@ import { PlayerType } from "../app/types/players";
 import { StatsType } from "../app/types/stats";
 
 import { poppins } from "../app/fonts";
-import { playerStats } from "../app/data/playerStats";
+import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
 
 const formatShortName = (name?: string) => {
   if (!name) return "";

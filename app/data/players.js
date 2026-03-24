@@ -358,7 +358,8 @@ export const playersApiFootball = {
   response: players.map((player) => {
     const { firstname, lastname } = splitNameParts(player.name);
     const apiPlayerId =
-      player?.apiFootball?.response?.[0]?.player?.id ?? fallbackPlayerId(player.id);
+      player?.apiFootball?.response?.[0]?.player?.id ??
+      fallbackPlayerId(player.id);
 
     return {
       player: {

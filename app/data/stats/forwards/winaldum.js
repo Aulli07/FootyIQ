@@ -190,4 +190,5 @@ export const winaldumStats = {
   },
 };
 
-export const winaldumApiFootballStats = buildApiFootballStatsFromLegacy(winaldumStats);
+export const winaldumApiFootballStats =
+  buildApiFootballStatsFromLegacy(winaldumStats);
