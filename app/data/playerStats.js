@@ -6,6 +6,6 @@ import { allPlayerStatsLegacy } from "./stats/index.js";
 
 /**
  * Legacy export — now a re-export from the centralized stats hub
- * Use allPlayerStatsLegacy or allPlayerStatsApiFootball from ./stats/index.js
+ * Use allPlayerStatsLegacy from ./stats/index.js
  */
 export const playerStats = allPlayerStatsLegacy;

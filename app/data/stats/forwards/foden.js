@@ -1,5 +1,3 @@
-import { buildApiFootballStatsFromLegacy } from "../api-football-utils";
-
 export const fodenStats = {
   id: "foden",
   seasons: [
@@ -101,6 +99,3 @@ export const fodenStats = {
     awards: 2,
   },
 };
-
-export const fodenApiFootballStats =
-  buildApiFootballStatsFromLegacy(fodenStats);

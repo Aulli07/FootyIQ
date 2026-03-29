@@ -1,5 +1,4 @@
 import { totalComparedPlayers } from "@/app/page";
-import { buildApiFootballStatsFromLegacy } from "../api-football-utils";
 
 export const bellinghamStats = {
   id: "bellingham",
@@ -221,6 +220,3 @@ export const bellinghamStats = {
     awards: 6,
   },
 };
-
-export const bellinghamApiFootballStats =
-  buildApiFootballStatsFromLegacy(bellinghamStats);
