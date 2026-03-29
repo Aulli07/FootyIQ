@@ -4,7 +4,7 @@ import {
   RankingStrategyType,
 } from "../data/comparison-themes";
 import { PlayerType } from "../types/players";
-import { CareerStats, CompetitionStats } from "../types/stats";
+import { CareerStats, CompetitionStats } from "../types/stats-legacy";
 
 function getPlayerCompetitionIds(playerId: string) {
   const playerStatRecord = playerStats.find((stat) => stat.id === playerId);

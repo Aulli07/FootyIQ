@@ -1,4 +1,4 @@
-import { totalComparedPlayers } from "@/app/page";
+
 
 export const bellinghamStats = {
   id: "bellingham",

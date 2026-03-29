@@ -1,7 +1,7 @@
 import { PlayerType } from "../app/types/players";
 import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
 import { players } from "../app/data/players";
-import { PlayerCompetitionStats, StatsType } from "../app/types/stats";
+import { PlayerCompetitionStats, StatsType } from "../app/types/stats-legacy";
 
 import { oswald, poppins } from "../app/fonts";
 import { useState } from "react";

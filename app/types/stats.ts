@@ -1,19 +1,64 @@
-export interface PlayerCompetitionStats {
+export type Foot = "left" | "right" | "both";
+
+export type CompetitionType = "league" | "cup" | "continental" | "international" | "friendly" | "other";
+
+export interface Player {
+  id: string;
+  fullName: string;
+  slug: string;
+  nationality?: string;
+  dateOfBirth?: string;
+  heightCm?: number;
+  preferredFoot?: Foot;
+  primaryPosition?: string;
+  imageUrl?: string;
+  currentClubId?: string;
+  active?: boolean;
+}
+
+export interface Club {
+  id: string;
+  name: string;
+  shortName?: string;
+  country?: string;
+  leagueId?: string;
+  logoUrl?: string;
+}
+
+export interface Competition {
+  id: string;
+  name: string;
+  type?: CompetitionType;
+  country?: string;
+  tier?: number;
+  logoUrl?: string;
+}
+
+export interface Season {
+  id: string;
+  label: string;
+  startYear: number;
+  endYear: number;
+  isCurrent?: boolean;
+}
+
+export interface PlayerSeasonStats {
+  id: string;
+  playerId: string;
+  seasonId: string;
+  clubId: string;
+  competitionId: string;
   appearances: number;
-  age: number;
-  height: number;
-  team: string;
-  footyRating: number;
-  matchesPlayed: number;
+  starts?: number;
+  minutes: number;
   goals: number;
   assists: number;
-  minutes: number;
   shots: number;
-  totalShots: number;
   shotsOnTarget: number;
   keyPasses: number;
   chancesCreated: number;
   dribbles: number;
+  dribblesCompleted?: number;
   interceptions: number;
   tackles: number;
   dribbledPast: number;
@@ -23,53 +68,78 @@ export interface PlayerCompetitionStats {
   yellowCards: number;
   yellowToRedCards: number;
   redCards: number;
+  rating?: number;
+  source: "legacy" | "manual" | "api-football";
+  updatedAt: string;
 }
 
-export interface CompetitionStats {
+export interface PlayerMatchStats {
   id: string;
-  name: string;
-  stats: PlayerCompetitionStats;
-}
-
-export interface ClubCareerStats {
-  totalAppearances: number;
-  averageRating: number;
-  totalGoals: number;
-  totalAssists: number;
-  totalMinutes: number;
-  totalShots: number;
+  playerId: string;
+  matchId: string;
+  seasonId: string;
+  competitionId: string;
+  clubId: string;
+  started?: boolean;
+  minutes: number;
+  goals: number;
+  assists: number;
+  shots: number;
   shotsOnTarget: number;
   keyPasses: number;
   chancesCreated: number;
   dribbles: number;
+  dribblesCompleted?: number;
+  interceptions: number;
+  tackles: number;
+  dribbledPast: number;
+  clearances: number;
+  groundDuelsWon: number;
+  blockedShots: number;
   yellowCards: number;
+  yellowToRedCards: number;
   redCards: number;
+  rating?: number;
+  source: "legacy" | "manual" | "api-football";
+  updatedAt: string;
 }
 
-export interface ClubCareerEntry {
-  clubId: string;
-  team: string;
-  career: ClubCareerStats;
-}
-
-export interface SeasonStats {
-  season: string;
-  clubId: string;
-  clubCareer: ClubCareerEntry[];
-  competitions: CompetitionStats[];
-}
-
-export interface CareerStats {
-  totalGoals: number;
-  totalAssists: number;
-  totalAppearances: number;
-  averageRating: number;
-  titlesWon: number;
-  awards: number;
-}
-
-export interface StatsType {
+export interface PlayerCareerStats {
   id: string;
-  seasons: SeasonStats[];
-  career: CareerStats;
+  playerId: string;
+  appearances: number;
+  starts?: number;
+  minutes: number;
+  goals: number;
+  assists: number;
+  shots: number;
+  shotsOnTarget: number;
+  keyPasses: number;
+  chancesCreated: number;
+  dribbles: number;
+  dribblesCompleted?: number;
+  interceptions: number;
+  tackles: number;
+  dribbledPast: number;
+  clearances: number;
+  groundDuelsWon: number;
+  blockedShots: number;
+  yellowCards: number;
+  yellowToRedCards: number;
+  redCards: number;
+  averageRating?: number;
+  titlesWon?: number;
+  awards?: number;
+  source: "legacy" | "manual" | "api-football";
+  updatedAt: string;
+}
+
+export interface FootballDataStore {
+  players: Player[];
+  clubs: Club[];
+  competitions: Competition[];
+  seasons: Season[];
+  playerSeasonStats: PlayerSeasonStats[];
+  playerMatchStats: PlayerMatchStats[];
+  playerCareerStats: PlayerCareerStats[];
 }

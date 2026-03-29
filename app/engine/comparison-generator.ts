@@ -1,5 +1,9 @@
 import { PlayerType } from "../types/players";
-import { CareerStats, CompetitionStats, SeasonStats } from "../types/stats";
+import {
+  CareerStats,
+  CompetitionStats,
+  SeasonStats,
+} from "../types/stats-legacy";
 import { ComparisonTheme } from "../data/comparison-themes";
 import { allPlayerStatsLegacy as playerStats } from "../data/stats";
 
@@ -24,10 +28,8 @@ type CompetitionComparisonMode = {
 //   data: CareerStats;
 // };
 
-type ComparisonModeData =
-  | SeasonComparisonMode
-  | CompetitionComparisonMode
-  // | CareerComparisonMode;
+type ComparisonModeData = SeasonComparisonMode | CompetitionComparisonMode;
+// | CareerComparisonMode;
 
 export type ComparisonResult = {
   theme: ComparisonTheme | "general";
@@ -53,7 +55,10 @@ const MULTIPLIER: { spl: number; epl: number; cl: number } = {
   cl: 2.5,
 };
 
-export function generatePlayersMatchup(players: PlayerType[], matchup: MatchupType) {
+export function generatePlayersMatchup(
+  players: PlayerType[],
+  matchup: MatchupType,
+) {
   // const alreadyGeneratedSet = new Set();
   const matchups: Matchup[] = [];
 
@@ -173,8 +178,14 @@ export function getComparisons(
     }
 
     if (matchupType === "competition") {
-      const competitionA = getTopCompetition(playerA, theme?.filters.competitionIds);
-      const competitionB = getTopCompetition(playerB, theme?.filters.competitionIds);
+      const competitionA = getTopCompetition(
+        playerA,
+        theme?.filters.competitionIds,
+      );
+      const competitionB = getTopCompetition(
+        playerB,
+        theme?.filters.competitionIds,
+      );
 
       if (!competitionA || !competitionB) {
         continue;
@@ -194,7 +205,10 @@ export function getComparisons(
 
     if (matchupType === "club-career") {
       const clubCareerA = getClubCareer(playerA, theme?.filters.competitionIds);
-      const clubCaraeerB = getClubCareer(playerB, theme?.filters.competitionIds)
+      const clubCaraeerB = getClubCareer(
+        playerB,
+        theme?.filters.competitionIds,
+      );
     }
     // if (matchupType === "career") {
     //   const careerA = getCareer(playerA);
@@ -237,23 +251,26 @@ function getTopSeason(player: PlayerType): SeasonComparisonMode | null {
 //   return { kind: "career", data: careerStats };
 // }
 
-
 function getTopCompetition(
   player: PlayerType,
-  competitionIds: string[] | undefined
+  competitionIds: string[] | undefined,
 ) {
-  const playerSeasons = playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
-  
+  const playerSeasons =
+    playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
+
   if (!playerSeasons || !competitionIds) {
     return null;
   }
 
-  const filteredSeasons = playerSeasons.map(season => ({
-    ...season,
-    competitions: season.competitions.filter((competition: CompetitionStats) =>
-      competitionIds.includes(competition.id),
-    ),
-  })).filter((season: SeasonStats) => season.competitions.length > 0);
+  const filteredSeasons = playerSeasons
+    .map((season) => ({
+      ...season,
+      competitions: season.competitions.filter(
+        (competition: CompetitionStats) =>
+          competitionIds.includes(competition.id),
+      ),
+    }))
+    .filter((season: SeasonStats) => season.competitions.length > 0);
 
   // console.log(filteredSeasons)
   return findBestCompetition(filteredSeasons);
@@ -334,7 +351,6 @@ function getCompetitionStats(
   );
 }
 
-
 function calculateSeasonScore(season: SeasonStats | null) {
   if (!season || season.competitions.length === 0) return 0;
 
@@ -362,7 +378,7 @@ function findBestSeasonDate(
     const currentSeasonScore = calculateSeasonScore(seasons[i]);
 
     if (currentSeasonScore > bestSeasonScore) {
-      bestCompetitionId = seasons[i].competitions[i].id ;
+      bestCompetitionId = seasons[i].competitions[i].id;
       bestSeasonScore = currentSeasonScore;
       bestSeasonDate = seasons[i].season;
     }
@@ -371,13 +387,13 @@ function findBestSeasonDate(
   return { kind: "season", bestSeasonDate, bestCompetitionId };
 }
 
-
 function getClubCareer(
   player: PlayerType,
-  competitionIds: string[] | undefined
+  competitionIds: string[] | undefined,
 ) {
-  const playerSeasons = playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
-  
+  const playerSeasons =
+    playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
+
   if (!playerSeasons || !competitionIds) {
     return null;
   }
@@ -385,8 +401,8 @@ function getClubCareer(
   return playerSeasons.flatMap((season) =>
     season.clubCareer.filter(
       (career) =>
-        competitionIds.includes(career.clubId) || competitionIds.includes(season.clubId),
+        competitionIds.includes(career.clubId) ||
+        competitionIds.includes(season.clubId),
     ),
   );
 }
-
