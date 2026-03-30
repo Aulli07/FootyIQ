@@ -1,42 +1,83 @@
 import { players } from "../../players";
+import { clubs as clubMap } from "../../clubs";
 
-const LEAGUE_ID_MAP = {
-  world_cup: 1,
-  ucl: 2,
-  euro: 4,
-  nations_league: 5,
-  acl: 17,
-  epl: 39,
-  fa_cup: 45,
-  carabao_cup: 48,
-  ligue1: 61,
-  bundesliga: 78,
-  argentina_primera: 128,
-  argentine_primera: 128,
-  serie_a: 135,
-  laliga: 140,
-  copa_del_rey: 143,
-  mls: 253,
-  spl: 307,
+const COMPETITION_META = {
+  epl: {
+    type: "league",
+    country: "England",
+    tier: 1,
+    logoUrl: "/images/epl.png",
+  },
+  laliga: {
+    type: "league",
+    country: "Spain",
+    tier: 1,
+    logoUrl: "/images/laliga.png",
+  },
+  ligue1: {
+    type: "league",
+    country: "France",
+    tier: 1,
+    logoUrl: "/images/ligue1.png",
+  },
+  serie_a: {
+    type: "league",
+    country: "Italy",
+    tier: 1,
+    logoUrl: "/images/serie-a.png",
+  },
+  bundesliga: {
+    type: "league",
+    country: "Germany",
+    tier: 1,
+    logoUrl: "/images/bundesliga.png",
+  },
+  mls: { type: "league", country: "USA", tier: 1, logoUrl: "/images/mls.png" },
+  spl: {
+    type: "league",
+    country: "Saudi Arabia",
+    tier: 1,
+    logoUrl: "/images/spl.png",
+  },
+  ucl: {
+    type: "continental",
+    country: "Europe",
+    tier: 1,
+    logoUrl: "/images/ucl.png",
+  },
+  acl: {
+    type: "continental",
+    country: "Asia",
+    tier: 1,
+    logoUrl: "/images/acl.png",
+  },
+  copa_del_rey: {
+    type: "cup",
+    country: "Spain",
+    tier: 1,
+    logoUrl: "/images/copa-del-rey.png",
+  },
+  world_cup: {
+    type: "international",
+    country: "World",
+    tier: 1,
+    logoUrl: "/images/world-cup.png",
+  },
 };
 
-const PLAYER_ID_MAP = {
-  ronaldo: 874,
-  messi: 154,
-  neymar: 276,
-  benzema: 332,
-  doue: 58219,
-  yamal: 162291,
-  alvarez: 1100,
-  bellingham: 152463,
-  foden: 5519,
-  haaland: 11086,
-  lewandowski: 519,
-  pedri: 47832,
-  rodri: 1627,
-  vinicius: 20594,
-  winaldum: 1609,
-  mbappe: 276,
+const TEAM_TO_CLUB_ID = {
+  "Al Nassr": "alnassr",
+  "Inter Miami": "intermiami",
+  "Santos FC": "santos",
+  "Al-Ittihad": "alittihad",
+  "Paris Saint-Germain": "psg",
+  "FC Barcelona": "barcelona",
+  Barcelona: "barcelona",
+  "Manchester City": "manchester_city",
+  "Real Madrid": "real_madrid",
+  "Atlético Madrid": "atletico_madrid",
+  "Al-Hilal": "alhilal",
+  "Al-Ettifaq": "alettifaq",
 };
 
 function toSlug(value) {
@@ -48,21 +89,37 @@ function toSlug(value) {
     .replace(/(^-|-$)/g, "");
 }
 
-function hashId(value, seed = 1000) {
-  const text = String(value ?? "");
-  let hash = 0;
-  for (let index = 0; index < text.length; index += 1) {
-    hash = (hash * 31 + text.charCodeAt(index)) % 100000;
-  }
-  return seed + hash;
+function normalizeFoot(value) {
+  const foot = String(value ?? "")
+    .trim()
+    .toLowerCase();
+  if (foot === "left" || foot === "right" || foot === "both") return foot;
+  return "both";
 }
 
-function seasonToYear(season) {
-  if (!season || typeof season !== "string") return new Date().getFullYear();
-  const parts = season.split("/");
+function slugifySeason(label) {
+  const parts = String(label ?? "").split("/");
+  if (parts.length !== 2) return toSlug(label);
+  const start = Number(parts[0]);
+  const end = Number(parts[1]);
+  if (Number.isNaN(start) || Number.isNaN(end)) return toSlug(label);
+  const fullStart = start < 100 ? 2000 + start : start;
+  const fullEnd = end < 100 ? 2000 + end : end;
+  return `${fullStart}-${fullEnd}`;
+}
+
+function seasonYearFromLabel(label) {
+  const parts = String(label ?? "").split("/");
   const start = Number(parts[0]);
   if (Number.isNaN(start)) return new Date().getFullYear();
   return start < 100 ? 2000 + start : start;
+}
+
+function seasonEndYearFromLabel(label) {
+  const parts = String(label ?? "").split("/");
+  const end = Number(parts[1]);
+  if (Number.isNaN(end)) return seasonYearFromLabel(label) + 1;
+  return end < 100 ? 2000 + end : end;
 }
 
 function splitName(fullName) {
@@ -70,165 +127,307 @@ function splitName(fullName) {
     .trim()
     .split(/\s+/)
     .filter(Boolean);
+
   if (pieces.length === 0) return { firstname: "Unknown", lastname: "Player" };
   if (pieces.length === 1) return { firstname: pieces[0], lastname: "" };
+
   return {
     firstname: pieces[0],
     lastname: pieces.slice(1).join(" "),
   };
 }
 
-function parseRating(value) {
-  if (typeof value === "number") return value.toFixed(1);
-  return String(value ?? "0.0");
+function ensureNumber(value) {
+  return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
 
-function getLeagueId(competitionId) {
-  return LEAGUE_ID_MAP[competitionId] ?? hashId(competitionId, 200);
+function uniqueById(items) {
+  const seen = new Set();
+  return items.filter((item) => {
+    if (seen.has(item.id)) return false;
+    seen.add(item.id);
+    return true;
+  });
 }
 
-function buildApiRow({
-  legacyStats,
-  season,
-  competition,
-  playerProfile,
-  playerApiId,
-}) {
-  const leagueId = getLeagueId(competition.id);
-  const seasonYear = seasonToYear(season.season);
-  const teamName = legacyStats?.team ?? competition.name;
+function getClubIdFromTeam(teamName) {
+  if (TEAM_TO_CLUB_ID[teamName]) return TEAM_TO_CLUB_ID[teamName];
+  return toSlug(teamName);
+}
+
+function getClubNameById(clubId) {
+  const club = Object.values(clubMap).find((entry) => entry.id === clubId);
+  if (club) return club.name;
+
+  const player = players.find(
+    (entry) => getClubIdFromTeam(entry.team) === clubId,
+  );
+  return player?.team ?? clubId;
+}
+
+function getClubLogoById(clubId) {
+  const club = Object.values(clubMap).find((entry) => entry.id === clubId);
+  return club?.logo ?? `/clubs/${clubId}.png`;
+}
+
+function getCompetitionMeta(competitionId) {
+  return (
+    COMPETITION_META[competitionId] ?? {
+      type: "other",
+      country: undefined,
+      tier: 1,
+      logoUrl: `/images/${toSlug(competitionId)}.png`,
+    }
+  );
+}
+
+function createSeasonId(seasonLabel) {
+  return slugifySeason(seasonLabel);
+}
+
+function mapSeasonStats(playerId, season, competition, clubId) {
+  const stats = competition.stats ?? {};
+  const appearances = ensureNumber(stats.appearances ?? stats.matchesPlayed);
+  const seasonId = createSeasonId(season.season);
+  const competitionId = competition.id;
 
   return {
-    player: {
-      id: playerApiId,
-      name: playerProfile?.name ?? legacyStats.id,
-      firstname:
-        playerProfile?.firstname ?? splitName(playerProfile?.name).firstname,
-      lastname:
-        playerProfile?.lastname ?? splitName(playerProfile?.name).lastname,
-      age: legacyStats.age,
-      birth: {
-        date: `${playerProfile?.birthYear ?? 2000}-01-01`,
-        place: null,
-        country: playerProfile?.nationality ?? null,
-      },
-      nationality: playerProfile?.nationality ?? null,
-      height: `${legacyStats.height} cm`,
-      weight: null,
-      injured: false,
-      photo: playerProfile?.image ?? "/images/default-player.png",
-    },
-    team: {
-      id: hashId(teamName, 500),
-      name: teamName,
-      logo: `/images/${toSlug(teamName)}.png`,
-    },
-    league: {
-      id: leagueId,
-      name: competition.name,
-      country: null,
-      logo: `/images/${toSlug(competition.name)}.png`,
-      flag: null,
-      season: seasonYear,
-    },
-    games: {
-      appearences: legacyStats.matchesPlayed,
-      lineups: legacyStats.matchesPlayed,
-      minutes: legacyStats.minutes,
-      number: null,
-      position: "Attacker",
-      rating: parseRating(legacyStats.footyRating),
-      captain: false,
-    },
-    substitutes: {
-      in: 0,
-      out: 0,
-      bench: 0,
-    },
-    shots: {
-      total: legacyStats.totalShots,
-      on: legacyStats.shotsOnTarget,
-    },
-    goals: {
-      total: legacyStats.goals,
-      conceded: 0,
-      assists: legacyStats.assists,
-      saves: null,
-    },
-    passes: {
-      total: null,
-      key: legacyStats.keyPasses,
-      accuracy: null,
-    },
-    tackles: {
-      total: legacyStats.tackles,
-      blocks: legacyStats.blockedShots,
-      interceptions: legacyStats.interceptions,
-    },
-    duels: {
-      total: null,
-      won: legacyStats.groundDuelsWon,
-    },
-    dribbles: {
-      attempts: legacyStats.dribbles,
-      success: legacyStats.dribblesCompleted ?? null,
-      past: legacyStats.dribbledPast,
-    },
-    fouls: {
-      drawn: null,
-      committed: null,
-    },
-    cards: {
-      yellow: legacyStats.yellowCards,
-      yellowred: legacyStats.yellowToRedCards,
-      red: legacyStats.redCards,
-    },
-    penalty: {
-      won: null,
-      commited: null,
-      scored: null,
-      missed: null,
-      saved: null,
-    },
+    id: `${playerId}:${seasonId}:${competitionId}`,
+    playerId,
+    seasonId,
+    clubId,
+    competitionId,
+    appearances,
+    starts: ensureNumber(stats.matchesPlayed),
+    minutes: ensureNumber(stats.minutes),
+    goals: ensureNumber(stats.goals),
+    assists: ensureNumber(stats.assists),
+    shots: ensureNumber(stats.shots ?? stats.totalShots),
+    shotsOnTarget: ensureNumber(stats.shotsOnTarget),
+    keyPasses: ensureNumber(stats.keyPasses),
+    chancesCreated: ensureNumber(stats.chancesCreated),
+    dribbles: ensureNumber(stats.dribbles),
+    dribblesCompleted:
+      stats.dribblesCompleted !== undefined
+        ? ensureNumber(stats.dribblesCompleted)
+        : undefined,
+    interceptions: ensureNumber(stats.interceptions),
+    tackles: ensureNumber(stats.tackles),
+    dribbledPast: ensureNumber(stats.dribbledPast),
+    clearances: ensureNumber(stats.clearances),
+    groundDuelsWon: ensureNumber(stats.groundDuelsWon),
+    blockedShots: ensureNumber(stats.blockedShots),
+    yellowCards: ensureNumber(stats.yellowCards),
+    yellowToRedCards: ensureNumber(stats.yellowToRedCards),
+    redCards: ensureNumber(stats.redCards),
+    rating: ensureNumber(stats.footyRating),
+    source: "legacy",
+    updatedAt: new Date().toISOString(),
   };
 }
 
-export function buildApiFootballStatsFromLegacy(legacyPlayerStats) {
-  const playerProfile = players.find(
-    (player) => player.id === legacyPlayerStats.id,
+function aggregateCareerStats(playerId, legacyCareer, seasonRows) {
+  const totals = seasonRows.reduce(
+    (accumulator, row) => ({
+      appearances: accumulator.appearances + row.appearances,
+      starts: accumulator.starts + ensureNumber(row.starts),
+      minutes: accumulator.minutes + row.minutes,
+      goals: accumulator.goals + row.goals,
+      assists: accumulator.assists + row.assists,
+      shots: accumulator.shots + row.shots,
+      shotsOnTarget: accumulator.shotsOnTarget + row.shotsOnTarget,
+      keyPasses: accumulator.keyPasses + row.keyPasses,
+      chancesCreated: accumulator.chancesCreated + row.chancesCreated,
+      dribbles: accumulator.dribbles + row.dribbles,
+      dribblesCompleted:
+        accumulator.dribblesCompleted + ensureNumber(row.dribblesCompleted),
+      interceptions: accumulator.interceptions + row.interceptions,
+      tackles: accumulator.tackles + row.tackles,
+      dribbledPast: accumulator.dribbledPast + row.dribbledPast,
+      clearances: accumulator.clearances + row.clearances,
+      groundDuelsWon: accumulator.groundDuelsWon + row.groundDuelsWon,
+      blockedShots: accumulator.blockedShots + row.blockedShots,
+      yellowCards: accumulator.yellowCards + row.yellowCards,
+      yellowToRedCards: accumulator.yellowToRedCards + row.yellowToRedCards,
+      redCards: accumulator.redCards + row.redCards,
+      ratingSum: accumulator.ratingSum + row.rating * row.appearances,
+      ratingAppearances: accumulator.ratingAppearances + row.appearances,
+    }),
+    {
+      appearances: 0,
+      starts: 0,
+      minutes: 0,
+      goals: 0,
+      assists: 0,
+      shots: 0,
+      shotsOnTarget: 0,
+      keyPasses: 0,
+      chancesCreated: 0,
+      dribbles: 0,
+      dribblesCompleted: 0,
+      interceptions: 0,
+      tackles: 0,
+      dribbledPast: 0,
+      clearances: 0,
+      groundDuelsWon: 0,
+      blockedShots: 0,
+      yellowCards: 0,
+      yellowToRedCards: 0,
+      redCards: 0,
+      ratingSum: 0,
+      ratingAppearances: 0,
+    },
   );
-  const { firstname, lastname } = splitName(
-    playerProfile?.name ?? legacyPlayerStats.id,
-  );
-  const playerApiId =
-    playerProfile?.apiFootball?.response?.[0]?.player?.id ??
-    PLAYER_ID_MAP[legacyPlayerStats.id] ??
-    hashId(legacyPlayerStats.id, 1000);
 
-  const response = legacyPlayerStats.seasons.flatMap((season) =>
-    season.competitions.map((competition) =>
-      buildApiRow({
-        legacyStats: competition.stats,
-        season,
-        competition,
-        playerProfile: {
-          ...playerProfile,
-          firstname,
-          lastname,
-        },
-        playerApiId,
-      }),
+  const averageRating =
+    totals.ratingAppearances > 0
+      ? totals.ratingSum / totals.ratingAppearances
+      : ensureNumber(legacyCareer?.averageRating);
+
+  return {
+    id: playerId,
+    playerId,
+    appearances: totals.appearances,
+    starts: totals.starts,
+    minutes: totals.minutes,
+    goals: totals.goals,
+    assists: totals.assists,
+    shots: totals.shots,
+    shotsOnTarget: totals.shotsOnTarget,
+    keyPasses: totals.keyPasses,
+    chancesCreated: totals.chancesCreated,
+    dribbles: totals.dribbles,
+    dribblesCompleted: totals.dribblesCompleted,
+    interceptions: totals.interceptions,
+    tackles: totals.tackles,
+    dribbledPast: totals.dribbledPast,
+    clearances: totals.clearances,
+    groundDuelsWon: totals.groundDuelsWon,
+    blockedShots: totals.blockedShots,
+    yellowCards: totals.yellowCards,
+    yellowToRedCards: totals.yellowToRedCards,
+    redCards: totals.redCards,
+    averageRating,
+    titlesWon: ensureNumber(legacyCareer?.titlesWon),
+    awards: ensureNumber(legacyCareer?.awards),
+    source: "legacy",
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function buildPlayers() {
+  return players.map((player) => {
+    const clubId = getClubIdFromTeam(player.team);
+
+    return {
+      id: player.id,
+      fullName: player.name,
+      slug: player.id,
+      nationality: player.nationality,
+      dateOfBirth: `${player.birthYear}-01-01`,
+      heightCm: player.heightCm,
+      preferredFoot: normalizeFoot(player.preferredFoot),
+      primaryPosition: player.position,
+      imageUrl: player.image,
+      currentClubId: clubId,
+      active: true,
+    };
+  });
+}
+
+function buildClubs() {
+  const fromPlayers = players.map((player) => {
+    const clubId = getClubIdFromTeam(player.team);
+    return {
+      id: clubId,
+      name: player.team,
+      country: player.nationality,
+      logoUrl: getClubLogoById(clubId),
+    };
+  });
+
+  const fromClubMap = Object.values(clubMap).map((club) => ({
+    id: club.id,
+    name: club.name,
+    country: club.country,
+    logoUrl: club.logo,
+  }));
+
+  return uniqueById([...fromClubMap, ...fromPlayers]);
+}
+
+function buildCompetitions(legacyStats) {
+  const allCompetitions = legacyStats.flatMap((playerStats) =>
+    playerStats.seasons.flatMap((season) =>
+      season.competitions.map((competition) => ({
+        id: competition.id,
+        name: competition.name,
+        ...getCompetitionMeta(competition.id),
+      })),
     ),
   );
 
+  return uniqueById(allCompetitions);
+}
+
+function buildSeasons(legacyStats) {
+  const seasons = legacyStats.flatMap((playerStats) =>
+    playerStats.seasons.map((season) => ({
+      id: createSeasonId(season.season),
+      label: season.season,
+      startYear: seasonYearFromLabel(season.season),
+      endYear: seasonEndYearFromLabel(season.season),
+      isCurrent: season.season === "23/24",
+    })),
+  );
+
+  return uniqueById(seasons);
+}
+
+export function buildCanonicalStoreFromLegacy(legacyStats) {
+  const playersStore = buildPlayers();
+  const clubsStore = buildClubs();
+  const competitionsStore = buildCompetitions(legacyStats);
+  const seasonsStore = buildSeasons(legacyStats);
+
+  const playerSeasonStats = [];
+  const playerCareerStats = [];
+
+  legacyStats.forEach((playerStats) => {
+    const legacyPlayer = playersStore.find(
+      (player) => player.id === playerStats.id,
+    );
+    const seasonRows = [];
+
+    playerStats.seasons.forEach((season) => {
+      const clubId =
+        season.clubId ||
+        legacyPlayer?.currentClubId ||
+        getClubIdFromTeam(legacyPlayer?.primaryPosition ?? "");
+
+      season.competitions.forEach((competition) => {
+        const row = mapSeasonStats(playerStats.id, season, competition, clubId);
+        seasonRows.push(row);
+        playerSeasonStats.push(row);
+      });
+    });
+
+    playerCareerStats.push(
+      aggregateCareerStats(playerStats.id, playerStats.career, seasonRows),
+    );
+  });
+
   return {
-    get: "players/statistics",
-    parameters: {
-      id: String(playerApiId),
-      season: "all",
-    },
-    errors: [],
-    results: response.length,
-    response,
+    players: playersStore,
+    clubs: clubsStore,
+    competitions: competitionsStore,
+    seasons: seasonsStore,
+    playerSeasonStats,
+    playerMatchStats: [],
+    playerCareerStats,
   };
+}
+
+export function buildApiFootballStatsFromLegacy(legacyStats) {
+  return buildCanonicalStoreFromLegacy(legacyStats);
 }
