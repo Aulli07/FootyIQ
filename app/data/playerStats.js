@@ -1,11 +1,11 @@
 /**
- * @deprecated Import from ./stats/index.js instead
+ * @deprecated Import from ./player-stats/index.js instead
  * This file is kept for backwards compatibility
  */
-import { allPlayerStatsLegacy } from "./stats/index.js";
+import { allPlayerStatsLegacy } from "./player-stats/index.js";
 
 /**
  * Legacy export — now a re-export from the centralized stats hub
- * Use allPlayerStatsLegacy from ./stats/index.js
+ * Use allPlayerStatsLegacy from ./player-stats/index.js
  */
 export const playerStats = allPlayerStatsLegacy;

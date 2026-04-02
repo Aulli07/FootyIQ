@@ -1,71 +1,41 @@
-import { players } from "../../players";
 import { clubs as clubMap } from "../../clubs";
+import { players } from "../../players";
+import type {
+  Club,
+  Competition,
+  CompetitionType,
+  FootballDataStore,
+  Foot,
+  Player,
+  PlayerCareerStats,
+  PlayerSeasonStats,
+  Season,
+} from "../../../types/stats";
+import type {
+  CompetitionStats as LegacyCompetitionStats,
+  StatsType as LegacyStatsType,
+} from "../../../types/stats-legacy";
 
-const COMPETITION_META = {
-  epl: {
-    type: "league",
-    country: "England",
-    tier: 1,
-    logoUrl: "/images/epl.png",
-  },
-  laliga: {
-    type: "league",
-    country: "Spain",
-    tier: 1,
-    logoUrl: "/images/laliga.png",
-  },
-  ligue1: {
-    type: "league",
-    country: "France",
-    tier: 1,
-    logoUrl: "/images/ligue1.png",
-  },
-  serie_a: {
-    type: "league",
-    country: "Italy",
-    tier: 1,
-    logoUrl: "/images/serie-a.png",
-  },
-  bundesliga: {
-    type: "league",
-    country: "Germany",
-    tier: 1,
-    logoUrl: "/images/bundesliga.png",
-  },
+type LegacyPlayerStats = LegacyStatsType;
+type LegacySeasonStats = LegacyStatsType["seasons"][number];
+
+type CompetitionMeta = Pick<Competition, "type" | "country" | "tier" | "logoUrl">;
+
+const COMPETITION_META: Record<string, CompetitionMeta> = {
+  epl: { type: "league", country: "England", tier: 1, logoUrl: "/images/epl.png" },
+  laliga: { type: "league", country: "Spain", tier: 1, logoUrl: "/images/laliga.png" },
+  ligue1: { type: "league", country: "France", tier: 1, logoUrl: "/images/ligue1.png" },
+  serie_a: { type: "league", country: "Italy", tier: 1, logoUrl: "/images/serie-a.png" },
+  bundesliga: { type: "league", country: "Germany", tier: 1, logoUrl: "/images/bundesliga.png" },
   mls: { type: "league", country: "USA", tier: 1, logoUrl: "/images/mls.png" },
-  spl: {
-    type: "league",
-    country: "Saudi Arabia",
-    tier: 1,
-    logoUrl: "/images/spl.png",
-  },
-  ucl: {
-    type: "continental",
-    country: "Europe",
-    tier: 1,
-    logoUrl: "/images/ucl.png",
-  },
-  acl: {
-    type: "continental",
-    country: "Asia",
-    tier: 1,
-    logoUrl: "/images/acl.png",
-  },
-  copa_del_rey: {
-    type: "cup",
-    country: "Spain",
-    tier: 1,
-    logoUrl: "/images/copa-del-rey.png",
-  },
-  world_cup: {
-    type: "international",
-    country: "World",
-    tier: 1,
-    logoUrl: "/images/world-cup.png",
-  },
+  spl: { type: "league", country: "Saudi Arabia", tier: 1, logoUrl: "/images/spl.png" },
+  ucl: { type: "continental", country: "Europe", tier: 1, logoUrl: "/images/ucl.png" },
+  acl: { type: "continental", country: "Asia", tier: 1, logoUrl: "/images/acl.png" },
+  copa_del_rey: { type: "cup", country: "Spain", tier: 1, logoUrl: "/images/copa-del-rey.png" },
+  world_cup: { type: "international", country: "World", tier: 1, logoUrl: "/images/world-cup.png" },
 };
 
-const TEAM_TO_CLUB_ID = {
+const TEAM_TO_CLUB_ID: Record<string, string> = {
   "Al Nassr": "alnassr",
   "Inter Miami": "intermiami",
   "Santos FC": "santos",
@@ -80,7 +50,7 @@ const TEAM_TO_CLUB_ID = {
   "Al-Ettifaq": "alettifaq",
 };
 
-function toSlug(value) {
+function toSlug(value: unknown): string {
   return String(value ?? "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -89,15 +59,13 @@ function toSlug(value) {
     .replace(/(^-|-$)/g, "");
 }
 
-function normalizeFoot(value) {
-  const foot = String(value ?? "")
-    .trim()
-    .toLowerCase();
+function normalizeFoot(value: unknown): Foot {
+  const foot = String(value ?? "").trim().toLowerCase();
   if (foot === "left" || foot === "right" || foot === "both") return foot;
   return "both";
 }
 
-function slugifySeason(label) {
+function slugifySeason(label: string): string {
   const parts = String(label ?? "").split("/");
   if (parts.length !== 2) return toSlug(label);
   const start = Number(parts[0]);
@@ -108,21 +76,21 @@ function slugifySeason(label) {
   return `${fullStart}-${fullEnd}`;
 }
 
-function seasonYearFromLabel(label) {
+function seasonYearFromLabel(label: string): number {
   const parts = String(label ?? "").split("/");
   const start = Number(parts[0]);
   if (Number.isNaN(start)) return new Date().getFullYear();
   return start < 100 ? 2000 + start : start;
 }
 
-function seasonEndYearFromLabel(label) {
+function seasonEndYearFromLabel(label: string): number {
   const parts = String(label ?? "").split("/");
   const end = Number(parts[1]);
   if (Number.isNaN(end)) return seasonYearFromLabel(label) + 1;
   return end < 100 ? 2000 + end : end;
 }
 
-function splitName(fullName) {
+function splitName(fullName: string): { firstname: string; lastname: string } {
   const pieces = String(fullName ?? "")
     .trim()
     .split(/\s+/)
@@ -137,12 +105,12 @@ function splitName(fullName) {
   };
 }
 
-function ensureNumber(value) {
+function ensureNumber(value: unknown): number {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
 
-function uniqueById(items) {
-  const seen = new Set();
+function uniqueById<T extends { id: string }>(items: T[]): T[] {
+  const seen = new Set<string>();
   return items.filter((item) => {
     if (seen.has(item.id)) return false;
     seen.add(item.id);
@@ -150,27 +118,17 @@ function uniqueById(items) {
   });
 }
 
-function getClubIdFromTeam(teamName) {
+function getClubIdFromTeam(teamName: string): string {
   if (TEAM_TO_CLUB_ID[teamName]) return TEAM_TO_CLUB_ID[teamName];
   return toSlug(teamName);
 }
 
-function getClubNameById(clubId) {
-  const club = Object.values(clubMap).find((entry) => entry.id === clubId);
-  if (club) return club.name;
-
-  const player = players.find(
-    (entry) => getClubIdFromTeam(entry.team) === clubId,
-  );
-  return player?.team ?? clubId;
-}
-
-function getClubLogoById(clubId) {
+function getClubLogoById(clubId: string): string {
   const club = Object.values(clubMap).find((entry) => entry.id === clubId);
   return club?.logo ?? `/clubs/${clubId}.png`;
 }
 
-function getCompetitionMeta(competitionId) {
+function getCompetitionMeta(competitionId: string): CompetitionMeta {
   return (
     COMPETITION_META[competitionId] ?? {
       type: "other",
@@ -181,11 +139,16 @@ function getCompetitionMeta(competitionId) {
   );
 }
 
-function createSeasonId(seasonLabel) {
+function createSeasonId(seasonLabel: string): string {
   return slugifySeason(seasonLabel);
 }
 
-function mapSeasonStats(playerId, season, competition, clubId) {
+function mapSeasonStats(
+  playerId: string,
+  season: LegacySeasonStats,
+  competition: LegacyCompetitionStats,
+  clubId: string,
+): PlayerSeasonStats {
   const stats = competition.stats ?? {};
   const appearances = ensureNumber(stats.appearances ?? stats.matchesPlayed);
   const seasonId = createSeasonId(season.season);
@@ -226,7 +189,11 @@ function mapSeasonStats(playerId, season, competition, clubId) {
   };
 }
 
-function aggregateCareerStats(playerId, legacyCareer, seasonRows) {
+function aggregateCareerStats(
+  playerId: string,
+  legacyCareer: LegacyPlayerStats["career"],
+  seasonRows: PlayerSeasonStats[],
+): PlayerCareerStats {
   const totals = seasonRows.reduce(
     (accumulator, row) => ({
       appearances: accumulator.appearances + row.appearances,
@@ -315,7 +282,7 @@ function aggregateCareerStats(playerId, legacyCareer, seasonRows) {
   };
 }
 
-function buildPlayers() {
+function buildPlayers(): Player[] {
   return players.map((player) => {
     const clubId = getClubIdFromTeam(player.team);
 
@@ -335,9 +302,10 @@ function buildPlayers() {
   });
 }
 
-function buildClubs() {
-  const fromPlayers = players.map((player) => {
+function buildClubs(): Club[] {
+  const fromPlayers: Club[] = players.map((player) => {
     const clubId = getClubIdFromTeam(player.team);
+
     return {
       id: clubId,
       name: player.team,
@@ -346,7 +314,7 @@ function buildClubs() {
     };
   });
 
-  const fromClubMap = Object.values(clubMap).map((club) => ({
+  const fromClubMap: Club[] = Object.values(clubMap).map((club) => ({
     id: club.id,
     name: club.name,
     country: club.country,
@@ -356,8 +324,8 @@ function buildClubs() {
   return uniqueById([...fromClubMap, ...fromPlayers]);
 }
 
-function buildCompetitions(legacyStats) {
-  const allCompetitions = legacyStats.flatMap((playerStats) =>
+function buildCompetitions(legacyStats: LegacyPlayerStats[]): Competition[] {
+  const allCompetitions: Competition[] = legacyStats.flatMap((playerStats) =>
     playerStats.seasons.flatMap((season) =>
       season.competitions.map((competition) => ({
         id: competition.id,
@@ -370,8 +338,8 @@ function buildCompetitions(legacyStats) {
   return uniqueById(allCompetitions);
 }
 
-function buildSeasons(legacyStats) {
-  const seasons = legacyStats.flatMap((playerStats) =>
+function buildSeasons(legacyStats: LegacyPlayerStats[]): Season[] {
+  const seasons: Season[] = legacyStats.flatMap((playerStats) =>
     playerStats.seasons.map((season) => ({
       id: createSeasonId(season.season),
       label: season.season,
@@ -384,26 +352,26 @@ function buildSeasons(legacyStats) {
   return uniqueById(seasons);
 }
 
-export function buildCanonicalStoreFromLegacy(legacyStats) {
+export function buildCanonicalStoreFromLegacy(
+  legacyStats: LegacyPlayerStats[],
+): FootballDataStore {
   const playersStore = buildPlayers();
   const clubsStore = buildClubs();
   const competitionsStore = buildCompetitions(legacyStats);
   const seasonsStore = buildSeasons(legacyStats);
 
-  const playerSeasonStats = [];
-  const playerCareerStats = [];
+  const playerSeasonStats: PlayerSeasonStats[] = [];
+  const playerCareerStats: PlayerCareerStats[] = [];
 
   legacyStats.forEach((playerStats) => {
     const legacyPlayer = playersStore.find(
       (player) => player.id === playerStats.id,
     );
-    const seasonRows = [];
+    const seasonRows: PlayerSeasonStats[] = [];
 
     playerStats.seasons.forEach((season) => {
       const clubId =
-        season.clubId ||
-        legacyPlayer?.currentClubId ||
-        getClubIdFromTeam(legacyPlayer?.primaryPosition ?? "");
+        season.clubId || legacyPlayer?.currentClubId || getClubIdFromTeam(legacyPlayer?.primaryPosition ?? "");
 
       season.competitions.forEach((competition) => {
         const row = mapSeasonStats(playerStats.id, season, competition, clubId);
@@ -428,6 +396,8 @@ export function buildCanonicalStoreFromLegacy(legacyStats) {
   };
 }
 
-export function buildApiFootballStatsFromLegacy(legacyStats) {
+export function buildApiFootballStatsFromLegacy(
+  legacyStats: LegacyPlayerStats[],
+): FootballDataStore {
   return buildCanonicalStoreFromLegacy(legacyStats);
 }

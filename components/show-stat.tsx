@@ -1,16 +1,16 @@
 import { PlayerType } from "../app/types/players";
-import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
 import { players } from "../app/data/players";
-import { PlayerCompetitionStats, StatsType } from "../app/types/stats-legacy";
+import { getCanonicalPlayerSeasonRowsBySeasonLabel } from "../app/data/stats/canonical-store";
+import { PlayerSeasonStats } from "../app/types/stats";
 
 import { oswald, poppins } from "../app/fonts";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { generalStats } from "../app/data/stats/statlabels";
-import { attackingStats } from "../app/data/stats/statlabels";
-import { defendingStats } from "../app/data/stats/statlabels";
-import { cardStats } from "../app/data/stats/statlabels";
+import { generalStats } from "../app/data/player-stats/statlabels";
+import { attackingStats } from "../app/data/player-stats/statlabels";
+import { defendingStats } from "../app/data/player-stats/statlabels";
+import { cardStats } from "../app/data/player-stats/statlabels";
 
 function StatsBoard({
   players,
@@ -153,13 +153,6 @@ function StatBlock({
   seasonB: string;
   isGeneral: boolean;
 }) {
-  const statA = playerA
-    ? playerStats.find((p) => p?.id === playerA?.id) || null
-    : null;
-  const statB = playerB
-    ? playerStats.find((p) => p?.id === playerB?.id) || null
-    : null;
-
   const detailsA = playerA
     ? players.find((p) => p?.id === playerA?.id) || null
     : null;
@@ -174,8 +167,8 @@ function StatBlock({
     valueA = getPlayerDetailValue(detailsA, identifier);
     valueB = getPlayerDetailValue(detailsB, identifier);
   } else {
-    valueA = getStatValue(statA, seasonA);
-    valueB = getStatValue(statB, seasonB);
+    valueA = getStatValue(playerA, seasonA);
+    valueB = getStatValue(playerB, seasonB);
   }
 
   function getPlayerDetailValue(
@@ -193,22 +186,27 @@ function StatBlock({
       : null;
   }
 
-  function getStatValue(stat: StatsType | null, season: string) {
-    const seasonData = stat?.seasons.find((s) => s.season === season);
+  function getStatValue(player: PlayerType | null, season: string) {
+    if (!player) return "-";
 
-    let total = 0;
-    if (!seasonData) return "-";
-    seasonData.competitions.forEach((comp) => {
-      if (
-        comp.stats[identifier as keyof PlayerCompetitionStats] !== undefined
-      ) {
-        total +=
-          (comp.stats[identifier as keyof PlayerCompetitionStats] as number) ||
-          0;
-      }
-    });
+    const seasonRows: PlayerSeasonStats[] = getCanonicalPlayerSeasonRowsBySeasonLabel(
+      player.id,
+      season,
+    );
 
-    return total;
+    if (seasonRows.length === 0) return "-";
+
+    const canonicalKey =
+      identifier === "totalShots"
+        ? "shots"
+        : identifier === "footyRating"
+          ? "rating"
+          : identifier;
+
+    return seasonRows.reduce<number>((total: number, row: PlayerSeasonStats) => {
+      const value = row[canonicalKey as keyof PlayerSeasonStats];
+      return total + (typeof value === "number" ? value : 0);
+    }, 0);
   }
 
   return (

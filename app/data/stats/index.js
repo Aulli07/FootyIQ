@@ -3,22 +3,22 @@
  * Plain mock data lives here; API-style conversion belongs in a separate adapter.
  */
 
-import { ronaldoStats } from "./forwards/ronaldo";
-import { messiStats } from "./forwards/messi";
-import { neymarStats } from "./forwards/neymar";
-import { benzemaStats } from "./forwards/benzema";
-import { doueStats } from "./forwards/doue";
-import { yamalStats } from "./forwards/yamal";
-import { alvarezStats } from "./forwards/alvarez";
-import { bellinghamStats } from "./forwards/bellingham";
-import { fodenStats } from "./forwards/foden";
-import { haalandStats } from "./forwards/haaland";
-import { lewandowskiStats } from "./forwards/lewandowski";
-import { mbappeStats } from "./forwards/mbappe";
-import { pedriStats } from "./forwards/pedri";
-import { rodriStats } from "./forwards/rodri";
-import { viniciusStats } from "./forwards/vinicius";
-import { winaldumStats } from "./forwards/winaldum";
+import { ronaldoStats } from "./ronaldo";
+import { messiStats } from "./messi";
+import { neymarStats } from "./neymar";
+import { benzemaStats } from "./benzema";
+import { doueStats } from "./doue";
+import { yamalStats } from "./yamal";
+import { alvarezStats } from "./alvarez";
+import { bellinghamStats } from "./bellingham";
+import { fodenStats } from "./foden";
+import { haalandStats } from "./haaland";
+import { lewandowskiStats } from "./lewandowski";
+import { mbappeStats } from "./mbappe";
+import { pedriStats } from "./pedri";
+import { rodriStats } from "./rodri";
+import { viniciusStats } from "./vinicius";
+import { winaldumStats } from "./winaldum";
 
 /**
  * Legacy player stats array.

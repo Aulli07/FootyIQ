@@ -1,8 +1,8 @@
 import { PlayerType } from "../app/types/players";
-import { StatsType } from "../app/types/stats-legacy";
+import { PlayerCareerStats } from "../app/types/stats";
 
 import { poppins } from "../app/fonts";
-import { allPlayerStatsLegacy as playerStats } from "../app/data/stats";
+import { getCanonicalPlayerCareerStats } from "../app/data/stats/canonical-store";
 
 const formatShortName = (name?: string) => {
   if (!name) return "";
@@ -11,12 +11,12 @@ const formatShortName = (name?: string) => {
   return `${parts[0]?.[0] ?? ""}. ${parts.slice(1).join(" ")}`.trim();
 };
 
-const aggregatePlayerStats = (player: StatsType | null) => {
-  const totalGoals = player?.career.totalGoals || 0;
-  const totalAppearances = player?.career.totalAppearances || 0;
+const aggregatePlayerStats = (player: PlayerCareerStats | null) => {
+  const totalGoals = player?.goals || 0;
+  const totalAppearances = player?.appearances || 0;
 
   const weightedRatingSum = () => {
-    const rating = Number(player?.career.averageRating) || 0;
+    const rating = Number(player?.averageRating) || 0;
     if (!Number.isFinite(rating) || totalAppearances <= 0) return 0;
     return rating * totalAppearances;
   };
@@ -40,14 +40,8 @@ const getPreferenceForPair = (pair: Array<PlayerType | null>) => {
     };
   }
 
-  // playerStats is an object keyed by player id -> array of season stats
-  // We intentionally avoid hardcoding player keys by using dynamic indexing (left.id/right.id).
-  const statsByPlayerId = playerStats as unknown as Record<string, StatsType[]>;
-
-  const leftPlayerStats =
-    playerStats.find((stat) => stat.id === left.id) || null;
-  const rightPlayerStats =
-    playerStats.find((stat) => stat.id === right.id) || null;
+  const leftPlayerStats = getCanonicalPlayerCareerStats(left.id);
+  const rightPlayerStats = getCanonicalPlayerCareerStats(right.id);
 
   const leftAgg = aggregatePlayerStats(leftPlayerStats);
   const rightAgg = aggregatePlayerStats(rightPlayerStats);

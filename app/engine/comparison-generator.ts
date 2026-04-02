@@ -1,11 +1,11 @@
 import { PlayerType } from "../types/players";
-import {
-  CareerStats,
-  CompetitionStats,
-  SeasonStats,
-} from "../types/stats-legacy";
+import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats";
 import { ComparisonTheme } from "../data/comparison-themes";
-import { allPlayerStatsLegacy as playerStats } from "../data/stats";
+import {
+  getCanonicalPlayerCareerStats,
+  getCanonicalPlayerSeasonRows,
+  getCanonicalSeasonById,
+} from "../data/player-stats/canonical-store";
 
 export type MatchupType = "season" | "competition" | "career" | "club-career";
 // type MatchupType = string;
@@ -23,10 +23,11 @@ type CompetitionComparisonMode = {
   bestCompetitionId: string | null;
 };
 
-// type CareerComparisonMode = {
-//   kind: "career";
-//   data: CareerStats;
-// };
+type SeasonGroup = {
+  seasonId: string;
+  seasonLabel: string;
+  rows: PlayerSeasonStats[];
+};
 
 type ComparisonModeData = SeasonComparisonMode | CompetitionComparisonMode;
 // | CareerComparisonMode;
@@ -235,8 +236,7 @@ export function getComparisons(
 }
 
 function getTopSeason(player: PlayerType): SeasonComparisonMode | null {
-  const playerSeasons =
-    playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
+  const playerSeasons = groupPlayerSeasonRows(player.id);
   return findBestSeasonDate(playerSeasons);
 }
 
@@ -255,43 +255,31 @@ function getTopCompetition(
   player: PlayerType,
   competitionIds: string[] | undefined,
 ) {
-  const playerSeasons =
-    playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
+  const playerSeasons = groupPlayerSeasonRows(player.id, competitionIds);
 
-  if (!playerSeasons || !competitionIds) {
+  if (!playerSeasons.length) {
     return null;
   }
 
-  const filteredSeasons = playerSeasons
-    .map((season) => ({
-      ...season,
-      competitions: season.competitions.filter(
-        (competition: CompetitionStats) =>
-          competitionIds.includes(competition.id),
-      ),
-    }))
-    .filter((season: SeasonStats) => season.competitions.length > 0);
-
-  // console.log(filteredSeasons)
-  return findBestCompetition(filteredSeasons);
+  return findBestCompetition(playerSeasons);
 }
 
 function findBestCompetition(
-  seasons: SeasonStats[] | null,
+  seasons: SeasonGroup[] | null,
 ): CompetitionComparisonMode | null {
   if (!seasons || seasons.length === 0) return null;
 
   let { bestCompetitionId, bestCompetition } = calculateCompetitionStats(
-    seasons[0],
+    seasons[0].rows,
   ) ?? { bestCompetitionId: null, bestCompetition: 0 };
 
-  let seasonDateForBestCompetition = seasons[0].season;
+  let seasonDateForBestCompetition = seasons[0].seasonLabel;
 
   for (let i = 1; i < seasons.length; i++) {
     let {
       bestCompetitionId: currentCompetitionId,
       bestCompetition: currentCompetition,
-    } = calculateCompetitionStats(seasons[i]) ?? {
+    } = calculateCompetitionStats(seasons[i].rows) ?? {
       bestCompetitionId: null,
       bestCompetition: 0,
     };
@@ -299,7 +287,7 @@ function findBestCompetition(
     if ((currentCompetition ?? -Infinity) > (bestCompetition ?? -Infinity)) {
       bestCompetition = currentCompetition;
       bestCompetitionId = currentCompetitionId;
-      seasonDateForBestCompetition = seasons[i].season;
+      seasonDateForBestCompetition = seasons[i].seasonLabel;
     }
   }
 
@@ -311,28 +299,29 @@ function findBestCompetition(
   };
 }
 
-function calculateCompetitionStats(season: SeasonStats | null) {
-  if (!season || season.competitions.length === 0) {
+function calculateCompetitionStats(season: PlayerSeasonStats[] | null) {
+  if (!season || season.length === 0) {
     return { bestCompetitionId: null, bestCompetition: null };
   }
 
-  let bestCompetition = findBestCompetitionStats(season?.competitions[0]) ?? 0;
-  let bestCompetitionId = season?.competitions[0].id;
-  for (let i = 0; i < season?.competitions.length; i++) {
-    let currentComp = findBestCompetitionStats(season?.competitions[i]) ?? 0;
+  let bestCompetition = findBestCompetitionStats(season[0]) ?? 0;
+  let bestCompetitionId = season[0].competitionId;
+  for (let i = 0; i < season.length; i++) {
+    let currentComp = findBestCompetitionStats(season[i]) ?? 0;
     if (currentComp > bestCompetition) {
       bestCompetition = currentComp;
-      bestCompetitionId = season?.competitions[i].id;
+      bestCompetitionId = season[i].competitionId;
     }
   }
 
   return { bestCompetitionId, bestCompetition };
 }
 
-function findBestCompetitionStats(comp: CompetitionStats | null) {
+function findBestCompetitionStats(comp: PlayerSeasonStats | null) {
   if (!comp) return null;
 
-  const compMultiplier = MULTIPLIER[comp?.id as keyof typeof MULTIPLIER] ?? 1;
+  const compMultiplier =
+    MULTIPLIER[comp?.competitionId as keyof typeof MULTIPLIER] ?? 1;
   const compScore = getCompetitionStats(compMultiplier, comp);
 
   return compScore;
@@ -340,25 +329,25 @@ function findBestCompetitionStats(comp: CompetitionStats | null) {
 
 function getCompetitionStats(
   compMultiplier: number,
-  competition: CompetitionStats,
+  competition: PlayerSeasonStats,
 ) {
   return (
     compMultiplier *
-    (competition.stats.goals +
-      0.5 * competition.stats.assists +
-      0.1 * competition.stats.keyPasses +
-      competition.stats.minutes / 90)
+    (competition.goals +
+      0.5 * competition.assists +
+      0.1 * competition.keyPasses +
+      competition.minutes / 90)
   );
 }
 
-function calculateSeasonScore(season: SeasonStats | null) {
-  if (!season || season.competitions.length === 0) return 0;
+function calculateSeasonScore(season: PlayerSeasonStats[] | null) {
+  if (!season || season.length === 0) return 0;
 
   let seasonScore = 0;
 
-  for (const competition of season.competitions) {
+  for (const competition of season) {
     const compMultiplier =
-      MULTIPLIER[competition.id as keyof typeof MULTIPLIER] ?? 1;
+      MULTIPLIER[competition.competitionId as keyof typeof MULTIPLIER] ?? 1;
     seasonScore += getCompetitionStats(compMultiplier, competition);
   }
 
@@ -366,21 +355,21 @@ function calculateSeasonScore(season: SeasonStats | null) {
 }
 
 function findBestSeasonDate(
-  seasons: SeasonStats[] | null,
+  seasons: SeasonGroup[] | null,
 ): SeasonComparisonMode | null {
   if (!seasons || seasons.length === 0) return null;
 
-  let bestSeasonDate = seasons[0].season;
-  let bestCompetitionId = seasons[0]?.competitions[0]?.id ?? null;
-  let bestSeasonScore = calculateSeasonScore(seasons[0]);
+  let bestSeasonDate = seasons[0].seasonLabel;
+  let bestCompetitionId = seasons[0]?.rows[0]?.competitionId ?? null;
+  let bestSeasonScore = calculateSeasonScore(seasons[0].rows);
 
   for (let i = 1; i < seasons.length; i++) {
-    const currentSeasonScore = calculateSeasonScore(seasons[i]);
+    const currentSeasonScore = calculateSeasonScore(seasons[i].rows);
 
     if (currentSeasonScore > bestSeasonScore) {
-      bestCompetitionId = seasons[i].competitions[i].id;
+      bestCompetitionId = seasons[i].rows[0]?.competitionId ?? null;
       bestSeasonScore = currentSeasonScore;
-      bestSeasonDate = seasons[i].season;
+      bestSeasonDate = seasons[i].seasonLabel;
     }
   }
 
@@ -391,18 +380,36 @@ function getClubCareer(
   player: PlayerType,
   competitionIds: string[] | undefined,
 ) {
-  const playerSeasons =
-    playerStats.find((stat) => stat.id === player.id)?.seasons ?? null;
+  const career = getCanonicalPlayerCareerStats(player.id);
 
-  if (!playerSeasons || !competitionIds) {
+  if (!career || !competitionIds) {
     return null;
   }
 
-  return playerSeasons.flatMap((season) =>
-    season.clubCareer.filter(
-      (career) =>
-        competitionIds.includes(career.clubId) ||
-        competitionIds.includes(season.clubId),
-    ),
+  return career;
+}
+
+function groupPlayerSeasonRows(
+  playerId: string,
+  competitionIds?: string[],
+): SeasonGroup[] {
+  const playerRows = getCanonicalPlayerSeasonRows(playerId).filter((row) =>
+    competitionIds && competitionIds.length > 0
+      ? competitionIds.includes(row.competitionId)
+      : true,
   );
+
+  const seasonMap = new Map<string, PlayerSeasonStats[]>();
+
+  playerRows.forEach((row) => {
+    const existing = seasonMap.get(row.seasonId) ?? [];
+    existing.push(row);
+    seasonMap.set(row.seasonId, existing);
+  });
+
+  return Array.from(seasonMap.entries()).map(([seasonId, rows]) => ({
+    seasonId,
+    seasonLabel: getCanonicalSeasonById(seasonId)?.label ?? seasonId,
+    rows,
+  }));
 }

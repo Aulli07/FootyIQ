@@ -1,5 +1,5 @@
 import { players } from "../data/players";
-import { allPlayerStatsLegacy as playerStats } from "../data/stats";
+import { allPlayerStatsLegacy as playerStats } from "../data/player-stats";
 
 import { AllPosts } from "../data/posts";
 import { follows } from "../data/follows";

@@ -1,21 +1,17 @@
-import { allPlayerStatsLegacy as playerStats } from "../data/stats";
+import {
+  getCanonicalPlayerCareerStats,
+  getCanonicalPlayerCompetitionIds,
+  getCanonicalPlayerSeasonRows,
+} from "../data/player-stats/canonical-store";
 import {
   ComparisonTheme,
   RankingStrategyType,
 } from "../data/comparison-themes";
 import { PlayerType } from "../types/players";
-import { CareerStats, CompetitionStats } from "../types/stats-legacy";
+import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats";
 
 function getPlayerCompetitionIds(playerId: string) {
-  const playerStatRecord = playerStats.find((stat) => stat.id === playerId);
-
-  if (!playerStatRecord) {
-    return [];
-  }
-
-  return playerStatRecord.seasons.flatMap((season) =>
-    season.competitions.map((competition: CompetitionStats) => competition.id),
-  );
+  return getCanonicalPlayerCompetitionIds(playerId);
 }
 
 function matchesTheme(player: PlayerType, theme: ComparisonTheme) {
@@ -65,20 +61,14 @@ function matchesTheme(player: PlayerType, theme: ComparisonTheme) {
   return true;
 }
 
-function getPlayerCompetitions(playerId: string): CompetitionStats[] {
-  const playerStatRecord = playerStats.find((stat) => stat.id === playerId);
-
-  if (!playerStatRecord) {
-    return [];
-  }
-
-  return playerStatRecord.seasons.flatMap((season) => season.competitions);
+function getPlayerCompetitions(playerId: string): PlayerSeasonStats[] {
+  return getCanonicalPlayerSeasonRows(playerId);
 }
 
 type StrategyScorer = (
-  competitions: CompetitionStats[],
+  competitions: PlayerSeasonStats[],
   player: PlayerType,
-  career?: CareerStats,
+  career?: PlayerCareerStats | null,
 ) => number;
 
 const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
@@ -86,9 +76,9 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     competitions.reduce(
       (score, competition) =>
         score +
-        competition.stats.goals +
-        0.7 * competition.stats.assists +
-        0.05 * competition.stats.keyPasses,
+        competition.goals +
+        0.7 * competition.assists +
+        0.05 * competition.keyPasses,
       player.footyRating,
     ),
 
@@ -96,9 +86,9 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     competitions.reduce(
       (score, competition) =>
         score +
-        1.5 * competition.stats.goals +
-        0.5 * competition.stats.assists +
-        0.1 * competition.stats.shotsOnTarget,
+        1.5 * competition.goals +
+        0.5 * competition.assists +
+        0.1 * competition.shotsOnTarget,
       player.footyRating,
     ),
 
@@ -106,10 +96,10 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     competitions.reduce(
       (score, competition) =>
         score +
-        1.5 * competition.stats.assists +
-        0.3 * competition.stats.goals +
-        0.3 * competition.stats.keyPasses +
-        0.3 * competition.stats.chancesCreated,
+        1.5 * competition.assists +
+        0.3 * competition.goals +
+        0.3 * competition.keyPasses +
+        0.3 * competition.chancesCreated,
       player.footyRating,
     ),
 
@@ -117,10 +107,10 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     competitions.reduce(
       (score, competition) =>
         score +
-        1.2 * competition.stats.goals +
-        1.1 * competition.stats.assists +
-        0.3 * competition.stats.keyPasses +
-        0.3 * competition.stats.chancesCreated,
+        1.2 * competition.goals +
+        1.1 * competition.assists +
+        0.3 * competition.keyPasses +
+        0.3 * competition.chancesCreated,
       player.footyRating,
     ),
 
@@ -128,9 +118,9 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     competitions.reduce(
       (score, competition) =>
         score +
-        competition.stats.tackles +
-        0.5 * competition.stats.interceptions +
-        0.05 * competition.stats.clearances,
+        competition.tackles +
+        0.5 * competition.interceptions +
+        0.05 * competition.clearances,
       player.footyRating,
     ),
 
@@ -140,11 +130,11 @@ const strategyScorers: Record<RankingStrategyType, StrategyScorer> = {
     }
 
     return (
-      career.totalGoals +
-      0.7 * career.totalAssists +
-      8 * career.titlesWon +
-      12 * career.awards +
-      20 * career.averageRating
+      career.goals +
+      0.7 * career.assists +
+      8 * (career.titlesWon ?? 0) +
+      12 * (career.awards ?? 0) +
+      20 * (career.averageRating ?? player.footyRating)
     );
   },
 };
@@ -159,7 +149,7 @@ function scorePlayer(player: PlayerType, theme: ComparisonTheme): number {
         )
       : allCompetitions;
 
-  const career = playerStats.find((stat) => stat.id === player.id)?.career;
+  const career = getCanonicalPlayerCareerStats(player.id);
   const scorer = strategyScorers[theme.rankingStrategy];
 
   return scorer(relevantCompetitions, player, career);

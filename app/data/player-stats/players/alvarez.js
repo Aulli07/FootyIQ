@@ -208,7 +208,7 @@ export const alvarezStats = {
       competitions: [
         {
           id: "argentine_primera",
-          name: "Argentine Primera División",
+          name: "Argentine Primera Divisi+�n",
           stats: {
             appearances: 20,
             age: 24,
@@ -249,4 +249,3 @@ export const alvarezStats = {
     awards: 5,
   },
 };
-zqx4n;
