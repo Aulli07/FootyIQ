@@ -8,7 +8,7 @@ import {
   RankingStrategyType,
 } from "../data/comparison-themes";
 import { PlayerType } from "../types/players";
-import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats";
+import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats-schema";
 
 function getPlayerCompetitionIds(playerId: string) {
   return getCanonicalPlayerCompetitionIds(playerId);

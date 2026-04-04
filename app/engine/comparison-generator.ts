@@ -1,5 +1,5 @@
 import { PlayerType } from "../types/players";
-import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats";
+import { PlayerCareerStats, PlayerSeasonStats } from "../types/stats-schema";
 import { ComparisonTheme } from "../data/comparison-themes";
 import {
   getCanonicalPlayerCareerStats,

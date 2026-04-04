@@ -1,11 +1,9 @@
 import { allPlayerStatsLegacy } from "./index.js";
 import { buildCanonicalStoreFromLegacy } from "./adapters/legacy-to-api-football";
-import { Club, Competition, Season } from "../../types/stats";
+import { Club, Competition, Season } from "../../types/stats-schema.js";
 
 export const footballDataStore =
   buildCanonicalStoreFromLegacy(allPlayerStatsLegacy);
-
-  
 
 export const canonicalPlayers = footballDataStore.players;
 export const canonicalClubs = footballDataStore.clubs;
@@ -14,8 +12,6 @@ export const canonicalSeasons = footballDataStore.seasons;
 export const canonicalPlayerSeasonStats = footballDataStore.playerSeasonStats;
 export const canonicalPlayerMatchStats = footballDataStore.playerMatchStats;
 export const canonicalPlayerCareerStats = footballDataStore.playerCareerStats;
-
-
 
 export function getCanonicalPlayerById(playerId: string) {
   return canonicalPlayers.find((player) => player.id === playerId) ?? null;
@@ -34,7 +30,9 @@ export function getCanonicalCompetitionById(competitionId: string) {
 }
 
 export function getCanonicalSeasonById(seasonId: string) {
-  return canonicalSeasons.find((season: Season) => season.id === seasonId) ?? null;
+  return (
+    canonicalSeasons.find((season: Season) => season.id === seasonId) ?? null
+  );
 }
 
 export function getCanonicalPlayerSeasonRows(playerId: string) {
@@ -45,7 +43,9 @@ export function getCanonicalPlayerSeasonRowsBySeasonLabel(
   playerId: string,
   seasonLabel: string,
 ) {
-  const season = canonicalSeasons.find((entry: Season) => entry.label === seasonLabel);
+  const season = canonicalSeasons.find(
+    (entry: Season) => entry.label === seasonLabel,
+  );
 
   if (!season) {
     return [];
@@ -73,9 +73,7 @@ export function getCanonicalPlayerCompetitionIds(playerId: string) {
 
 export function getCanonicalPlayerSeasonLabels(playerId: string) {
   return Array.from(
-    new Set(
-      getCanonicalPlayerSeasonRows(playerId).map((row) => row.seasonId),
-    ),
+    new Set(getCanonicalPlayerSeasonRows(playerId).map((row) => row.seasonId)),
   )
     .map((seasonId) => getCanonicalSeasonById(seasonId)?.label ?? seasonId)
     .filter(Boolean);

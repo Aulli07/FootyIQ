@@ -9,7 +9,7 @@ import { neymarStats } from "./players/neymar";
 import { benzemaStats } from "./players/benzema";
 import { doueStats } from "./players/doue";
 import { yamalStats } from "./players/yamal";
-import { alvarezStats } from "./players/alvarez";
+// import { alvarezStats } from "./players/alvarez";
 import { bellinghamStats } from "./players/bellingham";
 import { fodenStats } from "./players/foden";
 import { haalandStats } from "./players/haaland";

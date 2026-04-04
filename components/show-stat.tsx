@@ -1,7 +1,7 @@
 import { PlayerType } from "../app/types/players";
 import { players } from "../app/data/players";
-import { getCanonicalPlayerSeasonRowsBySeasonLabel } from "../app/data/stats/canonical-store";
-import { PlayerSeasonStats } from "../app/types/stats";
+import { getCanonicalPlayerSeasonRowsBySeasonLabel } from "../app/data/player-stats/canonical-store";
+import { PlayerSeasonStats } from "../app/types/stats-schema";
 
 import { oswald, poppins } from "../app/fonts";
 import { useState } from "react";
@@ -189,10 +189,8 @@ function StatBlock({
   function getStatValue(player: PlayerType | null, season: string) {
     if (!player) return "-";
 
-    const seasonRows: PlayerSeasonStats[] = getCanonicalPlayerSeasonRowsBySeasonLabel(
-      player.id,
-      season,
-    );
+    const seasonRows: PlayerSeasonStats[] =
+      getCanonicalPlayerSeasonRowsBySeasonLabel(player.id, season);
 
     if (seasonRows.length === 0) return "-";
 
@@ -203,10 +201,13 @@ function StatBlock({
           ? "rating"
           : identifier;
 
-    return seasonRows.reduce<number>((total: number, row: PlayerSeasonStats) => {
-      const value = row[canonicalKey as keyof PlayerSeasonStats];
-      return total + (typeof value === "number" ? value : 0);
-    }, 0);
+    return seasonRows.reduce<number>(
+      (total: number, row: PlayerSeasonStats) => {
+        const value = row[canonicalKey as keyof PlayerSeasonStats];
+        return total + (typeof value === "number" ? value : 0);
+      },
+      0,
+    );
   }
 
   return (

@@ -1,8 +1,8 @@
 import { PlayerType } from "../app/types/players";
-import { PlayerCareerStats } from "../app/types/stats";
+import { PlayerCareerStats } from "../app/types/stats-schema";
 
 import { poppins } from "../app/fonts";
-import { getCanonicalPlayerCareerStats } from "../app/data/stats/canonical-store";
+import { getCanonicalPlayerCareerStats } from "../app/data/player-stats/canonical-store";
 
 const formatShortName = (name?: string) => {
   if (!name) return "";

@@ -14,6 +14,7 @@ export interface PlayerCompetitionStats {
   keyPasses: number;
   chancesCreated: number;
   dribbles: number;
+  dribblesCompleted: number;
   interceptions: number;
   tackles: number;
   dribbledPast: number;

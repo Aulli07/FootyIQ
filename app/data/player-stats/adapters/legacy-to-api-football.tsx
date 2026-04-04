@@ -10,7 +10,7 @@ import type {
   PlayerCareerStats,
   PlayerSeasonStats,
   Season,
-} from "../../../types/stats";
+} from "../../../types/stats-schema";
 import type {
   CompetitionStats as LegacyCompetitionStats,
   StatsType as LegacyStatsType,
@@ -19,20 +19,73 @@ import type {
 type LegacyPlayerStats = LegacyStatsType;
 type LegacySeasonStats = LegacyStatsType["seasons"][number];
 
-type CompetitionMeta = Pick<Competition, "type" | "country" | "tier" | "logoUrl">;
+type CompetitionMeta = Pick<
+  Competition,
+  "type" | "country" | "tier" | "logoUrl"
+>;
 
 const COMPETITION_META: Record<string, CompetitionMeta> = {
-  epl: { type: "league", country: "England", tier: 1, logoUrl: "/images/epl.png" },
-  laliga: { type: "league", country: "Spain", tier: 1, logoUrl: "/images/laliga.png" },
-  ligue1: { type: "league", country: "France", tier: 1, logoUrl: "/images/ligue1.png" },
-  serie_a: { type: "league", country: "Italy", tier: 1, logoUrl: "/images/serie-a.png" },
-  bundesliga: { type: "league", country: "Germany", tier: 1, logoUrl: "/images/bundesliga.png" },
+  epl: {
+    type: "league",
+    country: "England",
+    tier: 1,
+    logoUrl: "/images/epl.png",
+  },
+  laliga: {
+    type: "league",
+    country: "Spain",
+    tier: 1,
+    logoUrl: "/images/laliga.png",
+  },
+  ligue1: {
+    type: "league",
+    country: "France",
+    tier: 1,
+    logoUrl: "/images/ligue1.png",
+  },
+  serie_a: {
+    type: "league",
+    country: "Italy",
+    tier: 1,
+    logoUrl: "/images/serie-a.png",
+  },
+  bundesliga: {
+    type: "league",
+    country: "Germany",
+    tier: 1,
+    logoUrl: "/images/bundesliga.png",
+  },
   mls: { type: "league", country: "USA", tier: 1, logoUrl: "/images/mls.png" },
-  spl: { type: "league", country: "Saudi Arabia", tier: 1, logoUrl: "/images/spl.png" },
-  ucl: { type: "continental", country: "Europe", tier: 1, logoUrl: "/images/ucl.png" },
-  acl: { type: "continental", country: "Asia", tier: 1, logoUrl: "/images/acl.png" },
-  copa_del_rey: { type: "cup", country: "Spain", tier: 1, logoUrl: "/images/copa-del-rey.png" },
-  world_cup: { type: "international", country: "World", tier: 1, logoUrl: "/images/world-cup.png" },
+  spl: {
+    type: "league",
+    country: "Saudi Arabia",
+    tier: 1,
+    logoUrl: "/images/spl.png",
+  },
+  ucl: {
+    type: "continental",
+    country: "Europe",
+    tier: 1,
+    logoUrl: "/images/ucl.png",
+  },
+  acl: {
+    type: "continental",
+    country: "Asia",
+    tier: 1,
+    logoUrl: "/images/acl.png",
+  },
+  copa_del_rey: {
+    type: "cup",
+    country: "Spain",
+    tier: 1,
+    logoUrl: "/images/copa-del-rey.png",
+  },
+  world_cup: {
+    type: "international",
+    country: "World",
+    tier: 1,
+    logoUrl: "/images/world-cup.png",
+  },
 };
 
 const TEAM_TO_CLUB_ID: Record<string, string> = {
@@ -60,7 +113,9 @@ function toSlug(value: unknown): string {
 }
 
 function normalizeFoot(value: unknown): Foot {
-  const foot = String(value ?? "").trim().toLowerCase();
+  const foot = String(value ?? "")
+    .trim()
+    .toLowerCase();
   if (foot === "left" || foot === "right" || foot === "both") return foot;
   return "both";
 }
@@ -217,7 +272,8 @@ function aggregateCareerStats(
       yellowCards: accumulator.yellowCards + row.yellowCards,
       yellowToRedCards: accumulator.yellowToRedCards + row.yellowToRedCards,
       redCards: accumulator.redCards + row.redCards,
-      ratingSum: accumulator.ratingSum + row.rating * row.appearances,
+      ratingSum:
+        accumulator.ratingSum + ensureNumber(row.rating) * row.appearances,
       ratingAppearances: accumulator.ratingAppearances + row.appearances,
     }),
     {
@@ -371,7 +427,9 @@ export function buildCanonicalStoreFromLegacy(
 
     playerStats.seasons.forEach((season) => {
       const clubId =
-        season.clubId || legacyPlayer?.currentClubId || getClubIdFromTeam(legacyPlayer?.primaryPosition ?? "");
+        season.clubId ||
+        legacyPlayer?.currentClubId ||
+        getClubIdFromTeam(legacyPlayer?.primaryPosition ?? "");
 
       season.competitions.forEach((competition) => {
         const row = mapSeasonStats(playerStats.id, season, competition, clubId);
