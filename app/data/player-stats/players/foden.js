@@ -1,33 +1,22 @@
+// Legacy stats for Phil Foden.
+
 export const fodenStats = {
   id: "foden",
   seasons: [
     {
       season: "23/24",
       clubId: "manchester_city",
-      clubCareer: [
-        {
-          clubId: "manchester_city",
-          team: "Manchester City",
-          career: {
-            totalAppearances: 40,
-            averageRating: 8.9,
-            totalGoals: 20,
-            totalAssists: 16,
-            totalMinutes: 3300,
-            totalShots: 110,
-            shotsOnTarget: 55,
-            keyPasses: 45,
-            chancesCreated: 45,
-            dribbles: 50,
-            yellowCards: 3,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "England",
+      logo: "/clubs/man_city.png",
+      name: "Manchester City",
       competitions: [
         {
           id: "epl",
           name: "English Premier League",
+          type: "league",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/epl.png",
           stats: {
             appearances: 30,
             age: 24,
@@ -59,6 +48,10 @@ export const fodenStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 10,
             age: 24,

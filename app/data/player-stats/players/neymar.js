@@ -1,33 +1,22 @@
+// Legacy stats for Neymar Jr.
+
 export const neymarStats = {
   id: "neymar",
   seasons: [
     {
       season: "23/24",
       clubId: "santos",
-      clubCareer: [
-        {
-          clubId: "santos",
-          team: "Santos FC",
-          career: {
-            totalAppearances: 18,
-            averageRating: 9.2,
-            totalGoals: 9,
-            totalAssists: 7,
-            totalMinutes: 1400,
-            totalShots: 50,
-            shotsOnTarget: 24,
-            keyPasses: 29,
-            chancesCreated: 29,
-            dribbles: 41,
-            yellowCards: 3,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Brazil",
+      logo: "/clubs/santos.png",
+      name: "Santos FC",
       competitions: [
         {
           id: "brasileirao",
-          name: "Brasileir+�o",
+          name: "Brasileirão",
+          type: "league",
+          country: "Brazil",
+          tier: 1,
+          logoUrl: "/images/brasileirao.png",
           stats: {
             appearances: 18,
             age: 32,

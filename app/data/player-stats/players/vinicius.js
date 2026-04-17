@@ -1,33 +1,22 @@
+// Legacy stats for Vinicius Jr.
+
 export const viniciusStats = {
   id: "vinicius",
   seasons: [
     {
       season: "23/24",
       clubId: "real_madrid",
-      clubCareer: [
-        {
-          clubId: "real_madrid",
-          team: "Real Madrid",
-          career: {
-            totalAppearances: 42,
-            averageRating: 9.0,
-            totalGoals: 26,
-            totalAssists: 17,
-            totalMinutes: 3452,
-            totalShots: 126,
-            shotsOnTarget: 57,
-            keyPasses: 64,
-            chancesCreated: 64,
-            dribbles: 114,
-            yellowCards: 9,
-            redCards: 1,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/real_madrid.png",
+      name: "Real Madrid",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 28,
             age: 23,
@@ -59,6 +48,10 @@ export const viniciusStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 10,
             age: 23,
@@ -90,6 +83,10 @@ export const viniciusStats = {
         {
           id: "copa_del_rey",
           name: "Copa del Rey",
+          type: "cup",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/copa-del-rey.png",
           stats: {
             appearances: 4,
             age: 23,
@@ -123,30 +120,17 @@ export const viniciusStats = {
     {
       season: "22/23",
       clubId: "real_madrid",
-      clubCareer: [
-        {
-          clubId: "real_madrid",
-          team: "Real Madrid",
-          career: {
-            totalAppearances: 45,
-            averageRating: 8.9,
-            totalGoals: 21,
-            totalAssists: 13,
-            totalMinutes: 3604,
-            totalShots: 114,
-            shotsOnTarget: 50,
-            keyPasses: 52,
-            chancesCreated: 52,
-            dribbles: 101,
-            yellowCards: 9,
-            redCards: 1,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/real_madrid.png",
+      name: "Real Madrid",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 33,
             age: 22,
@@ -178,6 +162,10 @@ export const viniciusStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 12,
             age: 22,

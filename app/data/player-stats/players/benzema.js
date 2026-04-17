@@ -1,33 +1,26 @@
+// Legacy stats for Karim Benzema.
+
 export const benzemaStats = {
   id: "benzema",
+
+
   seasons: [
     {
       season: "23/24",
       clubId: "alittihad",
-      clubCareer: [
-        {
-          clubId: "alittihad",
-          team: "Al-Ittihad",
-          career: {
-            totalAppearances: 26,
-            averageRating: 9.1,
-            totalGoals: 17,
-            totalAssists: 8,
-            totalMinutes: 2105,
-            totalShots: 79,
-            shotsOnTarget: 39,
-            keyPasses: 27,
-            chancesCreated: 27,
-            dribbles: 14,
-            yellowCards: 2,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Saudi Arabia",
+      logo: "/clubs/alittihad.png",
+      name: "Al-Ittihad",
+
       competitions: [
         {
           id: "spl",
           name: "Saudi Pro League",
+          type: "league",
+          country: "Saudi Arabia",
+          tier: 1,
+          logoUrl: "/images/spl.png",
+          
           stats: {
             appearances: 26,
             age: 35,
@@ -58,6 +51,8 @@ export const benzemaStats = {
       ],
     },
   ],
+
+
   career: {
     totalGoals: 600,
     totalAssists: 190,

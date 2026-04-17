@@ -1,33 +1,22 @@
+// Legacy stats for Kylian Mbappe.
+
 export const mbappeStats = {
   id: "mbappe",
   seasons: [
     {
       season: "23/24",
       clubId: "real_madrid",
-      clubCareer: [
-        {
-          clubId: "real_madrid",
-          team: "Real Madrid",
-          career: {
-            totalAppearances: 54,
-            averageRating: 9.1,
-            totalGoals: 38,
-            totalAssists: 18,
-            totalMinutes: 4641,
-            totalShots: 216,
-            shotsOnTarget: 107,
-            keyPasses: 69,
-            chancesCreated: 69,
-            dribbles: 111,
-            yellowCards: 7,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/real_madrid.png",
+      name: "Real Madrid",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 31,
             age: 25,
@@ -59,6 +48,10 @@ export const mbappeStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 11,
             age: 25,
@@ -90,6 +83,10 @@ export const mbappeStats = {
         {
           id: "copa_del_rey",
           name: "Copa del Rey",
+          type: "cup",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/copa-del-rey.png",
           stats: {
             appearances: 5,
             age: 25,
@@ -121,6 +118,10 @@ export const mbappeStats = {
         {
           id: "world_cup",
           name: "FIFA World Cup",
+          type: "international",
+          country: "World",
+          tier: 1,
+          logoUrl: "/images/world-cup.png",
           stats: {
             appearances: 7,
             age: 25,
@@ -154,30 +155,17 @@ export const mbappeStats = {
     {
       season: "22/23",
       clubId: "psg",
-      clubCareer: [
-        {
-          clubId: "psg",
-          team: "Paris Saint-Germain",
-          career: {
-            totalAppearances: 42,
-            averageRating: 9.1,
-            totalGoals: 36,
-            totalAssists: 10,
-            totalMinutes: 3530,
-            totalShots: 164,
-            shotsOnTarget: 84,
-            keyPasses: 46,
-            chancesCreated: 46,
-            dribbles: 81,
-            yellowCards: 5,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "France",
+      logo: "/clubs/psg.png",
+      name: "Paris Saint-Germain",
       competitions: [
         {
           id: "ligue1",
           name: "Ligue 1",
+          type: "league",
+          country: "France",
+          tier: 1,
+          logoUrl: "/images/ligue1.png",
           stats: {
             appearances: 34,
             age: 24,
@@ -209,6 +197,10 @@ export const mbappeStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 8,
             age: 24,

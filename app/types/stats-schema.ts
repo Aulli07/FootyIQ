@@ -1,15 +1,12 @@
-export type Foot = "left" | "right" | "both";
 
-export type CompetitionType = "league" | "cup" | "continental" | "international" | "friendly" | "other";
+export type CompetitionType = "league" | "cup" | "continental" | "international" | "other";
 
 export interface Player {
   id: string;
   fullName: string;
-  slug: string;
   nationality?: string;
   dateOfBirth?: string;
   heightCm?: number;
-  preferredFoot?: Foot;
   primaryPosition?: string;
   imageUrl?: string;
   currentClubId?: string;
@@ -73,37 +70,6 @@ export interface PlayerSeasonStats {
   updatedAt: string;
 }
 
-export interface PlayerMatchStats {
-  id: string;
-  playerId: string;
-  matchId: string;
-  seasonId: string;
-  competitionId: string;
-  clubId: string;
-  started?: boolean;
-  minutes: number;
-  goals: number;
-  assists: number;
-  shots: number;
-  shotsOnTarget: number;
-  keyPasses: number;
-  chancesCreated: number;
-  dribbles: number;
-  dribblesCompleted?: number;
-  interceptions: number;
-  tackles: number;
-  dribbledPast: number;
-  clearances: number;
-  groundDuelsWon: number;
-  blockedShots: number;
-  yellowCards: number;
-  yellowToRedCards: number;
-  redCards: number;
-  rating?: number;
-  source: "legacy" | "manual" | "api-football";
-  updatedAt: string;
-}
-
 export interface PlayerCareerStats {
   id: string;
   playerId: string;
@@ -140,6 +106,5 @@ export interface FootballDataStore {
   competitions: Competition[];
   seasons: Season[];
   playerSeasonStats: PlayerSeasonStats[];
-  playerMatchStats: PlayerMatchStats[];
   playerCareerStats: PlayerCareerStats[];
 }

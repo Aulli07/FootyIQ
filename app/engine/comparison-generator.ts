@@ -378,15 +378,12 @@ function findBestSeasonDate(
 
 function getClubCareer(
   player: PlayerType,
-  competitionIds: string[] | undefined,
+  clubId: string | undefined,
 ) {
-  const career = getCanonicalPlayerCareerStats(player.id);
 
-  if (!career || !competitionIds) {
-    return null;
-  }
+  const playerRows = getCanonicalPlayerSeasonRows(player.id).filter((row) => clubId ? row.clubId === clubId : true);
+  
 
-  return career;
 }
 
 function groupPlayerSeasonRows(

@@ -1,33 +1,24 @@
+// Legacy stats for Desire Doue.
+
 export const doueStats = {
   id: "doue",
+
   seasons: [
     {
       season: "23/24",
       clubId: "psg",
-      clubCareer: [
-        {
-          clubId: "psg",
-          team: "Paris Saint-Germain",
-          career: {
-            totalAppearances: 21,
-            averageRating: 8.6,
-            totalGoals: 6,
-            totalAssists: 5,
-            totalMinutes: 1500,
-            totalShots: 39,
-            shotsOnTarget: 18,
-            keyPasses: 22,
-            chancesCreated: 22,
-            dribbles: 33,
-            yellowCards: 1,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "France",
+      logo: "/clubs/psg.png",
+      name: "Paris Saint-Germain",
+
       competitions: [
         {
           id: "ligue1",
           name: "Ligue 1",
+          type: "league",
+          country: "France",
+          tier: 1,
+          logoUrl: "/images/ligue1.png",
           stats: {
             appearances: 21,
             age: 19,
@@ -58,6 +49,7 @@ export const doueStats = {
       ],
     },
   ],
+  
   career: {
     totalGoals: 100,
     totalAssists: 62,

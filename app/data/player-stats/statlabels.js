@@ -1,3 +1,5 @@
+// Labels used to show player stat names in the UI.
+
 export const generalStats = [
   { key: "age", label: "Age" },
   { key: "heightCm", label: "Height" },

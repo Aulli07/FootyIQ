@@ -1,33 +1,23 @@
+// Legacy stats for Julian Alvarez
+
 export const alvarezStats = {
   id: "alvarez",
   seasons: [
     {
       season: "23/24",
-      clubId: "manchester_city",
-      clubCareer: [
-        {
-          clubId: "manchester_city",
-          team: "Manchester City",
-          career: {
-            totalAppearances: 48,
-            averageRating: 8.4,
-            totalGoals: 28,
-            totalAssists: 15,
-            totalMinutes: 3900,
-            totalShots: 143,
-            shotsOnTarget: 71,
-            keyPasses: 48,
-            chancesCreated: 48,
-            dribbles: 58,
-            yellowCards: 8,
-            redCards: 0,
-          },
-        },
-      ],
+      clubId: "man_city",
+      country: "England",
+      logo: "/clubs/man_city.png",
+      name: "Manchester City",
+
       competitions: [
         {
           id: "epl",
           name: "English Premier League",
+          type: "league",
+          country: "England",
+          tier: 1,
+          logoUrl: "/logos/epl.png",
           stats: {
             appearances: 28,
             age: 24,
@@ -59,6 +49,10 @@ export const alvarezStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/logos/ucl.png",
           stats: {
             appearances: 10,
             age: 24,
@@ -88,8 +82,12 @@ export const alvarezStats = {
           },
         },
         {
-          id: "fa_cup",
+          id: "fa-cup",
           name: "FA Cup",
+          type: "cup",
+          country: "England",
+          tier: 1,
+          logoUrl: "/logos/fa-cup.png",
           stats: {
             appearances: 5,
             age: 24,
@@ -119,8 +117,12 @@ export const alvarezStats = {
           },
         },
         {
-          id: "carabao_cup",
+          id: "carabao-cup",
           name: "Carabao Cup",
+          type: "cup",
+          country: "England",
+          tier: 1,
+          logoUrl: "/logos/carabao-cup.png",
           stats: {
             appearances: 3,
             age: 24,
@@ -150,8 +152,12 @@ export const alvarezStats = {
           },
         },
         {
-          id: "world_cup",
-          name: "FIFA World Cup",
+          id: "world-cup",
+          name: "World Cup",
+          type: "international",
+          country: "World",
+          tier: 1,
+          logoUrl: "/logos/world-cup.png",
           stats: {
             appearances: 2,
             age: 24,
@@ -184,31 +190,19 @@ export const alvarezStats = {
     },
     {
       season: "22/23",
-      clubId: "river_plate",
-      clubCareer: [
-        {
-          clubId: "river_plate",
-          team: "River Plate",
-          career: {
-            totalAppearances: 20,
-            averageRating: 8.3,
-            totalGoals: 10,
-            totalAssists: 5,
-            totalMinutes: 1800,
-            totalShots: 40,
-            shotsOnTarget: 20,
-            keyPasses: 15,
-            chancesCreated: 15,
-            dribbles: 20,
-            yellowCards: 3,
-            redCards: 0,
-          },
-        },
-      ],
+      clubId: "river-plate",
+      country: "Argentina",
+      logo: "/clubs/river-plate.png",
+      name: "River Plate",
+
       competitions: [
         {
-          id: "argentine_primera",
-          name: "Argentine Primera Divisi+�n",
+          id: "argentine-primera",
+          name: "Argentine Primera Division",
+          type: "league",
+          country: "Argentina",
+          tier: 1,
+          logoUrl: "/logos/argentine-primera.png",
           stats: {
             appearances: 20,
             age: 24,

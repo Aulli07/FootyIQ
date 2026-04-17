@@ -1,33 +1,22 @@
+// Legacy stats for Erling Haaland.
+
 export const haalandStats = {
   id: "haaland",
   seasons: [
     {
       season: "23/24",
       clubId: "manchester_city",
-      clubCareer: [
-        {
-          clubId: "manchester_city",
-          team: "Manchester City",
-          career: {
-            totalAppearances: 46,
-            averageRating: 9.1,
-            totalGoals: 40,
-            totalAssists: 7,
-            totalMinutes: 3926,
-            totalShots: 174,
-            shotsOnTarget: 91,
-            keyPasses: 30,
-            chancesCreated: 30,
-            dribbles: 29,
-            yellowCards: 3,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "England",
+      logo: "/clubs/man_city.png",
+      name: "Manchester City",
       competitions: [
         {
           id: "epl",
           name: "English Premier League",
+          type: "league",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/epl.png",
           stats: {
             appearances: 31,
             age: 23,
@@ -59,6 +48,10 @@ export const haalandStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 9,
             age: 23,
@@ -90,6 +83,10 @@ export const haalandStats = {
         {
           id: "fa_cup",
           name: "FA Cup",
+          type: "cup",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/fa-cup.png",
           stats: {
             appearances: 4,
             age: 23,
@@ -121,6 +118,10 @@ export const haalandStats = {
         {
           id: "club_world_cup",
           name: "FIFA Club World Cup",
+          type: "international",
+          country: "World",
+          tier: 1,
+          logoUrl: "/images/club-world-cup.png",
           stats: {
             appearances: 2,
             age: 23,
@@ -154,30 +155,17 @@ export const haalandStats = {
     {
       season: "22/23",
       clubId: "manchester_city",
-      clubCareer: [
-        {
-          clubId: "manchester_city",
-          team: "Manchester City",
-          career: {
-            totalAppearances: 52,
-            averageRating: 9.3,
-            totalGoals: 52,
-            totalAssists: 9,
-            totalMinutes: 4106,
-            totalShots: 192,
-            shotsOnTarget: 103,
-            keyPasses: 32,
-            chancesCreated: 32,
-            dribbles: 26,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "England",
+      logo: "/clubs/man_city.png",
+      name: "Manchester City",
       competitions: [
         {
           id: "epl",
           name: "English Premier League",
+          type: "league",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/epl.png",
           stats: {
             appearances: 35,
             age: 22,
@@ -209,6 +197,10 @@ export const haalandStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 11,
             age: 22,
@@ -240,6 +232,10 @@ export const haalandStats = {
         {
           id: "fa_cup",
           name: "FA Cup",
+          type: "cup",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/fa-cup.png",
           stats: {
             appearances: 4,
             age: 22,
@@ -271,6 +267,10 @@ export const haalandStats = {
         {
           id: "carabao_cup",
           name: "Carabao Cup",
+          type: "cup",
+          country: "England",
+          tier: 1,
+          logoUrl: "/images/carabao-cup.png",
           stats: {
             appearances: 2,
             age: 22,

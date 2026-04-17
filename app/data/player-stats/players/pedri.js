@@ -1,33 +1,22 @@
+// Legacy stats for Pedri.
+
 export const pedriStats = {
   id: "pedri",
   seasons: [
     {
       season: "23/24",
       clubId: "barcelona",
-      clubCareer: [
-        {
-          clubId: "barcelona",
-          team: "Barcelona",
-          career: {
-            totalAppearances: 40,
-            averageRating: 8.5,
-            totalGoals: 8,
-            totalAssists: 12,
-            totalMinutes: 3178,
-            totalShots: 60,
-            shotsOnTarget: 27,
-            keyPasses: 73,
-            chancesCreated: 73,
-            dribbles: 67,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/barcelona.png",
+      name: "FC Barcelona",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 28,
             age: 21,
@@ -59,6 +48,10 @@ export const pedriStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 8,
             age: 21,
@@ -90,6 +83,10 @@ export const pedriStats = {
         {
           id: "copa_del_rey",
           name: "Copa del Rey",
+          type: "cup",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/copa-del-rey.png",
           stats: {
             appearances: 4,
             age: 21,
@@ -123,30 +120,17 @@ export const pedriStats = {
     {
       season: "22/23",
       clubId: "barcelona",
-      clubCareer: [
-        {
-          clubId: "barcelona",
-          team: "Barcelona",
-          career: {
-            totalAppearances: 31,
-            averageRating: 8.4,
-            totalGoals: 5,
-            totalAssists: 7,
-            totalMinutes: 2490,
-            totalShots: 43,
-            shotsOnTarget: 18,
-            keyPasses: 50,
-            chancesCreated: 50,
-            dribbles: 48,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/barcelona.png",
+      name: "FC Barcelona",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 26,
             age: 20,
@@ -178,6 +162,10 @@ export const pedriStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 5,
             age: 20,

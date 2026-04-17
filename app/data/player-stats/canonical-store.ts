@@ -1,3 +1,5 @@
+// Central store that turns legacy player stats into the app-friendly format.
+
 import { allPlayerStatsLegacy } from "./index.js";
 import { buildCanonicalStoreFromLegacy } from "./adapters/legacy-to-api-football";
 import { Club, Competition, Season } from "../../types/stats-schema.js";

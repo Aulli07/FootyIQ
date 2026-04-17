@@ -32,45 +32,13 @@ export interface CompetitionStats {
   stats: PlayerCompetitionStats;
 }
 
-export interface ClubCareerStats {
-  totalAppearances: number;
-  averageRating: number;
-  totalGoals: number;
-  totalAssists: number;
-  totalMinutes: number;
-  totalShots: number;
-  shotsOnTarget: number;
-  keyPasses: number;
-  chancesCreated: number;
-  dribbles: number;
-  yellowCards: number;
-  redCards: number;
-}
-
-export interface ClubCareerEntry {
-  clubId: string;
-  team: string;
-  career: ClubCareerStats;
-}
-
 export interface SeasonStats {
   season: string;
   clubId: string;
-  clubCareer: ClubCareerEntry[];
   competitions: CompetitionStats[];
-}
-
-export interface CareerStats {
-  totalGoals: number;
-  totalAssists: number;
-  totalAppearances: number;
-  averageRating: number;
-  titlesWon: number;
-  awards: number;
 }
 
 export interface StatsType {
   id: string;
   seasons: SeasonStats[];
-  career: CareerStats;
 }

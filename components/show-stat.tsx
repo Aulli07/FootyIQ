@@ -226,7 +226,4 @@ function StatBlock({
         className={`text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} text-sm text-right flex-1 py-1`}
       >
         {valueB ?? "-"}
-      </p>
-    </div>
-  );
-}
+      

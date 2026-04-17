@@ -1,33 +1,22 @@
+// Legacy stats for Robert Lewandowski.
+
 export const lewandowskiStats = {
   id: "lewandowski",
   seasons: [
     {
       season: "23/24",
       clubId: "barcelona",
-      clubCareer: [
-        {
-          clubId: "barcelona",
-          team: "Barcelona",
-          career: {
-            totalAppearances: 47,
-            averageRating: 8.8,
-            totalGoals: 29,
-            totalAssists: 11,
-            totalMinutes: 3929,
-            totalShots: 145,
-            shotsOnTarget: 72,
-            keyPasses: 35,
-            chancesCreated: 35,
-            dribbles: 19,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/barcelona.png",
+      name: "FC Barcelona",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 33,
             age: 35,
@@ -59,6 +48,10 @@ export const lewandowskiStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 9,
             age: 35,
@@ -90,6 +83,10 @@ export const lewandowskiStats = {
         {
           id: "copa_del_rey",
           name: "Copa del Rey",
+          type: "cup",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/copa-del-rey.png",
           stats: {
             appearances: 5,
             age: 35,
@@ -123,30 +120,17 @@ export const lewandowskiStats = {
     {
       season: "22/23",
       clubId: "barcelona",
-      clubCareer: [
-        {
-          clubId: "barcelona",
-          team: "Barcelona",
-          career: {
-            totalAppearances: 39,
-            averageRating: 8.9,
-            totalGoals: 26,
-            totalAssists: 8,
-            totalMinutes: 3245,
-            totalShots: 126,
-            shotsOnTarget: 65,
-            keyPasses: 25,
-            chancesCreated: 25,
-            dribbles: 15,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Spain",
+      logo: "/clubs/barcelona.png",
+      name: "FC Barcelona",
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/images/laliga.png",
           stats: {
             appearances: 34,
             age: 34,
@@ -178,6 +162,10 @@ export const lewandowskiStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/ucl.png",
           stats: {
             appearances: 5,
             age: 34,

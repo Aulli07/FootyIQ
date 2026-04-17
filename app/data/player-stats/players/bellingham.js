@@ -1,33 +1,23 @@
+// Legacy stats for Jude Bellingham.
+
 export const bellinghamStats = {
   id: "bellingham",
   seasons: [
     {
       season: "23/24",
-      clubId: "real_madrid",
-      clubCareer: [
-        {
-          clubId: "real_madrid",
-          team: "Real Madrid",
-          career: {
-            totalAppearances: 45,
-            averageRating: 8.6,
-            totalGoals: 18,
-            totalAssists: 14,
-            totalMinutes: 3750,
-            totalShots: 100,
-            shotsOnTarget: 50,
-            keyPasses: 35,
-            chancesCreated: 35,
-            dribbles: 60,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      clubId: "real-madrid",
+      country: "Spain",
+      logo: "/clubs/real-madrid.png",
+      name: "Real Madrid",
+
       competitions: [
         {
-          id: "laliga",
+          id: "la-liga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/logos/la-liga.png",
           stats: {
             appearances: 30,
             age: 21,
@@ -59,6 +49,10 @@ export const bellinghamStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/logos/ucl.png",
           stats: {
             appearances: 10,
             age: 21,
@@ -90,6 +84,10 @@ export const bellinghamStats = {
         {
           id: "copa_del_rey",
           name: "Copa del Rey",
+          type: "cup",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/logos/copa-del-rey.png",
           stats: {
             appearances: 5,
             age: 21,
@@ -122,31 +120,19 @@ export const bellinghamStats = {
     },
     {
       season: "22/23",
-      clubId: "real_madrid",
-      clubCareer: [
-        {
-          clubId: "real_madrid",
-          team: "Real Madrid",
-          career: {
-            totalAppearances: 33,
-            averageRating: 8.4,
-            totalGoals: 12,
-            totalAssists: 9,
-            totalMinutes: 2720,
-            totalShots: 70,
-            shotsOnTarget: 35,
-            keyPasses: 23,
-            chancesCreated: 23,
-            dribbles: 35,
-            yellowCards: 3,
-            redCards: 0,
-          },
-        },
-      ],
+      clubId: "real-madrid",
+      country: "Spain",
+      logo: "/clubs/real-madrid.png",
+      name: "Real Madrid",
+
       competitions: [
         {
           id: "laliga",
           name: "La Liga",
+          type: "league",
+          country: "Spain",
+          tier: 1,
+          logoUrl: "/logos/la-liga.png",
           stats: {
             appearances: 25,
             age: 20,
@@ -178,6 +164,10 @@ export const bellinghamStats = {
         {
           id: "ucl",
           name: "UEFA Champions League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/logos/ucl.png",
           stats: {
             appearances: 8,
             age: 20,

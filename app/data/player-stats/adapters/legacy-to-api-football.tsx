@@ -1,107 +1,30 @@
-import { clubs as clubMap } from "../../clubs";
+// Converts the old player stats format into the newer canonical store shape.
+
+
+
+/* To import the player biodata */
 import { players } from "../../players";
+
+/* To import the new player schema types */
 import type {
   Club,
   Competition,
-  CompetitionType,
   FootballDataStore,
-  Foot,
   Player,
   PlayerCareerStats,
   PlayerSeasonStats,
   Season,
 } from "../../../types/stats-schema";
+
+/* To import the old player stats types */
 import type {
   CompetitionStats as LegacyCompetitionStats,
+  SeasonStats as LegacySeasonStats,
   StatsType as LegacyStatsType,
 } from "../../../types/stats-legacy";
 
-type LegacyPlayerStats = LegacyStatsType;
-type LegacySeasonStats = LegacyStatsType["seasons"][number];
 
-type CompetitionMeta = Pick<
-  Competition,
-  "type" | "country" | "tier" | "logoUrl"
->;
 
-const COMPETITION_META: Record<string, CompetitionMeta> = {
-  epl: {
-    type: "league",
-    country: "England",
-    tier: 1,
-    logoUrl: "/images/epl.png",
-  },
-  laliga: {
-    type: "league",
-    country: "Spain",
-    tier: 1,
-    logoUrl: "/images/laliga.png",
-  },
-  ligue1: {
-    type: "league",
-    country: "France",
-    tier: 1,
-    logoUrl: "/images/ligue1.png",
-  },
-  serie_a: {
-    type: "league",
-    country: "Italy",
-    tier: 1,
-    logoUrl: "/images/serie-a.png",
-  },
-  bundesliga: {
-    type: "league",
-    country: "Germany",
-    tier: 1,
-    logoUrl: "/images/bundesliga.png",
-  },
-  mls: { type: "league", country: "USA", tier: 1, logoUrl: "/images/mls.png" },
-  spl: {
-    type: "league",
-    country: "Saudi Arabia",
-    tier: 1,
-    logoUrl: "/images/spl.png",
-  },
-  ucl: {
-    type: "continental",
-    country: "Europe",
-    tier: 1,
-    logoUrl: "/images/ucl.png",
-  },
-  acl: {
-    type: "continental",
-    country: "Asia",
-    tier: 1,
-    logoUrl: "/images/acl.png",
-  },
-  copa_del_rey: {
-    type: "cup",
-    country: "Spain",
-    tier: 1,
-    logoUrl: "/images/copa-del-rey.png",
-  },
-  world_cup: {
-    type: "international",
-    country: "World",
-    tier: 1,
-    logoUrl: "/images/world-cup.png",
-  },
-};
-
-const TEAM_TO_CLUB_ID: Record<string, string> = {
-  "Al Nassr": "alnassr",
-  "Inter Miami": "intermiami",
-  "Santos FC": "santos",
-  "Al-Ittihad": "alittihad",
-  "Paris Saint-Germain": "psg",
-  "FC Barcelona": "barcelona",
-  Barcelona: "barcelona",
-  "Manchester City": "manchester_city",
-  "Real Madrid": "real_madrid",
-  "Atlético Madrid": "atletico_madrid",
-  "Al-Hilal": "alhilal",
-  "Al-Ettifaq": "alettifaq",
-};
 
 function toSlug(value: unknown): string {
   return String(value ?? "")
@@ -110,14 +33,6 @@ function toSlug(value: unknown): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-}
-
-function normalizeFoot(value: unknown): Foot {
-  const foot = String(value ?? "")
-    .trim()
-    .toLowerCase();
-  if (foot === "left" || foot === "right" || foot === "both") return foot;
-  return "both";
 }
 
 function slugifySeason(label: string): string {
@@ -179,8 +94,7 @@ function getClubIdFromTeam(teamName: string): string {
 }
 
 function getClubLogoById(clubId: string): string {
-  const club = Object.values(clubMap).find((entry) => entry.id === clubId);
-  return club?.logo ?? `/clubs/${clubId}.png`;
+  return `/clubs/${clubId}.png`;
 }
 
 function getCompetitionMeta(competitionId: string): CompetitionMeta {
@@ -246,7 +160,6 @@ function mapSeasonStats(
 
 function aggregateCareerStats(
   playerId: string,
-  legacyCareer: LegacyPlayerStats["career"],
   seasonRows: PlayerSeasonStats[],
 ): PlayerCareerStats {
   const totals = seasonRows.reduce(
@@ -305,7 +218,7 @@ function aggregateCareerStats(
   const averageRating =
     totals.ratingAppearances > 0
       ? totals.ratingSum / totals.ratingAppearances
-      : ensureNumber(legacyCareer?.averageRating);
+      : 0;
 
   return {
     id: playerId,
@@ -331,28 +244,25 @@ function aggregateCareerStats(
     yellowToRedCards: totals.yellowToRedCards,
     redCards: totals.redCards,
     averageRating,
-    titlesWon: ensureNumber(legacyCareer?.titlesWon),
-    awards: ensureNumber(legacyCareer?.awards),
     source: "legacy",
     updatedAt: new Date().toISOString(),
   };
 }
 
+// I AM RIGHT HERE!!
+
 function buildPlayers(): Player[] {
   return players.map((player) => {
-    const clubId = getClubIdFromTeam(player.team);
 
     return {
       id: player.id,
       fullName: player.name,
-      slug: player.id,
       nationality: player.nationality,
       dateOfBirth: `${player.birthYear}-01-01`,
       heightCm: player.heightCm,
-      preferredFoot: normalizeFoot(player.preferredFoot),
       primaryPosition: player.position,
       imageUrl: player.image,
-      currentClubId: clubId,
+      currentClubId: player.currentClubId,
       active: true,
     };
   });
@@ -360,27 +270,19 @@ function buildPlayers(): Player[] {
 
 function buildClubs(): Club[] {
   const fromPlayers: Club[] = players.map((player) => {
-    const clubId = getClubIdFromTeam(player.team);
 
     return {
-      id: clubId,
+      id: player.currentClubId,
       name: player.team,
       country: player.nationality,
-      logoUrl: getClubLogoById(clubId),
+      logoUrl: getClubLogoById(player.currentClubId),
     };
   });
 
-  const fromClubMap: Club[] = Object.values(clubMap).map((club) => ({
-    id: club.id,
-    name: club.name,
-    country: club.country,
-    logoUrl: club.logo,
-  }));
-
-  return uniqueById([...fromClubMap, ...fromPlayers]);
+  return uniqueById(fromPlayers);
 }
 
-function buildCompetitions(legacyStats: LegacyPlayerStats[]): Competition[] {
+function buildCompetitions(legacyStats: LegacyStatsType[]): Competition[] {
   const allCompetitions: Competition[] = legacyStats.flatMap((playerStats) =>
     playerStats.seasons.flatMap((season) =>
       season.competitions.map((competition) => ({
@@ -394,7 +296,7 @@ function buildCompetitions(legacyStats: LegacyPlayerStats[]): Competition[] {
   return uniqueById(allCompetitions);
 }
 
-function buildSeasons(legacyStats: LegacyPlayerStats[]): Season[] {
+function buildSeasons(legacyStats: LegacyStatsType[]): Season[] {
   const seasons: Season[] = legacyStats.flatMap((playerStats) =>
     playerStats.seasons.map((season) => ({
       id: createSeasonId(season.season),
@@ -408,8 +310,12 @@ function buildSeasons(legacyStats: LegacyPlayerStats[]): Season[] {
   return uniqueById(seasons);
 }
 
+
+
 export function buildCanonicalStoreFromLegacy(
-  legacyStats: LegacyPlayerStats[],
+
+  legacyStats: LegacyStatsType[],
+
 ): FootballDataStore {
   const playersStore = buildPlayers();
   const clubsStore = buildClubs();
@@ -439,7 +345,7 @@ export function buildCanonicalStoreFromLegacy(
     });
 
     playerCareerStats.push(
-      aggregateCareerStats(playerStats.id, playerStats.career, seasonRows),
+      aggregateCareerStats(playerStats.id, seasonRows),
     );
   });
 
@@ -449,13 +355,12 @@ export function buildCanonicalStoreFromLegacy(
     competitions: competitionsStore,
     seasons: seasonsStore,
     playerSeasonStats,
-    playerMatchStats: [],
     playerCareerStats,
   };
 }
 
-export function buildApiFootballStatsFromLegacy(
-  legacyStats: LegacyPlayerStats[],
-): FootballDataStore {
-  return buildCanonicalStoreFromLegacy(legacyStats);
-}
+// export function buildApiFootballStatsFromLegacy(
+//   legacyStats: LegacyStatsType[],
+// ): FootballDataStore {
+//   return buildCanonicalStoreFromLegacy(legacyStats);
+// }

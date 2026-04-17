@@ -1,33 +1,22 @@
+// Legacy stats for Cristiano Ronaldo.
+
 export const ronaldoStats = {
   id: "ronaldo",
   seasons: [
     {
       season: "23/24",
       clubId: "alnassr",
-      clubCareer: [
-        {
-          clubId: "alnassr",
-          team: "Al Nassr",
-          career: {
-            totalAppearances: 38,
-            averageRating: 9.5,
-            totalGoals: 34,
-            totalAssists: 11,
-            totalMinutes: 3300,
-            totalShots: 137,
-            shotsOnTarget: 72,
-            keyPasses: 44,
-            chancesCreated: 44,
-            dribbles: 28,
-            yellowCards: 5,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Saudi Arabia",
+      logo: "/clubs/alnassr.png",
+      name: "Al Nassr",
       competitions: [
         {
           id: "spl",
           name: "Saudi Pro League",
+          type: "league",
+          country: "Saudi Arabia",
+          tier: 1,
+          logoUrl: "/images/spl.png",
           stats: {
             appearances: 30,
             age: 40,
@@ -58,6 +47,10 @@ export const ronaldoStats = {
         {
           id: "acl",
           name: "AFC Champions League",
+          type: "continental",
+          country: "Asia",
+          tier: 1,
+          logoUrl: "/images/acl.png",
           stats: {
             appearances: 8,
             age: 40,

@@ -1,3 +1,5 @@
+// This file contains a list of football players with their details and a mock API response structure for the API Football service. Each player has a method to determine their category based on their status and footy rating, which is implemented in the getCategory function imported from the utils/categoryFilter module.
+
 import { getCategory } from "../utils/categoryFilter";
 
 export const players = [
@@ -8,10 +10,10 @@ export const players = [
     birthYear: 1985,
     heightCm: 183,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/ronaldo.jpg",
     status: "Legend",
     team: "Al Nassr",
+    currentClubId: "alnassr",
     footyRating: 9.5,
     category() {
       return getCategory.call(this);
@@ -26,10 +28,10 @@ export const players = [
     birthYear: 1988,
     heightCm: 180,
     position: "Forward",
-    preferredFoot: "Left",
     image: "/images/messi.jpg",
     status: "Legend",
     team: "Inter Miami",
+    currentClubId: "intermiami",
     footyRating: 9.5,
     category() {
       return getCategory.call(this);
@@ -44,10 +46,10 @@ export const players = [
     birthYear: 1992,
     heightCm: 175,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/neymar.jpg",
     status: "Legend",
     team: "Al-Hilal",
+    currentClubId: "alhilal",
     footyRating: 9.0,
     category() {
       return getCategory.call(this);
@@ -62,10 +64,10 @@ export const players = [
     birthYear: 1987,
     heightCm: 185,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/benzema.jpg",
     status: "Legend",
     team: "Al-Ittihad",
+    currentClubId: "alittihad",
     footyRating: 9.1,
     category() {
       return getCategory.call(this);
@@ -80,10 +82,10 @@ export const players = [
     birthYear: 2005,
     heightCm: 178,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/desire-doue.png",
     status: "Top Prospect",
     team: "Paris Saint-Germain",
+    currentClubId: "psg",
     footyRating: 8.5,
     category() {
       return getCategory.call(this);
@@ -98,10 +100,10 @@ export const players = [
     birthYear: 2007,
     heightCm: 170,
     position: "Forward",
-    preferredFoot: "Left",
     image: "/images/lamine-yamal.jpg",
     status: "Top Prospect",
     team: "Barcelona",
+    currentClubId: "barcelona",
     footyRating: 8.7,
     category() {
       return getCategory.call(this);
@@ -116,10 +118,10 @@ export const players = [
     birthYear: 2000,
     heightCm: 194,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/ronaldo.jpg",
     status: "Prime",
     team: "Manchester City",
+    currentClubId: "manchester_city",
     footyRating: 9.2,
     category() {
       return getCategory.call(this);
@@ -134,39 +136,11 @@ export const players = [
     birthYear: 1998,
     heightCm: 178,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/messi.jpg",
     status: "Prime",
     team: "Real Madrid",
+    currentClubId: "real_madrid",
     footyRating: 9.3,
-    apiFootball: {
-      get: "players",
-      parameters: {
-        id: "276",
-      },
-      response: [
-        {
-          player: {
-            id: 276,
-            name: "Kylian Mbappé",
-            firstname: "Kylian",
-            lastname: "Mbappé",
-            age: 27,
-            birth: {
-              date: "1998-12-20",
-              place: "Paris",
-              country: "France",
-            },
-            nationality: "France",
-            height: "178 cm",
-            weight: "73 kg",
-            injured: false,
-            photo: "/images/messi.jpg",
-          },
-          statisticsEndpoint: "/players/statistics?id=276",
-        },
-      ],
-    },
     category() {
       return getCategory.call(this);
     },
@@ -180,10 +154,10 @@ export const players = [
     birthYear: 2000,
     heightCm: 176,
     position: "Forward",
-    preferredFoot: "Left",
     image: "/images/neymar.jpg",
     status: "Prime",
     team: "Real Madrid",
+    currentClubId: "real_madrid",
     footyRating: 9.1,
     category() {
       return getCategory.call(this);
@@ -198,10 +172,10 @@ export const players = [
     birthYear: 1988,
     heightCm: 187,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/benzema.jpg",
     status: "Prime",
     team: "Barcelona",
+    currentClubId: "barcelona",
     footyRating: 8.9,
     category() {
       return getCategory.call(this);
@@ -216,10 +190,10 @@ export const players = [
     birthYear: 1996,
     heightCm: 190,
     position: "Midfielder",
-    preferredFoot: "Right",
     image: "/images/desire-doue.png",
     status: "Prime",
     team: "Manchester City",
+    currentClubId: "manchester_city",
     footyRating: 8.8,
     category() {
       return getCategory.call(this);
@@ -234,10 +208,10 @@ export const players = [
     birthYear: 2003,
     heightCm: 186,
     position: "Midfielder",
-    preferredFoot: "Right",
     image: "/images/lamine-yamal.jpg",
     status: "Top Prospect",
     team: "Real Madrid",
+    currentClubId: "real_madrid",
     footyRating: 8.6,
     category() {
       return getCategory.call(this);
@@ -252,10 +226,10 @@ export const players = [
     birthYear: 2000,
     heightCm: 173,
     position: "Forward",
-    preferredFoot: "Right",
     image: "/images/ronaldo.jpg",
     status: "Prime",
     team: "Atlético Madrid",
+    currentClubId: "atletico_madrid",
     footyRating: 8.4,
     category() {
       return getCategory.call(this);
@@ -270,10 +244,10 @@ export const players = [
     birthYear: 2001,
     heightCm: 171,
     position: "Forward",
-    preferredFoot: "Left",
     image: "/images/messi.jpg",
     status: "Prime",
     team: "Manchester City",
+    currentClubId: "manchester_city",
     footyRating: 8.8,
     category() {
       return getCategory.call(this);
@@ -288,10 +262,10 @@ export const players = [
     birthYear: 2002,
     heightCm: 174,
     position: "Midfielder",
-    preferredFoot: "Left",
     image: "/images/neymar.jpg",
     status: "Top Prospect",
     team: "Barcelona",
+    currentClubId: "barcelona",
     footyRating: 8.5,
     category() {
       return getCategory.call(this);
@@ -306,10 +280,10 @@ export const players = [
     birthYear: 1990,
     heightCm: 175,
     position: "Midfielder",
-    preferredFoot: "Right",
     image: "/images/benzema.jpg",
     status: "Prime",
     team: "Al-Ettifaq",
+    currentClubId: "alettifaq",
     footyRating: 8.2,
     category() {
       return getCategory.call(this);
@@ -319,67 +293,67 @@ export const players = [
   },
 ];
 
-function splitNameParts(fullName) {
-  const parts = String(fullName ?? "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
+// function splitNameParts(fullName) {
+//   const parts = String(fullName ?? "")
+//     .trim()
+//     .split(/\s+/)
+//     .filter(Boolean);
 
-  if (parts.length === 0) {
-    return { firstname: "Unknown", lastname: "Player" };
-  }
+//   if (parts.length === 0) {
+//     return { firstname: "Unknown", lastname: "Player" };
+//   }
 
-  if (parts.length === 1) {
-    return { firstname: parts[0], lastname: "" };
-  }
+//   if (parts.length === 1) {
+//     return { firstname: parts[0], lastname: "" };
+//   }
 
-  return {
-    firstname: parts[0],
-    lastname: parts.slice(1).join(" "),
-  };
-}
+//   return {
+//     firstname: parts[0],
+//     lastname: parts.slice(1).join(" "),
+//   };
+// }
 
-function fallbackPlayerId(playerId) {
-  let hash = 0;
-  const value = String(playerId ?? "");
-  for (let i = 0; i < value.length; i += 1) {
-    hash = (hash * 31 + value.charCodeAt(i)) % 100000;
-  }
-  return 1000 + hash;
-}
+// function fallbackPlayerId(playerId) {
+//   let hash = 0;
+//   const value = String(playerId ?? "");
+//   for (let i = 0; i < value.length; i += 1) {
+//     hash = (hash * 31 + value.charCodeAt(i)) % 100000;
+//   }
+//   return 1000 + hash;
+// }
 
-export const playersApiFootball = {
-  get: "players",
-  parameters: {
-    search: "all",
-  },
-  errors: [],
-  results: players.length,
-  response: players.map((player) => {
-    const { firstname, lastname } = splitNameParts(player.name);
-    const apiPlayerId =
-      player?.apiFootball?.response?.[0]?.player?.id ??
-      fallbackPlayerId(player.id);
+// export const playersApiFootball = {
+//   get: "players",
+//   parameters: {
+//     search: "all",
+//   },
+//   errors: [],
+//   results: players.length,
+//   response: players.map((player) => {
+//     const { firstname, lastname } = splitNameParts(player.name);
+//     const apiPlayerId =
+//       player?.apiFootball?.response?.[0]?.player?.id ??
+//       fallbackPlayerId(player.id);
 
-    return {
-      player: {
-        id: apiPlayerId,
-        name: player.name,
-        firstname,
-        lastname,
-        age: new Date().getFullYear() - player.birthYear,
-        birth: {
-          date: `${player.birthYear}-01-01`,
-          place: null,
-          country: player.nationality,
-        },
-        nationality: player.nationality,
-        height: `${player.heightCm} cm`,
-        weight: null,
-        injured: false,
-        photo: player.image,
-      },
-      statisticsEndpoint: `/players/statistics?id=${apiPlayerId}`,
-    };
-  }),
-};
+//     return {
+//       player: {
+//         id: apiPlayerId,
+//         name: player.name,
+//         firstname,
+//         lastname,
+//         age: new Date().getFullYear() - player.birthYear,
+//         birth: {
+//           date: `${player.birthYear}-01-01`,
+//           place: null,
+//           country: player.nationality,
+//         },
+//         nationality: player.nationality,
+//         height: `${player.heightCm} cm`,
+//         weight: null,
+//         injured: false,
+//         photo: player.image,
+//       },
+//       statisticsEndpoint: `/players/statistics?id=${apiPlayerId}`,
+//     };
+//   }),
+// };

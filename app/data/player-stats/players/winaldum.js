@@ -1,33 +1,22 @@
+// Legacy stats for Georginio Wijnaldum.
+
 export const winaldumStats = {
   id: "winaldum",
   seasons: [
     {
       season: "23/24",
       clubId: "alettifaq",
-      clubCareer: [
-        {
-          clubId: "alettifaq",
-          team: "Al-Ettifaq",
-          career: {
-            totalAppearances: 32,
-            averageRating: 8.2,
-            totalGoals: 9,
-            totalAssists: 7,
-            totalMinutes: 2572,
-            totalShots: 42,
-            shotsOnTarget: 17,
-            keyPasses: 39,
-            chancesCreated: 39,
-            dribbles: 27,
-            yellowCards: 6,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Saudi Arabia",
+      logo: "/clubs/alettifaq.png",
+      name: "Al-Ettifaq",
       competitions: [
         {
           id: "spl",
           name: "Saudi Pro League",
+          type: "league",
+          country: "Saudi Arabia",
+          tier: 1,
+          logoUrl: "/images/spl.png",
           stats: {
             appearances: 29,
             age: 33,
@@ -59,6 +48,10 @@ export const winaldumStats = {
         {
           id: "king_cup",
           name: "King Cup",
+          type: "cup",
+          country: "Saudi Arabia",
+          tier: 1,
+          logoUrl: "/images/king-cup.png",
           stats: {
             appearances: 3,
             age: 33,
@@ -92,30 +85,17 @@ export const winaldumStats = {
     {
       season: "22/23",
       clubId: "roma",
-      clubCareer: [
-        {
-          clubId: "roma",
-          team: "Roma",
-          career: {
-            totalAppearances: 26,
-            averageRating: 7.9,
-            totalGoals: 3,
-            totalAssists: 3,
-            totalMinutes: 1612,
-            totalShots: 22,
-            shotsOnTarget: 8,
-            keyPasses: 25,
-            chancesCreated: 25,
-            dribbles: 18,
-            yellowCards: 4,
-            redCards: 0,
-          },
-        },
-      ],
+      country: "Italy",
+      logo: "/clubs/roma.png",
+      name: "Roma",
       competitions: [
         {
           id: "serie_a",
           name: "Serie A",
+          type: "league",
+          country: "Italy",
+          tier: 1,
+          logoUrl: "/images/serie-a.png",
           stats: {
             appearances: 20,
             age: 32,
@@ -147,6 +127,10 @@ export const winaldumStats = {
         {
           id: "uel",
           name: "UEFA Europa League",
+          type: "continental",
+          country: "Europe",
+          tier: 1,
+          logoUrl: "/images/uel.png",
           stats: {
             appearances: 6,
             age: 32,
