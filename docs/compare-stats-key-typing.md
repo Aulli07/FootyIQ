@@ -119,3 +119,69 @@ const statsByPlayerId = playerStats as unknown as Record<string, StatsType[]>;
 ```
 
 That keeps runtime behavior unchanged, but it’s less strict than updating the source types.
+
+
+
+
+
+
+
+
+
+
+
+type ComparisonAnalyticsContextValue = {
+  comparisonAnalytics: ComparisonStoredAnalyticsType;
+  refreshComparisonAnalytics: () => void;
+};
+
+const ComparisonAnalyticsContext = createContext<ComparisonAnalyticsContextValue | null>(null);
+
+export function useComparisonAnalytics() {
+  const context = useContext(ComparisonAnalyticsContext);
+
+  if (!context) {
+    throw new Error("useComparisonAnalytics must be used within ComparisonAnalyticsProvider");
+  }
+
+  return context;
+}
+
+function ComparisonAnalyticsProvider({ children }: { children: React.ReactNode }) {
+  const [comparisonAnalytics, setComparisonAnalytics] = useState<ComparisonStoredAnalyticsType>({});
+
+  const refreshComparisonAnalytics = () => {
+    setComparisonAnalytics(getStoredAnalyticsOfComparisons());
+  };
+
+  useEffect(() => {
+    refreshComparisonAnalytics();
+
+    const handleComparisonAnalyticsUpdated = () => {
+      refreshComparisonAnalytics();
+    };
+
+    window.addEventListener("comparison-analytics-updated", handleComparisonAnalyticsUpdated);
+    window.addEventListener("storage", handleComparisonAnalyticsUpdated);
+
+    return () => {
+      window.removeEventListener("comparison-analytics-updated", handleComparisonAnalyticsUpdated);
+      window.removeEventListener("storage", handleComparisonAnalyticsUpdated);
+    };
+  }, []);
+
+  return (
+    <ComparisonAnalyticsContext.Provider
+      value={{ comparisonAnalytics, refreshComparisonAnalytics }}
+    >
+      {children}
+    </ComparisonAnalyticsContext.Provider>
+  );
+}
+
+
+
+
+
+
+

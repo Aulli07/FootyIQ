@@ -4,6 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "precompute:canonical": "tsx features/players/adapters/legacy-to-final-stats.ts",
+    "precompute:comparisons": "tsx features/compare/engine/build-comparisons.ts",
+    "precompute:indexedcomparisons": "tsx features/compare/engine/comparison-store.ts",
+    "precompute:lookups": "tsx features/search/engine/search-lookups.ts",
+    "precompute:posts": "tsx features/posts/engine/posts-builder.tsx",
+    "precompute:users": "tsx features/users/engine/build-users.ts",
+    "precompute:followers": "tsx features/users/engine/build-followers.ts",
+    "precompute:followings": "tsx features/users/engine/build-followings.ts",
+    "precompute": "npm run precompute:canonical && npm run precompute:comparisons && npm run precompute:indexedcomparisons && npm run precompute:lookups && npm run precompute:posts && npm run precompute:users && npm run precompute:followers && npm run precompute:followings",
+    "prebuild": "npm run precompute",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -25,6 +35,7 @@
     "eslint-config-next": "16.1.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

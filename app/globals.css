@@ -7,6 +7,27 @@ body {
   margin: 0;
 }
 
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.font-oswald {
+  font-family: var(--font-oswald), sans-serif;
+}
+
+.font-orbitron {
+  font-family: var(--font-orbitron), sans-serif;
+}
+
 .text-primary {
   color: rgb(8, 129, 8);
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

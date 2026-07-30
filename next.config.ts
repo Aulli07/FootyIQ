@@ -8,7 +8,7 @@ const projectRoot = __dirname;
 const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
-  },
+  }
 };
 
 export default nextConfig;

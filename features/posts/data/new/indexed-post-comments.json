@@ -1,0 +1,51 @@
+{
+  "c-1": {
+    "id": "c-1",
+    "postId": "t-1",
+    "userId": "u-1",
+    "type": "comment",
+    "content": "He needs one more season to show what he's got",
+    "tags": [
+      "u-2"
+    ],
+    "createdAt": "1785409031241"
+  },
+  "c-2": {
+    "id": "c-2",
+    "postId": "t-1",
+    "userId": "u-1",
+    "type": "comment",
+    "content": "He needs one more season to show what he's got, but he's looking good so far",
+    "tags": [],
+    "createdAt": "1785409031241"
+  },
+  "c-3": {
+    "id": "c-3",
+    "postId": "t-1",
+    "userId": "u-1",
+    "type": "comment",
+    "content": "Talent is not by mouth o",
+    "tags": [],
+    "createdAt": "1785409031241"
+  },
+  "c-4": {
+    "id": "c-4",
+    "postId": "t-1",
+    "userId": "u-2",
+    "type": "comment",
+    "content": "He needs one more season to show what he's got",
+    "tags": [
+      "u-1"
+    ],
+    "createdAt": "1785409031241"
+  },
+  "c-5": {
+    "id": "c-5",
+    "postId": "t-1",
+    "userId": "u-2",
+    "type": "comment",
+    "content": "He needs one more season to show what he's got",
+    "tags": [],
+    "createdAt": "1785409031241"
+  }
+}

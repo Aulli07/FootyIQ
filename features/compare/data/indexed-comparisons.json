@@ -1,0 +1,50 @@
+{
+  "cmp_0001": {
+    "comparisonId": "cmp_0001",
+    "themeId": "premier_league_best_strikers",
+    "themeTitle": "PL Best Forwards",
+    "matchupType": "competition",
+    "playerA": "haaland",
+    "playerB": "foden",
+    "contextA": "epl 22/23",
+    "contextB": "epl 23/24",
+    "source": "precomputed",
+    "timestamp": 1785409025930
+  },
+  "cmp_0002": {
+    "comparisonId": "cmp_0002",
+    "themeId": "champions_league_monsters",
+    "themeTitle": "UCL Monsters",
+    "matchupType": "competition",
+    "playerA": "vinicius",
+    "playerB": "rodri",
+    "contextA": "ucl 22/23",
+    "contextB": "ucl 22/23",
+    "source": "precomputed",
+    "timestamp": 1785409025930
+  },
+  "cmp_0004": {
+    "comparisonId": "cmp_0004",
+    "themeId": "laliga_rising_forwards",
+    "themeTitle": "LaLiga Rising Forwards",
+    "matchupType": "competition",
+    "playerA": "mbappe",
+    "playerB": "yamal",
+    "contextA": "laliga 23/24",
+    "contextB": "laliga 23/24",
+    "source": "precomputed",
+    "timestamp": 1785409025931
+  },
+  "cmp_0005": {
+    "comparisonId": "cmp_0005",
+    "themeId": "spl_pro_league_icons",
+    "themeTitle": "SPL Icons",
+    "matchupType": "career",
+    "playerA": "benzema",
+    "playerB": "ronaldo",
+    "contextA": "CAREER",
+    "contextB": "CAREER",
+    "source": "precomputed",
+    "timestamp": 1785409025931
+  }
+}
