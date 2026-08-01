@@ -10,6 +10,7 @@ export default function ComparisonVotesSection({
   leftPlayerId: string | null;
   rightPlayerId: string | null;
 }) {
+  
   if (!leftPlayerId || !rightPlayerId) {
     return null;
   }

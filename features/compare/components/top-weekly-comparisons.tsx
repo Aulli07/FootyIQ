@@ -1,60 +1,16 @@
 "use client";
 
 import { poppins } from "@/app/font-icons/fonts";
-import { useComparisonAnalytics } from "@/providers/providers";
-import { useMemo } from "react";
 
 import TopComparisonCard from "./top-comparison-card";
+import { getTopWeeklyComparisons } from "../selectors/get-weekly-comparisons";
 
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
-import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
-
-import { ComparisonCombinedType } from "@/features/compare/types/comparison-main-type";
-import { Player } from "@/shared/types/stats-schema";
+import { getCanonicalPlayerById, getCanonicalPlayerIdByName } from "@/shared/utils/canonical-lookups";
 
 
 
 export default function TopWeeklyComparisons() {
-  const { comparisonAnalytics } = useComparisonAnalytics();
-
-  const hydratedComparisonsList = useMemo(
-    () => Object.values(buildHydratedComparisonStore()),
-    [],
-  );
-
-  const COMPARISONS = useMemo(() => {
-    const combined = hydratedComparisonsList.map((cmp) => ({
-      ...cmp,
-      viewCount: comparisonAnalytics[cmp.comparisonId]?.viewCount ?? 0,
-      searchCount: comparisonAnalytics[cmp.comparisonId]?.searchCount ?? 0,
-    }));
-
-    let topWeeklyComparisons: ComparisonCombinedType[] = [];
-
-    for (const comp of combined) {
-      if (topWeeklyComparisons.length < 7) {
-        topWeeklyComparisons.push(comp);
-
-        topWeeklyComparisons.sort(
-          (cmpA, cmpB) => cmpA.viewCount - cmpB.viewCount,
-        );
-      } else if (comp.viewCount > topWeeklyComparisons[0].viewCount) {
-        topWeeklyComparisons[0] = comp;
-
-        topWeeklyComparisons.sort(
-          (cmpA, cmpB) => cmpA.viewCount - cmpB.viewCount,
-        );
-      }
-    }
-
-    topWeeklyComparisons.sort((cmpA, cmpB) => cmpB.viewCount - cmpA.viewCount);
-
-    return topWeeklyComparisons;
-  }, [comparisonAnalytics, hydratedComparisonsList]);
-
-  const getPlayerData = (id: string): Player | undefined => {
-    return getCanonicalPlayerById(id) ?? undefined;
-  };
+  const weeklyComparisons = getTopWeeklyComparisons();
 
   return (
     <section className="mt-8 mb-12">
@@ -67,9 +23,9 @@ export default function TopWeeklyComparisons() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-        {COMPARISONS.map((comp, index) => {
-          const leftPlayer = getPlayerData(comp.playerA);
-          const rightPlayer = getPlayerData(comp.playerB);
+        {weeklyComparisons.map((comp, index) => {
+          const leftPlayer = getCanonicalPlayerById(comp.playerA);
+          const rightPlayer = getCanonicalPlayerById(comp.playerB);
 
           if (!leftPlayer || !rightPlayer) return null;
 

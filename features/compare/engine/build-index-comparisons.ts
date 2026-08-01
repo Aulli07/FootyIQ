@@ -1,4 +1,5 @@
 "use client";
+
 import fs from "fs";
 
 
@@ -15,7 +16,7 @@ export function buildIndexedComparisonStore() {
     Object.values(hydratedComparisonStore),
   );
 
-  // initializeComparisonAnalytics(hydratedComparisons);
+  initializeComparisonAnalytics(hydratedComparisons);
   
   const themeIndexedComparisons = buildThemeIndexedComparisons(hydratedComparisons);
   const playerIndexedComparisons = buildIndexedComparisonsForPlayers(hydratedComparisons);
@@ -30,7 +31,7 @@ export function buildIndexedComparisonStore() {
   );
 }
 
-function buildIndexedComparisonsForPlayers(
+export function buildIndexedComparisonsForPlayers(
   hydratedComparisons: ComparisonType[],
 ) {
   const playerIndexedComparisons: Record<string, string[]> = {};

@@ -3,16 +3,9 @@ import Image from "next/image";
 import { poppins } from "@/app/font-icons/fonts";
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
-type PlayerSelectionDropdownPanelProps = {
-  label: string;
-  searchQuery: string;
-  searchedPlayers: string[];
-  selectedPlayers?: string[];
-  suggestedPlayers: string[];
-  placeholder: string;
-  onSearchQueryChange: (value: string) => void;
-  onSelectPlayer: (playerId: string) => void;
-};
+import { PlayerSelectionDropdownPanelProps } from "../types/comp-dropdown";
+
+
 
 export function PlayerSelectionDropdownPanel({
   label,
@@ -24,10 +17,9 @@ export function PlayerSelectionDropdownPanel({
   onSearchQueryChange,
   onSelectPlayer,
 }: PlayerSelectionDropdownPanelProps) {
-  const playersToRender =
-    searchQuery.trim() !== "" ? searchedPlayers : suggestedPlayers;
-  const showEmptyState =
-    searchQuery.trim() !== "" && searchedPlayers.length === 0;
+
+  const playersToRender = searchQuery.trim() !== "" ? searchedPlayers : suggestedPlayers;
+  const showEmptyState = searchQuery.trim() !== "" && searchedPlayers.length === 0;
 
   return (
     <div className="flex flex-col gap-4">

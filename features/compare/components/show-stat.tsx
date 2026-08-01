@@ -29,6 +29,7 @@ import {
   getStatValueBasedOnSeason,
 } from "@/features/players/selectors/stat-getters";
 
+
 export default function ShowFullStat({
   playerSet,
   seasonLabels,

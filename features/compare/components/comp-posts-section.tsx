@@ -49,9 +49,7 @@ export default function ComparisonPostsSection({
       </div>
       {(postsInDiscussion.length > 3) && ( 
         <Link
-          href={{
-            pathname: `${uniqueFullPath}/view-more`
-          }}
+          href={{ pathname: `${uniqueFullPath}/view-more` }}
           className="flex justify-end items-center"
         >
           <span

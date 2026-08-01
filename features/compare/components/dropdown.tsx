@@ -3,17 +3,14 @@ import { useEffect, useState } from "react";
 import { poppins } from "@/app/font-icons/fonts";
 import { useTheme } from "next-themes";
 
-import {
-  canonicalPlayers,
-  getCanonicalPlayerById,
-  getCanonicalPlayerCareerStats,
-} from "@/shared/utils/canonical-lookups";
+import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import DropDownMain from "./dropdown-main";
 
 import { useOnClickOutside } from "@/features/compare/utils/click-outside";
 import { handleSelect } from "@/features/compare/utils/dropdown-handler";
 
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
+
 
 export function DropDown(props: DropDownPropsType) {
   const [isOpen, setIsOpen] = useState(false);

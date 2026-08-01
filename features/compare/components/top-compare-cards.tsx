@@ -19,6 +19,7 @@ const Compares = ({
   categoryType: string;
   compactNames?: boolean;
 }) => {
+  
   const comparisonIds = Object.keys(compareList);
 
   return (

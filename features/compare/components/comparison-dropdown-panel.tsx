@@ -1,29 +1,10 @@
 import { useState } from "react";
-
 import { poppins } from "@/app/font-icons/fonts";
-import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
 
-import {
-  ComparisonStatKey,
-  ComparisonStatOption,
-  getComparisonStatLabel,
-} from "../../players/types/comparison-stat-options";
-import { ComparisonImageCard } from "./comp-image-card";
-import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
-import { renderPlayer } from "./top-comparison-card";
+import { getComparisonById } from "../selectors/get-comparison-by-id";
+import { renderPlayer } from "../ui/comp-image-card-ui";
+import { CompDropdownPanelProps } from "../types/comp-dropdown";
 
-type ComparisonDropdownPanelProps = {
-  label: string;
-  searchQuery: string;
-  searchedComparisons: ComparisonStoredType;
-  comparisonStats: ComparisonStatOption[];
-  selectedComparisonStats: ComparisonStatKey[];
-  selectedComparison: string | null;
-  onSearchQueryChange: (value: string) => void;
-  onSelectComparison: (comparisonId: string) => void;
-  onToggleComparisonStat: (statKey: ComparisonStatKey) => void;
-  onApplyComparison: () => void;
-};
 
 export function ComparisonDropdownPanel({
   label,
@@ -36,14 +17,14 @@ export function ComparisonDropdownPanel({
   onSelectComparison,
   onToggleComparisonStat,
   onApplyComparison,
-}: ComparisonDropdownPanelProps) {
+}: CompDropdownPanelProps) {
+
   const [activeTab, setActiveTab] = useState<"comparisons" | "stats">(
     "comparisons",
   );
 
   const comparisonIds = Object.keys(searchedComparisons);
-  const showEmptyState =
-    searchQuery.trim() !== "" && comparisonIds.length === 0;
+  const showEmptyState = searchQuery.trim() !== "" && comparisonIds.length === 0;
   const hasSelectedStats = selectedComparisonStats.length > 0;
   const hasSelectedComparison = Boolean(selectedComparison);
 

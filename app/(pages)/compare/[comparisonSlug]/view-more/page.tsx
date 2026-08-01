@@ -1,32 +1,19 @@
 "use client";
 
+import { useParams } from "next/navigation";
+
 import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
-
 import { PostType } from "@/features/posts/types/post";
-
 import { PostDisplay } from "@/features/posts/components/post-display";
 
 
+export function ViewMoreComparePosts() {
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ comparisonSlug: string }>;
-}) {
-  const resolvedParams = await params;
-  return <ViewMoreComparePosts params={resolvedParams} />;
-}
+  const params = useParams<{ "comparisonSlug": string }>();
+  const comp = params["comparisonSlug"];
 
-export function ViewMoreComparePosts({
-  params
-}: {
-  params: { comparisonSlug: string }
-}) {
-
-  const { comparisonSlug } = params;
-
-  const leftPlayerId = comparisonSlug.split("-vs-")[0];
-  const rightPlayerId = comparisonSlug.split("-vs-")[1];
+  const leftPlayerId = comp.split("-vs-")[0];
+  const rightPlayerId = comp.split("-vs-")[1];
 
   const postsInDiscussion = getPostsInDiscussion(leftPlayerId, rightPlayerId);
 

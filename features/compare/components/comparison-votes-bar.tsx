@@ -1,66 +1,15 @@
-import { Player, PlayerCareerStats } from "@/shared/types/stats-schema";
+import { Player } from "@/shared/types/stats-schema";
 
 import { poppins } from "@/app/font-icons/fonts";
 import { getCanonicalPlayerCareerStats } from "@/shared/utils/canonical-lookups";
 
-const formatShortName = (name?: string) => {
-  if (!name) return "";
-  const parts = name.trim().split(/\s+/);
-  if (parts.length < 2) return name;
-  return `${parts[0]?.[0] ?? ""}. ${parts.slice(1).join(" ")}`.trim();
-};
+import { aggregatePlayerStats } from "../utils/aggregate-stat";
+import { formatShortName } from "../utils/format-name";
 
-const aggregatePlayerStats = (player: PlayerCareerStats | null) => {
-  const totalGoals = player?.goals || 0;
-  const totalAppearances = player?.appearances || 0;
 
-  const weightedRatingSum = () => {
-    const rating = Number(player?.averageRating) || 0;
-    if (!Number.isFinite(rating) || totalAppearances <= 0) return 0;
-    return rating * totalAppearances;
-  };
 
-  const avgRating =
-    totalAppearances > 0 ? weightedRatingSum() / totalAppearances : 0;
+export default function VotesBar( players : Array<Player | null>) {
 
-  return { totalGoals, totalAppearances, avgRating };
-};
-
-const getPreferenceForPair = (pair: Array<Player | null>) => {
-  const left = pair?.[0];
-  const right = pair?.[1];
-
-  if (!left || !right) {
-    return {
-      left,
-      right,
-      leftPct: 0,
-      rightPct: 0,
-    };
-  }
-
-  const leftPlayerStats = getCanonicalPlayerCareerStats(left.id);
-  const rightPlayerStats = getCanonicalPlayerCareerStats(right.id);
-
-  const leftAgg = aggregatePlayerStats(leftPlayerStats);
-  const rightAgg = aggregatePlayerStats(rightPlayerStats);
-
-  // Use average rating as a proxy until vote data exists.
-  const total = Math.max(1, leftAgg.avgRating + rightAgg.avgRating);
-  const leftPct = Math.max(
-    0,
-    Math.min(100, Math.round((leftAgg.avgRating / total) * 100)),
-  );
-  const rightPct = 100 - leftPct;
-
-  return { left, right, leftPct, rightPct };
-};
-
-export default function VotesBar({
-  players,
-}: {
-  players: Array<Player | null>;
-}) {
   const pref = getPreferenceForPair(players);
 
   return (
@@ -93,3 +42,28 @@ export default function VotesBar({
     </div>
   );
 }
+
+const getPreferenceForPair = (pair: Array<Player | null>) => {
+  const left = pair?.[0];
+  const right = pair?.[1];
+
+  if (!left || !right) {
+    return { left, right, leftPct: 0, rightPct: 0 };
+  }
+
+  const leftPlayerStats = getCanonicalPlayerCareerStats(left.id);
+  const rightPlayerStats = getCanonicalPlayerCareerStats(right.id);
+
+  const leftAgg = aggregatePlayerStats(leftPlayerStats);
+  const rightAgg = aggregatePlayerStats(rightPlayerStats);
+
+  // Use average rating as a proxy until vote data exists.
+  const total = Math.max(1, leftAgg.avgRating + rightAgg.avgRating);
+  const leftPct = Math.max(
+    0,
+    Math.min(100, Math.round((leftAgg.avgRating / total) * 100)),
+  );
+  const rightPct = 100 - leftPct;
+
+  return { left, right, leftPct, rightPct };
+};

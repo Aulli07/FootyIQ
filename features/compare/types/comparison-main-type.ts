@@ -61,3 +61,8 @@ export type ComparisonCombinedType = {
   viewCount: number;
   searchCount: number;
 };
+
+export type ComparisonProps = {
+  comparisonIds: string[];
+  title: string;
+};

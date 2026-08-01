@@ -31,8 +31,9 @@ import {
 } from "@/features/players/selectors/stat-getters";
 import type { ComparisonType } from "@/features/compare/types/comparison-main-type";
 import type { Player } from "@/shared/types/stats-schema";
-import { buildHashId, createPostKey } from "@/shared/utils/identity";
+import { createPostKey } from "@/shared/utils/identity";
 import { savePostFromUpload } from "@/features/posts/services/uploadPosts";
+import { compStatRecord } from "@/features/compare/types/comp-image-type";
 
 
 
@@ -310,8 +311,8 @@ function buildComparisonCardStats(
   const leftPlayer = getCanonicalPlayerById(comparison.playerA);
   const rightPlayer = getCanonicalPlayerById(comparison.playerB);
 
-  return statKeys.reduce<Partial<Record<ComparisonStatKey, number[]>>>(
-    (accumulator, statKey) => {
+  return statKeys.reduce(
+    (accumulator: compStatRecord, statKey : ComparisonStatKey) => {
       const leftValue = resolveComparisonStatValue(
         leftPlayer,
         comparison.contextA,
@@ -326,7 +327,7 @@ function buildComparisonCardStats(
       accumulator[statKey] = [leftValue, rightValue];
       return accumulator;
     },
-    {},
+    {} as compStatRecord,
   );
 }
 

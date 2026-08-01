@@ -12,6 +12,7 @@ import { ComparisonDropdownPanel } from "./comparison-dropdown-panel";
 import { SeasonDropdownPanel } from "./season-dropdown-panel";
 import { PlayerSelectionDropdownPanel } from "./player-selection-dropdown-panel";
 
+
 export default function DropDownMain({
   setIsOpen,
   menuRef,
@@ -27,6 +28,7 @@ export default function DropDownMain({
     props: DropDownPropsType,
   ) => void;
 }) {
+
   const suggestedPlayers = useMemo(() => getSuggestedPlayers(), []);
   const storedComparisons = useMemo(() => getStoredComparisons(), []);
 

@@ -1,12 +1,8 @@
 import { poppins } from "@/app/font-icons/fonts";
 import { getCanonicalPlayerSeasonAndCompetitionLabels } from "@/shared/utils/canonical-lookups";
 
-type SeasonDropdownPanelProps = {
-  label: string;
-  players?: string[];
-  playerSlot: number;
-  onSelectSeason: (season: string) => void;
-};
+import { SeasonDropdownPanelProps } from "../types/comp-dropdown";
+
 
 export function SeasonDropdownPanel({
   label,
@@ -14,6 +10,7 @@ export function SeasonDropdownPanel({
   playerSlot,
   onSelectSeason,
 }: SeasonDropdownPanelProps) {
+  
   const selectedPlayerId = players?.[playerSlot] ?? "";
   const seasonOptions = selectedPlayerId
     ? getCanonicalPlayerSeasonAndCompetitionLabels(selectedPlayerId)

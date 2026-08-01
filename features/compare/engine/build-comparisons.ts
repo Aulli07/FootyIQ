@@ -13,6 +13,8 @@ import {
   ComparisonType,
 } from "@/features/compare/types/comparison-main-type";
 
+
+
 function buildComparisons() {
   let COMPARISONS: ComparisonType[] = [];
 
@@ -40,29 +42,11 @@ function buildComparisons() {
   COMPARISONS.forEach((cmp) => {
     indexedComparisons[cmp.comparisonId] = cmp;
   });
-  //   if (!playerIndexedComparisons[cmp.playerA.id]) {
-  //     playerIndexedComparisons[cmp.playerA.id] = [];
-  //   }
-  //   playerIndexedComparisons[cmp.playerA.id].push(cmp.id);
-
-  //   if (!playerIndexedComparisons[cmp.playerB.id]) {
-  //     playerIndexedComparisons[cmp.playerB.id] = [];
-  //   }
-  //   playerIndexedComparisons[cmp.playerB.id].push(cmp.id);
-  // });
 
   fs.writeFileSync(
     "features/compare/data/indexed-comparisons.json",
     JSON.stringify(indexedComparisons, null, 2),
   );
-  // fs.writeFileSync(
-  //   "features/compare/data/theme-indexed-comparisons.json",
-  //   JSON.stringify(themeIndexedComparisons, null, 2),
-  // );
-  // fs.writeFileSync(
-  //   "generated/player-indexed-comparisons.json",
-  //   JSON.stringify(playerIndexedComparisons, null, 2),
-  // );
 }
 
 buildComparisons();

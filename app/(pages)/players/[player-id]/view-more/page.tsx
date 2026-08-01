@@ -17,7 +17,6 @@ export default function ViewMorePage() {
   const params = useParams<{ "player-id": string }>();
   const playerId = params["player-id"];
 
-  console.log(playerId)
   const playerPostDiscussions = getPostsInDiscussion(playerId);
   const player = getCanonicalPlayerById(playerId);
 

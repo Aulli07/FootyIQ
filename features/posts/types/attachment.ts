@@ -1,8 +1,6 @@
-import type { PlayerCompetitionStats } from "@/features/players/types/stats-legacy";
+import { CompStatsForImageCardType } from "@/features/compare/types/comp-image-type";
 
-export type PostAttachmentComparisonStatsType = Partial<
-  Record<keyof PlayerCompetitionStats, number[]>
->;
+export type PostAttachmentComparisonStatsType = CompStatsForImageCardType
 
 export type PostAttachmentType = {
   id: string;

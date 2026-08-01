@@ -1,4 +1,4 @@
-import { buildIndexedComparisonStore } from "@/features/compare/engine/comparison-store";
+import { buildIndexedComparisonsForPlayers } from "@/features/compare/engine/build-index-comparisons";
 import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
 
 import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
@@ -12,8 +12,12 @@ export function getHistoryOfComparisons(
   const foundPlayerIds = foundPlayers.map((player) => player.id);
   const compared: ComparisonStoredType = {};
 
-  const indexedPlayerComparisons = buildIndexedComparisonStore();
   const hydratedComparisonStore = buildHydratedComparisonStore();
+  const hydratedComparisons = Array.from(
+    Object.values(hydratedComparisonStore),
+  );
+  const indexedPlayerComparisons = buildIndexedComparisonsForPlayers(hydratedComparisons);
+  
 
   foundPlayerIds.forEach((id) => {
     const foundComparisons = indexedPlayerComparisons[id] ?? [];
