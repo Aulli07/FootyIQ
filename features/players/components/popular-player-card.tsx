@@ -2,18 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { poppins } from "@/app/font-icons/fonts";
-import { Player } from "@/shared/types/stats-schema";
 
-interface PopularPlayerCardProps {
-  player: Player;
-  searchCount: number;
-}
+import { PopularPlayerCardProps } from "../types/search-analytics-type";
+
+
 
 export default function PopularPlayerCard({
   player,
   searchCount,
 }: PopularPlayerCardProps) {
   return (
+
     <Link
       href={`/players/${player.id}`}
       className="group flex items-center gap-4 rounded-xl border border-light-ui-border bg-white dark:bg-dark-background-card/40 p-3 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all dark:border-white/5 border border-white"
@@ -57,7 +56,7 @@ export default function PopularPlayerCard({
                 />
               </svg>
               <span
-                className={`${poppins.className} text-[12px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-tighter`}
+                className={`${poppins.className} text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-tighter`}
               >
                 {searchCount > 999
                   ? `${(searchCount / 1000).toFixed(1)}k`
@@ -75,23 +74,6 @@ export default function PopularPlayerCard({
           </div>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 right-0 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity translate-x-1 group-hover:translate-x-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
-            stroke="currentColor"
-            className="w-4 h-4 text-emerald-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </div>
-      </div> */}
     </Link>
   );
 }

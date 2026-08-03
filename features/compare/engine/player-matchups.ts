@@ -4,7 +4,7 @@ import { Player } from "@/shared/types/stats-schema";
 import {
   ComparisonMatchupType,
   ComparisonMatchupArrayType,
-} from "@/features/compare/types/comparison-main-type";
+} from "../types/comparison-main-type";
 
 export function generatePlayersMatchup(
   players: Player[],
@@ -15,10 +15,7 @@ export function generatePlayersMatchup(
 
   const matchups: ComparisonMatchupArrayType[] = [];
 
-  for (
-    let i = 0;
-    i < shuffledPlayers.length && matchups.length < matchCount;
-    i += 2
+  for ( let i = 0; i < shuffledPlayers.length && matchups.length < matchCount; i += 2
   ) {
     const playerA = shuffledPlayers[i];
     const playerB = shuffledPlayers[i + 1];

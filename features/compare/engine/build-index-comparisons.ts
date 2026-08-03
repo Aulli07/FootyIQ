@@ -2,11 +2,9 @@
 
 import fs from "fs";
 
-
 import { buildHydratedComparisonStore } from "./comparison-store";
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
-
-import { initializeComparisonAnalytics } from "@/features/compare/services/analytics-storage";
+import { ComparisonType } from "../types/comparison-main-type";
+import { initializeComparisonAnalytics } from "../services/analytics-storage";
 
 
 

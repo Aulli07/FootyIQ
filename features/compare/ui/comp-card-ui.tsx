@@ -3,13 +3,14 @@ import { poppins } from "@/app/font-icons/fonts";
 
 import { Player } from "@/shared/types/stats-schema";
 
+
+
 export const renderPlayerUi = (legend: Player) => (
   <div key={legend.id} className="flex flex-row">
     {(() => {
       const nameParts = legend.fullName.trim().split(/\s+/);
       const firstName = nameParts[0] ?? legend.fullName;
-      const lastName =
-        nameParts.slice(1).join(" ") || nameParts[0] || legend.fullName;
+      const lastName = nameParts.slice(1).join(" ") || nameParts[0] || legend.fullName;
 
       return (
         <div className="py-1 flex flex-col items-center gap-2">

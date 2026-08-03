@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  ComparisonType,
-  ComparisonStoredType,
-} from "@/features/compare/types/comparison-main-type";
+import { ComparisonType, ComparisonStoredType } from "../types/comparison-main-type";
 
 import {
   ANALYTICS_KEY,

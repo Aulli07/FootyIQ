@@ -47,7 +47,6 @@ export function ThemedComparisonsSection() {
                 key={`${comparisonId}-${index}`}
                 comparisonId={comparisonId}
                 cardWidth="w-full"
-                themeId={themeId}
               />
             );
           })}

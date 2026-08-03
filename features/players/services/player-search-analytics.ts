@@ -1,12 +1,13 @@
-import { PlayerFullAnalyticsType } from "@/features/players/types/search-analytics-type";
+import { PlayerFullAnalyticsType } from "../types/search-analytics-type";
 
 const PLAYER_ANALYTICS_KEY = "player-analytics-storage";
+
+
 
 export function notifyPlayerAnalyticsChanged() {
   if (typeof window === "undefined") {
     return;
   }
-
   window.dispatchEvent(new Event("player-analytics-updated"));
 }
 
@@ -20,10 +21,7 @@ export function manageAnalyticsOfPlayersInStorage(entry: string) {
   incrementSearchCountOfPlayer(entry, playerAnalyticsHistory);
   incrementViewCountOfPlayer(entry, playerAnalyticsHistory);
 
-  localStorage.setItem(
-    PLAYER_ANALYTICS_KEY,
-    JSON.stringify(playerAnalyticsHistory),
-  );
+  localStorage.setItem(PLAYER_ANALYTICS_KEY, JSON.stringify(playerAnalyticsHistory));
   notifyPlayerAnalyticsChanged();
 
   return entry;
@@ -33,16 +31,14 @@ export function incrementViewCountOfPlayer(
   entry: string,
   analyticsHistory: PlayerFullAnalyticsType,
 ) {
-  analyticsHistory[entry].viewCount =
-    (analyticsHistory[entry].viewCount || 0) + 1;
+  analyticsHistory[entry].viewCount = (analyticsHistory[entry].viewCount || 0) + 1;
 }
 
 export function incrementSearchCountOfPlayer(
   entry: string,
   analyticsHistory: PlayerFullAnalyticsType,
 ) {
-  analyticsHistory[entry].searchCount =
-    (analyticsHistory[entry].searchCount || 0) + 1;
+  analyticsHistory[entry].searchCount = (analyticsHistory[entry].searchCount || 0) + 1;
 
   return entry;
 }

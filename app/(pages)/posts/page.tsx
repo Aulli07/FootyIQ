@@ -7,7 +7,6 @@ import Link from "next/link";
 import { poppins } from "@/app/font-icons/fonts";
 import { postTabs } from "@/features/posts/selectors/post-tabs";
 import { buildForYouPosts } from "@/features/posts/selectors/build-for-you-posts";
-import { buildPersonalPosts } from "@/features/posts/selectors/build-personal-posts";
 import { buildPublicPosts } from "@/features/posts/selectors/build-public-posts";
 
 import { PostMappedType } from "@/features/posts/types/post";
@@ -20,6 +19,8 @@ import { PostDisplay } from "@/features/posts/components/post-display";
 import { buildHydratedPostsStore } from "@/features/posts/data/new/posts-store";
 
 const MAIN_USER_ID = "u-1";
+
+
 
 function PostsPage() {
   const [postTab, setPostTab] = useState<PostTabType["key"]>("for_you");
@@ -102,21 +103,6 @@ function PublicPosts({
   return (
     <div className="display flex flex-col gap-4">
       {followingPosts.map((post) => (
-        <Link href={{ pathname: `/posts/${post.id}` }} key={post.id}>
-          <PostDisplay post={post} />
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-export function PersonalPosts({ id }: { id: string }) {
-  const postsStore = useMemo(() => buildHydratedPostsStore(), []);
-  const personalPosts = buildPersonalPosts({ postsStore, userId: id });
-
-  return (
-    <div className="display flex flex-col gap-5">
-      {personalPosts.map((post) => (
         <Link href={{ pathname: `/posts/${post.id}` }} key={post.id}>
           <PostDisplay post={post} />
         </Link>

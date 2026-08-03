@@ -6,13 +6,12 @@ import { poppins } from "@/app/font-icons/fonts";
 import { useRef, useState } from "react";
 
 import PageTitle from "@/shared/components/page-title";
+import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+
 import ShowFullStat from "@/features/compare/components/show-stat";
 import ComparisonVotesSection from "@/features/compare/components/comp-votes-section";
 import ComparisonPostsSection from "@/features/compare/components/comp-posts-section";
 import ComparisonShareSection from "@/features/compare/components/comp-share-section";
-
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
-
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
 import { saveComparison } from "@/features/compare/services/save-compare-comparison";
 

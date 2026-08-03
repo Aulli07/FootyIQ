@@ -1,39 +1,27 @@
-import {
-  Player,
-  PlayerCareerStats,
-  PlayerSeasonStats,
-} from "../../../shared/types/stats-schema";
-import { ComparisonThemeType } from "@/features/compare/types/comparison-theme-type";
-
+import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
   getCanonicalPlayerCareerStats,
   getCanonicalPlayerSeasonStats,
   getCanonicalSeasonById,
 } from "@/shared/utils/canonical-lookups";
 
+import { ComparisonThemeType } from "@/features/compare/types/comparison-theme-type";
 import {
   ComparisonMatchupArrayType,
   ComparisonMatchupType,
   ComparisonType,
 } from "@/features/compare/types/comparison-main-type";
+import { SeasonGroup } from "../types/comp-generator-type";
+import { MULTIPLIER } from "../data/comp-multiplier";
 
-type SeasonGroup = {
-  seasonId: string;
-  seasonLabel: string;
-  totalSeasonRows: PlayerSeasonStats[];
-};
 
-const MULTIPLIER: { spl: number; epl: number; cl: number } = {
-  spl: 1.1,
-  epl: 1.8,
-  cl: 2.5,
-};
 
 export function generateAllComparisons(
   matchups: ComparisonMatchupArrayType[],
   theme: ComparisonThemeType,
   comparisonId: string,
 ): ComparisonType[] {
+
   const COMPARISONS: ComparisonType[] = [];
 
   for (let matchup of matchups) {
@@ -44,21 +32,13 @@ export function generateAllComparisons(
     if (matchupType === "season") {
       const seasonA = getTopSeason(playerA);
       const seasonB = getTopSeason(playerB);
-
       if (!seasonA || !seasonB) {
         continue;
       }
-
       COMPARISONS.push(
         generateComparison(
-          playerA,
-          playerB,
-          seasonA,
-          seasonB,
-          matchupType,
-          theme,
-          comparisonId,
-        ),
+          playerA, playerB, seasonA, seasonB, matchupType, theme, comparisonId,
+        )
       );
     }
 
@@ -71,41 +51,25 @@ export function generateAllComparisons(
         playerB,
         theme?.filters.competitionIds,
       );
-
       if (!competitionA || !competitionB) {
         continue;
       }
-
       COMPARISONS.push(
         generateComparison(
-          playerA,
-          playerB,
-          competitionA,
-          competitionB,
-          matchupType,
-          theme,
-          comparisonId,
-        ),
+          playerA, playerB, competitionA, competitionB, matchupType, theme, comparisonId,
+        )
       );
     }
 
     if (matchupType === "career") {
       const careerA = getCareer(playerA);
       const careerB = getCareer(playerB);
-
       if (!careerA || !careerB) {
         continue;
       }
-
       COMPARISONS.push(
         generateComparison(
-          playerA,
-          playerB,
-          careerA,
-          careerB,
-          matchupType,
-          theme,
-          comparisonId,
+          playerA, playerB, careerA, careerB, matchupType, theme, comparisonId,
         ),
       );
     }

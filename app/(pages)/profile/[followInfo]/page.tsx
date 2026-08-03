@@ -8,6 +8,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
 import { getProfileFollowUsers } from "@/features/users/selectors/profile-meta";
 
+
 export default function FollowInfo() {
   const params = useParams<{ followInfo: string }>();
   const followLabel = params.followInfo;

@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
-import { PersonalPosts } from "../posts/page";
+import { buildHydratedPostsStore } from "@/features/posts/data/new/posts-store";
+import { buildPersonalPosts } from "@/features/posts/selectors/build-personal-posts";
+import { PostDisplay } from "@/features/posts/components/post-display";
 import { profileTabs } from "@/features/posts/selectors/profile-tabs";
 import { poppins } from "@/app/font-icons/fonts";
 import AddPost from "@/features/posts/components/add-post";
@@ -34,7 +36,6 @@ export function Profile({ userId }: { userId?: string }) {
   type PostTabType = (typeof profileTabs)[number]["key"];
 
   const [postTab, setPostTab] = useState<PostTabType>("posts");
-
   const profileTabContent: Record<PostTabType, React.ReactNode> = {
     posts: <PersonalPosts id={userId ?? ""} />,
     history: <History />,
@@ -165,6 +166,21 @@ export function Profile({ userId }: { userId?: string }) {
         <AddPost />
       </div>
     </main>
+  );
+}
+
+export function PersonalPosts({ id }: { id: string }) {
+  const postsStore = useMemo(() => buildHydratedPostsStore(), []);
+  const personalPosts = buildPersonalPosts({ postsStore, userId: id });
+
+  return (
+    <div className="display flex flex-col gap-5">
+      {personalPosts.map((post) => (
+        <Link href={{ pathname: `/posts/${post.id}` }} key={post.id}>
+          <PostDisplay post={post} />
+        </Link>
+      ))}
+    </div>
   );
 }
 

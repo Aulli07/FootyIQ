@@ -1,15 +1,12 @@
-import {
-  Player,
-  PlayerCareerStats,
-  PlayerSeasonStats,
-} from "@/shared/types/stats-schema";
-
+import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
   getCanonicalClubById,
   getCanonicalPlayerCareerStats,
   getCanonicalPlayerSeasonStatsBySeasonLabel,
   getCanonicalPlayerStatsBySeasonLabelAndCompetitionId,
 } from "@/shared/utils/canonical-lookups";
+
+
 
 export function getAgeOfPlayer(player: Player | null): string | number {
   const age = player?.dateOfBirth

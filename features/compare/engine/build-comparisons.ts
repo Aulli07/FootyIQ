@@ -17,6 +17,7 @@ import {
 
 function buildComparisons() {
   let COMPARISONS: ComparisonType[] = [];
+  const indexedComparisons: ComparisonStoredType = {};
 
   for (let i = 0; i < SYSTEM_COMPARISON_THEMES.length; i++) {
     const comparisonPrecomputedId =
@@ -36,8 +37,6 @@ function buildComparisons() {
       ),
     );
   }
-
-  const indexedComparisons: ComparisonStoredType = {};
 
   COMPARISONS.forEach((cmp) => {
     indexedComparisons[cmp.comparisonId] = cmp;

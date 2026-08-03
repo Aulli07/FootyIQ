@@ -67,7 +67,6 @@ export function renderPlayerImage(player: Player | null, label: string | undefin
 
 export function renderPlayer(playerId: string, context: string) {
   const player = getCanonicalPlayerById(playerId);
-
   if (!player) {
     return null;
   }

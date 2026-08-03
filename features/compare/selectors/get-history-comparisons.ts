@@ -1,7 +1,7 @@
-import { buildIndexedComparisonsForPlayers } from "@/features/compare/engine/build-index-comparisons";
-import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
+import { buildIndexedComparisonsForPlayers } from "../engine/build-index-comparisons";
+import { buildHydratedComparisonStore } from "../engine/comparison-store";
+import { ComparisonStoredType } from "../types/comparison-main-type";
 
-import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
 import { Player } from "@/shared/types/stats-schema";
 
 
@@ -9,6 +9,7 @@ import { Player } from "@/shared/types/stats-schema";
 export function getHistoryOfComparisons(
   foundPlayers: Player[],
 ): ComparisonStoredType {
+
   const foundPlayerIds = foundPlayers.map((player) => player.id);
   const compared: ComparisonStoredType = {};
 
@@ -24,11 +25,11 @@ export function getHistoryOfComparisons(
 
     foundComparisons.forEach((comparisonId) => {
       const comparison = hydratedComparisonStore[comparisonId];
-
       if (comparison) {
         compared[comparisonId] = comparison;
       }
     });
   });
+  
   return compared;
 }

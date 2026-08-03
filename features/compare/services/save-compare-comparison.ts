@@ -1,25 +1,11 @@
-import { manageComparisonInStorage } from "@/features/compare/services/comparison-storage";
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
-import {
-  buildHashId,
-  createComparisonKey,
-  normalizeLabel as sharedNormalizeLabel,
-} from "@/shared/utils/identity";
+import { manageComparisonInStorage } from "../services/comparison-storage";
+import { ComparisonType } from "../types/comparison-main-type";
+import { newComparisonType, newComparisonTypeForPlayer } from "../types/comp-save-type";
+
+import { buildHashId, createComparisonKey } from "@/shared/utils/identity";
 
 import { RefObject, useEffect } from "react";
 
-
-type newComparisonType = {
-  playerA: string;
-  playerB: string;
-  contextA: string;
-  contextB: string;
-};
-
-type newComparisonTypeForPlayer = {
-  player: string;
-  context: string;
-};
 
 export function saveComparison({
   selectedPlayers,
@@ -32,6 +18,7 @@ export function saveComparison({
   setCurrentComparisonId: React.Dispatch<React.SetStateAction<string | null>>;
   lastComparisonKeyRef: RefObject<string | null>;
 }) {
+
   const hasCompletedComparison =
     !!selectedPlayers[0] &&
     !!selectedPlayers[1] &&
@@ -75,13 +62,8 @@ export function saveComparisonFromCompare(
 ) {
   if (hasCompletedComparison) {
     const comparisonId = createNewComparisonId(newComparison);
-
     const comparisonEntry = buildComparisonEntry(comparisonId, newComparison);
-
     const newStoredComparison = manageComparisonInStorage(comparisonEntry);
-    // const viewIncrementedComparison = incrementViewCountOfComparison(newStoredComparison);
-    // const searchIncrementedComparison = incrementSearchCountOfComparison(viewIncrementedComparison);
-
     return newStoredComparison;
   }
 }
@@ -99,7 +81,6 @@ function createNewComparisonId(newComparison: newComparisonType): string {
   ];
 
   const normalizedComparison = normalizeNewComparison(comparison);
-
   const id = createComparisonKey(normalizedComparison);
 
   return buildHashId(id);
@@ -107,14 +88,13 @@ function createNewComparisonId(newComparison: newComparisonType): string {
 
 function normalizeNewComparison(comparison: newComparisonTypeForPlayer[]) {
   return [...comparison].sort((a, b) => {
-    const playerA = sharedNormalizeLabel(a.player);
-    const playerB = sharedNormalizeLabel(b.player);
+    const playerA = normalizeLabel(a.player);
+    const playerB = normalizeLabel(b.player);
 
-    const contextA = sharedNormalizeLabel(a.context);
-    const contextB = sharedNormalizeLabel(b.context);
+    const contextA = normalizeLabel(a.context);
+    const contextB = normalizeLabel(b.context);
 
     const playerCompared = playerA.localeCompare(playerB);
-
     if (playerCompared !== 0) return playerCompared;
 
     return contextA.localeCompare(contextB);
@@ -122,7 +102,7 @@ function normalizeNewComparison(comparison: newComparisonTypeForPlayer[]) {
 }
 
 export function normalizeLabel(label: string): string {
-  return sharedNormalizeLabel(label);
+  return normalizeLabel(label);
 }
 
 function buildComparisonEntry(

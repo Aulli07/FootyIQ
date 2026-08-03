@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
-import { DropDownPropsType } from "@/shared/types/dropdown-props";
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 
 import { canonicalPlayers } from "@/shared/utils/canonical-lookups";
+import { DropDownPropsType } from "@/shared/types/dropdown-props";
+
 
 export const handleSelect = (
   value: string | ComparisonType,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: DropDownPropsType,
 ) => {
+
   if (props.type === "player") {
     props.setSearchQuery("");
     return handlePlayerSelect(value, setIsOpen, props);

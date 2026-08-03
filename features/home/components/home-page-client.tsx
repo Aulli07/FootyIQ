@@ -8,6 +8,7 @@ import SearchedPlayerResults from "@/features/search/components/search-player-re
 import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
 import { getSuggestedPlayers } from "@/features/players/utils/suggested-players";
 
+
 export default function HomePageClient({ children }: { children: ReactNode }) {
   const [isSearch, setIsSearch] = useState(false);
   const [focusSearch, setFocusSearch] = useState(false);

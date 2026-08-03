@@ -1,7 +1,6 @@
 import { useRef, useEffect, useLayoutEffect } from "react";
 
 
-
 export function useOnClickOutside(
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
   isOpen: boolean,

@@ -1,20 +1,16 @@
 "use client";
 
 import { poppins } from "@/app/font-icons/fonts";
+import { useMemo } from "react";
 
-import {
-  canonicalPlayers,
-  getCanonicalPlayerById,
-} from "@/shared/utils/canonical-lookups";
+import { canonicalPlayers, getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
 import PopularPlayerCard from "./popular-player-card";
+import { PlayerCombinedType, PlayerFullAnalyticsType } from "../types/search-analytics-type";
 
-import {
-  PlayerCombinedType,
-  PlayerFullAnalyticsType,
-} from "@/features/players/types/search-analytics-type";
 import { usePlayerAnalytics } from "@/providers/providers";
-import { useMemo } from "react";
+
+
 
 function getPopularPlayers(
   playerAnalytics: PlayerFullAnalyticsType,

@@ -1,12 +1,13 @@
 "use client";
 
-import { oswald, poppins } from "@/app/font-icons/fonts";
+import { poppins } from "@/app/font-icons/fonts";
 
 import { useState } from "react";
 import { useRef } from "react";
 
-import { DropDown } from "@/features/compare/components/dropdown";
 import Header from "@/shared/components/header";
+
+import { DropDown } from "@/features/compare/components/dropdown";
 import ShowFullStat from "@/features/compare/components/show-stat";
 import ComparisonVotesSection from "@/features/compare/components/comp-votes-section";
 import ComparisonPostsSection from "@/features/compare/components/comp-posts-section";
@@ -45,14 +46,6 @@ const Compare = () => {
     <main className="flex flex-col w-full gap-5 px-3 text-light-text-primary dark:text-dark-text-primary ">
       <Header headerText="Compare" />
       <div className="gap-3 flex flex-col">
-        {/* <div className="relative flex justify-center items-center mb-5">
-          <p
-            className={`text-light-text-primary dark:text-dark-text-primary ${oswald.className} text-lg tracking-wide font-bold leading-tight`}
-          >
-            PLAYER COMPARISON
-          </p>
-        </div> */}
-
         <div className="grid grid-cols-2 gap-3 px-2">
           <AddFieldBox
             playerSlot={0}

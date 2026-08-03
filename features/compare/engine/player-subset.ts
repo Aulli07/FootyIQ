@@ -1,20 +1,14 @@
 import {
   ComparisonThemeType,
   RankingStrategyType,
-} from "@/features/compare/types/comparison-theme-type";
+} from "../types/comparison-theme-type";
 
 import { Player } from "../../../shared/types/stats-schema";
-import {
-  PlayerSeasonStats,
-  StrategyScorer,
-} from "../../../shared/types/stats-schema";
+import { PlayerSeasonStats, StrategyScorer } from "../../../shared/types/stats-schema";
 
-import {
-  getCareer,
-  getPlayerCompetitionIds,
-  getCareerRating,
-  getPlayerCompetitions,
-} from "@/shared/utils/canonical-lookups";
+import { getCareer, getPlayerCompetitionIds, getCareerRating, getPlayerCompetitions } from "@/shared/utils/canonical-lookups";
+
+
 
 export function getPlayersSubset(
   players: Player[],

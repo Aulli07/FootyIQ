@@ -1,24 +1,27 @@
 "use client";
 
 import PageTitle from "@/shared/components/page-title";
-import { useState, useRef, useEffect, SetStateAction, Dispatch, RefObject } from "react";
+import { useState, useRef, useEffect, SetStateAction } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { handleSearch } from "@/features/compare/utils/history-search-handler";
-import { PlayerDisplayResults } from "@/features/search/components/search-results-display";
-
 import { useOnClickOutside } from "@/features/compare/utils/click-outside";
 import DropDownMain from "@/features/compare/components/dropdown-main";
 import { handleSelect } from "@/features/compare/utils/dropdown-handler";
-import { DropDownPropsType } from "@/shared/types/dropdown-props";
-import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
-import { useSearchParams } from "next/navigation";
 import { findComparisonFromHistory } from "@/features/compare/selectors/find-comparison";
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
-import {
-  comparisonStatOptions,
-  type ComparisonStatKey,
-} from "@/features/players/types/comparison-stat-options";
+import { compStatRecord } from "@/features/compare/types/comp-image-type";
+import type { ComparisonType } from "@/features/compare/types/comparison-main-type";
+
+import { DropDownPropsType } from "@/shared/types/dropdown-props";
+import type { Player } from "@/shared/types/stats-schema";
+import { createPostKey } from "@/shared/utils/identity";
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+
+import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
+import { PlayerDisplayResults } from "@/features/search/components/search-results-display";
+
+import { comparisonStatOptions, type ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
 import {
   getAgeOfPlayer,
   getAverageRatingOfPlayerBasedOnCareer,
@@ -29,11 +32,8 @@ import {
   getStatValueBasedOnCompetitionAndSeason,
   getStatValueBasedOnSeason,
 } from "@/features/players/selectors/stat-getters";
-import type { ComparisonType } from "@/features/compare/types/comparison-main-type";
-import type { Player } from "@/shared/types/stats-schema";
-import { createPostKey } from "@/shared/utils/identity";
+
 import { savePostFromUpload } from "@/features/posts/services/uploadPosts";
-import { compStatRecord } from "@/features/compare/types/comp-image-type";
 
 
 
