@@ -6,6 +6,7 @@ import { FollowMappedType } from "@/features/posts/types/follow";
 
 const GENERATED_DIR = path.resolve(process.cwd(), "features");
 
+
 export function buildFollowerData() {
   const storedFollowers = buildStoredFollowersFromLegacy();
 

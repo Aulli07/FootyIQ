@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { oswald } from "@/app/font-icons/fonts";
-
 import { useTheme } from "next-themes";
 
 import { useState, useEffect } from "react";

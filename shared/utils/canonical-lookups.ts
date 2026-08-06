@@ -25,6 +25,7 @@ export const canonicalSeasons = canonicalStore.seasons;
 export const canonicalPlayerSeasonStats = canonicalStore.totalPlayerStats;
 export const canonicalPlayerCareerStats = canonicalStore.totalPlayerCareerStats;
 
+
 const canonicalPlayersById = new Map(
   canonicalPlayers.map((player) => [player.id, player]),
 );

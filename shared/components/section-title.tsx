@@ -1,7 +1,6 @@
 import { oswald } from "@/app/font-icons/fonts";
 
 
-
 export default function HomeTitleSection({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-2">

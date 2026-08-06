@@ -1,11 +1,9 @@
 "use client";
 
-import indexedFollowings from "@/features/users/data/indexed-followings.json";
-
+import indexedFollowings from "../data/indexed-followings.json";
 import { FollowMappedType } from "@/features/posts/types/follow";
 
 const STORAGE_KEY = "following_storage";
-
 const precomputedFollowingsStore = indexedFollowings as FollowMappedType;
 
 export function buildHydratedFollowingStore() {
@@ -15,7 +13,6 @@ export function buildHydratedFollowingStore() {
   };
 
   initializeFollowingStorage(hydratedFollowingStore);
-
   return hydratedFollowingStore;
 }
 

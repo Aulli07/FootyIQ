@@ -1,17 +1,15 @@
 "use client";
 
 import indexedUsers from "@/features/users/data/indexed-users.json"
-
 import { UserMappedType, UserType } from "@/features/users/types/users";
 
 const STORAGE_KEY = "users_storage";
-
 const precomputedUserStore = indexedUsers as UserMappedType;
+
 
 export function buildHydratedUserStore() {
   const hydratedUserStore = { ...precomputedUserStore, ...getStoredUsers() };
   initializeUsersStorage(hydratedUserStore);
-
   return hydratedUserStore;
 }
 
@@ -38,14 +36,4 @@ export function getStoredUsers(): UserMappedType {
 
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : {};
-}
-
-export function findUserFromHistory(user: UserType): UserType | null {
-  const currentHistory = getStoredUsers();
-
-  if (currentHistory[user.id]) {
-    return currentHistory[user.id];
-  }
-
-  return null;
 }

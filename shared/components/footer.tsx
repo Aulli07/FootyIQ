@@ -9,6 +9,8 @@ import { useTheme } from "next-themes";
 
 import { poppins } from "@/app/font-icons/fonts";
 
+import { footerLinks } from "../data/footer-link-data";
+
 
 
 
@@ -26,56 +28,6 @@ function Footer() {
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
 
-  const footerLinks = [
-    {
-      to: "/",
-      lightIcon: "/images/home-light.png",
-      darkIcon: "/images/home-dark.png",
-      lightActiveIcon: "/images/home-light-fill.png",
-      darkActiveIcon: "/images/home-dark-fill.png",
-      alt: "home-icon",
-      header: "Footy IQ",
-      title: "Home",
-      width: 5,
-      height: 5,
-    },
-    {
-      to: "/compare",
-      lightIcon: "/images/swap-light.png",
-      darkIcon: "/images/swap-dark.png",
-      lightActiveIcon: "/images/swap-light-fill.png",
-      darkActiveIcon: "/images/swap-dark-fill.png",
-      alt: "compare-icon",
-      header: "Compare",
-      title: "Compare",
-      width: 5,
-      height: 5,
-    },
-    {
-      to: "/posts",
-      lightIcon: "/images/history-light.png",
-      darkIcon: "/images/history-dark.png",
-      lightActiveIcon: "/images/history-light-fill.png",
-      darkActiveIcon: "/images/history-dark-fill.png",
-      alt: "posts-icon",
-      header: "Posts",
-      title: "Posts",
-      width: 5,
-      height: 5,
-    },
-    {
-      to: "/profile",
-      lightIcon: "/images/history-light.png",
-      darkIcon: "/images/history-dark.png",
-      lightActiveIcon: "/images/history-light-fill.png",
-      darkActiveIcon: "/images/history-dark-fill.png",
-      alt: "profile-icon",
-      header: "Profile",
-      title: "Profile",
-      width: 5,
-      height: 5,
-    },
-  ];
 
   const normalizePath = (p: string) =>
     p.length > 1 ? p.replace(/\/+$/, "") : p;
