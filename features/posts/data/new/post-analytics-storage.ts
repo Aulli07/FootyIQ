@@ -16,6 +16,8 @@ import { PostAttachmentsByPostIdType } from "@/features/posts/types/attachment";
 
 const STORAGE_KEY = "posts_analytics_storage";
 
+
+
 const precomputedPostAnalyticsStore = buildPostAnalyticsStoreFromLookups({
   likesByPostId: indexedLikesByPostId as LikesByPostIdType,
   commentsByPostId: indexedCommentsByPostId as commentsByPostIdType,
@@ -31,7 +33,6 @@ export function buildHydratedPostAnalyticsStore() {
   };
 
   initializePostAnalyticsStorage(hydratedPostAnalyticsStore);
-
   return hydratedPostAnalyticsStore;
 }
 

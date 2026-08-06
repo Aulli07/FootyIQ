@@ -1,15 +1,17 @@
-import exactPlayerMap from "@/features/search/data/exact-lookup-map.json";
-import tokenPlayerMap from "@/features/search/data/prefix-lookup-map.json";
-import prefixPlayerMap from "@/features/search/data/token-lookup-map.json";
+import exactPlayerMap from "../data/exact-lookup-map.json";
+import tokenPlayerMap from "../data/prefix-lookup-map.json";
+import prefixPlayerMap from "../data/token-lookup-map.json";
 
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
-
-import { normalizeLabel } from "@/features/compare/services/save-compare-comparison";
+import { normalizeLabel } from "@/shared/utils/identity";
 
 /* We need to type the imports before usage */
 const exactPlayerSearchMap = exactPlayerMap as Record<string, string[]>;
 const tokenPlayerSearchMap = tokenPlayerMap as Record<string, string[]>;
 const prefixPlayerSearchMap = prefixPlayerMap as Record<string, string[]>;
+
+
+
 
 export function getPlayerSearchResults(query: string): string[] {
   const searchQuery = normalizeLabel(query);

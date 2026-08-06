@@ -13,7 +13,6 @@ export function savePostFromUpload(newPost: UploadPostInput & {timestamp: number
   if (!newPost.postContent.trim()) {
     return;
   }
-
   const postId = createNewPostId(newPost);
   const postEntry = buildPostEntry(postId, newPost);
 
@@ -50,7 +49,6 @@ function buildPostEntry(id: string, post: UploadPostInput & {timestamp: number})
     createdAt: String(post.timestamp),
   };
 }
-
 
 function getPostAttachmentEntry(compId: string, compStats?: Partial<Record<ComparisonStatKey, number[]>>) : string {
   const hydatedPostAttachmentStore = buildHydratedPostAttachmentsStore();

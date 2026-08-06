@@ -1,13 +1,10 @@
-import Image from "next/image";
-import { poppins } from "@/app/font-icons/fonts";
-import Link from "next/link";
-
 import PopularPlayerCard from "../../players/components/popular-player-card";
 
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
-
 import { Player } from "@/shared/types/stats-schema";
 import { usePlayerAnalytics } from "@/providers/analytics-contexts";
+
+
 
 export function PlayerDisplayResults({ playerIds }: { playerIds: string[] }) {
   const { playerAnalytics } = usePlayerAnalytics();

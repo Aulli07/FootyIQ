@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-
-import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
-import { PostType } from "@/features/posts/types/post";
-
 import PageTitle from "@/shared/components/page-title";
-import { PostDisplay } from "@/features/posts/components/post-display";
+
+import { getPostsInDiscussion } from "../selectors/get-post-discussions-by-ids";
+import { PostType } from "../types/post";
+import { PostDisplay } from "../components/post-display";
+
+
 
 export default function ViewMorePostsContent() {
   const searchParams = useSearchParams();

@@ -7,15 +7,17 @@ import { PostMappedType, PostType } from "@/features/posts/types/post";
 
 import { shuffleArray } from "../utils/shuffle-array";
 
-type BuildForYouPostsArgs = {
-  postsStore?: PostMappedType;
-  userId: string;
-};
+
+
 
 export function buildForYouPosts({
   postsStore = buildHydratedPostsStore(),
   userId,
-}: BuildForYouPostsArgs): PostType[] {
+}: {
+  postsStore: PostMappedType;
+  userId: string;
+}): PostType[] {
+  
   const allPosts = Object.values(postsStore);
   const followingIds = getFollowingByUserId(userId);
   const followerCountMap = getUserFollowCountsById(userId);

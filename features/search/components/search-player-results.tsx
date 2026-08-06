@@ -1,6 +1,7 @@
 import { oswald, poppins } from "@/app/font-icons/fonts";
-
 import { PlayerDisplayResults } from "./search-results-display";
+
+
 
 export default function SearchedPlayerResults({
   data,
