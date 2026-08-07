@@ -1,4 +1,4 @@
-import { buildIndexedComparisonsForPlayers } from "../engine/build-index-comparisons";
+import { buildIndexedComparisonsForPlayers } from "../engine/create-index-comps";
 import { buildHydratedComparisonStore } from "../engine/comparison-store";
 import { ComparisonStoredType } from "../types/comparison-main-type";
 

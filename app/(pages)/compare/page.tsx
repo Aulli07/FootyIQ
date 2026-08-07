@@ -45,7 +45,7 @@ const Compare = () => {
   return (
     <main className="flex flex-col w-full gap-5 px-3 text-light-text-primary dark:text-dark-text-primary ">
       <Header headerText="Compare" />
-      <div className="gap-3 flex flex-col">
+      <div className="mt-5 gap-3 flex flex-col">
         <div className="grid grid-cols-2 gap-3 px-2">
           <AddFieldBox
             playerSlot={0}

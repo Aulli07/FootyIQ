@@ -31,6 +31,7 @@ export default function TopWeeklyComparisons() {
 
           return (
             <TopComparisonCard
+              key={comp.comparisonId}
               id={comp.comparisonId}
               comp={comp}
               themeId={comp.themeId}
