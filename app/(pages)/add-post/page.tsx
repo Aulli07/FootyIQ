@@ -21,7 +21,10 @@ import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
 import { PlayerDisplayResults } from "@/features/search/components/search-results-display";
 
-import { comparisonStatOptions, type ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
+import {
+  comparisonStatOptions,
+  type ComparisonStatKey,
+} from "@/features/players/types/comparison-stat-options";
 import {
   getAgeOfPlayer,
   getAverageRatingOfPlayerBasedOnCareer,
@@ -34,15 +37,13 @@ import {
 } from "@/features/players/selectors/stat-getters";
 
 import { savePostFromUpload } from "@/features/posts/services/uploadPosts";
-
-
-
+import { PostInfoType } from "@/features/posts/types/post-upload-info";
+import { handleUploadOfPost, useUploadPost } from "@/features/posts/engine/handle-post-upload";
 
 export default function AddPost() {
-
   const searchParams = useSearchParams();
   const comparisonId = searchParams.get("comparisonId");
-  
+
   const [isOpen, setIsOpen] = useState(false);
   const prefilledComparison = comparisonId
     ? findComparisonFromHistory(comparisonId)
@@ -73,7 +74,7 @@ export default function AddPost() {
     ComparisonStatKey[]
   >([]);
 
-  const [currentPostId, setCurrentPostId] = useState<SetStateAction<string | null>>();
+  // const [currentPostId, setCurrentPostId] = useState<string | null>();
   const lastPostKeyRef = useRef<string | null>(null);
 
   const { menuRef } = useOnClickOutside(setIsOpen, isOpen);
@@ -83,11 +84,12 @@ export default function AddPost() {
     ? findComparisonFromHistory(appliedComparisonId)
     : null;
 
-
   const searchedDropdownResults = handleSearch(comparisonSearchQuery);
   const searchedPlayerResults = getPlayerSearchResults(pollSearchQuery);
 
-  const comparisonPostStats = selectedComparisonData ? buildComparisonCardStats(selectedComparisonData, appliedComparisonStats) : undefined;
+  const comparisonPostStats = selectedComparisonData
+    ? buildComparisonCardStats(selectedComparisonData, appliedComparisonStats)
+    : undefined;
 
   const comparisonProps: DropDownPropsType = {
     type: "comparison",
@@ -113,52 +115,20 @@ export default function AddPost() {
 
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
 
+  const postUploadInfo: PostInfoType = {
+    shouldUpload,
+    setShouldUpload,
+    selectedComparisonData,
+    comparisonPostStats,
+    myRef,
+    lastPostKeyRef
+  };
+
   function handlePostUpload() {
-    setShouldUpload(true);
+    postUploadInfo.setShouldUpload(true);
   }
 
-  useUploadPost(shouldUpload);
-
-  function useUploadPost(shouldUpload: boolean) {    
-    useEffect(() => {
-      if (!shouldUpload) return;
-
-      const postContent = myRef.current?.value
-      if (!postContent) {
-          return;
-      }
-
-      const normalizedPostContent = postContent.trim();
-      const hasCompletedUpload = normalizedPostContent.length > 0;
-      const compId = selectedComparisonData?.comparisonId;
-      const postKey = createPostKey([
-        normalizedPostContent,
-        selectedComparisonData?.comparisonId ?? "",
-        JSON.stringify(comparisonPostStats ?? {})
-      ]);
-
-      if (!hasCompletedUpload) {
-        lastPostKeyRef.current = null;
-        setCurrentPostId(null);
-        return;
-      }
-  
-      if (lastPostKeyRef.current === postKey) {
-        return;
-      }
-  
-      const currentPost = savePostFromUpload({
-        postContent: normalizedPostContent,
-        compId,
-        compStats: comparisonPostStats,
-        timestamp: Date.now(),
-        authorId: "u-1",
-      });
-  
-      setCurrentPostId(currentPost?.id ?? null);
-      lastPostKeyRef.current = postKey;
-    }, [shouldUpload]);
-  }
+  useUploadPost(postUploadInfo.shouldUpload, postUploadInfo);
 
   return (
     <main className="flex min-h-[calc(100vh-7rem)] flex-col px-4 py-4 text-light-text-primary dark:text-dark-text-primary">
@@ -193,8 +163,7 @@ export default function AddPost() {
                 comparisonId={selectedComparisonData.comparisonId}
                 compStats={comparisonPostStats ?? undefined}
               />
-            ) :
-            null}
+            ) : null}
 
             {composerMode === "poll" &&
             selectedPollPlayers[0] &&
@@ -235,17 +204,6 @@ export default function AddPost() {
             >
               Select Comparison
             </div>
-            {/* <div
-              className="flex items-center justify-center rounded-xl border border-light-ui-border bg-light-background-card px-4 py-3 text-sm font-medium text-light-text-primary transition hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-dark-text-primary dark:hover:bg-white/15"
-              onClick={() => {
-                setSelectedComparison(null);
-                setComparisonSearchQuery("");
-                setComposerMode("poll");
-                setIsOpen(true);
-              }}
-            >
-              Make a poll
-            </div> */}
           </div>
         </div>
         <div className="flex items-center justify-end gap-3 pt-4 dark:border-white/10">
@@ -255,7 +213,10 @@ export default function AddPost() {
           >
             Cancel
           </button>
-          <button className="rounded-lg bg-emerald-600 px-8 py-3 text-sm font-medium text-white transition hover:bg-emerald-700" onClick={() => handlePostUpload()}>
+          <button
+            className="rounded-lg bg-emerald-600 px-8 py-3 text-sm font-medium text-white transition hover:bg-emerald-700"
+            onClick={() => handlePostUpload()}
+          >
             Post
           </button>
         </div>
@@ -273,14 +234,6 @@ export default function AddPost() {
             handleSelect={handleSelect}
           />
         )}
-      {/* {typeof document !== "undefined" && isOpen && composerMode === "poll" && (
-        <DropDownMain
-          menuRef={menuRef}
-          props={pollProps}
-          setIsOpen={setIsOpen}
-          handleSelect={handleSelect}
-        />
-      )} */}
     </main>
   );
 }
@@ -307,12 +260,11 @@ function buildComparisonCardStats(
   comparison: ComparisonType,
   statKeys: ComparisonStatKey[],
 ) {
-
   const leftPlayer = getCanonicalPlayerById(comparison.playerA);
   const rightPlayer = getCanonicalPlayerById(comparison.playerB);
 
   return statKeys.reduce(
-    (accumulator: compStatRecord, statKey : ComparisonStatKey) => {
+    (accumulator: compStatRecord, statKey: ComparisonStatKey) => {
       const leftValue = resolveComparisonStatValue(
         leftPlayer,
         comparison.contextA,

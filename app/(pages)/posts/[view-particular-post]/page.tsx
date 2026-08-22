@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { oswald, poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
@@ -22,6 +22,13 @@ import { timeAgo } from "@/features/posts/utils/time-ago";
 import { PostType } from "@/features/posts/types/post";
 
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
+import { CommentDisplay } from "@/features/posts/components/comment-display";
+import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
+import { NoCommentsDisplay } from "@/features/posts/components/no-comment-display";
+import { NoPostDisplay } from "@/features/posts/components/no-post-display";
+import { CommentInfoType } from "@/features/posts/types/comment-upload-info";
+import { useUploadComment } from "@/features/posts/engine/handle-comment-upload";
+
 
 
 export function PostTimeDesign({ post }: { post: PostType }) {
@@ -44,7 +51,6 @@ export default function ParticularPost() {
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
 
-
   const postId = params["view-particular-post"];
   const postsStore = buildHydratedPostsStore();
   const post = postsStore[postId] ?? null;
@@ -63,47 +69,40 @@ export default function ParticularPost() {
     setPostAttachment(getPostAttachmentById(post.attachmentIds));
   }, [post.id]);
 
-  const hasAttachment = postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
+  const hasAttachment =
+    postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
   if (!post) {
     return (
-      <main className="px-4 py-6 min-h-[80vh] text-light-text-primary dark:text-dark-text-primary">
-        <div className="max-w-3xl mx-auto border border-light-ui-border dark:border-white/20 rounded-2xl bg-light-background-card dark:bg-white/5 p-6">
-          <p
-            className={`${poppins.className} text-light-text-secondary dark:text-dark-text-secondary text-sm`}
-          >
-            Post not found.
-          </p>
-        </div>
-      </main>
-    );
+      <NoPostDisplay />
+    )
   }
 
   const postCounts = getPostCountsById(post.id);
-
   const statChipValues = {
     likes: postCounts.likeCount,
     comments: postCounts.commentCount,
     views: postCounts.viewCount,
   };
 
-  const getQuickActionIcon = (key: string) => {
-    if (key === "comment") {
-      return mounted && !isDark
-        ? "/images/comment-dark.png"
-        : "/images/comment-light.png";
-    }
+  const [shouldUpload, setShouldUpload] = useState<boolean>(false);
+  const myCommentRef = useRef<HTMLInputElement | null>(null);
+  const lastCommentKeyRef = useRef<string | null>(null);
 
-    if (key === "like") {
-      return mounted && !isDark
-        ? "/images/like-dark.png"
-        : "/images/like-light.png";
-    }
+  const commentUploadInfo: CommentInfoType = {
+    shouldUpload,
+    setShouldUpload,
+    myCommentRef,
+    lastCommentKeyRef,
+    postId: post.id,
+    userId: user?.id ?? "u-1"
+  }
 
-    return mounted && !isDark
-      ? "/images/view-dark.png"
-      : "/images/view-light.png";
-  };
+  function handleCommentUpload() {
+    commentUploadInfo.setShouldUpload(true);
+  }
+
+  useUploadComment(commentUploadInfo)
 
   return (
     <main className="px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">
@@ -180,7 +179,7 @@ export default function ParticularPost() {
                 className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
               >
                 <Image
-                  src={getQuickActionIcon(action.key)}
+                  src={getQuickActionIcon(action.key, mounted, isDark)}
                   alt={action.alt}
                   width={25}
                   height={25}
@@ -208,115 +207,16 @@ export default function ParticularPost() {
           <div className="mt-3 flex-1 pr-1 min-h-0 rounded-xl bg-light-background-card/40 dark:bg-white/[0.02]">
             {commentsData.length > 0 ? (
               commentsData.map((comment) => {
-                const commentAuthor = getUserById(comment.userId);
-                const commentCounts = getPostCountsById(comment.id);
-
                 return (
-                  <div
-                    key={comment.id}
-                    className="relative px-2 py-4 md:px-3 flex items-start justify-between gap-3 border-b border-light-ui-border dark:border-white/20 last:border-b-0"
-                  >
-                    <div className="flex items-start gap-3 flex-1 min-w-0">
-                      <div className="relative h-9 w-9 shrink-0">
-                        <Image
-                          src={
-                            commentAuthor?.avatarUrl ??
-                            "/images/default-avatar.png"
-                          }
-                          alt={commentAuthor?.name ?? "User Avatar"}
-                          fill
-                          sizes="36px"
-                          className="object-cover rounded-full border border-light-ui-border dark:border-white/20"
-                        />
-                      </div>
-
-                      <div className="min-w-0 flex flex-col gap-2">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p
-                            className={`${poppins.className} text-sm text-light-text-primary dark:text-dark-text-primary font-medium truncate`}
-                          >
-                            {commentAuthor?.name ?? "Unknown user"}
-                          </p>
-                          <p
-                            className={`${poppins.className} text-xs text-light-text-muted dark:text-dark-text-muted truncate`}
-                          >
-                            @{commentAuthor?.username ?? "unknown"}
-                          </p>
-                          <span
-                            className={`${poppins.className} text-[11px] text-light-text-muted dark:text-dark-text-muted`}
-                          >
-                            • {timeAgo(comment.createdAt)}
-                          </span>
-                        </div>
-                        <div className={`${poppins.className}`}>
-                          {comment.tags.length > 0 && (
-                            <p className="text-xs leading-5 mb-0.5 flex flex-wrap gap-1">
-                              {comment.tags.map((tag) => (
-                                <span key={tag} className="text-emerald-300">
-                                  @{getUserById(tag)?.username ?? tag}
-                                </span>
-                              ))}
-                            </p>
-                          )}
-                          <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-6 whitespace-pre-line">
-                            {comment.content}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <button
-                      type="button"
-                      className="shrink-0 flex flex-col items-center justify-center gap-0.5 px-2 py-1 rounded-md hover:bg-slate-200 dark:hover:bg-white/10 transition-colors h-16"
-                    >
-                      <span
-                        className={`${poppins.className} text-xs text-light-text-secondary dark:text-dark-text-secondary`}
-                      >
-                        {commentCounts.likeCount}
-                      </span>
-                      <Image
-                        src={
-                          mounted && !isDark
-                            ? "/images/like-dark.png"
-                            : "/images/like-light.png"
-                        }
-                        alt="Like"
-                        width={20}
-                        height={20}
-                        className="object-cover"
-                      />
-                    </button>
-                  </div>
+                  <CommentDisplay
+                    comment={comment}
+                    mounted={mounted}
+                    isDark={isDark}
+                  />
                 );
               })
             ) : (
-              <div className="relative p-4 flex items-start gap-3">
-                <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
-                  <Image
-                    src={
-                      mounted && !isDark
-                        ? "/images/comment-dark.png"
-                        : "/images/comment-light.png"
-                    }
-                    alt="comment"
-                    width={16}
-                    height={16}
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <p
-                    className={`${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-secondary font-medium`}
-                  >
-                    No comments yet
-                  </p>
-                  <p
-                    className={`${poppins.className} text-xs text-light-text-muted dark:text-dark-text-muted`}
-                  >
-                    Be the first to drop your thoughts on this post.
-                  </p>
-                </div>
-              </div>
+              <NoCommentsDisplay mounted={mounted} isDark={isDark} />
             )}
           </div>
 
@@ -324,13 +224,14 @@ export default function ParticularPost() {
             <div className="max-w-3xl mx-auto px-3">
               <div className="w-full flex items-center gap-3 rounded-full border border-light-ui-border dark:border-white/40 bg-light-background-card/95 dark:bg-[#0B1323]/95 backdrop-blur px-4 py-2 shadow-md">
                 <input
+                  ref={myCommentRef}
                   placeholder="Write a comment..."
                   className={`${poppins.className} flex w-full bg-transparent text-sm text-light-text-primary dark:text-dark-text-primary placeholder:text-light-text-muted dark:placeholder:text-dark-text-muted outline-none resize-none items-center justify-center`}
                 />
                 <div>
                   <button
                     type="button"
-                    className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`}
+                    className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`} onClick={() => handleCommentUpload()}
                   >
                     Post
                   </button>

@@ -32,6 +32,21 @@ export function initializePostCommentsStorage(
   localStorage.setItem(STORAGE_KEY, JSON.stringify(commentsHistory));
 }
 
+export function manageCommentInStorage(entry: CommentType) {
+  if (typeof window === "undefined") {
+    return entry;
+  }
+
+  const commentsHistory = getStoredPostComments();
+  storeCommentInStorage(entry, commentsHistory);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(commentsHistory));
+  window.dispatchEvent(new Event("posts-updated"));
+
+  console.log("Your comment is stored");
+  return entry;
+}
+
 export function storeCommentInStorage(
   entry: CommentType,
   commentsHistory: commentsMappedType,
