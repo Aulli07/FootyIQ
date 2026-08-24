@@ -7,13 +7,13 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 import { PostTimeDesign } from "@/app/(pages)/posts/[view-particular-post]/page";
-import { getPostCountsById } from "@/features/posts/selectors/get-post-counts-by-id";
-import { getPostAttachmentById } from "@/features/posts/selectors/get-post-attachments-by-id";
+import { getPostCountsById, getPostAttachmentById } from "../selectors/get-post-details-by-id";
 import { getUserById } from "@/features/users/selectors/get-user-by-id";
 
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
 
 import { PostType } from "@/features/posts/types/post";
+
 
 
 export function PostDisplay({ post }: { post: PostType }) {

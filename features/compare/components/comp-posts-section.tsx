@@ -6,7 +6,7 @@ import { PostDisplay } from "@/features/posts/components/post-display";
 import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
-import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
+import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-details-by-id";
 
 
 

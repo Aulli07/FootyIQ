@@ -12,9 +12,8 @@ import { postQuickActions } from "@/features/posts/selectors/post-quick-actions"
 import { postStatChips } from "@/features/posts/selectors/post-stat-chips";
 
 import { buildHydratedPostsStore } from "@/features/posts/data/new/posts-store";
-import { getPostCommentsById } from "@/features/posts/selectors/get-post-comments-by-id";
-import { getPostAttachmentById } from "@/features/posts/selectors/get-post-attachments-by-id";
-import { getPostCountsById } from "@/features/posts/selectors/get-post-counts-by-id";
+import { getPostCommentsById, getPostAttachmentById, getPostCountsById } from "@/features/posts/selectors/get-post-details-by-id";
+
 import { CommentType } from "@/features/posts/types/comment";
 import { getUserById } from "@/features/users/selectors/get-user-by-id";
 import { timeAgo } from "@/features/posts/utils/time-ago";
@@ -26,7 +25,7 @@ import { CommentDisplay } from "@/features/posts/components/comment-display";
 import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
 import { NoCommentsDisplay } from "@/features/posts/components/no-comment-display";
 import { NoPostDisplay } from "@/features/posts/components/no-post-display";
-import { CommentInfoType } from "@/features/posts/types/comment-upload-info";
+import { CommentInfoType } from "@/features/posts/types/comment";
 import { useUploadComment } from "@/features/posts/engine/handle-comment-upload";
 
 
@@ -51,6 +50,7 @@ export default function ParticularPost() {
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
 
+  
   const postId = params["view-particular-post"];
   const postsStore = buildHydratedPostsStore();
   const post = postsStore[postId] ?? null;
@@ -84,6 +84,7 @@ export default function ParticularPost() {
     comments: postCounts.commentCount,
     views: postCounts.viewCount,
   };
+
 
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
   const myCommentRef = useRef<HTMLInputElement | null>(null);

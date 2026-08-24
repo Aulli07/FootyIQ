@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { createPostKey } from "@/shared/utils/identity";
-import { CommentInfoType } from "../types/comment-upload-info";
+import { CommentInfoType } from "../types/comment";
 import { saveCommentFromUpload } from "../services/uploadComments";
 
 
@@ -20,7 +20,6 @@ export function useUploadComment(commentInfo: CommentInfoType) {
 
     if (!hasCompletedUpload) {
       commentInfo.lastCommentKeyRef.current = null;
-      // postInfo.setCurrentPostId(null);
       return;
     }
     
@@ -35,7 +34,6 @@ export function useUploadComment(commentInfo: CommentInfoType) {
       authorId: commentInfo.userId,
     });
 
-    // postInfo.setCurrentPostId(currentPost?.id ?? null);
     commentInfo.lastCommentKeyRef.current = commentKey;
   }, [commentInfo.shouldUpload]);
 }

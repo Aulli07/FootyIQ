@@ -1,6 +1,5 @@
 import { buildHydratedPostsStore } from "@/features/posts/data/new/posts-store";
-import { getPostAnalyticsById } from "@/features/posts/selectors/get-post-analytics-by-id";
-import { getPostCountsById } from "@/features/posts/selectors/get-post-counts-by-id";
+import { getPostAnalyticsById, getPostCountsById } from "./get-post-details-by-id";
 import { getFollowingByUserId } from "@/features/users/selectors/get-following-by-user-id";
 import { getUserFollowCountsById } from "@/features/users/selectors/get-user-follow-counts-by-id";
 import { PostMappedType, PostType } from "@/features/posts/types/post";

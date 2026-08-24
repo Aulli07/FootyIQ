@@ -1,7 +1,7 @@
 "use client";
 
 import PageTitle from "@/shared/components/page-title";
-import { useState, useRef, useEffect, SetStateAction } from "react";
+import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { handleSearch } from "@/features/compare/utils/history-search-handler";
@@ -10,40 +10,28 @@ import DropDownMain from "@/features/compare/components/dropdown-main";
 import { handleSelect } from "@/features/compare/utils/dropdown-handler";
 import { findComparisonFromHistory } from "@/features/compare/selectors/find-comparison";
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
-import { compStatRecord } from "@/features/compare/types/comp-image-type";
-import type { ComparisonType } from "@/features/compare/types/comparison-main-type";
 
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
-import type { Player } from "@/shared/types/stats-schema";
-import { createPostKey } from "@/shared/utils/identity";
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
 import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
-import { PlayerDisplayResults } from "@/features/search/components/search-results-display";
 
 import {
   comparisonStatOptions,
   type ComparisonStatKey,
 } from "@/features/players/types/comparison-stat-options";
-import {
-  getAgeOfPlayer,
-  getAverageRatingOfPlayerBasedOnCareer,
-  getAverageRatingOfPlayerBasedOnCompetitionAndSeason,
-  getAverageRatingOfPlayerBasedOnSeason,
-  getHeightOfPlayer,
-  getStatValueBasedOnCareer,
-  getStatValueBasedOnCompetitionAndSeason,
-  getStatValueBasedOnSeason,
-} from "@/features/players/selectors/stat-getters";
 
-import { savePostFromUpload } from "@/features/posts/services/uploadPosts";
-import { PostInfoType } from "@/features/posts/types/post-upload-info";
-import { handleUploadOfPost, useUploadPost } from "@/features/posts/engine/handle-post-upload";
+import { PostInfoType } from "@/features/posts/types/post";
+import { useUploadPost } from "@/features/posts/engine/handle-post-upload";
+import { PostTextAreaUI } from "@/features/posts/ui/post-text-input";
+import { buildComparisonCardStats } from "@/features/compare/utils/build-comp-post-stats";
+
+
 
 export default function AddPost() {
   const searchParams = useSearchParams();
   const comparisonId = searchParams.get("comparisonId");
 
+  
   const [isOpen, setIsOpen] = useState(false);
   const prefilledComparison = comparisonId
     ? findComparisonFromHistory(comparisonId)
@@ -74,23 +62,18 @@ export default function AddPost() {
     ComparisonStatKey[]
   >([]);
 
-  // const [currentPostId, setCurrentPostId] = useState<string | null>();
-  const lastPostKeyRef = useRef<string | null>(null);
 
   const { menuRef } = useOnClickOutside(setIsOpen, isOpen);
-  const myRef = useRef<HTMLTextAreaElement | null>(null);
-
   const selectedComparisonData = appliedComparisonId
     ? findComparisonFromHistory(appliedComparisonId)
     : null;
-
   const searchedDropdownResults = handleSearch(comparisonSearchQuery);
   const searchedPlayerResults = getPlayerSearchResults(pollSearchQuery);
 
   const comparisonPostStats = selectedComparisonData
-    ? buildComparisonCardStats(selectedComparisonData, appliedComparisonStats)
-    : undefined;
+    ? buildComparisonCardStats(selectedComparisonData, appliedComparisonStats) : undefined;
 
+    // Figure out with AI how to modularize this 
   const comparisonProps: DropDownPropsType = {
     type: "comparison",
     label: "Select Comparison",
@@ -113,14 +96,17 @@ export default function AddPost() {
     },
   };
 
+
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
+  const myPostRef = useRef<HTMLTextAreaElement | null>(null);
+  const lastPostKeyRef = useRef<string | null>(null);
 
   const postUploadInfo: PostInfoType = {
     shouldUpload,
     setShouldUpload,
     selectedComparisonData,
     comparisonPostStats,
-    myRef,
+    myPostRef,
     lastPostKeyRef
   };
 
@@ -139,24 +125,7 @@ export default function AddPost() {
       <div className="mx-auto mt-4 flex w-full max-w-2xl flex-1 flex-col gap-3">
         <div className="flex min-h-0 flex-col mt-4 rounded-2xl border border-light-ui-border bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
           <div className="flex min-h-0 flex-col gap-5 px-2 py-3">
-            <div className="flex items-start gap-3">
-              <div className="h-10 w-10 shrink-0 rounded-full border border-black bg-gradient-to-br from-emerald-500 to-teal-500" />
-
-              <div className="flex-1 min-h-0">
-                <textarea
-                  ref={myRef}
-                  placeholder="What's happening?"
-                  className="overflow-hidden min-h-30 auto w-full resize-none bg-transparent text-lg text-light-text-primary placeholder:text-light-text-muted focus:outline-none dark:text-dark-text-primary dark:placeholder:text-dark-text-muted"
-                  onChange={() => {
-                    const current = myRef.current;
-                    if (current) {
-                      current.style.height = "auto";
-                      current.style.height = `${current.scrollHeight}px`;
-                    }
-                  }}
-                />
-              </div>
-            </div>
+            <PostTextAreaUI myPostRef={myPostRef} />
 
             {composerMode === "comparison" && selectedComparisonData ? (
               <ComparisonImageCard
@@ -165,29 +134,7 @@ export default function AddPost() {
               />
             ) : null}
 
-            {composerMode === "poll" &&
-            selectedPollPlayers[0] &&
-            selectedPollPlayers[1] ? (
-              <div className="relative rounded-2xl border border-light-ui-border p-3 dark:border-white/10">
-                <img
-                  src="/images/swap-light-fill.png"
-                  alt="no pic"
-                  className="absolute -right-1 -top-3 h-7 w-7 object-cover"
-                  onClick={() => {
-                    setSelectedPollPlayers((prev) => {
-                      const next = [...prev];
-                      next[0] = "";
-                      next[1] = "";
-                      return next;
-                    });
-                  }}
-                />
-                <PollUISection
-                  selectedPlayers={selectedPollPlayers}
-                  setSelectedPollPlayers={setSelectedPollPlayers}
-                />
-              </div>
-            ) : null}
+            {/* For the Poll UI */}
           </div>
 
           <div className="mt-5 flex gap-3">
@@ -236,107 +183,4 @@ export default function AddPost() {
         )}
     </main>
   );
-}
-
-function PollUISection({
-  selectedPlayers,
-  setSelectedPollPlayers,
-}: {
-  selectedPlayers: Array<string>;
-  setSelectedPollPlayers: React.Dispatch<React.SetStateAction<Array<string>>>;
-}) {
-  const filteredPlayers = selectedPlayers.filter(Boolean);
-
-  return (
-    <div className="flex flex-col gap-4">
-      {filteredPlayers.length > 0 && (
-        <PlayerDisplayResults playerIds={filteredPlayers} />
-      )}
-    </div>
-  );
-}
-
-function buildComparisonCardStats(
-  comparison: ComparisonType,
-  statKeys: ComparisonStatKey[],
-) {
-  const leftPlayer = getCanonicalPlayerById(comparison.playerA);
-  const rightPlayer = getCanonicalPlayerById(comparison.playerB);
-
-  return statKeys.reduce(
-    (accumulator: compStatRecord, statKey: ComparisonStatKey) => {
-      const leftValue = resolveComparisonStatValue(
-        leftPlayer,
-        comparison.contextA,
-        statKey,
-      );
-      const rightValue = resolveComparisonStatValue(
-        rightPlayer,
-        comparison.contextB,
-        statKey,
-      );
-
-      accumulator[statKey] = [leftValue, rightValue];
-      return accumulator;
-    },
-    {} as compStatRecord,
-  );
-}
-
-function resolveComparisonStatValue(
-  player: Player | null,
-  context: string,
-  statKey: ComparisonStatKey,
-) {
-  if (!player) {
-    return 0;
-  }
-
-  if (statKey === "age") {
-    return Number(getAgeOfPlayer(player)) || 0;
-  }
-
-  if (statKey === "height") {
-    return Number(getHeightOfPlayer(player)) || 0;
-  }
-
-  if (statKey === "footyRating") {
-    const rating = resolveRatingValue(player, context);
-    return Number(rating) || 0;
-  }
-
-  const rawValue = resolveStatValue(player, context, statKey);
-  return Number(rawValue) || 0;
-}
-
-function resolveRatingValue(player: Player, context: string) {
-  const trimmedContext = context.trim().toLowerCase();
-
-  if (trimmedContext === "career" || trimmedContext === "all-time") {
-    return getAverageRatingOfPlayerBasedOnCareer(player);
-  }
-
-  if (context.trim().split(/\s+/).length >= 2) {
-    return getAverageRatingOfPlayerBasedOnCompetitionAndSeason(player, context);
-  }
-
-  return getAverageRatingOfPlayerBasedOnSeason(player, context);
-}
-
-function resolveStatValue(
-  player: Player,
-  context: string,
-  statKey: ComparisonStatKey,
-) {
-  const trimmedContext = context.trim().toLowerCase();
-
-  if (trimmedContext === "career" || trimmedContext === "all-time") {
-    return getStatValueBasedOnCareer(player, statKey);
-  }
-
-  if (context.trim().split(/\s+/).length >= 2) {
-    return getStatValueBasedOnCompetitionAndSeason(player, context, statKey);
-  }
-
-  return getStatValueBasedOnSeason(player, context, statKey);
 }

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { createPostKey } from "@/shared/utils/identity";
 import { savePostFromUpload } from "../services/uploadPosts";
-import { PostInfoType } from "../types/post-upload-info";
+import { PostInfoType } from "../types/post";
 
 
 export function handleUploadOfPost(postInfo: PostInfoType) {
@@ -14,7 +14,7 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
   useEffect(() => {
     if (!shouldUpload) return;
 
-    const postContent = postInfo.myRef.current?.value;
+    const postContent = postInfo.myPostRef.current?.value;
     if (!postContent) {
       return;
     }
@@ -30,7 +30,6 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
 
     if (!hasCompletedUpload) {
       postInfo.lastPostKeyRef.current = null;
-      // postInfo.setCurrentPostId(null);
       return;
     }
 
@@ -38,7 +37,7 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
       return;
     }
 
-    const currentPost = savePostFromUpload({
+    savePostFromUpload({
       postContent: normalizedPostContent,
       compId,
       compStats: postInfo.comparisonPostStats,
@@ -46,7 +45,6 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
       authorId: "u-1",
     });
 
-    // postInfo.setCurrentPostId(currentPost?.id ?? null);
     postInfo.lastPostKeyRef.current = postKey;
   }, [shouldUpload]);
 }

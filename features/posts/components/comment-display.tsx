@@ -2,7 +2,7 @@ import Image from "next/image";
 import { poppins } from "@/app/font-icons/fonts";
 
 import { CommentType } from "../types/comment";
-import { getPostCountsById } from "../selectors/get-post-counts-by-id";
+import { getPostCountsById } from "../selectors/get-post-details-by-id";
 
 import { getUserById } from "@/features/users/selectors/get-user-by-id";
 
