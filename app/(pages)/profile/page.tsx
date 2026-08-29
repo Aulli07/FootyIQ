@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
@@ -13,7 +13,6 @@ import { profileTabs } from "@/features/posts/selectors/profile-tabs";
 import { poppins } from "@/app/font-icons/fonts";
 import AddPost from "@/features/posts/components/add-post";
 import SearchBar from "@/features/search/components/search-bar";
-import Compares from "@/features/compare/components/top-compare-cards";
 
 import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
 import { getStoredComparisons } from "@/features/compare/services/comparison-storage";
@@ -24,6 +23,7 @@ import {
   getProfileUserById,
   getProfileUserByUsername,
 } from "@/features/users/selectors/profile-meta";
+import TopComparisonCard from "@/features/compare/components/top-comparison-card";
 
 const MAIN_PROFILE_USERNAME = "alwell";
 
@@ -50,13 +50,6 @@ export function Profile({ userId }: { userId?: string }) {
   ];
 
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState<boolean>();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <main className="px-4 flex flex-col gap-4">
@@ -187,7 +180,7 @@ export function PersonalPosts({ id }: { id: string }) {
 export const History = () => {
   const currentHistory = getStoredComparisons();
 
-  const [isSearch, setIsSearch] = useState(false);
+  const [, setIsSearch] = useState(false);
   const [results, setResults] = useState<ComparisonStoredType>(
     () => currentHistory,
   );
@@ -210,6 +203,8 @@ export const History = () => {
     );
   }
 
+  const compHistory = Object.values(results);
+
   return (
     <main className="w-full pt-2 text-light-text-primary dark:text-dark-text-primary flex flex-col gap-5">
       <SearchBar
@@ -219,7 +214,15 @@ export const History = () => {
       />
 
       <div className="flex flex-col gap-3">
-        <Compares compareList={results} categoryType="history" />
+        {compHistory.map(comp => {
+          return (
+            <TopComparisonCard
+              key={comp.comparisonId}
+              id={comp.comparisonId}
+              comp={comp}
+            />
+          );
+        })}
       </div>
     </main>
   );

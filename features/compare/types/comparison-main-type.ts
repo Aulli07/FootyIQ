@@ -58,8 +58,8 @@ export type ComparisonCombinedType = {
 
   timestamp: number;
 
-  viewCount: number;
-  searchCount: number;
+  viewCount?: number;
+  searchCount?: number;
 };
 
 export type ComparisonProps = {

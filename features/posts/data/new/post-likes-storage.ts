@@ -27,6 +27,21 @@ export function initializePostLikesStorage(likesHistory: LikeMappedType) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(likesHistory));
 }
 
+export function manageLikeInStorage(entry: LikeType) {
+  if (typeof window === "undefined") {
+    return entry;
+  }
+
+  const likesHistory = getStoredPostLikes();
+  storeLikeInStorage(entry, likesHistory);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(likesHistory));
+  window.dispatchEvent(new Event("posts-updated"));
+
+  console.log("Your like is stored");
+  return entry;
+}
+
 export function storeLikeInStorage(
   entry: LikeType,
   likesHistory: LikeMappedType,

@@ -8,7 +8,6 @@ import { useRef, useState } from "react";
 import { oswald, poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
 
-import { postQuickActions } from "@/features/posts/selectors/post-quick-actions";
 import { postStatChips } from "@/features/posts/selectors/post-stat-chips";
 
 import { buildHydratedPostsStore } from "@/features/posts/data/new/posts-store";
@@ -17,16 +16,19 @@ import { getPostCommentsById, getPostAttachmentById, getPostCountsById } from "@
 import { CommentType } from "@/features/posts/types/comment";
 import { getUserById } from "@/features/users/selectors/get-user-by-id";
 import { timeAgo } from "@/features/posts/utils/time-ago";
+import { getPostLikesById } from "@/features/posts/selectors/get-post-details-by-id";
 
 import { PostType } from "@/features/posts/types/post";
 
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
 import { CommentDisplay } from "@/features/posts/components/comment-display";
-import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
 import { NoCommentsDisplay } from "@/features/posts/components/no-comment-display";
 import { NoPostDisplay } from "@/features/posts/components/no-post-display";
 import { CommentInfoType } from "@/features/posts/types/comment";
 import { handleCommentUpload } from "@/features/posts/engine/handle-comment-upload";
+import { createLikePayload, saveLikeFromUpload } from "@/features/posts/services/uploadLikes";
+
+
 
 export function PostTimeDesign({ post }: { post: PostType }) {
   return (
@@ -53,8 +55,9 @@ export default function ParticularPost() {
   const post = postsStore[postId] ?? null;
   const user = post ? getUserById(post.authorId) : null;
 
-  const [uploadedComments, setUploadedComments] = useState<CommentType[]>([]);
+  const [, setUploadedComments] = useState<CommentType[]>([]);
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
+  const [localLikeCount, setLocalLikeCount] = useState<number>(0);
   const myCommentRef = useRef<HTMLInputElement | null>(null);
   const lastCommentKeyRef = useRef<string | null>(null);
 
@@ -62,13 +65,14 @@ export default function ParticularPost() {
   const hasAttachment =
     postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
-  const baseComments = post ? getPostCommentsById(post.id) : [];
-  const commentStore = post
-    ? [
-        ...baseComments,
-        ...uploadedComments.filter((comment) => comment.postId === post.id),
-      ]
-    : [];
+  if (!post) return [];
+  const commentStore = getPostCommentsById(post.id);
+  // const commentStore = post
+  //   ? [
+  //       ...baseComments,
+  //       ...uploadedComments.filter((comment) => (comment.postId === post.id)) ,
+  //     ]
+  //   : [];
 
   const commentUploadInfo: CommentInfoType = {
     shouldUpload,
@@ -85,6 +89,10 @@ export default function ParticularPost() {
   }
 
   const postCounts = getPostCountsById(post.id);
+  const hasCurrentUserLiked = post && user
+    ? getPostLikesById(post.id).some((like) => like.userId === user.id)
+    : false;
+
   const statChipValues = {
     likes: postCounts.likeCount,
     comments: postCounts.commentCount,
@@ -95,6 +103,17 @@ export default function ParticularPost() {
     if (!post) return;
 
     handleCommentUpload(commentUploadInfo);
+  }
+
+  function handleLike() {
+    if (!post || !user || hasCurrentUserLiked) return;
+
+    const likePayload = createLikePayload(post.id, user.id);
+
+    const savedLike = saveLikeFromUpload(likePayload);
+    if (!savedLike) return;
+
+    setLocalLikeCount((prev) => prev + 1);
   }
   // function handleCommentUpload() {
   //   if (!post) return;
@@ -178,35 +197,33 @@ export default function ParticularPost() {
           </article>
         </div>
 
-        <div className="py-4 px-3 flex gap-2 md:gap-3 shrink-0 flex-wrap">
-          {postStatChips.map((chip) => (
-            <p
-              key={chip.label}
-              className={`${poppins.className} text-xs text-light-text-secondary dark:text-dark-text-secondary font-medium border border-light-ui-border dark:border-white/20 bg-light-background-card dark:bg-white/5 rounded-full px-3 py-1 flex items-center`}
-            >
-              {statChipValues[chip.key as keyof typeof statChipValues]} {chip.label}
-            </p>
-          ))}
-        </div>
-
-        <div className="h-20 shrink-0 px-3">
-          <div className="flex items-center justify-between w-[100%] py-1 px-10 border border-light-ui-border dark:border-white/20 rounded-2xl bg-light-background-card/80 dark:bg-white/4 backdrop-blur">
-            {postQuickActions.map((action) => (
-              <button
-                key={action.alt}
-                type="button"
-                className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+        <div className="py-4 px-3 flex items-center gap-3 shrink-0">
+          <div className="flex flex-1 flex-wrap items-center gap-2 md:gap-3">
+            {postStatChips.map((chip) => (
+              <p
+                key={chip.label}
+                className={`${poppins.className} text-xs text-light-text-secondary dark:text-dark-text-secondary font-medium border border-light-ui-border dark:border-white/20 bg-light-background-card dark:bg-white/5 rounded-full px-3 py-1 flex items-center`}
               >
-                <Image
-                  src={getQuickActionIcon(action.key, mounted, isDark)}
-                  alt={action.alt}
-                  width={25}
-                  height={25}
-                  className="object-cover"
-                />
-              </button>
+                {statChipValues[chip.key as keyof typeof statChipValues]} {chip.label}
+              </p>
             ))}
           </div>
+
+          <button
+            type="button"
+            onClick={handleLike}
+            disabled={hasCurrentUserLiked}
+            className="ml-auto flex items-center justify-center gap-2 rounded-full border border-light-ui-border dark:border-white/20 bg-light-background-card/80 dark:bg-white/4 px-3 py-2 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <span className={`${poppins.className}`}>{hasCurrentUserLiked ? "Liked" : "Like"}</span>
+            <Image
+              src={mounted && !isDark ? "/images/like-dark.png" : "/images/like-light.png"}
+              alt="Like"
+              width={30}
+              height={30}
+              className="object-cover"
+            />
+          </button>
         </div>
 
         <section className="relative mt-5 w-full flex-1 min-h-0 flex flex-col px-3 relative">

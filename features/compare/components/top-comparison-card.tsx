@@ -4,20 +4,16 @@ import Link from "next/link";
 import { ComparisonCombinedType } from "../types/comparison-main-type";
 import { renderPlayer } from "../ui/comp-image-card-ui";
 
-
-
-
 export default function TopComparisonCard({
   id,
   comp,
-  themeId,
   rank,
 }: {
   id: string;
   comp: ComparisonCombinedType;
-  themeId: string | undefined;
-  rank: number;
+  rank?: number;
 }) {
+  
   const comparisonId = comp.comparisonId;
 
   const playerA = comp.playerA;
@@ -38,13 +34,15 @@ export default function TopComparisonCard({
       }}
       className="group relative flex flex-col gap-3 p-3 rounded-xl border border-light-ui-border bg-white dark:bg-dark-background-card/40 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all dark:border-white/5 overflow-hidden"
     >
-      {/* Rank and Search Count Header */}
       <div className="flex items-center justify-between">
-        <div
-          className={`flex items-center justify-center px-2 py-0.5 bg-emerald-600 text-white font-bold text-[12px] rounded-md shadow-sm ${poppins.className}`}
-        >
-          #{rank}
-        </div>
+        {rank !== undefined && (
+          <div
+            className={`flex items-center justify-center px-2 py-0.5 bg-emerald-600 text-white font-bold text-[12px] rounded-md shadow-sm ${poppins.className}`}
+          >
+            #{rank}
+          </div>
+        )}
+
         <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/5 border border-emerald-500/10">
           <span className="flex h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
           <span
@@ -84,5 +82,3 @@ export default function TopComparisonCard({
     </Link>
   );
 }
-
-

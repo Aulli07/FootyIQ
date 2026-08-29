@@ -34,7 +34,6 @@ export default function TopWeeklyComparisons() {
               key={comp.comparisonId}
               id={comp.comparisonId}
               comp={comp}
-              themeId={comp.themeId}
               rank={index + 1}
             />
           );
