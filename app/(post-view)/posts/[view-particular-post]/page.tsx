@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { oswald, poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
@@ -26,9 +26,7 @@ import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
 import { NoCommentsDisplay } from "@/features/posts/components/no-comment-display";
 import { NoPostDisplay } from "@/features/posts/components/no-post-display";
 import { CommentInfoType } from "@/features/posts/types/comment";
-import { useUploadComment } from "@/features/posts/engine/handle-comment-upload";
-
-
+import { handleCommentUpload } from "@/features/posts/engine/handle-comment-upload";
 
 export function PostTimeDesign({ post }: { post: PostType }) {
   return (
@@ -45,37 +43,45 @@ export function PostTimeDesign({ post }: { post: PostType }) {
 export default function ParticularPost() {
   const params = useParams<{ "view-particular-post": string; posts: string }>();
   const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = true;
 
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
 
-  
   const postId = params["view-particular-post"];
   const postsStore = buildHydratedPostsStore();
   const post = postsStore[postId] ?? null;
   const user = post ? getUserById(post.authorId) : null;
-  const commentsData: CommentType[] = post ? getPostCommentsById(post.id) : [];
 
-  const [postAttachment, setPostAttachment] = useState<ReturnType<
-    typeof getPostAttachmentById
-  > | null>(null);
+  const [uploadedComments, setUploadedComments] = useState<CommentType[]>([]);
+  const [shouldUpload, setShouldUpload] = useState<boolean>(false);
+  const myCommentRef = useRef<HTMLInputElement | null>(null);
+  const lastCommentKeyRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setPostAttachment(getPostAttachmentById(post.attachmentIds));
-  }, [post.id]);
-
+  const postAttachment = post ? getPostAttachmentById(post.attachmentIds) : null;
   const hasAttachment =
     postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
+  const baseComments = post ? getPostCommentsById(post.id) : [];
+  const commentStore = post
+    ? [
+        ...baseComments,
+        ...uploadedComments.filter((comment) => comment.postId === post.id),
+      ]
+    : [];
+
+  const commentUploadInfo: CommentInfoType = {
+    shouldUpload,
+    setShouldUpload,
+    myCommentRef,
+    lastCommentKeyRef,
+    postId: post?.id ?? "",
+    userId: user?.id ?? "u-1",
+    setUploadedComments,
+  };
+
   if (!post) {
-    return (
-      <NoPostDisplay />
-    )
+    return <NoPostDisplay />;
   }
 
   const postCounts = getPostCountsById(post.id);
@@ -85,28 +91,41 @@ export default function ParticularPost() {
     views: postCounts.viewCount,
   };
 
+  function handleComment() {
+    if (!post) return;
 
-  const [shouldUpload, setShouldUpload] = useState<boolean>(false);
-  const myCommentRef = useRef<HTMLInputElement | null>(null);
-  const lastCommentKeyRef = useRef<string | null>(null);
-
-  const commentUploadInfo: CommentInfoType = {
-    shouldUpload,
-    setShouldUpload,
-    myCommentRef,
-    lastCommentKeyRef,
-    postId: post.id,
-    userId: user?.id ?? "u-1"
+    handleCommentUpload(commentUploadInfo);
   }
+  // function handleCommentUpload() {
+  //   if (!post) return;
 
-  function handleCommentUpload() {
-    commentUploadInfo.setShouldUpload(true);
-  }
+  //   const commentContent = myCommentRef.current?.value?.trim();
+  //   if (!commentContent) return;
 
-  useUploadComment(commentUploadInfo)
+  //   const commentKey = createPostKey([commentContent]);
+  //   if (lastCommentKeyRef.current === commentKey) return;
+
+  //   const uploadedComment = saveCommentFromUpload({
+  //     postId: post.id,
+  //     commentContent,
+  //     timestamp: Date.now(),
+  //     authorId: user?.id ?? "u-1",
+  //   });
+
+  //   if (!uploadedComment) return;
+
+  //   setUploadedComments((prev) => [...prev, uploadedComment]);
+  //   setShouldUpload(false);
+
+  //   if (myCommentRef.current) {
+  //     myCommentRef.current.value = "";
+  //   }
+
+  //   lastCommentKeyRef.current = commentKey;
+  // }
 
   return (
-    <main className="px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">
+    <main className="relative px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">
       <div className="max-w-3xl mx-auto flex flex-col h-full gap-1">
         <PageTitle title="POST" />
 
@@ -165,8 +184,7 @@ export default function ParticularPost() {
               key={chip.label}
               className={`${poppins.className} text-xs text-light-text-secondary dark:text-dark-text-secondary font-medium border border-light-ui-border dark:border-white/20 bg-light-background-card dark:bg-white/5 rounded-full px-3 py-1 flex items-center`}
             >
-              {statChipValues[chip.key as keyof typeof statChipValues]}{" "}
-              {chip.label}
+              {statChipValues[chip.key as keyof typeof statChipValues]} {chip.label}
             </p>
           ))}
         </div>
@@ -191,7 +209,7 @@ export default function ParticularPost() {
           </div>
         </div>
 
-        <section className="mt-5 w-full flex-1 min-h-0 flex flex-col px-3 relative">
+        <section className="relative mt-5 w-full flex-1 min-h-0 flex flex-col px-3 relative">
           <div className="flex items-center justify-between pb-3 px-1 border-b border-light-ui-border dark:border-white/10">
             <h2
               className={`${oswald.className} text-md text-light-text-primary dark:text-dark-text-primary font-semibold`}
@@ -206,39 +224,28 @@ export default function ParticularPost() {
           </div>
 
           <div className="mt-3 flex-1 pr-1 min-h-0 rounded-xl bg-light-background-card/40 dark:bg-white/[0.02]">
-            {commentsData.length > 0 ? (
-              commentsData.map((comment) => {
-                return (
-                  <CommentDisplay
-                    comment={comment}
-                    mounted={mounted}
-                    isDark={isDark}
-                  />
-                );
-              })
+            {commentStore.length > 0 ? (
+              commentStore.map((comment) => (
+                <CommentDisplay key={comment.id} comment={comment} mounted={mounted} isDark={isDark} />
+              ))
             ) : (
               <NoCommentsDisplay mounted={mounted} isDark={isDark} />
             )}
           </div>
 
-          <div className="fixed bottom-20 left-0 right-0 z-40 px-4 md:px-6 py-3">
-            <div className="max-w-3xl mx-auto px-3">
-              <div className="w-full flex items-center gap-3 rounded-full border border-light-ui-border dark:border-white/40 bg-light-background-card/95 dark:bg-[#0B1323]/95 backdrop-blur px-4 py-2 shadow-md">
-                <input
-                  ref={myCommentRef}
-                  placeholder="Write a comment..."
-                  className={`${poppins.className} flex w-full bg-transparent text-sm text-light-text-primary dark:text-dark-text-primary placeholder:text-light-text-muted dark:placeholder:text-dark-text-muted outline-none resize-none items-center justify-center`}
-                />
-                <div>
-                  <button
-                    type="button"
-                    className={`${poppins.className} py-2 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 transition-colors tracking-wide px-5`} onClick={() => handleCommentUpload()}
-                  >
-                    Post
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="fixed bottom-10 left-0 right-0 flex items-center gap-2 px-5">
+            <input
+              ref={myCommentRef}
+              placeholder="Add a comment"
+              className="flex-1 rounded-full border border-light-ui-border dark:border-white/20 bg-light-background-card dark:bg-white/[0.03] px-4 py-2 text-sm text-light-text-primary dark:text-dark-text-primary outline-none"
+            />
+            <button
+              type="button"
+              onClick={handleComment}
+              className="rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-white"
+            >
+              Post
+            </button>
           </div>
         </section>
       </div>

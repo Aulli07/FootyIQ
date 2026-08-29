@@ -15,7 +15,7 @@ export function NoCommentsDisplay(
 
   return (
     <div className="relative p-4 flex items-start gap-3">
-      <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
+      {/* <div className="h-9 w-9 rounded-full border border-emerald-400/30 bg-emerald-500/10 flex items-center justify-center shrink-0">
         <Image
           src={getQuickActionIcon("comment", mounted, isDark)}
           alt="comment"
@@ -35,7 +35,7 @@ export function NoCommentsDisplay(
         >
           Be the first to drop your thoughts on this post.
         </p>
-      </div>
+      </div> */}
     </div>
   )
 }

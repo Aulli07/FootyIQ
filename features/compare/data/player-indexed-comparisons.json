@@ -1,26 +1,24 @@
 {
-  "haaland": [
+  "foden": [
     "cmp_0001"
   ],
-  "foden": [
+  "haaland": [
     "cmp_0001"
   ],
   "vinicius": [
     "cmp_0002"
   ],
-  "rodri": [
-    "cmp_0002"
+  "lewandowski": [
+    "cmp_0002",
+    "cmp_0004"
   ],
   "mbappe": [
     "cmp_0004"
   ],
-  "yamal": [
-    "cmp_0004"
-  ],
-  "benzema": [
+  "ronaldo": [
     "cmp_0005"
   ],
-  "ronaldo": [
+  "benzema": [
     "cmp_0005"
   ]
 }

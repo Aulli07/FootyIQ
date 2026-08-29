@@ -9,31 +9,31 @@
     "contextA": "epl 22/23",
     "contextB": "epl 23/24",
     "source": "precomputed",
-    "timestamp": 1785409025930
+    "timestamp": 1787944199069
   },
   "cmp_0002": {
     "comparisonId": "cmp_0002",
     "themeId": "champions_league_monsters",
     "themeTitle": "UCL Monsters",
     "matchupType": "competition",
-    "playerA": "vinicius",
-    "playerB": "rodri",
+    "playerA": "haaland",
+    "playerB": "lewandowski",
     "contextA": "ucl 22/23",
-    "contextB": "ucl 22/23",
+    "contextB": "ucl 23/24",
     "source": "precomputed",
-    "timestamp": 1785409025930
+    "timestamp": 1787944199070
   },
   "cmp_0004": {
     "comparisonId": "cmp_0004",
     "themeId": "laliga_rising_forwards",
     "themeTitle": "LaLiga Rising Forwards",
     "matchupType": "competition",
-    "playerA": "mbappe",
-    "playerB": "yamal",
-    "contextA": "laliga 23/24",
+    "playerA": "lewandowski",
+    "playerB": "mbappe",
+    "contextA": "laliga 22/23",
     "contextB": "laliga 23/24",
     "source": "precomputed",
-    "timestamp": 1785409025931
+    "timestamp": 1787944199070
   },
   "cmp_0005": {
     "comparisonId": "cmp_0005",
@@ -45,6 +45,6 @@
     "contextA": "CAREER",
     "contextB": "CAREER",
     "source": "precomputed",
-    "timestamp": 1785409025931
+    "timestamp": 1787944199071
   }
 }

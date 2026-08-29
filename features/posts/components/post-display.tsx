@@ -6,15 +6,16 @@ import { poppins } from "@/app/font-icons/fonts";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { PostTimeDesign } from "@/app/(pages)/posts/[view-particular-post]/page";
-import { getPostCountsById, getPostAttachmentById } from "../selectors/get-post-details-by-id";
+import { PostTimeDesign } from "@/app/(post-view)/posts/[view-particular-post]/page";
+import {
+  getPostCountsById,
+  getPostAttachmentById,
+} from "../selectors/get-post-details-by-id";
 import { getUserById } from "@/features/users/selectors/get-user-by-id";
 
 import { ComparisonImageCard } from "@/features/compare/components/comp-image-card";
 
 import { PostType } from "@/features/posts/types/post";
-
-
 
 export function PostDisplay({ post }: { post: PostType }) {
   const { theme, resolvedTheme } = useTheme();
@@ -37,8 +38,8 @@ export function PostDisplay({ post }: { post: PostType }) {
   const user = getUserById(post.authorId);
   const counts = getPostCountsById(post.id);
 
-  const hasAttachment = postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
-
+  const hasAttachment =
+    postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
   return (
     <Link

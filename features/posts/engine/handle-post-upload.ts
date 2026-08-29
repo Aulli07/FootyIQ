@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { createPostKey } from "@/shared/utils/identity";
 import { savePostFromUpload } from "../services/uploadPosts";
-import { PostInfoType } from "../types/post";
+import { PostInfoType, PostType } from "../types/post";
 
 
 export function handleUploadOfPost(postInfo: PostInfoType) {
@@ -11,6 +11,8 @@ export function handleUploadOfPost(postInfo: PostInfoType) {
 }
 
 export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
+  const [currentPost, setCurrentPost] = useState<PostType | undefined>(undefined);
+
   useEffect(() => {
     if (!shouldUpload) return;
 
@@ -37,14 +39,22 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
       return;
     }
 
-    savePostFromUpload({
+    const currentPost = savePostFromUpload({
       postContent: normalizedPostContent,
       compId,
       compStats: postInfo.comparisonPostStats,
       timestamp: Date.now(),
       authorId: "u-1",
     });
+    postInfo.setShouldUpload(false);
+
+    if (postInfo.myPostRef.current) {
+      postInfo.myPostRef.current.value = "";
+    }
+    setCurrentPost(currentPost);
 
     postInfo.lastPostKeyRef.current = postKey;
   }, [shouldUpload]);
+
+  return currentPost;
 }

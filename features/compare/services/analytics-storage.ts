@@ -18,6 +18,10 @@ export function notifyComparisonAnalyticsChanged() {
 export function initializeComparisonAnalytics(
   hydratedComparisons: ComparisonType[],
 ) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
   const analyticsHistory = getStoredAnalyticsOfComparisons();
 
   hydratedComparisons.forEach((comparison) => {
@@ -69,6 +73,10 @@ export function storeAnalyticsOfComparison(
 }
 
 export function getStoredAnalyticsOfComparisons(): ComparisonStoredAnalyticsType {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
   const data = localStorage.getItem(ANALYTICS_KEY);
   return data ? JSON.parse(data) : {};
 }

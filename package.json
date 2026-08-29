@@ -8,7 +8,7 @@
     "precompute:comparisons": "tsx features/compare/engine/build-comparisons.ts",
     "precompute:indexedcomparisons": "tsx features/compare/engine/comparison-store.ts",
     "precompute:lookups": "tsx features/search/engine/search-lookups.ts",
-    "precompute:posts": "tsx features/posts/engine/posts-builder.tsx",
+    "precompute:posts": "tsx features/posts/engine/posts-builder.ts",
     "precompute:users": "tsx features/users/engine/build-users.ts",
     "precompute:followers": "tsx features/users/engine/build-followers.ts",
     "precompute:followings": "tsx features/users/engine/build-followings.ts",

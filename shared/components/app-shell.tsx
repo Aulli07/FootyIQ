@@ -170,7 +170,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen w-full bg-light-background-main text-light-text-primary dark:bg-dark-background-main dark:text-dark-text-primary">
       <div className="pb-24">{children}</div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -32,4 +32,5 @@ export type CommentInfoType = {
   lastCommentKeyRef: RefObject<string | null>;
   postId: string;
   userId: string;
+  setUploadedComments: Dispatch<SetStateAction<CommentType[]>>;
 }

@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useTheme } from "next-themes";
 
-import { getThemeMatchups } from "@/app/page";
+import { getThemeMatchups } from "@/app/(pages)/page";
 import { SYSTEM_COMPARISON_THEMES } from "@/features/compare/types/comparison-themes";
 
 import PageTitle from "@/shared/components/page-title";
@@ -15,14 +14,8 @@ export function ThemedComparisonsSection() {
   const params = useParams<{ "theme-section": string }>();
 
   const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const currentTheme = theme === "system" ? resolvedTheme : theme;
-  const isDark = currentTheme === "dark";
+  void currentTheme;
 
   const themeId = params["theme-section"];
   const themedMatchups = getThemeMatchups(themeId);
@@ -31,10 +24,6 @@ export function ThemedComparisonsSection() {
     SYSTEM_COMPARISON_THEMES.find(
       (comparisonTheme: ComparisonThemeType) => comparisonTheme.id === themeId,
     )?.title ?? null;
-
-  if (!mounted) {
-    return;
-  }
 
   return (
     <main className="px-3 pt-5 pb-5">

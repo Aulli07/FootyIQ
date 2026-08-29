@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /* Import the header component used at the top of the home page */
-import Header from "../shared/components/header";
+import Header from "../../shared/components/header";
 
 /* Import the row section for comparisons used in the home page predominantly */
 import Comparison from "@/features/compare/components/comparison-row";
@@ -14,8 +14,6 @@ import PopularPlayers from "@/features/players/components/popular-players";
 import HomePageClient from "@/features/home/components/home-page-client";
 
 const themedComparisons = themeIndexedComparisons as Record<string, string[]>;
-
-
 
 /* This is the default home screen */
 export default function Home() {
@@ -41,11 +39,8 @@ function ThemeComparisonSection({ theme }: { theme: ComparisonThemeType }) {
   if (!matchups || matchups.length === 0) return null;
 
   return (
-    <Link href={{ pathname: `/${theme.id}` }}>
-      <Comparison
-        comparisonIds={matchups}
-        title={theme.title}
-      />
+    <Link href={{ pathname: `/themes/${theme.id}` }}>
+      <Comparison comparisonIds={matchups} title={theme.title} />
     </Link>
   );
 }

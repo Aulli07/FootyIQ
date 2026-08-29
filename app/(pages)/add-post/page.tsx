@@ -1,7 +1,7 @@
 "use client";
 
 import PageTitle from "@/shared/components/page-title";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { handleSearch } from "@/features/compare/utils/history-search-handler";
@@ -20,7 +20,7 @@ import {
   type ComparisonStatKey,
 } from "@/features/players/types/comparison-stat-options";
 
-import { PostInfoType } from "@/features/posts/types/post";
+import { PostInfoType, PostType } from "@/features/posts/types/post";
 import { useUploadPost } from "@/features/posts/engine/handle-post-upload";
 import { PostTextAreaUI } from "@/features/posts/ui/post-text-input";
 import { buildComparisonCardStats } from "@/features/compare/utils/build-comp-post-stats";
@@ -100,6 +100,8 @@ export default function AddPost() {
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
   const myPostRef = useRef<HTMLTextAreaElement | null>(null);
   const lastPostKeyRef = useRef<string | null>(null);
+  const [postStore, setPostStore] = useState<PostType[]>([]);
+
 
   const postUploadInfo: PostInfoType = {
     shouldUpload,
@@ -114,7 +116,12 @@ export default function AddPost() {
     postUploadInfo.setShouldUpload(true);
   }
 
-  useUploadPost(postUploadInfo.shouldUpload, postUploadInfo);
+  const newPost = useUploadPost(postUploadInfo.shouldUpload, postUploadInfo);
+  useEffect(() => {
+    if (newPost) {
+      setPostStore(prev => [...prev, newPost]);
+    }
+  }, [newPost]);
 
   return (
     <main className="flex min-h-[calc(100vh-7rem)] flex-col px-4 py-4 text-light-text-primary dark:text-dark-text-primary">
