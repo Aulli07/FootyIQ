@@ -220,6 +220,7 @@ export const History = () => {
               key={comp.comparisonId}
               id={comp.comparisonId}
               comp={comp}
+              showAnalytics={false}
             />
           );
         })}

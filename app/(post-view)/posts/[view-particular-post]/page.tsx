@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { oswald, poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
@@ -27,6 +27,7 @@ import { NoPostDisplay } from "@/features/posts/components/no-post-display";
 import { CommentInfoType } from "@/features/posts/types/comment";
 import { handleCommentUpload } from "@/features/posts/engine/handle-comment-upload";
 import { createLikePayload, saveLikeFromUpload } from "@/features/posts/services/uploadLikes";
+import { createViewPayload, saveViewFromUpload } from "@/features/posts/services/uploadViews";
 
 
 
@@ -58,6 +59,7 @@ export default function ParticularPost() {
   const [, setUploadedComments] = useState<CommentType[]>([]);
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
   const [localLikeCount, setLocalLikeCount] = useState<number>(0);
+  const hasTrackedViewRef = useRef(false);
   const myCommentRef = useRef<HTMLInputElement | null>(null);
   const lastCommentKeyRef = useRef<string | null>(null);
 
@@ -65,14 +67,7 @@ export default function ParticularPost() {
   const hasAttachment =
     postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
-  if (!post) return [];
-  const commentStore = getPostCommentsById(post.id);
-  // const commentStore = post
-  //   ? [
-  //       ...baseComments,
-  //       ...uploadedComments.filter((comment) => (comment.postId === post.id)) ,
-  //     ]
-  //   : [];
+  const commentStore = post ? getPostCommentsById(post.id) : [];
 
   const commentUploadInfo: CommentInfoType = {
     shouldUpload,
@@ -84,17 +79,24 @@ export default function ParticularPost() {
     setUploadedComments,
   };
 
-  if (!post) {
+  useEffect(() => {
+    if (!post || !user) return;
+    if (hasTrackedViewRef.current) return;
+
+    hasTrackedViewRef.current = true;
+    const viewPayload = createViewPayload(post.id, user.id);
+    saveViewFromUpload(viewPayload);
+  }, [post, user]);
+
+  if (!post || !user) {
     return <NoPostDisplay />;
   }
 
   const postCounts = getPostCountsById(post.id);
-  const hasCurrentUserLiked = post && user
-    ? getPostLikesById(post.id).some((like) => like.userId === user.id)
-    : false;
+  const hasCurrentUserLiked = getPostLikesById(post.id).some((like) => like.userId === user.id);
 
   const statChipValues = {
-    likes: postCounts.likeCount,
+    likes: postCounts.likeCount + localLikeCount,
     comments: postCounts.commentCount,
     views: postCounts.viewCount,
   };
@@ -115,33 +117,7 @@ export default function ParticularPost() {
 
     setLocalLikeCount((prev) => prev + 1);
   }
-  // function handleCommentUpload() {
-  //   if (!post) return;
 
-  //   const commentContent = myCommentRef.current?.value?.trim();
-  //   if (!commentContent) return;
-
-  //   const commentKey = createPostKey([commentContent]);
-  //   if (lastCommentKeyRef.current === commentKey) return;
-
-  //   const uploadedComment = saveCommentFromUpload({
-  //     postId: post.id,
-  //     commentContent,
-  //     timestamp: Date.now(),
-  //     authorId: user?.id ?? "u-1",
-  //   });
-
-  //   if (!uploadedComment) return;
-
-  //   setUploadedComments((prev) => [...prev, uploadedComment]);
-  //   setShouldUpload(false);
-
-  //   if (myCommentRef.current) {
-  //     myCommentRef.current.value = "";
-  //   }
-
-  //   lastCommentKeyRef.current = commentKey;
-  // }
 
   return (
     <main className="relative px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">

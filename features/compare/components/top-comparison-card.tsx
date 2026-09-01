@@ -8,12 +8,13 @@ export default function TopComparisonCard({
   id,
   comp,
   rank,
+  showAnalytics = true,
 }: {
   id: string;
   comp: ComparisonCombinedType;
   rank?: number;
+  showAnalytics?: boolean;
 }) {
-  
   const comparisonId = comp.comparisonId;
 
   const playerA = comp.playerA;
@@ -43,14 +44,16 @@ export default function TopComparisonCard({
           </div>
         )}
 
-        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/5 border border-emerald-500/10">
-          <span className="flex h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-          <span
-            className={`text-[12px] font-bold ${poppins.className} text-emerald-600/70 dark:text-emerald-400/70`}
-          >
-            {comp.viewCount} VIEWS
-          </span>
-        </div>
+        {showAnalytics && (
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/5 border border-emerald-500/10">
+            <span className="flex h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
+            <span
+              className={`text-[12px] font-bold ${poppins.className} text-emerald-600/70 dark:text-emerald-400/70`}
+            >
+              {comp.viewCount} VIEWS
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="relative flex flex-col gap-3">

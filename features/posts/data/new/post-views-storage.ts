@@ -27,6 +27,21 @@ export function initializePostViewsStorage(viewsHistory: ViewMappedType) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(viewsHistory));
 }
 
+export function manageViewInStorage(entry: ViewType) {
+  if (typeof window === "undefined") {
+    return entry;
+  }
+
+  const viewsHistory = getStoredPostViews();
+  storeViewInStorage(entry, viewsHistory);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(viewsHistory));
+  window.dispatchEvent(new Event("posts-updated"));
+
+  console.log("Your view is stored");
+  return entry;
+}
+
 export function storeViewInStorage(
   entry: ViewType,
   viewsHistory: ViewMappedType,
