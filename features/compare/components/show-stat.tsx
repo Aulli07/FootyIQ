@@ -185,19 +185,19 @@ function StatBlock({
   }
 
   return (
-    <div className="relative z-0 flex items-center py-2 px-3 gap-3 border-b border-light-ui-border dark:border-white/10 w-full">
+    <div className="relative z-0 grid w-full grid-cols-[minmax(0,1fr)_minmax(140px,180px)_minmax(0,1fr)] items-center gap-3 border-b border-light-ui-border py-2 px-3 dark:border-white/10">
       <p
-        className={`text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} text-sm text-left py-1`}
+        className={`min-w-0 truncate text-left text-sm text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
       >
         {valueA ?? "-"}
       </p>
       <p
-        className={`text-light-text-primary dark:text-dark-text-primary ${poppins.className} text-xs font-medium flex-1 text-center`}
+        className={`w-full text-center text-xs font-medium text-light-text-primary dark:text-dark-text-primary ${poppins.className}`}
       >
         {label}
       </p>
       <p
-        className={`text-light-text-secondary dark:text-dark-text-secondary ${poppins.className} text-sm text-right py-1`}
+        className={`min-w-0 truncate text-right text-sm text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
       >
         {valueB ?? "-"}
       </p>

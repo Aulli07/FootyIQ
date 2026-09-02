@@ -1,12 +1,43 @@
 import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
-  getCanonicalClubById,
+  getCanonicalClubDisplayNameById,
   getCanonicalPlayerCareerStats,
   getCanonicalPlayerSeasonStatsBySeasonLabel,
   getCanonicalPlayerStatsBySeasonLabelAndCompetitionId,
 } from "@/shared/utils/canonical-lookups";
 
+function parseSeasonSelection(seasonLabel: string) {
+  const trimmedValue = seasonLabel.trim();
 
+  if (!trimmedValue) {
+    return { seasonLabel: "", competitionId: null as string | null };
+  }
+
+  const parts = trimmedValue.split(/\s+/);
+
+  if (parts.length === 1) {
+    return { seasonLabel: parts[0], competitionId: null };
+  }
+
+  return {
+    seasonLabel: parts.slice(1).join(" "),
+    competitionId: parts[0].toLowerCase(),
+  };
+}
+
+function getAverageRatingFromRows(rows: PlayerSeasonStats[]): string | number {
+  const ratings = rows
+    .map((row) => row.rating)
+    .filter((rating): rating is number => typeof rating === "number");
+
+  if (ratings.length === 0) {
+    return "-";
+  }
+
+  return (
+    ratings.reduce((total, rating) => total + rating, 0) / ratings.length
+  ).toFixed(2);
+}
 
 export function getAgeOfPlayer(player: Player | null): string | number {
   const age = player?.dateOfBirth
@@ -21,9 +52,8 @@ export function getAgeOfPlayer(player: Player | null): string | number {
 
 export function getClubNameOfPlayer(player: Player | null): string {
   const clubId = player?.currentClubId;
-  const clubName = clubId ? getCanonicalClubById(clubId)?.name : null;
 
-  return clubName ?? "-";
+  return clubId ? getCanonicalClubDisplayNameById(clubId) : "-";
 }
 
 export function getPositionOfPlayer(player: Player | null): string {
@@ -56,9 +86,13 @@ export function getAverageRatingOfPlayerBasedOnCompetitionAndSeason(
   player: Player | null,
   seasonLabel: string,
 ): string | number {
-  const seasonLabelSplits = seasonLabel.trim().split(/\s+/);
-  const competitionId = seasonLabelSplits[0].toLowerCase();
-  const seasonPart = seasonLabelSplits.slice(1).join(" ");
+  const { seasonLabel: seasonPart, competitionId } = parseSeasonSelection(
+    seasonLabel,
+  );
+
+  if (!competitionId) {
+    return getAverageRatingOfPlayerBasedOnSeason(player, seasonPart || seasonLabel);
+  }
 
   const competitionRows = getCanonicalPlayerStatsBySeasonLabelAndCompetitionId(
     player?.id ?? "",
@@ -66,25 +100,20 @@ export function getAverageRatingOfPlayerBasedOnCompetitionAndSeason(
     competitionId,
   );
 
-  const competitionRating = competitionRows.find(
-    (row) => typeof row.rating === "number",
-  )?.rating;
-  return competitionRating?.toFixed(2) ?? "-";
+  return getAverageRatingFromRows(competitionRows);
 }
 
 export function getAverageRatingOfPlayerBasedOnSeason(
   player: Player | null,
   seasonLabel: string,
 ): string | number {
+  const { seasonLabel: seasonPart } = parseSeasonSelection(seasonLabel);
   const seasonRows = getCanonicalPlayerSeasonStatsBySeasonLabel(
     player?.id ?? "",
-    seasonLabel,
+    seasonPart || seasonLabel,
   );
-  const seasonRating = seasonRows.find(
-    (row) => typeof row.rating === "number",
-  )?.rating;
 
-  return seasonRating?.toFixed(2) ?? "-";
+  return getAverageRatingFromRows(seasonRows);
 }
 
 export function getStatValueBasedOnCareer(
@@ -109,9 +138,13 @@ export function getStatValueBasedOnCompetitionAndSeason(
   seasonLabel: string,
   identifier: string,
 ): string | number {
-  const seasonLabelSplits = seasonLabel.trim().split(/\s+/);
-  const competitionId = seasonLabelSplits[0].toLowerCase();
-  const seasonPart = seasonLabelSplits.slice(1).join(" ");
+  const { seasonLabel: seasonPart, competitionId } = parseSeasonSelection(
+    seasonLabel,
+  );
+
+  if (!competitionId) {
+    return getStatValueBasedOnSeason(player, seasonPart || seasonLabel, identifier);
+  }
 
   const seasonRows = getCanonicalPlayerStatsBySeasonLabelAndCompetitionId(
     player?.id ?? "",
@@ -132,9 +165,10 @@ export function getStatValueBasedOnSeason(
   seasonLabel: string,
   identifier: string,
 ): string | number {
+  const { seasonLabel: seasonPart } = parseSeasonSelection(seasonLabel);
   const seasonRows = getCanonicalPlayerSeasonStatsBySeasonLabel(
     player?.id ?? "",
-    seasonLabel,
+    seasonPart || seasonLabel,
   );
 
   if (seasonRows.length === 0) return "-";

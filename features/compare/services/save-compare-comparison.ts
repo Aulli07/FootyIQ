@@ -1,11 +1,17 @@
 import { manageComparisonInStorage } from "../services/comparison-storage";
 import { ComparisonType } from "../types/comparison-main-type";
-import { newComparisonType, newComparisonTypeForPlayer } from "../types/comp-save-type";
+import {
+  newComparisonType,
+  newComparisonTypeForPlayer,
+} from "../types/comp-save-type";
 
-import { buildHashId, createComparisonKey } from "@/shared/utils/identity";
+import {
+  buildHashId,
+  createComparisonKey,
+  normalizeLabel as normalizeIdentityLabel,
+} from "@/shared/utils/identity";
 
 import { RefObject, useEffect } from "react";
-
 
 export function saveComparison({
   selectedPlayers,
@@ -18,7 +24,6 @@ export function saveComparison({
   setCurrentComparisonId: React.Dispatch<React.SetStateAction<string | null>>;
   lastComparisonKeyRef: RefObject<string | null>;
 }) {
-
   const hasCompletedComparison =
     !!selectedPlayers[0] &&
     !!selectedPlayers[1] &&
@@ -88,21 +93,17 @@ function createNewComparisonId(newComparison: newComparisonType): string {
 
 function normalizeNewComparison(comparison: newComparisonTypeForPlayer[]) {
   return [...comparison].sort((a, b) => {
-    const playerA = normalizeLabel(a.player);
-    const playerB = normalizeLabel(b.player);
+    const playerA = normalizeIdentityLabel(a.player);
+    const playerB = normalizeIdentityLabel(b.player);
 
-    const contextA = normalizeLabel(a.context);
-    const contextB = normalizeLabel(b.context);
+    const contextA = normalizeIdentityLabel(a.context);
+    const contextB = normalizeIdentityLabel(b.context);
 
     const playerCompared = playerA.localeCompare(playerB);
     if (playerCompared !== 0) return playerCompared;
 
     return contextA.localeCompare(contextB);
   });
-}
-
-export function normalizeLabel(label: string): string {
-  return normalizeLabel(label);
 }
 
 function buildComparisonEntry(

@@ -1,5 +1,8 @@
 import { poppins } from "@/app/font-icons/fonts";
-import { getCanonicalPlayerSeasonAndCompetitionLabels } from "@/shared/utils/canonical-lookups";
+import {
+  formatCompetitionIdToName,
+  getCanonicalPlayerSeasonCompetitionOptions,
+} from "@/shared/utils/canonical-lookups";
 
 import { SeasonDropdownPanelProps } from "../types/comp-dropdown";
 
@@ -10,10 +13,9 @@ export function SeasonDropdownPanel({
   playerSlot,
   onSelectSeason,
 }: SeasonDropdownPanelProps) {
-  
   const selectedPlayerId = players?.[playerSlot] ?? "";
-  const seasonOptions = selectedPlayerId
-    ? getCanonicalPlayerSeasonAndCompetitionLabels(selectedPlayerId)
+  const seasonGroups = selectedPlayerId
+    ? getCanonicalPlayerSeasonCompetitionOptions(selectedPlayerId)
     : [];
 
   return (
@@ -26,16 +28,35 @@ export function SeasonDropdownPanel({
         </p>
       </div>
 
-      <div className="flex flex-col gap-2">
-        {seasonOptions.length > 0 ? (
-          seasonOptions.map((season) => (
-            <li
-              key={season}
-              onClick={() => onSelectSeason(season)}
-              className={`cursor-pointer rounded-lg px-3 py-2 text-sm ${poppins.className} text-light-text-primary hover:bg-emerald-500/10 dark:text-dark-text-primary dark:hover:bg-white/5`}
-            >
-              {season.toUpperCase()}
-            </li>
+      <div className="flex flex-col gap-3">
+        {seasonGroups.length > 0 ? (
+          seasonGroups.map((seasonGroup) => (
+            <div key={seasonGroup.seasonId} className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => onSelectSeason(seasonGroup.seasonLabel)}
+                className={`cursor-pointer rounded-lg px-3 py-2 text-left text-sm ${poppins.className} font-semibold text-light-text-primary hover:bg-emerald-500/10 dark:text-dark-text-primary dark:hover:bg-white/5`}
+              >
+                {seasonGroup.seasonLabel}
+              </button>
+
+              <div className="ml-3 flex flex-col gap-1 border-l border-emerald-500/20 pl-3">
+                {seasonGroup.competitions.map((competition) => (
+                  <button
+                    key={`${seasonGroup.seasonId}-${competition.competitionId}`}
+                    type="button"
+                    onClick={() =>
+                      onSelectSeason(
+                        `${competition.competitionId} ${seasonGroup.seasonLabel}`,
+                      )
+                    }
+                    className={`cursor-pointer rounded-md px-2 py-1.5 text-left text-xs ${poppins.className} text-light-text-secondary hover:bg-emerald-500/10 dark:text-dark-text-secondary dark:hover:bg-white/5`}
+                  >
+                    {competition.competitionLabel}
+                  </button>
+                ))}
+              </div>
+            </div>
           ))
         ) : (
           <p

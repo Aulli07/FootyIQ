@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { poppins } from "@/app/font-icons/fonts";
 import { useTheme } from "next-themes";
 
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+import {
+  formatSeasonContextValue,
+  getCanonicalPlayerById,
+} from "@/shared/utils/canonical-lookups";
 import DropDownMain from "./dropdown-main";
 
 import { useOnClickOutside } from "@/features/compare/utils/click-outside";
@@ -96,8 +99,9 @@ export function DropDown(props: DropDownPropsType) {
           className={`w-full bg-light-background-card dark:bg-white/5 border border-light-ui-border dark:border-white/15 rounded-md px-3 py-2 text-left flex justify-between items-center ${poppins.className} text-sm text-light-text-secondary dark:text-dark-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40`}
         >
           <span className="truncate pr-2">
-            {props.selectedSeasonLabels?.[props.playerSlot].toUpperCase() ??
-              "SEASON"}
+            {formatSeasonContextValue(
+              props.selectedSeasonLabels?.[props.playerSlot] ?? "SEASON",
+            )}
           </span>
           <Image
             src="/images/arrow-drop-down.png"

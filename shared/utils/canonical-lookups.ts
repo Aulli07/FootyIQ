@@ -2,8 +2,6 @@
 /* This file serves as the main interface for accessing football player stats in a consistent format. */
 
 import type {
-  Club,
-  Competition,
   FootballDataStore,
   Player,
   Season,
@@ -56,6 +54,96 @@ const canonicalPlayerCareerStatsByPlayerId = new Map(
   canonicalPlayerCareerStats.map((career) => [career.playerId, career]),
 );
 
+const clubDisplayNameOverrides: Record<string, string> = {
+  "manchester city": "Man City",
+  "manchester united": "Man United",
+  "paris saint-germain": "PSG",
+};
+
+export function formatClubDisplayName(clubName: string): string {
+  const normalizedName = clubName.trim();
+  const lookupKey = normalizedName.toLowerCase();
+
+  return clubDisplayNameOverrides[lookupKey] ?? normalizedName;
+}
+
+export const competitionIdToNameMap: Record<string, string> = Object.fromEntries(
+  canonicalCompetitions.map((competition) => [
+    competition.id.toLowerCase(),
+    competition.name,
+  ]),
+);
+
+export function formatCompetitionIdToName(competitionId: string): string {
+  const normalizedId = competitionId.trim().toLowerCase();
+
+  if (competitionIdToNameMap[normalizedId]) {
+    return competitionIdToNameMap[normalizedId];
+  }
+
+  return normalizedId
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+export function formatSeasonContextValue(value: string): string {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
+    return "SEASON";
+  }
+
+  const parts = trimmedValue.split(/\s+/);
+  if (parts.length === 1) {
+    return trimmedValue.toUpperCase();
+  }
+
+  const [competitionId, ...seasonParts] = parts;
+  const seasonLabel = seasonParts.join("");
+
+  return `${(competitionId.toUpperCase())} ${seasonLabel}`;
+}
+
+export type SeasonCompetitionGroup = {
+  seasonId: string;
+  seasonLabel: string;
+  competitions: Array<{
+    competitionId: string;
+    competitionLabel: string;
+  }>;
+};
+
+export function getCanonicalPlayerSeasonCompetitionOptions(
+  playerId: string,
+): SeasonCompetitionGroup[] {
+  const groupedBySeason = new Map<string, Set<string>>();
+
+  for (const row of getCanonicalPlayerSeasonStats(playerId)) {
+    const existingCompetitions = groupedBySeason.get(row.seasonId) ?? new Set();
+    existingCompetitions.add(row.competitionId);
+    groupedBySeason.set(row.seasonId, existingCompetitions);
+  }
+
+  return Array.from(groupedBySeason.entries())
+    .map(([seasonId, competitionIds]) => ({
+      seasonId,
+      seasonLabel: getCanonicalSeasonById(seasonId)?.label ?? seasonId,
+      competitions: Array.from(competitionIds)
+        .map((competitionId) => ({
+          competitionId,
+          competitionLabel: formatCompetitionIdToName(competitionId),
+        }))
+        .sort((left, right) =>
+          left.competitionLabel.localeCompare(right.competitionLabel),
+        ),
+    }))
+    .sort((left, right) => {
+      const leftSeason = getCanonicalSeasonById(left.seasonId);
+      const rightSeason = getCanonicalSeasonById(right.seasonId);
+
+      return (rightSeason?.startYear ?? 0) - (leftSeason?.startYear ?? 0);
+    });
+}
+
 export function getCanonicalPlayersByIds(playerIds: string[]): Player[] {
   return playerIds
     .map((playerId) => canonicalPlayersById.get(playerId))
@@ -74,6 +162,12 @@ export function getCanonicalPlayerIdByName(playerName: string) {
 /* To get the specific club from the canonical store */
 export function getCanonicalClubById(clubId: string) {
   return canonicalClubsById.get(clubId) ?? null;
+}
+
+export function getCanonicalClubDisplayNameById(clubId: string) {
+  const club = canonicalClubsById.get(clubId);
+
+  return club ? formatClubDisplayName(club.name) : "-";
 }
 
 /* To get the specific competition from the canonical store e.g UCL */
