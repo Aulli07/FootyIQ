@@ -9,7 +9,6 @@ const precomputedUserStore = indexedUsers as UserMappedType;
 
 export function buildHydratedUserStore() {
   const hydratedUserStore = { ...precomputedUserStore, ...getStoredUsers() };
-  initializeUsersStorage(hydratedUserStore);
   return hydratedUserStore;
 }
 

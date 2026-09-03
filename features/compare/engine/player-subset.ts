@@ -15,7 +15,7 @@ export function getPlayersSubset(
   theme: ComparisonThemeType,
 ) {
   const eligiblePlayers = players.filter((player) =>
-    matchesTheme(player, theme),
+    matchesTheme(player, theme.filters),
   );
 
   return [...eligiblePlayers].sort(
@@ -24,8 +24,7 @@ export function getPlayersSubset(
   );
 }
 
-function matchesTheme(player: Player, theme: ComparisonThemeType) {
-  const { filters } = theme;
+function matchesTheme(player: Player, filters: ComparisonThemeType["filters"]) {
   const career = getCareer(player.id);
   const playerCompetitionIds = getPlayerCompetitionIds(player.id);
 

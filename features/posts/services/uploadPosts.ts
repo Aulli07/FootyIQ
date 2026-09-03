@@ -62,6 +62,7 @@ function getPostAttachmentEntry(compId: string, compStats?: Partial<Record<Compa
 
     const attachmentEntry : UploadPostAttachmentInput = {
       id: attachmentId,
+      postId: "",
       comparisonId: compId,
       stats: compStats
     }

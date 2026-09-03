@@ -114,3 +114,12 @@ export interface FootballDataStore {
   totalPlayerStats: PlayerSeasonStats[];
   totalPlayerCareerStats: PlayerCareerStats[];
 }
+
+export type SeasonCompetitionGroup = {
+  seasonId: string;
+  seasonLabel: string;
+  competitions: Array<{
+    competitionId: string;
+    competitionLabel: string;
+  }>;
+};

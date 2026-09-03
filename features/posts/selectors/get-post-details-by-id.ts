@@ -46,7 +46,6 @@ export function getPostsInDiscussion(leftPlayerId?: string, rightPlayerId?: stri
 
   const postsInDiscussion = Object.values(hydratedPostStore).filter((post) => {
     const postPlayers = post.references.players.map(normalizeName);
-
     return targetPlayers.some((playerName) => postPlayers.includes(playerName));
   });
 

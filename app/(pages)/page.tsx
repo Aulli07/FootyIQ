@@ -7,7 +7,7 @@ import Header from "../../shared/components/header";
 import Comparison from "@/features/compare/components/comparison-row";
 import { SYSTEM_COMPARISON_THEMES } from "@/features/compare/types/comparison-themes";
 import { ComparisonThemeType } from "@/features/compare/types/comparison-theme-type";
-import themeIndexedComparisons from "@/features/compare/data/theme-indexed-comparisons.json";
+import themeIndexedComparisons from "@/features/compare/data/theme-indexed-comparisons-new.json";
 import TopWeeklyComparisons from "@/features/compare/components/top-weekly-comparisons";
 
 import PopularPlayers from "@/features/players/components/popular-players";

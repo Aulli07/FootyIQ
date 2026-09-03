@@ -1,4 +1,8 @@
-import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
+import {
+  Player,
+  PlayerCareerStats,
+  PlayerSeasonStats,
+} from "@/shared/types/stats-schema";
 import {
   getCanonicalPlayerCareerStats,
   getCanonicalPlayerSeasonStats,
@@ -14,14 +18,11 @@ import {
 import { SeasonGroup } from "../types/comp-generator-type";
 import { MULTIPLIER } from "../data/comp-multiplier";
 
-
-
 export function generateAllComparisons(
   matchups: ComparisonMatchupArrayType[],
   theme: ComparisonThemeType,
   comparisonId: string,
 ): ComparisonType[] {
-
   const COMPARISONS: ComparisonType[] = [];
 
   for (let matchup of matchups) {
@@ -37,8 +38,14 @@ export function generateAllComparisons(
       }
       COMPARISONS.push(
         generateComparison(
-          playerA, playerB, seasonA, seasonB, matchupType, theme, comparisonId,
-        )
+          playerA,
+          playerB,
+          seasonA,
+          seasonB,
+          matchupType,
+          theme,
+          comparisonId,
+        ),
       );
     }
 
@@ -56,8 +63,14 @@ export function generateAllComparisons(
       }
       COMPARISONS.push(
         generateComparison(
-          playerA, playerB, competitionA, competitionB, matchupType, theme, comparisonId,
-        )
+          playerA,
+          playerB,
+          competitionA,
+          competitionB,
+          matchupType,
+          theme,
+          comparisonId,
+        ),
       );
     }
 
@@ -69,7 +82,13 @@ export function generateAllComparisons(
       }
       COMPARISONS.push(
         generateComparison(
-          playerA, playerB, careerA, careerB, matchupType, theme, comparisonId,
+          playerA,
+          playerB,
+          careerA,
+          careerB,
+          matchupType,
+          theme,
+          comparisonId,
         ),
       );
     }

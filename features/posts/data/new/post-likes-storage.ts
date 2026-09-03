@@ -14,7 +14,7 @@ export function buildHydratedPostLikesStore() {
     ...getStoredPostLikes(),
   };
 
-  initializePostLikesStorage(hydratedPostLikesStore);
+  // initializePostLikesStorage(hydratedPostLikesStore);
 
   return hydratedPostLikesStore;
 }

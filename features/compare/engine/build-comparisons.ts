@@ -14,7 +14,6 @@ import {
 } from "@/features/compare/types/comparison-main-type";
 import { initializeComparisonAnalytics } from "../services/analytics-storage";
 import { buildComparisons, buildIndexedComparisonsForPlayers, buildThemeIndexedComparisons } from "./create-index-comps";
-import { buildHydratedComparisonStore } from "./comparison-store";
 
 
 
@@ -47,25 +46,24 @@ function buildCompData() {
 
   const plainComparisons = buildComparisons();
   fs.writeFileSync(
-    "features/compare/data/indexed-comparisons.json",
+    "features/compare/data/indexed-comparisons-new.json",
     JSON.stringify(plainComparisons, null, 2),
   );
 
-  const hydratedComparisonStore = buildHydratedComparisonStore();
-    const hydratedComparisons = Array.from(
-      Object.values(hydratedComparisonStore),
-    );
+  const hydratedComparisons = Array.from(
+    Object.values(plainComparisons),
+  );
   initializeComparisonAnalytics(hydratedComparisons);
 
   const themeIndexedComparisons = buildThemeIndexedComparisons(hydratedComparisons);
   const playerIndexedComparisons = buildIndexedComparisonsForPlayers(hydratedComparisons);
 
   fs.writeFileSync(
-    "features/compare/data/theme-indexed-comparisons.json",
+    "features/compare/data/theme-indexed-comparisons-new.json",
     JSON.stringify(themeIndexedComparisons, null, 2),
   );
   fs.writeFileSync(
-    "features/compare/data/player-indexed-comparisons.json",
+    "features/compare/data/player-indexed-comparisons-new.json",
     JSON.stringify(playerIndexedComparisons, null, 2),
   );
 }

@@ -8,7 +8,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     filters: {
       positions: ["Forward"],
       competitionIds: ["epl"],
-      minRating: 8.5,
+      minRating: 8,
     },
     rankingStrategy: "goals_heavy",
   },
@@ -18,7 +18,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     matchupType: "competition",
     filters: {
       competitionIds: ["ucl"],
-      minRating: 8.7,
+      minRating: 8,
     },
     rankingStrategy: "overall",
   },
@@ -27,8 +27,8 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "International Kings",
     matchupType: "competition",
     filters: {
-      competitionIds: ["world_cup", "euros", "copa_america", "afcon"],
-      minRating: 8.3,
+      competitionIds: ["world_cup", "world-cup", "club_world_cup"],
+      minRating: 8,
     },
     rankingStrategy: "overall",
   },
@@ -39,7 +39,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     filters: {
       positions: ["Forward"],
       competitionIds: ["laliga"],
-      minRating: 8.3,
+      minRating: 8,
     },
     rankingStrategy: "goals_creator_heavy",
   },
@@ -48,9 +48,8 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "SPL Icons",
     matchupType: "career",
     filters: {
-      positions: ["Forward"],
       competitionIds: ["spl"],
-      minRating: 8.5,
+      minRating: 8,
     },
     rankingStrategy: "goals_creator_heavy",
   },

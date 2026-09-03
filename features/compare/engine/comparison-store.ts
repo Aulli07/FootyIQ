@@ -1,7 +1,6 @@
-import indexedComparisons from "@/features/compare/data/indexed-comparisons.json";
+import indexedComparisons from "@/features/compare/data/indexed-comparisons-new.json";
 import { ComparisonStoredType } from "../types/comparison-main-type";
 import { getStoredComparisons } from "../services/comparison-storage";
-
 
 const precomputedComparisonStore = indexedComparisons as ComparisonStoredType;
 

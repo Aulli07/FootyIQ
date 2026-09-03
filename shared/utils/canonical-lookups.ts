@@ -5,6 +5,7 @@ import type {
   FootballDataStore,
   Player,
   Season,
+  SeasonCompetitionGroup
 } from "@/shared/types/stats-schema";
 import {
   PlayerCareerStats,
@@ -14,6 +15,8 @@ import { normalizeLabel } from "@/shared/utils/identity";
 
 import footballDataStore from "@/features/players/data/new/canonical-store.json";
 
+
+
 const canonicalStore = footballDataStore as FootballDataStore;
 
 export const canonicalPlayers = canonicalStore.players;
@@ -22,6 +25,8 @@ export const canonicalCompetitions = canonicalStore.competitions;
 export const canonicalSeasons = canonicalStore.seasons;
 export const canonicalPlayerSeasonStats = canonicalStore.totalPlayerStats;
 export const canonicalPlayerCareerStats = canonicalStore.totalPlayerCareerStats;
+
+
 
 
 const canonicalPlayersById = new Map(
@@ -44,6 +49,7 @@ const canonicalPlayerSeasonStatsByPlayerId = new Map<
   PlayerSeasonStats[]
 >();
 
+
 for (const row of canonicalPlayerSeasonStats) {
   const rows = canonicalPlayerSeasonStatsByPlayerId.get(row.playerId) ?? [];
   rows.push(row);
@@ -54,18 +60,20 @@ const canonicalPlayerCareerStatsByPlayerId = new Map(
   canonicalPlayerCareerStats.map((career) => [career.playerId, career]),
 );
 
-const clubDisplayNameOverrides: Record<string, string> = {
-  "manchester city": "Man City",
-  "manchester united": "Man United",
-  "paris saint-germain": "PSG",
-};
 
 export function formatClubDisplayName(clubName: string): string {
+  const clubDisplayNameOverrides: Record<string, string> = {
+    "manchester city": "Man City",
+    "manchester united": "Man United",
+    "paris saint-germain": "PSG",
+  };
+
   const normalizedName = clubName.trim();
   const lookupKey = normalizedName.toLowerCase();
 
   return clubDisplayNameOverrides[lookupKey] ?? normalizedName;
 }
+
 
 export const competitionIdToNameMap: Record<string, string> = Object.fromEntries(
   canonicalCompetitions.map((competition) => [
@@ -86,6 +94,7 @@ export function formatCompetitionIdToName(competitionId: string): string {
     .replace(/\b\w/g, (character) => character.toUpperCase());
 }
 
+
 export function formatSeasonContextValue(value: string): string {
   const trimmedValue = value.trim();
   if (!trimmedValue) {
@@ -103,14 +112,6 @@ export function formatSeasonContextValue(value: string): string {
   return `${(competitionId.toUpperCase())} ${seasonLabel}`;
 }
 
-export type SeasonCompetitionGroup = {
-  seasonId: string;
-  seasonLabel: string;
-  competitions: Array<{
-    competitionId: string;
-    competitionLabel: string;
-  }>;
-};
 
 export function getCanonicalPlayerSeasonCompetitionOptions(
   playerId: string,
@@ -143,6 +144,8 @@ export function getCanonicalPlayerSeasonCompetitionOptions(
       return (rightSeason?.startYear ?? 0) - (leftSeason?.startYear ?? 0);
     });
 }
+
+
 
 export function getCanonicalPlayersByIds(playerIds: string[]): Player[] {
   return playerIds

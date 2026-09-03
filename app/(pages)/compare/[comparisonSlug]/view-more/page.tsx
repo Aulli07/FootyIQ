@@ -2,12 +2,12 @@
 
 import { useParams } from "next/navigation";
 
-import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
+import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-details-by-id";
 import { PostType } from "@/features/posts/types/post";
 import { PostDisplay } from "@/features/posts/components/post-display";
 
 
-export function ViewMoreComparePosts() {
+export default function ViewMoreComparePosts() {
 
   const params = useParams<{ "comparisonSlug": string }>();
   const comp = params["comparisonSlug"];

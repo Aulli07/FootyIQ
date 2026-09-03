@@ -2,7 +2,7 @@
   "pa-1": {
     "id": "pa-1",
     "postId": "t-1",
-    "comparisonId": "cmp-1",
+    "comparisonId": "cmp_0001",
     "stats": {
       "footyRating": [
         96,
@@ -21,7 +21,7 @@
   "pa-2": {
     "id": "pa-2",
     "postId": "t-5",
-    "comparisonId": "cmp-2",
+    "comparisonId": "cmp_0002",
     "stats": {
       "footyRating": [
         97,
@@ -40,7 +40,7 @@
   "pa-3": {
     "id": "pa-3",
     "postId": "t-9",
-    "comparisonId": "cmp-3",
+    "comparisonId": "cmp_0003",
     "stats": {
       "footyRating": [
         90,
@@ -59,7 +59,7 @@
   "pa-4": {
     "id": "pa-4",
     "postId": "t-23",
-    "comparisonId": "cmp-4",
+    "comparisonId": "cmp_0004",
     "stats": {
       "footyRating": [
         91,
@@ -78,7 +78,7 @@
   "pa-5": {
     "id": "pa-5",
     "postId": "t-34",
-    "comparisonId": "cmp-5",
+    "comparisonId": "cmp_0005",
     "stats": {
       "footyRating": [
         88,

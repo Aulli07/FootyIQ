@@ -6,6 +6,9 @@ import {
   getCanonicalPlayerStatsBySeasonLabelAndCompetitionId,
 } from "@/shared/utils/canonical-lookups";
 
+
+
+
 function parseSeasonSelection(seasonLabel: string) {
   const trimmedValue = seasonLabel.trim();
 
@@ -129,7 +132,6 @@ export function getStatValueBasedOnCareer(
   if (typeof value === "number") {
     return value;
   }
-
   return "-";
 }
 

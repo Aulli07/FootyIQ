@@ -38,7 +38,7 @@ export function manageAttachmentInStorage(entry: PostAttachmentType) {
     return entry;
   }
 
-  const attachmentHistory = buildHydratedPostAttachmentsStore();
+  const attachmentHistory = getStoredPostAttachments();
 
   storeAttachmentInStorage(entry, attachmentHistory);
 

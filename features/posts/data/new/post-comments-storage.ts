@@ -17,7 +17,7 @@ export function buildHydratedPostCommentsStore() {
     ...getStoredPostComments(),
   };
 
-  initializePostCommentsStorage(hydratedPostCommentsStore);
+  // initializePostCommentsStorage(hydratedPostCommentsStore);
 
   return hydratedPostCommentsStore;
 }

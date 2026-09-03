@@ -17,6 +17,7 @@ import { ComparisonImageCard } from "@/features/compare/components/comp-image-ca
 
 import { PostType } from "@/features/posts/types/post";
 
+
 export function PostDisplay({ post }: { post: PostType }) {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

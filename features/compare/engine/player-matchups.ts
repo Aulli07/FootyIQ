@@ -11,20 +11,31 @@ export function generatePlayersMatchup(
   matchup: ComparisonMatchupType,
   matchCount = 20,
 ) {
-  const shuffledPlayers = players.sort(() => 0.5 - Math.random());
-
+  const shuffledPlayers = [...players].sort(() => 0.5 - Math.random());
   const matchups: ComparisonMatchupArrayType[] = [];
+  const allPairs: ComparisonMatchupArrayType[] = [];
 
-  for ( let i = 0; i < shuffledPlayers.length && matchups.length < matchCount; i += 2
-  ) {
-    const playerA = shuffledPlayers[i];
-    const playerB = shuffledPlayers[i + 1];
+  for (let i = 0; i < shuffledPlayers.length; i++) {
+    for (let j = i + 1; j < shuffledPlayers.length; j++) {
+      const playerA = shuffledPlayers[i];
+      const playerB = shuffledPlayers[j];
 
-    if (!playerA || !playerB) {
-      continue;
+      if (!playerA || !playerB) {
+        continue;
+      }
+
+      allPairs.push([playerA, playerB, matchup]);
     }
+  }
 
-    matchups.push([playerA, playerB, matchup]);
+  const shuffledPairs = allPairs.sort(() => 0.5 - Math.random());
+
+  for (
+    let i = 0;
+    i < shuffledPairs.length && matchups.length < matchCount;
+    i++
+  ) {
+    matchups.push(shuffledPairs[i]);
   }
 
   return matchups;

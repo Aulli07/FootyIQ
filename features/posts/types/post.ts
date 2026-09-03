@@ -39,6 +39,7 @@ export type UploadPostInput = {
 
 export type UploadPostAttachmentInput = {
   id: string
+  postId: string;
   comparisonId: string;
   stats?: Partial<Record<ComparisonStatKey, number[]>>;
 };

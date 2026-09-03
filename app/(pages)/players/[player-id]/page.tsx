@@ -26,8 +26,8 @@ import {
 } from "@/features/players/selectors/stat-getters";
 import { manageAnalyticsOfPlayersInStorage } from "@/features/players/services/player-search-analytics";
 
-import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
-import TitleSection from "@/shared/components/page-section-title";
+import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-details-by-id";
+
 import { PostType } from "@/features/posts/types/post";
 import { PostDisplay } from "@/features/posts/components/post-display";
 
@@ -163,7 +163,6 @@ export default function PlayerProfilePage() {
                 key={comp.comparisonId}
                 id={comp.comparisonId}
                 comp={comp}
-                themeId={comp.themeId}
                 rank={index + 1}
               />
             ))}
@@ -243,7 +242,7 @@ function getPlayerComparisons(
     )
     .sort(
       (comparisonA, comparisonB) =>
-        comparisonB.viewCount - comparisonA.viewCount,
+        (comparisonB?.viewCount ?? 0) - (comparisonA?.viewCount ?? 0),
     )
     .slice(0, 8);
 }

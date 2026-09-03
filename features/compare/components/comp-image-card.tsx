@@ -38,6 +38,9 @@ export function ComparisonImageCard({
   const leftLabel = comparison?.contextA;
   const rightLabel = comparison?.contextB;
 
+  console.log(leftPlayer?.fullName);
+  console.log(rightPlayer?.fullName)
+
   return (
     <div className="overflow-hidden rounded-2xl border border-light-ui-border bg-light-background-card shadow-lg shadow-slate-300/25 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
       <div className="grid grid-cols-2">

@@ -14,7 +14,7 @@ export function buildHydratedPostViewsStore() {
     ...getStoredPostViews(),
   };
 
-  initializePostViewsStorage(hydratedPostViewsStore);
+  // initializePostViewsStorage(hydratedPostViewsStore);
 
   return hydratedPostViewsStore;
 }
