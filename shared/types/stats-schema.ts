@@ -27,6 +27,8 @@ export interface Club {
 export interface Competition {
   id: string;
   name: string;
+  type: string;
+  aliases: string[];
 }
 
 export interface Season {
@@ -112,7 +114,6 @@ export interface FootballDataStore {
   competitions: Competition[];
   seasons: Season[];
   totalPlayerStats: PlayerSeasonStats[];
-  totalPlayerCareerStats: PlayerCareerStats[];
 }
 
 export type SeasonCompetitionGroup = {

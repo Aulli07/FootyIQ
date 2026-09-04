@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FootballDataStore",
+  "type": "object",
+  "required": ["players", "clubs", "competitions", "seasons", "totalPlayerStats", "totalPlayerCareerStats"],
+  "properties": {
+    "players": { "type": "array" },
+    "clubs": { "type": "array" },
+    "competitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "type"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["league", "cup", "continental", "international"] },
+          "aliases": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "seasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "startYear", "endYear"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "startYear": { "type": "integer" },
+          "endYear": { "type": "integer" },
+          "isCurrent": { "type": "boolean" }
+        }
+      }
+    },
+    "totalPlayerStats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "playerId", "seasonId", "clubId", "competitionId", "competitionType", "appearances"],
+        "properties": {
+          "id": { "type": "string" },
+          "playerId": { "type": "string" },
+          "seasonId": { "type": "string" },
+          "clubId": { "type": "string" },
+          "competitionId": { "type": "string" },
+          "competitionType": { "type": "string", "enum": ["league", "cup", "continental", "international"] },
+          "appearances": { "type": "integer" },
+          "minutes": { "type": "integer" },
+          "goals": { "type": "integer" },
+          "assists": { "type": "integer" },
+          "shots": { "type": "integer" },
+          "shotsOnTarget": { "type": "integer" },
+          "keyPasses": { "type": "integer" }
+        }
+      }
+    },
+    "totalPlayerCareerStats": { "type": "array" }
+  }
+}
