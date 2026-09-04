@@ -1,14 +1,8 @@
 export interface PlayerCompetitionStats {
   appearances: number;
-  age: number;
-  height: number;
-  team: string;
-  footyRating: number;
-  matchesPlayed: number;
   goals: number;
   assists: number;
   minutes: number;
-  shots: number;
   totalShots: number;
   shotsOnTarget: number;
   keyPasses: number;

@@ -18,7 +18,6 @@ import { mbappeStats } from "./players/mbappe";
 import { pedriStats } from "./players/pedri";
 import { rodriStats } from "./players/rodri";
 import { viniciusStats } from "./players/vinicius";
-import { winaldumStats } from "./players/winaldum";
 
 /* Legacy player stats array */
 
@@ -38,7 +37,6 @@ export const allPlayerStatsLegacy = [
   pedriStats,
   rodriStats,
   viniciusStats,
-  winaldumStats,
 ];
 
 export default allPlayerStatsLegacy;

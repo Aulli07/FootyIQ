@@ -9,14 +9,9 @@ export type ComparisonStatOption = {
 
 const comparisonStatLabelMap: Record<ComparisonStatKey, string> = {
   appearances: "Appearances",
-  age: "Age",
-  height: "Height",
-  footyRating: "Footy Rating",
-  matchesPlayed: "Matches Played",
   goals: "Goals",
   assists: "Assists",
   minutes: "Minutes",
-  shots: "Shots",
   totalShots: "Total Shots",
   shotsOnTarget: "Shots on Target",
   keyPasses: "Key Passes",

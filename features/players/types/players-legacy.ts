@@ -8,9 +8,6 @@ export interface PlayerType {
   image: string,
   status: string,
   team: string,
+  teamCountry: string,
   currentClubId?: string,
-  footyRating: number,
-  category: () => "top_prospect" | "prime" | "legend" | 'best' | 'good',
-  totalSearches: number,
-  totalVotes: number,
 }

@@ -45,7 +45,7 @@ function buildClubs(): Club[] {
     return {
       id: player.currentClubId,
       name: player.team,
-      country: player.nationality,
+      country: player.teamCountry,
     };
   });
 

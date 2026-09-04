@@ -46,31 +46,34 @@ export function buildThemeIndexedComparisons(
 export function buildComparisons() {
   let COMPARISONS: ComparisonType[] = [];
   const indexedComparisons: ComparisonStoredType = {};
-  let comparisonCounter = 1;
 
-  for (let i = 0; i < SYSTEM_COMPARISON_THEMES.length; i++) {
+  const baseComparisons = generateBaseComparisons();
+  const qualityComparisons = filterBaseComparisons(baseComparisons);
+  // let comparisonCounter = 1;
+
+  // for (let i = 0; i < SYSTEM_COMPARISON_THEMES.length; i++) {
 
     // WORK BEGINS HERE
-    const currentTheme = SYSTEM_COMPARISON_THEMES[i];
-    const playersSubset = getPlayersSubset(canonicalPlayers, currentTheme);
-    const matchups = generatePlayersMatchup(playersSubset, currentTheme.matchupType as any,);
+  //   const currentTheme = SYSTEM_COMPARISON_THEMES[i];
+  //   const playersSubset = getPlayersSubset(canonicalPlayers, currentTheme);
+  //   const matchups = generatePlayersMatchup(playersSubset, currentTheme.matchupType as any,);
 
-    const generatedComparisons = generateAllComparisons(
-      matchups,
-      currentTheme,
-      "",
-    );
+  //   const generatedComparisons = generateAllComparisons(
+  //     matchups,
+  //     currentTheme,
+  //     "",
+  //   );
 
-    for (const comparison of generatedComparisons) {
-      const generatedId = "cmp_" + comparisonCounter.toString().padStart(4, "0");
-      COMPARISONS.push({ ...comparison, comparisonId: generatedId });
-      comparisonCounter += 1;
-    }
-  }
+  //   for (const comparison of generatedComparisons) {
+  //     const generatedId = "cmp_" + comparisonCounter.toString().padStart(4, "0");
+  //     COMPARISONS.push({ ...comparison, comparisonId: generatedId });
+  //     comparisonCounter += 1;
+  //   }
+  // }
 
-  COMPARISONS.forEach((cmp) => {
-    indexedComparisons[cmp.comparisonId] = cmp;
-  });
+  // COMPARISONS.forEach((cmp) => {
+  //   indexedComparisons[cmp.comparisonId] = cmp;
+  // });
 
-  return indexedComparisons;
+  // return indexedComparisons;
 }
