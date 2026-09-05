@@ -1,6 +1,8 @@
 import { ComparisonStoredType, ComparisonType } from "../types/comparison-main-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
 import { generateAllComparisons } from "./comparison-generator";
+import { filterBaseComparisons } from "./filter-base-comps";
+import { generateAllBaseComparisons } from "./generate-base-comps";
 import { generatePlayersMatchup } from "./player-matchups";
 import { getPlayersSubset } from "./player-subset";
 
@@ -47,7 +49,7 @@ export function buildComparisons() {
   let COMPARISONS: ComparisonType[] = [];
   const indexedComparisons: ComparisonStoredType = {};
 
-  const baseComparisons = generateBaseComparisons();
+  const baseComparisons = generateAllBaseComparisons();
   const qualityComparisons = filterBaseComparisons(baseComparisons);
   // let comparisonCounter = 1;
 

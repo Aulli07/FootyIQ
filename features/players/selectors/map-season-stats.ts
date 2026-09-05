@@ -9,34 +9,28 @@ export function mapSeasonStats(
   playerId: string,
   season: LegacySeasonStats,
   competition: LegacyCompetitionStats,
-  clubId: string,
 ): PlayerSeasonStats {
   
   const stats = competition.stats ?? {};
-  const appearances = ensureNumber(stats.appearances ?? stats.matchesPlayed);
   const seasonId = season.season.trim();
-  const competitionId = competition.id;
 
   return {
-    id: `${playerId}:${seasonId}:${competitionId}`,
+    id: `${playerId}:${seasonId}:${competition.id}`,
     playerId,
-    seasonId,
-    clubId,
-    competitionId,
-    appearances,
-    starts: ensureNumber(stats.matchesPlayed),
+    seasonId: season.season.trim(),
+    clubId: season.clubId,
+    competitionId: competition.id,
+    competitionType: competition.type,
+
+    appearances: ensureNumber(stats.appearances),
     minutes: ensureNumber(stats.minutes),
     goals: ensureNumber(stats.goals),
     assists: ensureNumber(stats.assists),
-    shots: ensureNumber(stats.shots ?? stats.totalShots),
     shotsOnTarget: ensureNumber(stats.shotsOnTarget),
     keyPasses: ensureNumber(stats.keyPasses),
     chancesCreated: ensureNumber(stats.chancesCreated),
     dribbles: ensureNumber(stats.dribbles),
-    dribblesCompleted:
-      stats.dribblesCompleted !== undefined
-        ? ensureNumber(stats.dribblesCompleted)
-        : undefined,
+    dribblesCompleted: ensureNumber(stats.dribblesCompleted),
     interceptions: ensureNumber(stats.interceptions),
     tackles: ensureNumber(stats.tackles),
     dribbledPast: ensureNumber(stats.dribbledPast),
@@ -46,7 +40,6 @@ export function mapSeasonStats(
     yellowCards: ensureNumber(stats.yellowCards),
     yellowToRedCards: ensureNumber(stats.yellowToRedCards),
     redCards: ensureNumber(stats.redCards),
-    rating: ensureNumber(stats.footyRating),
     source: "legacy",
     updatedAt: new Date().toISOString(),
   };

@@ -23,12 +23,19 @@ export interface PlayerCompetitionStats {
 export interface CompetitionStats {
   id: string;
   name: string;
+  type: string;
+  country: string;
+  tier: number;
+  logo: string;
   stats: PlayerCompetitionStats;
 }
 
 export interface SeasonStats {
   season: string;
   clubId: string;
+  country: string;
+  logo: string;
+  name: string;
   competitions: CompetitionStats[];
 }
 

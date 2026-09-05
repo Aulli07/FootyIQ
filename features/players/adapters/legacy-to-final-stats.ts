@@ -89,22 +89,19 @@ export function buildCanonicalStoreFromLegacy(
   const totalPlayerStats: PlayerSeasonStats[] = []; /* To hold the season and competition stats for all players */
 
   legacyStats.forEach((playerStats) => {
-    const legacyPlayer = playersStore.find((player) => player.id === normalizeId(playerStats.id));
+    // const legacyPlayer = playersStore.find((player) => player.id === normalizeId(playerStats.id));
 
     playerStats.seasons.forEach((season) => {
-      const clubId = normalizeId(season.clubId || legacyPlayer?.currentClubId || "unknown-club");
       season.competitions.forEach((competition) => {
-        const compId = normalizeId(competition.id || competition.name);
-        const row = mapSeasonStats(normalizeId(playerStats.id), season, competition, clubId);
+        // const compId = normalizeId(competition.id);
+        // const compType = normalizeId(competition.type);
+        const row = mapSeasonStats(normalizeId(playerStats.id), season, competition);
 
         
-        // attach canonical competitionId and type
-        const competitionMeta = competitionsStore.find((c) => c.id === compId);
-        (row as any).competitionId = competitionMeta?.id ?? compId;
-        (row as any).competitionType = competitionMeta?.type ?? inferCompetitionType(competition.name, competition.id);
+        // // attach canonical competitionId and type
+        // const competitionMeta = competitionsStore.find((c) => c.id === compId);
+        // (row as any).competitionType = competitionMeta?.type ?? inferCompetitionType(competition.name, competition.id);
 
-        // ensure club id normalized
-        (row as any).clubId = clubId;
 
         totalPlayerStats.push(row);
       });

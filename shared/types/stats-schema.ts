@@ -45,8 +45,8 @@ export interface PlayerSeasonStats {
   seasonId: string;
   clubId: string;
   competitionId: string;
+  competitionType: string;
   appearances: number;
-  starts?: number;
   minutes: number;
   goals: number;
   assists: number;
@@ -65,7 +65,6 @@ export interface PlayerSeasonStats {
   yellowCards: number;
   yellowToRedCards: number;
   redCards: number;
-  rating?: number;
   source: "legacy" | "manual" | "api-football";
   updatedAt: string;
 }
