@@ -24,7 +24,6 @@ export const canonicalClubs = canonicalStore.clubs;
 export const canonicalCompetitions = canonicalStore.competitions;
 export const canonicalSeasons = canonicalStore.seasons;
 export const canonicalPlayerSeasonStats = canonicalStore.totalPlayerStats;
-export const canonicalPlayerCareerStats = canonicalStore.totalPlayerCareerStats;
 
 
 
@@ -55,10 +54,6 @@ for (const row of canonicalPlayerSeasonStats) {
   rows.push(row);
   canonicalPlayerSeasonStatsByPlayerId.set(row.playerId, rows);
 }
-
-const canonicalPlayerCareerStatsByPlayerId = new Map(
-  canonicalPlayerCareerStats.map((career) => [career.playerId, career]),
-);
 
 
 export function formatClubDisplayName(clubName: string): string {
@@ -222,7 +217,7 @@ export function getCanonicalPlayerStatsBySeasonLabelAndCompetitionId(
 
 /* To get the specific player career stats from the canonical store */
 export function getCanonicalPlayerCareerStats(playerId: string) {
-  return canonicalPlayerCareerStatsByPlayerId.get(playerId) ?? null;
+  return canonicalPlayerSeasonStatsByPlayerId.get(playerId) ?? null;
 }
 
 /* To get the unique competition ids for a given player from the canonical store */

@@ -17,7 +17,6 @@ const MIN_MINUTES_BY_CONTEXT: Record<string, number> = {
   CTX_OVERALL_CAREER: 900
 };
 
-// Broad position tiers    extend this if defenders/keepers enter the dataset.
 const POSITION_TIER: Record<string, string> = {
   Striker: "attack",
   Forward: "attack",
@@ -31,8 +30,6 @@ const QUALITY_WEIGHTS = {
   statProximity: 0.35
 };
 
-// Metrics used for stat-proximity scoring. chancesCreated stands in for
-// keyPasses since they're duplicate signals in this dataset.
 const PROXIMITY_METRICS = [
   "goals",
   "assists",
@@ -41,9 +38,6 @@ const PROXIMITY_METRICS = [
   "chancesCreated"
 ] as const;
 
-// ---------------------------------------------------------------------------
-// Aggregation    sum every stat row matching a player's scope for this context
-// ---------------------------------------------------------------------------
 
 type AggregatedStats = {
   minutes: number;
@@ -89,8 +83,8 @@ function statsInScope(
 }
 
 function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
-  const sum = (field: "dribbles" | "minutes" | "appearances" | "goals" | "assists" | "shots" | "shotsOnTarget" | "chancesCreated" | "dribblesCompleted") =>
-    rows.reduce((total, row) => total + (Number(row[field]) || 0), 0);
+  const sum = (field: string) =>
+    rows.reduce((total, row) => total + (Number(row[field as keyof PlayerSeasonStats]) || 0), 0);
 
   return {
     minutes: sum("minutes"),
@@ -105,20 +99,21 @@ function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Scoring components
-// ---------------------------------------------------------------------------
-
 function positionMatchScore(posA: string, posB: string): number {
   const tierA = POSITION_TIER[posA];
   const tierB = POSITION_TIER[posB];
   if (!tierA || !tierB) return 0.75; // unrecognized position    neutral, don't penalize
-  return tierA === tierB ? 1 : 0.5; // cross-tier is down-weighted, never excluded
+  return tierA === tierB ? 1 : 0.3; // cross-tier is down-weighted, never excluded
 }
 
 function sampleAdequacyScore(minSharedMinutes: number, floor: number): number {
   const confidenceCeiling = floor * 3; // 3x the floor reads as "fully sampled"
   return Math.min(1, minSharedMinutes / confidenceCeiling);
+}
+
+function checkSameTeamScore(teamA: string, teamB: string): number {
+  const checkScore = (teamA === teamB) ? 0 : 1;
+  return checkScore; 
 }
 
 function statProximityScore(a: AggregatedStats, b: AggregatedStats): number {
@@ -136,9 +131,7 @@ function statProximityScore(a: AggregatedStats, b: AggregatedStats): number {
   return perMetricScores.reduce((sum, score) => sum + score, 0) / perMetricScores.length;
 }
 
-// ---------------------------------------------------------------------------
-// Main entry point
-// ---------------------------------------------------------------------------
+
 
 type QualityComparison = BaseComparison & { qualityScore: number };
 
@@ -146,6 +139,7 @@ export function filterBaseComparisons(
   baseComparisons: BaseComparison[],
   options?: { topNPerGroup?: number; minQualityScore?: number }
 ): QualityComparison[] {
+  
   const topNPerGroup = options?.topNPerGroup ?? Infinity;
   const minQualityScore = options?.minQualityScore ?? 0.4;
 
@@ -174,12 +168,13 @@ export function filterBaseComparisons(
 
     const sampleScore = sampleAdequacyScore(Math.min(aggA.minutes, aggB.minutes), floor);
     const positionScore = positionMatchScore(playerA.primaryPosition, playerB.primaryPosition);
+    const sameTeamScore = checkSameTeamScore(playerA.currentClubId, playerB.currentClubId);
     const proximityScore = statProximityScore(aggA, aggB);
 
     const qualityScore =
-      sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
+      (sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
       positionScore * QUALITY_WEIGHTS.positionMatch +
-      proximityScore * QUALITY_WEIGHTS.statProximity;
+      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore;
 
     if (qualityScore < minQualityScore) continue;
 
@@ -201,7 +196,7 @@ export function filterBaseComparisons(
     result.push(...group.slice(0, topNPerGroup));
   }
 
-  return result;
+  return result.sort(() => 0.5 - Math.random());;
 }
 
 export type { QualityComparison, AggregatedStats };
