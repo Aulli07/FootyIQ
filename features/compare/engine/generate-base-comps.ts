@@ -165,13 +165,3 @@ export function generateAllBaseComparisons() {
     ...generateOverallCareerComparisons()
   ];
 }
-
-// export {
-//   generateSeasonComparisons,
-//   generateLeagueSeasonComparisons,
-//   generateCompetitionSeasonComparisons,
-//   generateLeagueCareerComparisons,
-//   generateCompetitionCareerComparisons,
-//   generateOverallCareerComparisons,
-//   generateAllBaseComparisons
-// };

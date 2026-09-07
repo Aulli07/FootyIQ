@@ -13,7 +13,12 @@ import TopWeeklyComparisons from "@/features/compare/components/top-weekly-compa
 import PopularPlayers from "@/features/players/components/popular-players";
 import HomePageClient from "@/features/home/components/home-page-client";
 
+import { buildComparisons } from "@/features/compare/engine/create-index-comps";
+
 const themedComparisons = themeIndexedComparisons as Record<string, string[]>;
+
+console.log("I got here");
+buildComparisons();
 
 /* This is the default home screen */
 export default function Home() {

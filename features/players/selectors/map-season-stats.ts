@@ -26,7 +26,7 @@ export function mapSeasonStats(
     minutes: ensureNumber(stats.minutes),
     goals: ensureNumber(stats.goals),
     assists: ensureNumber(stats.assists),
-    shots: ensureNumber(stats.shots),
+    shots: ensureNumber(stats.totalShots),
     shotsOnTarget: ensureNumber(stats.shotsOnTarget),
     keyPasses: ensureNumber(stats.keyPasses),
     chancesCreated: ensureNumber(stats.chancesCreated),

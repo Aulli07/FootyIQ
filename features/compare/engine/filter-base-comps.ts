@@ -27,7 +27,12 @@ const POSITION_TIER: Record<string, string> = {
 const QUALITY_WEIGHTS = {
   sampleAdequacy: 0.4,
   positionMatch: 0.25,
-  statProximity: 0.35
+  statProximity: 0.35,
+  notabilityPercentile: 0.2,
+  minNotablePerStat: 1,
+  targetTotal: 50,
+  minGroup: 5,
+  minQualityScore: 1
 };
 
 const PROXIMITY_METRICS = [
@@ -102,8 +107,8 @@ function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
 function positionMatchScore(posA: string, posB: string): number {
   const tierA = POSITION_TIER[posA];
   const tierB = POSITION_TIER[posB];
-  if (!tierA || !tierB) return 0.75; // unrecognized position    neutral, don't penalize
-  return tierA === tierB ? 1 : 0.3; // cross-tier is down-weighted, never excluded
+  if (!tierA || !tierB) return 0.4; // unrecognized position    neutral, don't penalize
+  return tierA === tierB ? 1 : 0; // cross-tier is down-weighted, never excluded
 }
 
 function sampleAdequacyScore(minSharedMinutes: number, floor: number): number {
@@ -124,31 +129,86 @@ function statProximityScore(a: AggregatedStats, b: AggregatedStats): number {
     const rateA = per90(a, metric);
     const rateB = per90(b, metric);
     const maxRate = Math.max(rateA, rateB);
-    if (maxRate === 0) return 1; // neither player produces this    not a differentiator
+    if (maxRate === 0) return null; 
     return 1 - Math.abs(rateA - rateB) / maxRate; // 1 = identical rate, 0 = maximal gap
-  });
+  })
+  .filter((s): s is number => s !== null);
 
+  if (perMetricScores.length == 0) return 0.5;
   return perMetricScores.reduce((sum, score) => sum + score, 0) / perMetricScores.length;
 }
 
+function per90Rate(agg: AggregatedStats, field: keyof AggregatedStats) {
+  return agg.minutes > 0 ? (agg[field] / agg.minutes) * 90 : 0;
+}
 
+
+function buildNotablePlayersByGroup(
+  baseComparisons: BaseComparison[]
+) : Map<string, Set<string>> {
+
+  const groupPlayers = new Map<
+  string,
+  { context: string; scope: BaseComparison["scope"]; playerIds: Set<string>}
+  >();
+
+  for (const comparison of baseComparisons) {
+    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`;
+    if (!groupPlayers.has(groupKey)) {
+      groupPlayers.set(groupKey, {
+        context: comparison.context,
+        scope: comparison.scope,
+        playerIds: new Set()
+      })
+    }
+
+    const entries = groupPlayers.get(groupKey)!;
+    entries.playerIds.add(comparison.playerA);
+    entries.playerIds.add(comparison.playerB)
+  }
+
+  const notableByGroup = new Map<string, Set<string>>()
+
+  for (const [groupKey, {context, scope, playerIds}] of groupPlayers) {
+    const floor = MIN_MINUTES_BY_CONTEXT[context];
+
+    const playerAggs: {playerId: string, agg: AggregatedStats}[] = [];
+    for (const playerId of playerIds) {
+      const rows = statsInScope(playerId, context, scope);
+      const agg = aggregateStats(rows);
+      if (agg.minutes < floor) continue;
+      playerAggs.push({playerId, agg});
+    }
+
+    const notable = new Set<string>();
+
+    for (const stat of PROXIMITY_METRICS) {
+      const ranked = [...playerAggs].sort((a,b) => per90Rate(b.agg, stat) - per90Rate(a.agg, stat));
+      const cutoff = Math.max(QUALITY_WEIGHTS.minNotablePerStat, Math.ceil(ranked.length * QUALITY_WEIGHTS.notabilityPercentile));
+      for (const {playerId} of ranked.slice(0, cutoff)) {
+        notable.add(playerId);
+      }
+    }
+    notableByGroup.set(groupKey, notable);
+  }
+
+  return notableByGroup;
+}
 
 type QualityComparison = BaseComparison & { qualityScore: number };
 
 export function filterBaseComparisons(
   baseComparisons: BaseComparison[],
-  options?: { topNPerGroup?: number; minQualityScore?: number }
 ): QualityComparison[] {
-  
-  const topNPerGroup = options?.topNPerGroup ?? Infinity;
-  const minQualityScore = options?.minQualityScore ?? 0.4;
 
   const playersById = new Map(players.map(p => [p.id, p]));
   const seen = new Set<string>(); // safety net against duplicate base comparisons
   const scored: QualityComparison[] = [];
 
+  const notableByGroup = buildNotablePlayersByGroup(baseComparisons);
   for (const comparison of baseComparisons) {
-    const dedupeKey = `${comparison.context}::${JSON.stringify(comparison.scope)}::${comparison.playerA}::${comparison.playerB}`;
+    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`
+    const dedupeKey = `${groupKey}::${comparison.playerA}::${comparison.playerB}`;
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
 
@@ -166,6 +226,9 @@ export function filterBaseComparisons(
     const playerB = playersById.get(comparison.playerB);
     if (!playerA || !playerB) continue;
 
+    const notableSet = notableByGroup.get(groupKey);
+    if (notableSet && !notableSet.has(comparison.playerA) && !notableSet.has(comparison.playerB)) continue;
+
     const sampleScore = sampleAdequacyScore(Math.min(aggA.minutes, aggB.minutes), floor);
     const positionScore = positionMatchScore(playerA.primaryPosition, playerB.primaryPosition);
     const sameTeamScore = checkSameTeamScore(playerA.currentClubId, playerB.currentClubId);
@@ -173,16 +236,13 @@ export function filterBaseComparisons(
 
     const qualityScore =
       (sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
-      positionScore * QUALITY_WEIGHTS.positionMatch +
-      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore;
+      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore * positionScore;
 
-    if (qualityScore < minQualityScore) continue;
+    if (qualityScore < QUALITY_WEIGHTS.minQualityScore) continue;
 
     scored.push({ ...comparison, qualityScore });
   }
 
-  // Rank independently within each (contextId + scope) group    counts are
-  // allowed to differ wildly across contexts, by design.
   const grouped = new Map<string, QualityComparison[]>();
   for (const comparison of scored) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`;
@@ -190,13 +250,25 @@ export function filterBaseComparisons(
     grouped.get(groupKey)!.push(comparison);
   }
 
-  const result: QualityComparison[] = [];
   for (const group of grouped.values()) {
     group.sort((a, b) => b.qualityScore - a.qualityScore);
-    result.push(...group.slice(0, topNPerGroup));
+  
   }
 
-  return result.sort(() => 0.5 - Math.random());;
+  const reserved: QualityComparison[] = [];
+  const remainder: QualityComparison[] = [];
+
+  for (const group of grouped.values()) {
+    reserved.push(...group.slice(0, QUALITY_WEIGHTS.minGroup));
+    remainder.push(...group.slice(QUALITY_WEIGHTS.minGroup));
+  }
+
+  remainder.sort((a,b) => b.qualityScore - a.qualityScore);
+  const remainingSlots = Math.max(0, QUALITY_WEIGHTS.targetTotal - reserved.length);
+  const result = [...reserved, ...remainder.slice(0, remainingSlots)];
+
+  return result.sort((a,b) => b.qualityScore - a.qualityScore);
 }
+
 
 export type { QualityComparison, AggregatedStats };

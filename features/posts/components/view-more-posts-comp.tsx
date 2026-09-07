@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import PageTitle from "@/shared/components/page-title";
 
-import { getPostsInDiscussion } from "../selectors/get-post-discussions-by-ids";
+import { getPostsInDiscussion } from "../selectors/get-post-details-by-id";
 import { PostType } from "../types/post";
 import { PostDisplay } from "../components/post-display";
 

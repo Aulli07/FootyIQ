@@ -1,34 +1,29 @@
 import { ComparisonStoredType, ComparisonType } from "../types/comparison-main-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
-import { generateAllComparisons } from "./comparison-generator";
-import { filterBaseComparisons } from "./filter-base-comps";
+import { filterBaseComparisons, QualityComparison } from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
-import { generatePlayersMatchup } from "./player-matchups";
-import { getPlayersSubset } from "./player-subset";
-
-import { canonicalPlayers } from "@/shared/utils/canonical-lookups";
 
 
 
-// export function buildIndexedComparisonsForPlayers(
-//   hydratedComparisons: ComparisonType[],
-// ) {
-//   const playerIndexedComparisons: Record<string, string[]> = {};
+export function buildIndexedComparisonsForPlayers(
+  hydratedComparisons: QualityComparison[],
+) {
+  const playerIndexedComparisons: Record<string, string[]> = {};
 
-//   hydratedComparisons.forEach((cmp) => {
-//     if (!playerIndexedComparisons[cmp.playerA]) {
-//       playerIndexedComparisons[cmp.playerA] = [];
-//     }
-//     playerIndexedComparisons[cmp.playerA].push(cmp.comparisonId);
+  hydratedComparisons.forEach((cmp) => {
+    if (!playerIndexedComparisons[cmp.playerA]) {
+      playerIndexedComparisons[cmp.playerA] = [];
+    }
+    playerIndexedComparisons[cmp.playerA].push(cmp.id);
 
-//     if (!playerIndexedComparisons[cmp.playerB]) {
-//       playerIndexedComparisons[cmp.playerB] = [];
-//     }
-//     playerIndexedComparisons[cmp.playerB].push(cmp.comparisonId);
-//   });
+    if (!playerIndexedComparisons[cmp.playerB]) {
+      playerIndexedComparisons[cmp.playerB] = [];
+    }
+    playerIndexedComparisons[cmp.playerB].push(cmp.id);
+  });
 
-//   return playerIndexedComparisons;
-// }
+  return playerIndexedComparisons;
+}
 
 // export function buildThemeIndexedComparisons(
 //   hydratedComparisons: ComparisonType[]
@@ -50,4 +45,12 @@ export function buildComparisons() {
   console.log(baseComparisons.length);
   const qualityComparisons = filterBaseComparisons(baseComparisons);
   console.log(qualityComparisons.length)
+
+  const indexedComparisons = new Map<string, QualityComparison[]>();
+  qualityComparisons.forEach((cmp) => {
+    if (!indexedComparisons.get(cmp.id)) indexedComparisons.set(cmp.id, []);
+    indexedComparisons.get(cmp.id)!.push(cmp);
+  })
+
+  return indexedComparisons;
 }
