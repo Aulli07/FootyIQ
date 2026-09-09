@@ -1,23 +1,12 @@
-export type RankingStrategyType = 
-  | "overall"
-  | "goals_heavy"
-  | "creator_heavy"
-  | "goals_creator_heavy"
-  | "defense_heavy"
-  | "career_legacy";  
-
-
 export type ComparisonThemeType = {
   id: string;
   title: string;
-  matchupType: string;
+  context: string;
   filters: {
     positions?: string[];
+    leagueIds?: string[];
     competitionIds?: string[];
+    seasonId?: string[];  
     nationalities?: string[];
-    minRating?: number;
-    minSearches?: number;
-    minVotes?: number;
   };
-  rankingStrategy: RankingStrategyType;
 };

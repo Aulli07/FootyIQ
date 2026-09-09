@@ -1,7 +1,7 @@
 "use client";
 
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
 import { ComparisonStoredAnalyticsType } from "@/features/compare/types/comparison-main-type";
+import { QualityComparison } from "../engine/filter-base-comps";
 
 export const ANALYTICS_KEY = "comparison_analytics";
 
@@ -16,7 +16,7 @@ export function notifyComparisonAnalyticsChanged() {
 }
 
 export function initializeComparisonAnalytics(
-  hydratedComparisons: ComparisonType[],
+  hydratedComparisons: QualityComparison[],
 ) {
   if (typeof window === "undefined") {
     return;
@@ -33,40 +33,40 @@ export function initializeComparisonAnalytics(
 }
 
 export function manageAnalyticsOfComparisonsInStorage(
-  entry: ComparisonType,
+  entry: QualityComparison,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
-  if (!analyticsHistory[entry.comparisonId]) {
+  if (!analyticsHistory[entry.id]) {
     storeAnalyticsOfComparison(entry, analyticsHistory);
   }
 }
 
 export function incrementViewCountOfComparison(
-  comparison: ComparisonType,
+  comparison: QualityComparison,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
-  analyticsHistory[comparison.comparisonId].viewCount =
-    (analyticsHistory[comparison.comparisonId].viewCount || 0) + 1;
+  analyticsHistory[comparison.id].viewCount =
+    (analyticsHistory[comparison.id].viewCount || 0) + 1;
 
   return comparison;
 }
 
 export function incrementSearchCountOfComparison(
-  comparison: ComparisonType,
+  comparison: QualityComparison,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
-  analyticsHistory[comparison.comparisonId].searchCount =
-    (analyticsHistory[comparison.comparisonId].searchCount || 0) + 1;
+  analyticsHistory[comparison.id].searchCount =
+    (analyticsHistory[comparison.id].searchCount || 0) + 1;
 
   return comparison;
 }
 
 export function storeAnalyticsOfComparison(
-  entry: ComparisonType,
+  entry: QualityComparison,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
-  analyticsHistory[entry.comparisonId] = {
-    comparisonId: entry.comparisonId,
+  analyticsHistory[entry.id] = {
+    id: entry.id,
     searchCount: 0,
     viewCount: 0,
   };

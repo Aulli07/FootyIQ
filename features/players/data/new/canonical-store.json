@@ -540,8 +540,8 @@
       "seasonId": "24/25",
       "clubId": "al-nassr",
       "competitionId": "spl",
+      "competitionType": "league",
       "appearances": 29,
-      "starts": 0,
       "minutes": 2586,
       "goals": 25,
       "assists": 3,
@@ -560,10 +560,8 @@
       "yellowCards": 5,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.038Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.132Z"
     },
     {
       "id": "ronaldo:24/25:acl-elite",
@@ -571,8 +569,8 @@
       "seasonId": "24/25",
       "clubId": "al-nassr",
       "competitionId": "acl-elite",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 850,
       "goals": 9,
       "assists": 2,
@@ -591,10 +589,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.038Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:24/25:kings-cup",
@@ -602,8 +598,8 @@
       "seasonId": "24/25",
       "clubId": "al-nassr",
       "competitionId": "kings-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 170,
       "goals": 1,
       "assists": 0,
@@ -622,10 +618,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.038Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:23/24:spl",
@@ -633,8 +627,8 @@
       "seasonId": "23/24",
       "clubId": "al-nassr",
       "competitionId": "spl",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 2802,
       "goals": 35,
       "assists": 11,
@@ -653,10 +647,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.038Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:23/24:acl",
@@ -664,8 +656,8 @@
       "seasonId": "23/24",
       "clubId": "al-nassr",
       "competitionId": "acl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 690,
       "goals": 6,
       "assists": 2,
@@ -684,10 +676,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:23/24:arab-club-champions-cup",
@@ -695,8 +685,8 @@
       "seasonId": "23/24",
       "clubId": "al-nassr",
       "competitionId": "arab-club-champions-cup",
+      "competitionType": "international",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 6,
       "assists": 1,
@@ -715,10 +705,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:23/24:kings-cup",
@@ -726,8 +714,8 @@
       "seasonId": "23/24",
       "clubId": "al-nassr",
       "competitionId": "kings-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 435,
       "goals": 3,
       "assists": 2,
@@ -746,10 +734,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:23/24:saudi-super-cup",
@@ -757,8 +743,8 @@
       "seasonId": "23/24",
       "clubId": "al-nassr",
       "competitionId": "saudi-super-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 0,
       "assists": 0,
@@ -777,10 +763,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:22/23:epl",
@@ -788,8 +772,8 @@
       "seasonId": "22/23",
       "clubId": "man-utd",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 10,
-      "starts": 0,
       "minutes": 520,
       "goals": 1,
       "assists": 0,
@@ -808,10 +792,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:22/23:uel",
@@ -819,8 +801,8 @@
       "seasonId": "22/23",
       "clubId": "man-utd",
       "competitionId": "uel",
+      "competitionType": "continental",
       "appearances": 6,
-      "starts": 0,
       "minutes": 490,
       "goals": 2,
       "assists": 0,
@@ -839,10 +821,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:22/23:spl",
@@ -850,8 +830,8 @@
       "seasonId": "22/23",
       "clubId": "al-nassr",
       "competitionId": "spl",
+      "competitionType": "league",
       "appearances": 19,
-      "starts": 0,
       "minutes": 1650,
       "goals": 14,
       "assists": 4,
@@ -870,10 +850,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:22/23:kings-cup",
@@ -881,8 +859,8 @@
       "seasonId": "22/23",
       "clubId": "al-nassr",
       "competitionId": "kings-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 0,
       "assists": 0,
@@ -901,10 +879,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "ronaldo:22/23:saudi-super-cup",
@@ -912,8 +888,8 @@
       "seasonId": "22/23",
       "clubId": "al-nassr",
       "competitionId": "saudi-super-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 0,
       "assists": 0,
@@ -932,10 +908,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "messi:24/25:mls",
@@ -943,8 +917,8 @@
       "seasonId": "24/25",
       "clubId": "inter-miami",
       "competitionId": "mls",
+      "competitionType": "league",
       "appearances": 21,
-      "starts": 0,
       "minutes": 1800,
       "goals": 21,
       "assists": 16,
@@ -963,10 +937,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "messi:24/25:leagues-cup",
@@ -974,8 +946,8 @@
       "seasonId": "24/25",
       "clubId": "inter-miami",
       "competitionId": "leagues-cup",
+      "competitionType": "continental",
       "appearances": 3,
-      "starts": 0,
       "minutes": 250,
       "goals": 3,
       "assists": 2,
@@ -994,10 +966,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "messi:24/25:concacaf-champions-cup",
@@ -1005,8 +975,8 @@
       "seasonId": "24/25",
       "clubId": "inter-miami",
       "competitionId": "concacaf-champions-cup",
+      "competitionType": "continental",
       "appearances": 5,
-      "starts": 0,
       "minutes": 420,
       "goals": 3,
       "assists": 2,
@@ -1025,10 +995,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.134Z"
     },
     {
       "id": "messi:24/25:us-open-cup",
@@ -1036,8 +1004,8 @@
       "seasonId": "24/25",
       "clubId": "inter-miami",
       "competitionId": "us-open-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 0,
       "assists": 1,
@@ -1056,10 +1024,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "messi:23/24:mls",
@@ -1067,8 +1033,8 @@
       "seasonId": "23/24",
       "clubId": "inter-miami",
       "competitionId": "mls",
+      "competitionType": "league",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 1,
       "assists": 2,
@@ -1087,10 +1053,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "messi:23/24:leagues-cup",
@@ -1098,8 +1062,8 @@
       "seasonId": "23/24",
       "clubId": "inter-miami",
       "competitionId": "leagues-cup",
+      "competitionType": "continental",
       "appearances": 7,
-      "starts": 0,
       "minutes": 600,
       "goals": 10,
       "assists": 4,
@@ -1118,10 +1082,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "messi:23/24:us-open-cup",
@@ -1129,8 +1091,8 @@
       "seasonId": "23/24",
       "clubId": "inter-miami",
       "competitionId": "us-open-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 120,
       "goals": 0,
       "assists": 2,
@@ -1149,10 +1111,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:24/25:brasileirao",
@@ -1160,8 +1120,8 @@
       "seasonId": "24/25",
       "clubId": "santos",
       "competitionId": "brasileirao",
+      "competitionType": "league",
       "appearances": 20,
-      "starts": 0,
       "minutes": 1500,
       "goals": 8,
       "assists": 1,
@@ -1180,10 +1140,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:24/25:campeonato-paulista",
@@ -1191,8 +1149,8 @@
       "seasonId": "24/25",
       "clubId": "santos",
       "competitionId": "campeonato-paulista",
+      "competitionType": "league",
       "appearances": 7,
-      "starts": 0,
       "minutes": 600,
       "goals": 3,
       "assists": 3,
@@ -1211,10 +1169,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:24/25:copa-do-brasil",
@@ -1222,8 +1178,8 @@
       "seasonId": "24/25",
       "clubId": "santos",
       "competitionId": "copa-do-brasil",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 70,
       "goals": 0,
       "assists": 0,
@@ -1242,10 +1198,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:24/25:afc-champions-league",
@@ -1253,8 +1207,8 @@
       "seasonId": "24/25",
       "clubId": "al-hilal",
       "competitionId": "afc-champions-league",
+      "competitionType": "continental",
       "appearances": 2,
-      "starts": 0,
       "minutes": 70,
       "goals": 0,
       "assists": 0,
@@ -1273,10 +1227,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:23/24:saudi-pro-league",
@@ -1284,8 +1236,8 @@
       "seasonId": "23/24",
       "clubId": "al-hilal",
       "competitionId": "saudi-pro-league",
+      "competitionType": "league",
       "appearances": 3,
-      "starts": 0,
       "minutes": 210,
       "goals": 1,
       "assists": 2,
@@ -1304,10 +1256,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "neymar:23/24:afc-champions-league",
@@ -1315,8 +1265,8 @@
       "seasonId": "23/24",
       "clubId": "al-hilal",
       "competitionId": "afc-champions-league",
+      "competitionType": "continental",
       "appearances": 2,
-      "starts": 0,
       "minutes": 130,
       "goals": 0,
       "assists": 1,
@@ -1335,10 +1285,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:24/25:spl",
@@ -1346,8 +1294,8 @@
       "seasonId": "24/25",
       "clubId": "alittihad",
       "competitionId": "spl",
+      "competitionType": "league",
       "appearances": 24,
-      "starts": 0,
       "minutes": 1850,
       "goals": 13,
       "assists": 6,
@@ -1366,10 +1314,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:24/25:acl",
@@ -1377,8 +1323,8 @@
       "seasonId": "24/25",
       "clubId": "alittihad",
       "competitionId": "acl",
+      "competitionType": "continental",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 3,
       "assists": 2,
@@ -1397,10 +1343,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:24/25:king-cup",
@@ -1408,8 +1352,8 @@
       "seasonId": "24/25",
       "clubId": "alittihad",
       "competitionId": "king-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 240,
       "goals": 2,
       "assists": 1,
@@ -1428,10 +1372,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:23/24:spl",
@@ -1439,8 +1381,8 @@
       "seasonId": "23/24",
       "clubId": "alittihad",
       "competitionId": "spl",
+      "competitionType": "league",
       "appearances": 26,
-      "starts": 0,
       "minutes": 2105,
       "goals": 17,
       "assists": 8,
@@ -1459,10 +1401,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:23/24:acl",
@@ -1470,8 +1410,8 @@
       "seasonId": "23/24",
       "clubId": "alittihad",
       "competitionId": "acl",
+      "competitionType": "continental",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 4,
       "assists": 1,
@@ -1490,10 +1430,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "benzema:23/24:king-cup",
@@ -1501,8 +1439,8 @@
       "seasonId": "23/24",
       "clubId": "alittihad",
       "competitionId": "king-cup",
+      "competitionType": "cup",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 5,
       "assists": 2,
@@ -1521,10 +1459,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:24/25:ligue1",
@@ -1532,8 +1468,8 @@
       "seasonId": "24/25",
       "clubId": "psg",
       "competitionId": "ligue1",
+      "competitionType": "league",
       "appearances": 34,
-      "starts": 0,
       "minutes": 2000,
       "goals": 8,
       "assists": 9,
@@ -1552,10 +1488,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:24/25:ucl",
@@ -1563,8 +1497,8 @@
       "seasonId": "24/25",
       "clubId": "psg",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 16,
-      "starts": 0,
       "minutes": 900,
       "goals": 6,
       "assists": 5,
@@ -1583,10 +1517,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:24/25:coupe-de-france",
@@ -1594,8 +1526,8 @@
       "seasonId": "24/25",
       "clubId": "psg",
       "competitionId": "coupe-de-france",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 200,
       "goals": 1,
       "assists": 1,
@@ -1614,10 +1546,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:23/24:ligue1",
@@ -1625,8 +1555,8 @@
       "seasonId": "23/24",
       "clubId": "stade-rennais",
       "competitionId": "ligue1",
+      "competitionType": "league",
       "appearances": 32,
-      "starts": 0,
       "minutes": 1700,
       "goals": 3,
       "assists": 4,
@@ -1645,10 +1575,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:23/24:uel",
@@ -1656,8 +1584,8 @@
       "seasonId": "23/24",
       "clubId": "stade-rennais",
       "competitionId": "uel",
+      "competitionType": "continental",
       "appearances": 7,
-      "starts": 0,
       "minutes": 380,
       "goals": 1,
       "assists": 1,
@@ -1676,10 +1604,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "doue:23/24:coupe-de-france",
@@ -1687,8 +1613,8 @@
       "seasonId": "23/24",
       "clubId": "stade-rennais",
       "competitionId": "coupe-de-france",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 150,
       "goals": 0,
       "assists": 1,
@@ -1707,10 +1633,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:24/25:laliga",
@@ -1718,8 +1642,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 35,
-      "starts": 0,
       "minutes": 2850,
       "goals": 9,
       "assists": 13,
@@ -1738,10 +1662,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:24/25:ucl",
@@ -1749,8 +1671,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 13,
-      "starts": 0,
       "minutes": 1050,
       "goals": 5,
       "assists": 3,
@@ -1769,10 +1691,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:24/25:copa-del-rey",
@@ -1780,8 +1700,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 2,
       "assists": 5,
@@ -1800,10 +1720,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:24/25:spanish-super-cup",
@@ -1811,8 +1729,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "spanish-super-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 2,
       "assists": 0,
@@ -1831,10 +1749,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:23/24:laliga",
@@ -1842,8 +1758,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 24,
-      "starts": 0,
       "minutes": 1700,
       "goals": 7,
       "assists": 9,
@@ -1862,10 +1778,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:23/24:ucl",
@@ -1873,8 +1787,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 450,
       "goals": 0,
       "assists": 2,
@@ -1893,10 +1807,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:23/24:copa-del-rey",
@@ -1904,8 +1816,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 150,
       "goals": 0,
       "assists": 1,
@@ -1924,10 +1836,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:23/24:spanish-super-cup",
@@ -1935,8 +1845,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "spanish-super-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 90,
       "goals": 0,
       "assists": 0,
@@ -1955,10 +1865,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "yamal:23/24:euro-2024",
@@ -1966,8 +1874,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "euro-2024",
+      "competitionType": "international",
       "appearances": 6,
-      "starts": 0,
       "minutes": 450,
       "goals": 1,
       "assists": 1,
@@ -1986,10 +1894,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:24/25:laliga",
@@ -1997,8 +1903,8 @@
       "seasonId": "24/25",
       "clubId": "atletico-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 37,
-      "starts": 0,
       "minutes": 2509,
       "goals": 17,
       "assists": 4,
@@ -2017,10 +1923,8 @@
       "yellowCards": 5,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:24/25:ucl",
@@ -2028,8 +1932,8 @@
       "seasonId": "24/25",
       "clubId": "atletico-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 784,
       "goals": 7,
       "assists": 1,
@@ -2048,10 +1952,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:24/25:copa-del-rey",
@@ -2059,8 +1961,8 @@
       "seasonId": "24/25",
       "clubId": "atletico-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 395,
       "goals": 5,
       "assists": 2,
@@ -2079,10 +1981,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:24/25:fifa-club-world-cup",
@@ -2090,8 +1990,8 @@
       "seasonId": "24/25",
       "clubId": "atletico-madrid",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 3,
-      "starts": 0,
       "minutes": 262,
       "goals": 0,
       "assists": 1,
@@ -2110,10 +2010,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:23/24:epl",
@@ -2121,8 +2019,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 28,
-      "starts": 0,
       "minutes": 2100,
       "goals": 15,
       "assists": 7,
@@ -2141,10 +2039,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:23/24:ucl",
@@ -2152,8 +2048,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 900,
       "goals": 6,
       "assists": 4,
@@ -2172,10 +2068,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:23/24:fa-cup",
@@ -2183,8 +2077,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 450,
       "goals": 3,
       "assists": 2,
@@ -2203,10 +2097,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:23/24:carabao-cup",
@@ -2214,8 +2106,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 270,
       "goals": 2,
       "assists": 1,
@@ -2234,10 +2126,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:23/24:fifa-club-world-cup",
@@ -2245,8 +2135,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 2,
-      "starts": 0,
       "minutes": 180,
       "goals": 2,
       "assists": 1,
@@ -2265,10 +2155,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:22/23:epl",
@@ -2276,8 +2164,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 1449,
       "goals": 9,
       "assists": 0,
@@ -2296,10 +2184,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:22/23:ucl",
@@ -2307,8 +2193,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 900,
       "goals": 6,
       "assists": 4,
@@ -2327,10 +2213,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:22/23:fa-cup",
@@ -2338,8 +2222,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 450,
       "goals": 3,
       "assists": 2,
@@ -2358,10 +2242,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:22/23:carabao-cup",
@@ -2369,8 +2251,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 270,
       "goals": 2,
       "assists": 1,
@@ -2389,10 +2271,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:22/23:world-cup",
@@ -2400,8 +2280,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "world-cup",
+      "competitionType": "international",
       "appearances": 7,
-      "starts": 0,
       "minutes": 467,
       "goals": 4,
       "assists": 0,
@@ -2420,10 +2300,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "alvarez:21/22:argentine-primera",
@@ -2431,8 +2309,8 @@
       "seasonId": "21/22",
       "clubId": "river-plate",
       "competitionId": "argentine-primera",
+      "competitionType": "league",
       "appearances": 20,
-      "starts": 0,
       "minutes": 1800,
       "goals": 10,
       "assists": 5,
@@ -2451,10 +2329,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:24/25:laliga",
@@ -2462,8 +2338,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 29,
-      "starts": 0,
       "minutes": 2300,
       "goals": 9,
       "assists": 7,
@@ -2482,10 +2358,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:24/25:ucl",
@@ -2493,8 +2367,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 11,
-      "starts": 0,
       "minutes": 850,
       "goals": 3,
       "assists": 3,
@@ -2513,10 +2387,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:24/25:copa-del-rey",
@@ -2524,8 +2396,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 1,
@@ -2544,10 +2416,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:24/25:fifa-club-world-cup",
@@ -2555,8 +2425,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 6,
-      "starts": 0,
       "minutes": 500,
       "goals": 2,
       "assists": 3,
@@ -2575,10 +2445,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:23/24:laliga",
@@ -2586,8 +2454,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 30,
-      "starts": 0,
       "minutes": 2400,
       "goals": 10,
       "assists": 8,
@@ -2606,10 +2474,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:23/24:ucl",
@@ -2617,8 +2483,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 900,
       "goals": 5,
       "assists": 4,
@@ -2637,10 +2503,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:23/24:copa-del-rey",
@@ -2648,8 +2512,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 450,
       "goals": 3,
       "assists": 2,
@@ -2668,10 +2532,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:23/24:supercopa-de-espana",
@@ -2679,8 +2541,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 170,
       "goals": 1,
       "assists": 0,
@@ -2699,10 +2561,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:22/23:bundesliga",
@@ -2710,8 +2570,8 @@
       "seasonId": "22/23",
       "clubId": "borussia-dortmund",
       "competitionId": "bundesliga",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 2650,
       "goals": 8,
       "assists": 5,
@@ -2730,10 +2590,8 @@
       "yellowCards": 8,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:22/23:ucl",
@@ -2741,8 +2599,8 @@
       "seasonId": "22/23",
       "clubId": "borussia-dortmund",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 7,
-      "starts": 0,
       "minutes": 600,
       "goals": 4,
       "assists": 1,
@@ -2761,10 +2619,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:22/23:dfb-pokal",
@@ -2772,8 +2628,8 @@
       "seasonId": "22/23",
       "clubId": "borussia-dortmund",
       "competitionId": "dfb-pokal",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 320,
       "goals": 2,
       "assists": 1,
@@ -2792,10 +2648,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "bellingham:22/23:world-cup",
@@ -2803,8 +2657,8 @@
       "seasonId": "22/23",
       "clubId": "borussia-dortmund",
       "competitionId": "world-cup",
+      "competitionType": "international",
       "appearances": 5,
-      "starts": 0,
       "minutes": 450,
       "goals": 1,
       "assists": 1,
@@ -2823,10 +2677,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:24/25:epl",
@@ -2834,8 +2686,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 28,
-      "starts": 0,
       "minutes": 1850,
       "goals": 7,
       "assists": 2,
@@ -2854,10 +2706,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:24/25:ucl",
@@ -2865,8 +2715,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 550,
       "goals": 2,
       "assists": 1,
@@ -2885,10 +2735,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:24/25:fa-cup",
@@ -2896,8 +2744,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 230,
       "goals": 1,
       "assists": 1,
@@ -2916,10 +2764,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:24/25:carabao-cup",
@@ -2927,8 +2773,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 0,
       "assists": 1,
@@ -2947,10 +2793,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:24/25:fifa-club-world-cup",
@@ -2958,8 +2802,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 4,
-      "starts": 0,
       "minutes": 320,
       "goals": 1,
       "assists": 1,
@@ -2978,10 +2822,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:23/24:epl",
@@ -2989,8 +2831,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 35,
-      "starts": 0,
       "minutes": 2915,
       "goals": 19,
       "assists": 8,
@@ -3009,10 +2851,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:23/24:ucl",
@@ -3020,8 +2860,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 9,
-      "starts": 0,
       "minutes": 720,
       "goals": 4,
       "assists": 3,
@@ -3040,10 +2880,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:23/24:fa-cup",
@@ -3051,8 +2889,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 2,
       "assists": 1,
@@ -3071,10 +2909,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:23/24:carabao-cup",
@@ -3082,8 +2918,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -3102,10 +2938,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:23/24:fifa-club-world-cup",
@@ -3113,8 +2947,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 2,
-      "starts": 0,
       "minutes": 170,
       "goals": 1,
       "assists": 1,
@@ -3133,10 +2967,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:22/23:epl",
@@ -3144,8 +2976,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 2200,
       "goals": 11,
       "assists": 5,
@@ -3164,10 +2996,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:22/23:ucl",
@@ -3175,8 +3005,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 620,
       "goals": 3,
       "assists": 1,
@@ -3195,10 +3025,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:22/23:fa-cup",
@@ -3206,8 +3034,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 2,
       "assists": 1,
@@ -3226,10 +3054,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:22/23:carabao-cup",
@@ -3237,8 +3063,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -3257,10 +3083,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:22/23:world-cup",
@@ -3268,8 +3092,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "world-cup",
+      "competitionType": "international",
       "appearances": 3,
-      "starts": 0,
       "minutes": 120,
       "goals": 0,
       "assists": 0,
@@ -3288,10 +3112,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:21/22:epl",
@@ -3299,8 +3121,8 @@
       "seasonId": "21/22",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 30,
-      "starts": 0,
       "minutes": 2100,
       "goals": 9,
       "assists": 5,
@@ -3319,10 +3141,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:21/22:ucl",
@@ -3330,8 +3150,8 @@
       "seasonId": "21/22",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 600,
       "goals": 2,
       "assists": 1,
@@ -3350,10 +3170,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:21/22:fa-cup",
@@ -3361,8 +3179,8 @@
       "seasonId": "21/22",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 320,
       "goals": 1,
       "assists": 0,
@@ -3381,10 +3199,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "foden:21/22:carabao-cup",
@@ -3392,8 +3208,8 @@
       "seasonId": "21/22",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 240,
       "goals": 1,
       "assists": 1,
@@ -3412,10 +3228,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:24/25:epl",
@@ -3423,8 +3237,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 2500,
       "goals": 22,
       "assists": 3,
@@ -3443,10 +3257,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:24/25:ucl",
@@ -3454,8 +3266,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 9,
-      "starts": 0,
       "minutes": 700,
       "goals": 8,
       "assists": 0,
@@ -3474,10 +3286,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:24/25:fa-cup",
@@ -3485,8 +3295,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 220,
       "goals": 1,
       "assists": 1,
@@ -3505,10 +3315,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:24/25:fifa-club-world-cup",
@@ -3516,8 +3324,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 4,
-      "starts": 0,
       "minutes": 300,
       "goals": 3,
       "assists": 1,
@@ -3536,10 +3344,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:23/24:epl",
@@ -3547,8 +3353,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 31,
-      "starts": 0,
       "minutes": 2680,
       "goals": 27,
       "assists": 5,
@@ -3567,10 +3373,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:23/24:ucl",
@@ -3578,8 +3382,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 9,
-      "starts": 0,
       "minutes": 760,
       "goals": 6,
       "assists": 1,
@@ -3598,10 +3402,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:23/24:fa-cup",
@@ -3609,8 +3411,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 170,
       "goals": 5,
       "assists": 0,
@@ -3629,10 +3431,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:23/24:carabao-cup",
@@ -3640,8 +3440,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 75,
       "goals": 0,
       "assists": 0,
@@ -3660,10 +3460,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:22/23:epl",
@@ -3671,8 +3469,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 35,
-      "starts": 0,
       "minutes": 2770,
       "goals": 36,
       "assists": 8,
@@ -3691,10 +3489,8 @@
       "yellowCards": 5,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:22/23:ucl",
@@ -3702,8 +3498,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 1010,
       "goals": 12,
       "assists": 1,
@@ -3722,10 +3518,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:22/23:fa-cup",
@@ -3733,8 +3527,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 290,
       "goals": 3,
       "assists": 0,
@@ -3753,10 +3547,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:22/23:carabao-cup",
@@ -3764,8 +3556,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 116,
       "goals": 1,
       "assists": 0,
@@ -3784,10 +3576,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:21/22:bundesliga",
@@ -3795,8 +3585,8 @@
       "seasonId": "21/22",
       "clubId": "borussia-dortmund",
       "competitionId": "bundesliga",
+      "competitionType": "league",
       "appearances": 22,
-      "starts": 0,
       "minutes": 1850,
       "goals": 22,
       "assists": 5,
@@ -3815,10 +3605,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:21/22:ucl",
@@ -3826,8 +3614,8 @@
       "seasonId": "21/22",
       "clubId": "borussia-dortmund",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 7,
-      "starts": 0,
       "minutes": 550,
       "goals": 6,
       "assists": 1,
@@ -3846,10 +3634,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "haaland:21/22:dfb-pokal",
@@ -3857,8 +3643,8 @@
       "seasonId": "21/22",
       "clubId": "borussia-dortmund",
       "competitionId": "dfb-pokal",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 1,
       "assists": 0,
@@ -3877,10 +3663,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:24/25:laliga",
@@ -3888,8 +3672,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 34,
-      "starts": 0,
       "minutes": 2850,
       "goals": 27,
       "assists": 2,
@@ -3908,10 +3692,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:24/25:ucl",
@@ -3919,8 +3701,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 980,
       "goals": 11,
       "assists": 2,
@@ -3939,10 +3721,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:24/25:copa-del-rey",
@@ -3950,8 +3730,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 380,
       "goals": 3,
       "assists": 1,
@@ -3970,10 +3750,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:24/25:supercopa-de-espana",
@@ -3981,8 +3759,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -4001,10 +3779,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:23/24:laliga",
@@ -4012,8 +3788,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 33,
-      "starts": 0,
       "minutes": 2700,
       "goals": 19,
       "assists": 5,
@@ -4032,10 +3808,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:23/24:ucl",
@@ -4043,8 +3817,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 620,
       "goals": 4,
       "assists": 1,
@@ -4063,10 +3837,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:23/24:copa-del-rey",
@@ -4074,8 +3846,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 240,
       "goals": 2,
       "assists": 0,
@@ -4094,10 +3866,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:23/24:supercopa-de-espana",
@@ -4105,8 +3875,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -4125,10 +3895,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:22/23:laliga",
@@ -4136,8 +3904,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 34,
-      "starts": 0,
       "minutes": 2815,
       "goals": 23,
       "assists": 7,
@@ -4156,10 +3924,8 @@
       "yellowCards": 5,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:22/23:ucl",
@@ -4167,8 +3933,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 5,
-      "starts": 0,
       "minutes": 430,
       "goals": 5,
       "assists": 1,
@@ -4187,10 +3953,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:22/23:uel",
@@ -4198,8 +3962,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "uel",
+      "competitionType": "continental",
       "appearances": 3,
-      "starts": 0,
       "minutes": 210,
       "goals": 1,
       "assists": 0,
@@ -4218,10 +3982,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:22/23:copa-del-rey",
@@ -4229,8 +3991,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 170,
       "goals": 2,
       "assists": 0,
@@ -4249,10 +4011,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "lewandowski:22/23:supercopa-de-espana",
@@ -4260,8 +4020,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 2,
       "assists": 1,
@@ -4280,10 +4040,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "mbappe:24/25:laliga",
@@ -4291,8 +4049,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 35,
-      "starts": 0,
       "minutes": 2950,
       "goals": 31,
       "assists": 3,
@@ -4311,10 +4069,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "mbappe:24/25:ucl",
@@ -4322,8 +4078,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 820,
       "goals": 7,
       "assists": 2,
@@ -4342,10 +4098,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.135Z"
     },
     {
       "id": "mbappe:24/25:copa-del-rey",
@@ -4353,8 +4107,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 2,
       "assists": 1,
@@ -4373,10 +4127,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:24/25:supercopa-de-espana",
@@ -4384,8 +4136,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -4404,10 +4156,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:24/25:uefa-super-cup",
@@ -4415,8 +4165,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "uefa-super-cup",
+      "competitionType": "continental",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 1,
       "assists": 0,
@@ -4435,10 +4185,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:24/25:fifa-intercontinental-cup",
@@ -4446,8 +4194,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "fifa-intercontinental-cup",
+      "competitionType": "international",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 1,
       "assists": 0,
@@ -4466,10 +4214,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:24/25:fifa-club-world-cup",
@@ -4477,8 +4223,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 4,
-      "starts": 0,
       "minutes": 340,
       "goals": 1,
       "assists": 1,
@@ -4497,10 +4243,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:23/24:ligue1",
@@ -4508,8 +4252,8 @@
       "seasonId": "23/24",
       "clubId": "psg",
       "competitionId": "ligue1",
+      "competitionType": "league",
       "appearances": 29,
-      "starts": 0,
       "minutes": 2500,
       "goals": 27,
       "assists": 7,
@@ -4528,10 +4272,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:23/24:ucl",
@@ -4539,8 +4281,8 @@
       "seasonId": "23/24",
       "clubId": "psg",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 980,
       "goals": 8,
       "assists": 3,
@@ -4559,10 +4301,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:23/24:coupe-de-france",
@@ -4570,8 +4310,8 @@
       "seasonId": "23/24",
       "clubId": "psg",
       "competitionId": "coupe-de-france",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 8,
       "assists": 2,
@@ -4590,10 +4330,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:23/24:trophee-des-champions",
@@ -4601,8 +4339,8 @@
       "seasonId": "23/24",
       "clubId": "psg",
       "competitionId": "trophee-des-champions",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 1,
       "assists": 0,
@@ -4621,10 +4359,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:22/23:ligue1",
@@ -4632,8 +4368,8 @@
       "seasonId": "22/23",
       "clubId": "psg",
       "competitionId": "ligue1",
+      "competitionType": "league",
       "appearances": 34,
-      "starts": 0,
       "minutes": 2840,
       "goals": 29,
       "assists": 7,
@@ -4652,10 +4388,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:22/23:ucl",
@@ -4663,8 +4397,8 @@
       "seasonId": "22/23",
       "clubId": "psg",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 690,
       "goals": 7,
       "assists": 3,
@@ -4683,10 +4417,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:22/23:coupe-de-france",
@@ -4694,8 +4426,8 @@
       "seasonId": "22/23",
       "clubId": "psg",
       "competitionId": "coupe-de-france",
+      "competitionType": "cup",
       "appearances": 3,
-      "starts": 0,
       "minutes": 250,
       "goals": 4,
       "assists": 1,
@@ -4714,10 +4446,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "mbappe:22/23:trophee-des-champions",
@@ -4725,8 +4455,8 @@
       "seasonId": "22/23",
       "clubId": "psg",
       "competitionId": "trophee-des-champions",
+      "competitionType": "cup",
       "appearances": 1,
-      "starts": 0,
       "minutes": 90,
       "goals": 1,
       "assists": 0,
@@ -4745,10 +4475,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:24/25:laliga",
@@ -4756,8 +4484,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 32,
-      "starts": 0,
       "minutes": 2600,
       "goals": 6,
       "assists": 9,
@@ -4776,10 +4504,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:24/25:ucl",
@@ -4787,8 +4513,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 980,
       "goals": 2,
       "assists": 3,
@@ -4807,10 +4533,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:24/25:copa-del-rey",
@@ -4818,8 +4542,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 400,
       "goals": 1,
       "assists": 2,
@@ -4838,10 +4562,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:24/25:supercopa-de-espana",
@@ -4849,8 +4571,8 @@
       "seasonId": "24/25",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 160,
       "goals": 0,
       "assists": 1,
@@ -4869,10 +4591,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:23/24:laliga",
@@ -4880,8 +4600,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 28,
-      "starts": 0,
       "minutes": 2195,
       "goals": 5,
       "assists": 7,
@@ -4900,10 +4620,8 @@
       "yellowCards": 4,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:23/24:ucl",
@@ -4911,8 +4629,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 8,
-      "starts": 0,
       "minutes": 661,
       "goals": 2,
       "assists": 3,
@@ -4931,10 +4649,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:23/24:copa-del-rey",
@@ -4942,8 +4658,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 322,
       "goals": 1,
       "assists": 2,
@@ -4962,10 +4678,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.039Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:23/24:supercopa-de-espana",
@@ -4973,8 +4687,8 @@
       "seasonId": "23/24",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 160,
       "goals": 0,
       "assists": 0,
@@ -4993,10 +4707,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:22/23:laliga",
@@ -5004,8 +4716,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 26,
-      "starts": 0,
       "minutes": 2088,
       "goals": 4,
       "assists": 5,
@@ -5024,10 +4736,8 @@
       "yellowCards": 5,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:22/23:ucl",
@@ -5035,8 +4745,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 5,
-      "starts": 0,
       "minutes": 402,
       "goals": 1,
       "assists": 2,
@@ -5055,10 +4765,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:22/23:uel",
@@ -5066,8 +4774,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "uel",
+      "competitionType": "continental",
       "appearances": 2,
-      "starts": 0,
       "minutes": 160,
       "goals": 0,
       "assists": 0,
@@ -5086,10 +4794,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:22/23:copa-del-rey",
@@ -5097,8 +4803,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 300,
       "goals": 0,
       "assists": 1,
@@ -5117,10 +4823,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "pedri:22/23:supercopa-de-espana",
@@ -5128,8 +4832,8 @@
       "seasonId": "22/23",
       "clubId": "barcelona",
       "competitionId": "supercopa-de-espana",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 0,
       "assists": 1,
@@ -5148,10 +4852,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:24/25:epl",
@@ -5159,8 +4861,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 3,
-      "starts": 0,
       "minutes": 205,
       "goals": 0,
       "assists": 0,
@@ -5179,10 +4881,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:24/25:ucl",
@@ -5190,8 +4890,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 2,
-      "starts": 0,
       "minutes": 100,
       "goals": 0,
       "assists": 0,
@@ -5210,10 +4910,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:24/25:fifa-club-world-cup",
@@ -5221,8 +4919,8 @@
       "seasonId": "24/25",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 4,
-      "starts": 0,
       "minutes": 220,
       "goals": 0,
       "assists": 1,
@@ -5241,10 +4939,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:epl",
@@ -5252,8 +4948,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 34,
-      "starts": 0,
       "minutes": 2975,
       "goals": 8,
       "assists": 7,
@@ -5272,10 +4968,8 @@
       "yellowCards": 7,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:ucl",
@@ -5283,8 +4977,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 887,
       "goals": 2,
       "assists": 2,
@@ -5303,10 +4997,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:fa-cup",
@@ -5314,8 +5006,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 5,
-      "starts": 0,
       "minutes": 431,
       "goals": 1,
       "assists": 1,
@@ -5334,10 +5026,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:carabao-cup",
@@ -5345,8 +5035,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "carabao-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 158,
       "goals": 0,
       "assists": 0,
@@ -5365,10 +5055,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:fifa-club-world-cup",
@@ -5376,8 +5064,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 2,
-      "starts": 0,
       "minutes": 176,
       "goals": 0,
       "assists": 1,
@@ -5396,10 +5084,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:23/24:euro-2024",
@@ -5407,8 +5093,8 @@
       "seasonId": "23/24",
       "clubId": "manchester-city",
       "competitionId": "euro-2024",
+      "competitionType": "international",
       "appearances": 6,
-      "starts": 0,
       "minutes": 501,
       "goals": 1,
       "assists": 1,
@@ -5427,10 +5113,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:22/23:epl",
@@ -5438,8 +5122,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "epl",
+      "competitionType": "league",
       "appearances": 36,
-      "starts": 0,
       "minutes": 3050,
       "goals": 4,
       "assists": 6,
@@ -5458,10 +5142,8 @@
       "yellowCards": 8,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:22/23:ucl",
@@ -5469,8 +5151,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 1044,
       "goals": 1,
       "assists": 2,
@@ -5489,10 +5171,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:22/23:fa-cup",
@@ -5500,8 +5180,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "fa-cup",
+      "competitionType": "cup",
       "appearances": 6,
-      "starts": 0,
       "minutes": 519,
       "goals": 1,
       "assists": 2,
@@ -5520,10 +5200,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "rodri:22/23:world-cup",
@@ -5531,8 +5209,8 @@
       "seasonId": "22/23",
       "clubId": "manchester-city",
       "competitionId": "world-cup",
+      "competitionType": "international",
       "appearances": 4,
-      "starts": 0,
       "minutes": 396,
       "goals": 0,
       "assists": 0,
@@ -5551,10 +5229,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:24/25:laliga",
@@ -5562,8 +5238,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 30,
-      "starts": 0,
       "minutes": 2350,
       "goals": 11,
       "assists": 8,
@@ -5582,10 +5258,8 @@
       "yellowCards": 8,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:24/25:ucl",
@@ -5593,8 +5267,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 1000,
       "goals": 8,
       "assists": 2,
@@ -5613,10 +5287,8 @@
       "yellowCards": 3,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:24/25:copa-del-rey",
@@ -5624,8 +5296,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 1,
       "assists": 2,
@@ -5644,10 +5316,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:24/25:spanish-super-cup",
@@ -5655,8 +5325,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "spanish-super-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 1,
       "assists": 0,
@@ -5675,10 +5345,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:24/25:fifa-club-world-cup",
@@ -5686,8 +5354,8 @@
       "seasonId": "24/25",
       "clubId": "real-madrid",
       "competitionId": "fifa-club-world-cup",
+      "competitionType": "international",
       "appearances": 6,
-      "starts": 0,
       "minutes": 480,
       "goals": 2,
       "assists": 2,
@@ -5706,10 +5374,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "international"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:23/24:laliga",
@@ -5717,8 +5383,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 28,
-      "starts": 0,
       "minutes": 2284,
       "goals": 18,
       "assists": 10,
@@ -5737,10 +5403,8 @@
       "yellowCards": 6,
       "yellowToRedCards": 0,
       "redCards": 1,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:23/24:ucl",
@@ -5748,8 +5412,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 10,
-      "starts": 0,
       "minutes": 846,
       "goals": 6,
       "assists": 5,
@@ -5768,10 +5432,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:23/24:copa-del-rey",
@@ -5779,8 +5441,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 4,
-      "starts": 0,
       "minutes": 322,
       "goals": 2,
       "assists": 2,
@@ -5799,10 +5461,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:23/24:spanish-super-cup",
@@ -5810,8 +5470,8 @@
       "seasonId": "23/24",
       "clubId": "real-madrid",
       "competitionId": "spanish-super-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 150,
       "goals": 3,
       "assists": 1,
@@ -5830,10 +5490,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:22/23:laliga",
@@ -5841,8 +5499,8 @@
       "seasonId": "22/23",
       "clubId": "real-madrid",
       "competitionId": "laliga",
+      "competitionType": "league",
       "appearances": 33,
-      "starts": 0,
       "minutes": 2614,
       "goals": 14,
       "assists": 9,
@@ -5861,10 +5519,8 @@
       "yellowCards": 7,
       "yellowToRedCards": 0,
       "redCards": 1,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "league"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:22/23:ucl",
@@ -5872,8 +5528,8 @@
       "seasonId": "22/23",
       "clubId": "real-madrid",
       "competitionId": "ucl",
+      "competitionType": "continental",
       "appearances": 12,
-      "starts": 0,
       "minutes": 990,
       "goals": 7,
       "assists": 4,
@@ -5892,10 +5548,8 @@
       "yellowCards": 2,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:22/23:copa-del-rey",
@@ -5903,8 +5557,8 @@
       "seasonId": "22/23",
       "clubId": "real-madrid",
       "competitionId": "copa-del-rey",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 160,
       "goals": 1,
       "assists": 0,
@@ -5923,10 +5577,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:22/23:spanish-super-cup",
@@ -5934,8 +5586,8 @@
       "seasonId": "22/23",
       "clubId": "real-madrid",
       "competitionId": "spanish-super-cup",
+      "competitionType": "cup",
       "appearances": 2,
-      "starts": 0,
       "minutes": 160,
       "goals": 1,
       "assists": 1,
@@ -5954,10 +5606,8 @@
       "yellowCards": 1,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "cup"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     },
     {
       "id": "vinicius:22/23:uefa-super-cup",
@@ -5965,8 +5615,8 @@
       "seasonId": "22/23",
       "clubId": "real-madrid",
       "competitionId": "uefa-super-cup",
+      "competitionType": "continental",
       "appearances": 1,
-      "starts": 0,
       "minutes": 75,
       "goals": 0,
       "assists": 0,
@@ -5985,10 +5635,8 @@
       "yellowCards": 0,
       "yellowToRedCards": 0,
       "redCards": 0,
-      "rating": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-04T12:13:40.040Z",
-      "competitionType": "continental"
+      "updatedAt": "2026-09-09T01:15:41.136Z"
     }
   ]
 }

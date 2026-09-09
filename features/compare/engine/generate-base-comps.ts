@@ -34,7 +34,7 @@ function pairUpComps(
   for (let i = 0; i < eligiblePlayers.length; i++) {
     for (let j = i + 1; j < eligiblePlayers.length; j++) {
       comparisons.push({
-        id: crypto.randomUUID(),
+        id: "cmp-" + crypto.randomUUID().slice(0, 8),
         context: contextId,
         playerA: eligiblePlayers[i].id,
         playerB: eligiblePlayers[j].id,
@@ -74,13 +74,13 @@ function generateLeagueSeasonComparisons() {
   for (const stat of stats) {
     if (stat.competitionType !== "league") continue;
     const key = `${stat.seasonId}:${stat.competitionId}`;
-    if (leagueSeasonIndex.has(key)) leagueSeasonIndex.set(key, new Set<string>());
+    if (!leagueSeasonIndex.has(key)) leagueSeasonIndex.set(key, new Set<string>());
     leagueSeasonIndex.get(key)?.add(stat.playerId);
   }
 
   for (const [key, playerIds] of leagueSeasonIndex) {
     const [seasonId, competitionId] = key.split(":");
-    leagueSeasonComps.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-SEASON", {seasonId, competitionId}))
+    leagueSeasonComps.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-SEASON", {seasonId, leagueId: competitionId}))
   }
 
   return leagueSeasonComps;
@@ -96,7 +96,7 @@ function generateCompetitionSeasonComparisons() {
   for (const stat of stats) {
     if (stat.competitionType === "league") continue;
     const key = `${stat.seasonId}:${stat.competitionId}`;
-    if (compSeasonIndex.has(key)) compSeasonIndex.set(key, new Set<string>());
+    if (!compSeasonIndex.has(key)) compSeasonIndex.set(key, new Set<string>());
     compSeasonIndex.get(key)?.add(stat.playerId);
   }
 
@@ -121,7 +121,7 @@ function generateLeagueCareerComparisons() {
 
   const comparisons: BaseComparison[] = [];
   for (const [leagueId, playerIds] of byLeague) {
-    comparisons.push(...pairUpComps(playerIds, playersById, "CTX_LEAGUE_CAREER", { leagueId }));
+    comparisons.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-CAREER", { leagueId }));
   }
   return comparisons;
 }
@@ -140,7 +140,7 @@ function generateCompetitionCareerComparisons() {
   const comparisons: BaseComparison[] = [];
   for (const [competitionId, playerIds] of byCompetition) {
     comparisons.push(
-      ...pairUpComps(playerIds, playersById, "CTX_COMPETITION_CAREER", { competitionId })
+      ...pairUpComps(playerIds, playersById, "CTX-COMPETITION-CAREER", { competitionId })
     );
   }
   return comparisons;
@@ -151,7 +151,7 @@ function generateOverallCareerComparisons() {
   const playersById = new Map(players.map(p => [p.id, p]));
   const playerIds = new Set(stats.map(stat => stat.playerId));
 
-  return pairUpComps(playerIds, playersById, "CTX_OVERALL_CAREER", {});
+  return pairUpComps(playerIds, playersById, "CTX-OVERALL-CAREER", {});
 }
 
 

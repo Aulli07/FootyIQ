@@ -9,12 +9,12 @@ const stats = canonicalStore.totalPlayerStats;
 
 
 const MIN_MINUTES_BY_CONTEXT: Record<string, number> = {
-  CTX_SEASON: 450,
-  CTX_LEAGUE_SEASON: 450,
-  CTX_COMPETITION_SEASON: 180,
-  CTX_LEAGUE_CAREER: 900,
-  CTX_COMPETITION_CAREER: 360,
-  CTX_OVERALL_CAREER: 900
+  "CTX-SEASON": 450,
+  "CTX-LEAGUE-SEASON": 450,
+  "CTX-COMPETITION-SEASON": 180,
+  "CTX-LEAGUE-CAREER": 900,
+  "CTX-COMPETITION-CAREER": 360,
+  "CTX-OVERALL-CAREER": 900
 };
 
 const POSITION_TIER: Record<string, string> = {
@@ -28,11 +28,11 @@ const QUALITY_WEIGHTS = {
   sampleAdequacy: 0.4,
   positionMatch: 0.25,
   statProximity: 0.35,
-  notabilityPercentile: 0.2,
+  notabilityPercentile: 0.3,
   minNotablePerStat: 1,
   targetTotal: 50,
   minGroup: 5,
-  minQualityScore: 1
+  minQualityScore: 0.5
 };
 
 const PROXIMITY_METRICS = [
@@ -65,21 +65,21 @@ function statsInScope(
   return stats.filter(stat => {
     if (stat.playerId !== playerId) return false;
     switch (contextId) {
-      case "CTX_SEASON":
+      case "CTX-SEASON":
         return stat.seasonId === scope.seasonId;
-      case "CTX_LEAGUE_SEASON":
+      case "CTX-LEAGUE-SEASON":
         return (
           stat.seasonId === scope.seasonId &&
           stat.competitionId === scope.leagueId &&
           stat.competitionType === "league"
         );
-      case "CTX_COMPETITION_SEASON":
+      case "CTX-COMPETITION-SEASON":
         return stat.seasonId === scope.seasonId && stat.competitionId === scope.competitionId;
-      case "CTX_LEAGUE_CAREER":
+      case "CTX-LEAGUE-CAREER":
         return stat.competitionId === scope.leagueId && stat.competitionType === "league";
-      case "CTX_COMPETITION_CAREER":
+      case "CTX-COMPETITION-CAREER":
         return stat.competitionId === scope.competitionId;
-      case "CTX_OVERALL_CAREER":
+      case "CTX-OVERALL-CAREER":
         return true;
       default:
         return false;
@@ -197,11 +197,13 @@ function buildNotablePlayersByGroup(
 
 type QualityComparison = BaseComparison & { qualityScore: number };
 
+export const playersById = new Map(players.map(p => [p.id, p]));
+
 export function filterBaseComparisons(
   baseComparisons: BaseComparison[],
 ): QualityComparison[] {
 
-  const playersById = new Map(players.map(p => [p.id, p]));
+  
   const seen = new Set<string>(); // safety net against duplicate base comparisons
   const scored: QualityComparison[] = [];
 
@@ -235,8 +237,8 @@ export function filterBaseComparisons(
     const proximityScore = statProximityScore(aggA, aggB);
 
     const qualityScore =
-      (sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
-      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore * positionScore;
+      Number(((sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
+      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore * positionScore).toFixed(2));
 
     if (qualityScore < QUALITY_WEIGHTS.minQualityScore) continue;
 

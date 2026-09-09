@@ -1,7 +1,6 @@
 "use client";
 
-import { ComparisonType, ComparisonStoredType } from "../types/comparison-main-type";
-
+import { QualityComparison } from "../engine/filter-base-comps";
 import {
   ANALYTICS_KEY,
   getStoredAnalyticsOfComparisons,
@@ -15,10 +14,11 @@ const STORAGE_KEY = "comparison_storage";
 
 
 
-export function manageComparisonInStorage(entry: ComparisonType) {
+
+export function manageComparisonInStorage(entry: QualityComparison) {
   const comparisonHistory = getStoredComparisons();
   const analyticsHistory = getStoredAnalyticsOfComparisons();
-  const existingComparison = comparisonHistory[entry.comparisonId];
+  const existingComparison = comparisonHistory[entry.id];
 
   if (existingComparison) {
     incrementViewCountOfComparison(existingComparison, analyticsHistory);
@@ -38,13 +38,13 @@ export function manageComparisonInStorage(entry: ComparisonType) {
 }
 
 export function storeComparisonInStorage(
-  entry: ComparisonType,
-  comparisonHistory: ComparisonStoredType,
+  entry: QualityComparison,
+  comparisonHistory: Record<string, QualityComparison>,
 ) {
-  comparisonHistory[entry.comparisonId] = entry;
+  comparisonHistory[entry.id] = entry;
 }
 
-export function getStoredComparisons(): ComparisonStoredType {
+export function getStoredComparisons(): Record<string, QualityComparison> {
   if (typeof window === "undefined") {
     return {};
   }
@@ -53,11 +53,11 @@ export function getStoredComparisons(): ComparisonStoredType {
 }
 
 export function findComparisonFromHistory(
-  comparison: ComparisonType,
-): ComparisonType | null {
+  comparison: QualityComparison,
+): QualityComparison | null {
   const currentHistory = getStoredComparisons();
 
-  if (currentHistory[comparison.comparisonId]) {
+  if (currentHistory[comparison.id]) {
     return comparison;
   } else {
     return null;

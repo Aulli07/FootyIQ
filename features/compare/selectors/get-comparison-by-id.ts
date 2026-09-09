@@ -1,10 +1,10 @@
 "use client";
 
-import { ComparisonType } from "../types/comparison-main-type";
+import { QualityComparison } from "../engine/filter-base-comps";
 import { buildHydratedComparisonStore } from "../engine/comparison-store";
 
 
-export function getComparisonById(comparisonId: string): ComparisonType | null {
+export function getComparisonById(comparisonId: string): QualityComparison | null {
   const hydratedComparisons = buildHydratedComparisonStore();
 
   return hydratedComparisons[comparisonId] ?? null;

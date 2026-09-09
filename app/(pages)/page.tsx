@@ -7,18 +7,18 @@ import Header from "../../shared/components/header";
 import Comparison from "@/features/compare/components/comparison-row";
 import { SYSTEM_COMPARISON_THEMES } from "@/features/compare/types/comparison-themes";
 import { ComparisonThemeType } from "@/features/compare/types/comparison-theme-type";
-import themeIndexedComparisons from "@/features/compare/data/theme-indexed-comparisons-new.json";
+import themeIndexedComparisons from "@/features/compare/data/theme-indexed-comparisons.json";
 import TopWeeklyComparisons from "@/features/compare/components/top-weekly-comparisons";
 
 import PopularPlayers from "@/features/players/components/popular-players";
 import HomePageClient from "@/features/home/components/home-page-client";
 
-import { buildComparisons } from "@/features/compare/engine/create-index-comps";
+import { buildCompData } from "@/features/compare/engine/build-comparisons";
+
 
 const themedComparisons = themeIndexedComparisons as Record<string, string[]>;
 
-console.log("I got here");
-buildComparisons();
+buildCompData();
 
 /* This is the default home screen */
 export default function Home() {
@@ -40,7 +40,7 @@ export default function Home() {
 }
 
 function ThemeComparisonSection({ theme }: { theme: ComparisonThemeType }) {
-  const matchups = getThemeMatchups(theme.id);
+  const matchups = themedComparisons[theme.id] ?? [];
   if (!matchups || matchups.length === 0) return null;
 
   return (
@@ -48,8 +48,4 @@ function ThemeComparisonSection({ theme }: { theme: ComparisonThemeType }) {
       <Comparison comparisonIds={matchups} title={theme.title} />
     </Link>
   );
-}
-
-export function getThemeMatchups(themeId: string): string[] {
-  return themedComparisons[themeId] ?? [];
 }

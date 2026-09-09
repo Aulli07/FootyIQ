@@ -1,8 +1,9 @@
 import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
-import { ComparisonCombinedType } from "../types/comparison-main-type";
 import { renderPlayer } from "../ui/comp-image-card-ui";
+import { QualityComparison } from "../engine/filter-base-comps";
+import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
 
 export default function TopComparisonCard({
   id,
@@ -11,16 +12,18 @@ export default function TopComparisonCard({
   showAnalytics = true,
 }: {
   id: string;
-  comp: ComparisonCombinedType;
+  comp: QualityComparison;
+  // comp: ComparisonCombinedType;
   rank?: number;
   showAnalytics?: boolean;
 }) {
-  const comparisonId = comp.comparisonId;
+
+  const compAnalyticsHistory = getStoredAnalyticsOfComparisons();
+  const comparisonId = comp.id;
 
   const playerA = comp.playerA;
   const playerB = comp.playerB;
-  const contextA = comp.contextA.toUpperCase();
-  const contextB = comp.contextB.toUpperCase();
+  const context = comp.scope.competitionId || "" + comp.scope.leagueId || "" + comp.scope.seasonId || "";
 
   return (
     <Link
@@ -29,8 +32,8 @@ export default function TopComparisonCard({
         query: {
           leftPlayerId: playerA,
           rightPlayerId: playerB,
-          leftMetaLabel: contextA,
-          rightMetaLabel: contextB,
+          leftMetaLabel: context,
+          rightMetaLabel: context,
         },
       }}
       className="group relative flex flex-col gap-3 p-3 rounded-xl border border-light-ui-border bg-white dark:bg-dark-background-card/40 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all dark:border-white/5 overflow-hidden"
@@ -50,19 +53,19 @@ export default function TopComparisonCard({
             <span
               className={`text-[12px] font-bold ${poppins.className} text-emerald-600/70 dark:text-emerald-400/70`}
             >
-              {comp.viewCount} VIEWS
+              {compAnalyticsHistory[comparisonId]?.viewCount || 0} VIEWS
             </span>
           </div>
         )}
       </div>
 
       <div className="relative flex flex-col gap-3">
-        {renderPlayer(playerA, contextA)}
+        {renderPlayer(playerA, context)}
 
         {/* Connection line */}
         <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-emerald-500/20 via-emerald-500/40 to-emerald-500/20" />
 
-        {renderPlayer(playerB, contextB)}
+        {renderPlayer(playerB, context)}
       </div>
 
       <div className="absolute flex flex-row gap-4 right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">

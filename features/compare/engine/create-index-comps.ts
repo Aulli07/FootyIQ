@@ -1,12 +1,13 @@
-import { ComparisonStoredType, ComparisonType } from "../types/comparison-main-type";
+import { initializeComparisonAnalytics } from "../services/analytics-storage";
+import { ComparisonThemeType } from "../types/comparison-theme-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
-import { filterBaseComparisons, QualityComparison } from "./filter-base-comps";
+import { filterBaseComparisons, playersById, QualityComparison } from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
-
+import { BaseComparison } from "./generate-base-comps";
 
 
 export function buildIndexedComparisonsForPlayers(
-  hydratedComparisons: QualityComparison[],
+  hydratedComparisons: BaseComparison[],
 ) {
   const playerIndexedComparisons: Record<string, string[]> = {};
 
@@ -25,32 +26,95 @@ export function buildIndexedComparisonsForPlayers(
   return playerIndexedComparisons;
 }
 
-// export function buildThemeIndexedComparisons(
-//   hydratedComparisons: ComparisonType[]
-// ) {
-//   const themeIndexedComparisons: Record<string, string[]> = {};
+export function buildThemeIndexedComparisons(
+  baseComparisons: QualityComparison[]
+) {
+  
+  const themeIndexedComparisons: Record<string, string[]> = {};
+  for (const theme of SYSTEM_COMPARISON_THEMES) {
+    themeIndexedComparisons[theme.id] = baseComparisons
+      .filter((cmp) => (cmp.context === theme.context) && matchesTheme(cmp, theme))
+      .map(cmp => cmp.id);
+  }
 
-//   hydratedComparisons.forEach((cmp) => {
-//     if (!themeIndexedComparisons[cmp.themeId!]) {
-//       themeIndexedComparisons[cmp.themeId!] = [];
-//     }
-//     themeIndexedComparisons[cmp.themeId!].push(cmp.comparisonId);
-//   })
+  return themeIndexedComparisons;
+}
 
-//   return themeIndexedComparisons;
-// }
+function matchesTheme(
+  cmp: QualityComparison,
+  theme: ComparisonThemeType
+) {
+  const { positions, leagueIds, competitionIds, seasonId, nationalities } = theme.filters;
+
+  if (seasonId && seasonId.length) {
+    if (!cmp.scope.seasonId || !seasonId.includes(cmp.scope.seasonId)) return false;
+  }
+
+  if ((leagueIds && leagueIds.length) || (competitionIds && competitionIds.length)) {
+    const scopeId = getScopeIdForContext(theme.context, cmp.scope);
+    const relevantIds = leagueIds ?? competitionIds;
+    if (!scopeId || (!relevantIds?.includes(scopeId))) return false;
+  }
+
+  if (positions || nationalities) {
+    const idForPlayerA = playersById.get(cmp.playerA);
+    const idForPlayerB = playersById.get(cmp.playerB);
+
+    if (!idForPlayerA || !idForPlayerB) return false;
+
+    if (positions && (!positions.includes(idForPlayerA.primaryPosition) || !positions.includes(idForPlayerB.primaryPosition))) return false;
+    if (nationalities && (!nationalities.includes(idForPlayerA.nationality) || !nationalities.includes(idForPlayerB.nationality))) return false;
+  }
+
+  return true;
+}
+
+function getScopeIdForContext(
+  context: string,
+  scope: QualityComparison["scope"]
+) {
+  switch (context) {
+    case "CTX-LEAGUE-SEASON":
+    case "CTX-LEAGUE-CAREER":
+      return scope.leagueId;
+
+    case "CTX-COMPETITION-SEASON":
+    case "CTX-COMPETITION-CAREER":
+      return scope.competitionId;
+   
+    case "CTX-SEASON":
+    case "CTX-OVERALL-CAREER":
+      return undefined;
+
+    default:
+      return undefined;
+  }
+}
 
 export function buildComparisons() {
   const baseComparisons = generateAllBaseComparisons();
-  console.log(baseComparisons.length);
   const qualityComparisons = filterBaseComparisons(baseComparisons);
-  console.log(qualityComparisons.length)
 
-  const indexedComparisons = new Map<string, QualityComparison[]>();
+  const indexedComparisons: Record<string, QualityComparison> = {};
   qualityComparisons.forEach((cmp) => {
-    if (!indexedComparisons.get(cmp.id)) indexedComparisons.set(cmp.id, []);
-    indexedComparisons.get(cmp.id)!.push(cmp);
+    indexedComparisons[cmp.id] = cmp;
   })
 
   return indexedComparisons;
+}
+
+export function buildIndexedComparisons() {
+  const plainComparisons = buildComparisons();
+
+  const hydratedComparisons = Object.values(plainComparisons).flat();
+
+  // const hydratedComparisons = Array.from(
+  //   Object.values(plainComparisons),
+  // );
+  // initializeComparisonAnalytics(hydratedComparisons);
+
+  const themeIndexedComparisons = buildThemeIndexedComparisons(hydratedComparisons);
+  const playerIndexedComparisons = buildIndexedComparisonsForPlayers(hydratedComparisons);
+
+  return { plainComparisons, themeIndexedComparisons, playerIndexedComparisons }
 }

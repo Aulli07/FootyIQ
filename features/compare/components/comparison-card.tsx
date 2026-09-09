@@ -29,8 +29,7 @@ export default function ComparisonCard({
   const rightPlayer = getCanonicalPlayerById(
     comparison.playerB,
   ) as Player | null;
-  const leftLabel = comparison.contextA.toUpperCase();
-  const rightLabel = comparison.contextB.toUpperCase();
+  const context = comparison.scope.competitionId || "" + comparison.scope.leagueId || "" + comparison.scope.seasonId || "";
 
   if (!leftPlayer || !rightPlayer) {
     return null;
@@ -46,7 +45,7 @@ export default function ComparisonCard({
           <span
             className={`text-[10px] font-medium tracking-wider ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
           >
-            {leftLabel}
+            {context}
           </span>
         </div>
 
@@ -55,7 +54,7 @@ export default function ComparisonCard({
           <span
             className={`text-[10px] font-medium ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
           >
-            {rightLabel}
+            {context}
           </span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+import { canonicalPlayers, getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { Player } from "@/shared/types/stats-schema";
 
 import { ComparisonType } from "../types/comparison-main-type";
@@ -45,10 +45,12 @@ export function buildComparisonCardStats(
   );
 }
 
+type playerStatKey = "age" | "height" | "footyRating";
+
 function resolveComparisonStatValue(
   player: Player | null,
   context: string,
-  statKey: ComparisonStatKey,
+  statKey: ComparisonStatKey | playerStatKey,
 ) {
   if (!player) {
     return 0;
