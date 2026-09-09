@@ -1,6 +1,7 @@
 import canonicalStoreNew from "@/features/players/data/new/canonical-store.json"
-import { FootballDataStore, Player, PlayerSeasonStats } from "@/shared/types/stats-schema";
-import { BaseComparison } from "./generate-base-comps";
+import { FootballDataStore, PlayerSeasonStats } from "@/shared/types/stats-schema";
+import { AggregatedStatsType, aggregateStats } from "../utils/aggregate-stat";
+import { BaseComparisonType, QualityComparisonType } from "../types/comparison-main-type"; 
 
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
@@ -44,22 +45,10 @@ const PROXIMITY_METRICS = [
 ] as const;
 
 
-type AggregatedStats = {
-  minutes: number;
-  appearances: number;
-  goals: number;
-  assists: number;
-  shots: number;
-  shotsOnTarget: number;
-  chancesCreated: number;
-  dribbles: number;
-  dribblesCompleted: number;
-};
-
 function statsInScope(
   playerId: string,
   contextId: string,
-  scope: BaseComparison["scope"]
+  scope: BaseComparisonType["scope"]
 ): PlayerSeasonStats[] {
 
   return stats.filter(stat => {
@@ -87,22 +76,22 @@ function statsInScope(
   });
 }
 
-function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
-  const sum = (field: string) =>
-    rows.reduce((total, row) => total + (Number(row[field as keyof PlayerSeasonStats]) || 0), 0);
+// function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
+//   const sum = (field: string) =>
+//     rows.reduce((total, row) => total + (Number(row[field as keyof PlayerSeasonStats]) || 0), 0);
 
-  return {
-    minutes: sum("minutes"),
-    appearances: sum("appearances"),
-    goals: sum("goals"),
-    assists: sum("assists"),
-    shots: sum("shots"),
-    shotsOnTarget: sum("shotsOnTarget"),
-    chancesCreated: sum("chancesCreated"),
-    dribbles: sum("dribbles"),
-    dribblesCompleted: sum("dribblesCompleted")
-  };
-}
+//   return {
+//     minutes: sum("minutes"),
+//     appearances: sum("appearances"),
+//     goals: sum("goals"),
+//     assists: sum("assists"),
+//     shots: sum("shots"),
+//     shotsOnTarget: sum("shotsOnTarget"),
+//     chancesCreated: sum("chancesCreated"),
+//     dribbles: sum("dribbles"),
+//     dribblesCompleted: sum("dribblesCompleted")
+//   };
+// }
 
 function positionMatchScore(posA: string, posB: string): number {
   const tierA = POSITION_TIER[posA];
@@ -121,8 +110,8 @@ function checkSameTeamScore(teamA: string, teamB: string): number {
   return checkScore; 
 }
 
-function statProximityScore(a: AggregatedStats, b: AggregatedStats): number {
-  const per90 = (stats: AggregatedStats, field: keyof AggregatedStats) =>
+function statProximityScore(a: AggregatedStatsType, b: AggregatedStatsType): number {
+  const per90 = (stats: AggregatedStatsType, field: keyof AggregatedStatsType) =>
     stats.minutes > 0 ? (stats[field] / stats.minutes) * 90 : 0;
 
   const perMetricScores = PROXIMITY_METRICS.map(metric => {
@@ -138,18 +127,18 @@ function statProximityScore(a: AggregatedStats, b: AggregatedStats): number {
   return perMetricScores.reduce((sum, score) => sum + score, 0) / perMetricScores.length;
 }
 
-function per90Rate(agg: AggregatedStats, field: keyof AggregatedStats) {
+function per90Rate(agg: AggregatedStatsType, field: keyof AggregatedStatsType) {
   return agg.minutes > 0 ? (agg[field] / agg.minutes) * 90 : 0;
 }
 
 
 function buildNotablePlayersByGroup(
-  baseComparisons: BaseComparison[]
+  baseComparisons: BaseComparisonType[]
 ) : Map<string, Set<string>> {
 
   const groupPlayers = new Map<
   string,
-  { context: string; scope: BaseComparison["scope"]; playerIds: Set<string>}
+  { context: string; scope: BaseComparisonType["scope"]; playerIds: Set<string>}
   >();
 
   for (const comparison of baseComparisons) {
@@ -172,7 +161,7 @@ function buildNotablePlayersByGroup(
   for (const [groupKey, {context, scope, playerIds}] of groupPlayers) {
     const floor = MIN_MINUTES_BY_CONTEXT[context];
 
-    const playerAggs: {playerId: string, agg: AggregatedStats}[] = [];
+    const playerAggs: {playerId: string, agg: AggregatedStatsType}[] = [];
     for (const playerId of playerIds) {
       const rows = statsInScope(playerId, context, scope);
       const agg = aggregateStats(rows);
@@ -195,17 +184,15 @@ function buildNotablePlayersByGroup(
   return notableByGroup;
 }
 
-type QualityComparison = BaseComparison & { qualityScore: number };
-
 export const playersById = new Map(players.map(p => [p.id, p]));
 
 export function filterBaseComparisons(
-  baseComparisons: BaseComparison[],
-): QualityComparison[] {
+  baseComparisons: BaseComparisonType[],
+): QualityComparisonType[] {
 
   
   const seen = new Set<string>(); // safety net against duplicate base comparisons
-  const scored: QualityComparison[] = [];
+  const scored: QualityComparisonType[] = [];
 
   const notableByGroup = buildNotablePlayersByGroup(baseComparisons);
   for (const comparison of baseComparisons) {
@@ -245,7 +232,7 @@ export function filterBaseComparisons(
     scored.push({ ...comparison, qualityScore });
   }
 
-  const grouped = new Map<string, QualityComparison[]>();
+  const grouped = new Map<string, QualityComparisonType[]>();
   for (const comparison of scored) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`;
     if (!grouped.has(groupKey)) grouped.set(groupKey, []);
@@ -257,8 +244,8 @@ export function filterBaseComparisons(
   
   }
 
-  const reserved: QualityComparison[] = [];
-  const remainder: QualityComparison[] = [];
+  const reserved: QualityComparisonType[] = [];
+  const remainder: QualityComparisonType[] = [];
 
   for (const group of grouped.values()) {
     reserved.push(...group.slice(0, QUALITY_WEIGHTS.minGroup));
@@ -272,5 +259,3 @@ export function filterBaseComparisons(
   return result.sort((a,b) => b.qualityScore - a.qualityScore);
 }
 
-
-export type { QualityComparison, AggregatedStats };

@@ -1,13 +1,13 @@
 import { initializeComparisonAnalytics } from "../services/analytics-storage";
 import { ComparisonThemeType } from "../types/comparison-theme-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
-import { filterBaseComparisons, playersById, QualityComparison } from "./filter-base-comps";
+import { filterBaseComparisons, playersById} from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
-import { BaseComparison } from "./generate-base-comps";
+import { BaseComparisonType, QualityComparisonType } from "../types/comparison-main-type"; 
 
 
 export function buildIndexedComparisonsForPlayers(
-  hydratedComparisons: BaseComparison[],
+  hydratedComparisons: BaseComparisonType[],
 ) {
   const playerIndexedComparisons: Record<string, string[]> = {};
 
@@ -27,7 +27,7 @@ export function buildIndexedComparisonsForPlayers(
 }
 
 export function buildThemeIndexedComparisons(
-  baseComparisons: QualityComparison[]
+  baseComparisons: QualityComparisonType[]
 ) {
   
   const themeIndexedComparisons: Record<string, string[]> = {};
@@ -41,7 +41,7 @@ export function buildThemeIndexedComparisons(
 }
 
 function matchesTheme(
-  cmp: QualityComparison,
+  cmp: QualityComparisonType,
   theme: ComparisonThemeType
 ) {
   const { positions, leagueIds, competitionIds, seasonId, nationalities } = theme.filters;
@@ -71,7 +71,7 @@ function matchesTheme(
 
 function getScopeIdForContext(
   context: string,
-  scope: QualityComparison["scope"]
+  scope: QualityComparisonType["scope"]
 ) {
   switch (context) {
     case "CTX-LEAGUE-SEASON":
@@ -95,7 +95,7 @@ export function buildComparisons() {
   const baseComparisons = generateAllBaseComparisons();
   const qualityComparisons = filterBaseComparisons(baseComparisons);
 
-  const indexedComparisons: Record<string, QualityComparison> = {};
+  const indexedComparisons: Record<string, QualityComparisonType> = {};
   qualityComparisons.forEach((cmp) => {
     indexedComparisons[cmp.id] = cmp;
   })

@@ -1,17 +1,51 @@
-import { PlayerCareerStats } from "@/shared/types/stats-schema";
+import { PlayerSeasonStats } from "@/shared/types/stats-schema";
 
-export const aggregatePlayerStats = (player: PlayerCareerStats | null) => {
-  const totalGoals = player?.goals || 0;
-  const totalAppearances = player?.appearances || 0;
 
-  const weightedRatingSum = () => {
-    const rating = Number(player?.averageRating) || 0;
-    if (!Number.isFinite(rating) || totalAppearances <= 0) return 0;
-    return rating * totalAppearances;
-  };
-
-  const avgRating =
-    totalAppearances > 0 ? weightedRatingSum() / totalAppearances : 0;
-
-  return { totalGoals, totalAppearances, avgRating };
+export type AggregatedStatsType = {
+  minutes: number;
+  appearances: number;
+  goals: number;
+  assists: number;
+  shots: number;
+  shotsOnTarget: number;
+  chancesCreated: number;
+  dribbles: number;
+  dribblesCompleted: number;
+  keyPasses: number;
+  interceptions: number;
+  tackles: number;
+  dribbledPast: number;
+  clearances: number;
+  groundDuelsWon: number;
+  blockedShots: number;
+  yellowCards: number;
+  yellowToRedCards: number;
+  redCards: number;
 };
+
+export function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStatsType {
+  const sum = (field: string) =>
+    rows.reduce((total, row) => total + (Number(row[field as keyof PlayerSeasonStats]) || 0), 0);
+
+  return {
+    minutes: sum("minutes"),
+    appearances: sum("appearances"),
+    goals: sum("goals"),
+    assists: sum("assists"),
+    shots: sum("shots"),
+    shotsOnTarget: sum("shotsOnTarget"),
+    keyPasses: sum("keyPasses"),
+    chancesCreated: sum("chancesCreated"),
+    dribbles: sum("dribbles"),
+    dribblesCompleted: sum("dribblesCompleted"),
+    interceptions: sum("interceptions"),
+    tackles: sum("tackles"),
+    dribbledPast: sum("dribbledPast"),
+    clearances: sum("clearances"),
+    groundDuelsWon: sum("groundDuelsWon"),
+    blockedShots: sum("blockedShots"),
+    yellowCards: sum("yellowCards"),
+    yellowToRedCards: sum("yellowToRedCards"),
+    redCards: sum("redCards")
+  };
+}

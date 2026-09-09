@@ -3,14 +3,26 @@ import { Player } from "@/shared/types/stats-schema";
 import { poppins } from "@/app/font-icons/fonts";
 import { getCanonicalPlayerCareerStats } from "@/shared/utils/canonical-lookups";
 
-import { aggregatePlayerStats } from "../utils/aggregate-stat";
+import { aggregateStats } from "../utils/aggregate-stat";
 import { formatShortName } from "../utils/format-name";
+import { getAverageRating } from "../utils/avg-player-rating";
+
+import { PositionGroup } from "../utils/avg-player-rating";
 
 
 
-export default function VotesBar( players : Array<Player | null>) {
 
-  const pref = getPreferenceForPair(players);
+export default function VotesBar(
+  {
+    leftPlayer,
+    rightPlayer,
+  }: {
+    leftPlayer: Player;
+    rightPlayer: Player;
+  }
+) {
+
+  const pref = getPreferenceForPair([leftPlayer, rightPlayer]);
 
   return (
     <div className="flex flex-col gap-2 relative p-4 border border-light-ui-border dark:border-white/20 rounded-lg bg-light-background-card dark:bg-white/5 shadow-md shadow-slate-300/35 dark:shadow-lg dark:shadow-black/20 backdrop-blur">
@@ -43,9 +55,9 @@ export default function VotesBar( players : Array<Player | null>) {
   );
 }
 
-const getPreferenceForPair = (pair: Array<Player | null>) => {
-  const left = pair?.[0];
-  const right = pair?.[1];
+const getPreferenceForPair = (pair: Array<Player>) => {
+  const left = pair[0];
+  const right = pair[1];
 
   if (!left || !right) {
     return { left, right, leftPct: 0, rightPct: 0 };
@@ -54,14 +66,19 @@ const getPreferenceForPair = (pair: Array<Player | null>) => {
   const leftPlayerStats = getCanonicalPlayerCareerStats(left.id);
   const rightPlayerStats = getCanonicalPlayerCareerStats(right.id);
 
-  const leftAgg = aggregatePlayerStats(leftPlayerStats);
-  const rightAgg = aggregatePlayerStats(rightPlayerStats);
+  if (!leftPlayerStats || !rightPlayerStats) return { left, right, leftPct: 0, rightPct: 0 };
+
+  const leftAgg = aggregateStats(leftPlayerStats);
+  const rightAgg = aggregateStats(rightPlayerStats);
+
+  const leftAvgRating = getAverageRating(leftAgg, left.primaryPosition as PositionGroup);
+  const rightAvgRating = getAverageRating(rightAgg, right.primaryPosition as PositionGroup);
 
   // Use average rating as a proxy until vote data exists.
-  const total = Math.max(1, leftAgg.avgRating + rightAgg.avgRating);
+  const total = Math.max(1, leftAvgRating + rightAvgRating);
   const leftPct = Math.max(
     0,
-    Math.min(100, Math.round((leftAgg.avgRating / total) * 100)),
+    Math.min(100, Math.round((leftAvgRating / total) * 100)),
   );
   const rightPct = 100 - leftPct;
 

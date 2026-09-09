@@ -2,11 +2,12 @@ import Image from "next/image";
 import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
-import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
 import { Player } from "@/shared/types/stats-schema";
 
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
+import { QualityComparisonType } from "../types/comparison-main-type";
+import { getContext } from "../utils/get-comp-comtext";
 
 
 
@@ -15,7 +16,7 @@ const Compares = ({
   categoryType,
   compactNames = false,
 }: {
-  compareList: ComparisonStoredType;
+  compareList: Record<string, QualityComparisonType>;
   categoryType: string;
   compactNames?: boolean;
 }) => {
@@ -65,8 +66,7 @@ export function ComparesCard({
   }
 
   const viewComparisonPath = comparisonId;
-  const leftLabel = comparison.contextA;
-  const rightLabel = comparison.contextB;
+  const context = getContext(comparison.scope.seasonId, comparison.scope.leagueId, comparison.scope.competitionId);
 
   return (
     <div

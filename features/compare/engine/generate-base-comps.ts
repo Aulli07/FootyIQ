@@ -1,32 +1,20 @@
 import canonicalStoreNew from "@/features/players/data/new/canonical-store.json"
 import { FootballDataStore, Player } from "@/shared/types/stats-schema"
+import { BaseComparisonType } from "../types/comparison-main-type";
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
 
 const players = canonicalStore.players;
 const stats = canonicalStore.totalPlayerStats;
 
-
-export type BaseComparison = {
-  id: string;
-  context: string;
-  playerA: string;
-  playerB: string;
-  scope: {
-    seasonId?: string;
-    leagueId?: string;
-    competitionId?: string;
-  }
-}
-
 function pairUpComps(
   playerIds: Set<string>,
   playersById: Map<string, Player>,
   contextId: string,
-  scope: BaseComparison["scope"]
+  scope: BaseComparisonType["scope"]
 ) {
 
-  const comparisons: BaseComparison[] = [];
+  const comparisons: BaseComparisonType[] = [];
   const eligiblePlayers = [...playerIds]
     .map(id => playersById.get(id))
     .filter((p) : p is Player => Boolean(p));
@@ -47,7 +35,7 @@ function pairUpComps(
 }
 
 function generateSeasonComparisons() {
-  const seasonComps: BaseComparison[] = [];
+  const seasonComps: BaseComparisonType[] = [];
 
   const playersById = new Map(players.map(player => [player.id, player]));
   const seasonIndex = new Map<string, Set<string>>();
@@ -66,7 +54,7 @@ function generateSeasonComparisons() {
 
 
 function generateLeagueSeasonComparisons() {
-  const leagueSeasonComps: BaseComparison[] = [];
+  const leagueSeasonComps: BaseComparisonType[] = [];
 
   const playersById = new Map(players.map(player => [player.id, player]));
   const leagueSeasonIndex = new Map<string, Set<string>>();
@@ -88,7 +76,7 @@ function generateLeagueSeasonComparisons() {
 
 
 function generateCompetitionSeasonComparisons() {
-  const compSeasonComps: BaseComparison[] = [];
+  const compSeasonComps: BaseComparisonType[] = [];
 
   const playersById = new Map(players.map(player => [player.id, player]));
   const compSeasonIndex = new Map<string, Set<string>>();
@@ -118,8 +106,7 @@ function generateLeagueCareerComparisons() {
     if (!byLeague.has(stat.competitionId)) byLeague.set(stat.competitionId, new Set());
     byLeague.get(stat.competitionId)!.add(stat.playerId);
   }
-
-  const comparisons: BaseComparison[] = [];
+  const comparisons: BaseComparisonType[] = [];
   for (const [leagueId, playerIds] of byLeague) {
     comparisons.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-CAREER", { leagueId }));
   }
@@ -137,7 +124,7 @@ function generateCompetitionCareerComparisons() {
     byCompetition.get(stat.competitionId)!.add(stat.playerId);
   }
 
-  const comparisons: BaseComparison[] = [];
+  const comparisons: BaseComparisonType[] = [];
   for (const [competitionId, playerIds] of byCompetition) {
     comparisons.push(
       ...pairUpComps(playerIds, playersById, "CTX-COMPETITION-CAREER", { competitionId })

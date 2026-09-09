@@ -1,7 +1,7 @@
 import { Dispatch, RefObject, SetStateAction, useMemo } from "react";
 
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
+import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
 
 import { getSuggestedPlayers } from "@/features/players/utils/suggested-players";
 import { getStoredComparisons } from "@/features/compare/services/comparison-storage";
@@ -23,7 +23,7 @@ export default function DropDownMain({
   menuRef: RefObject<HTMLUListElement | null>;
   props: DropDownPropsType;
   handleSelect: (
-    value: string | ComparisonType,
+    value: string | QualityComparisonType,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     props: DropDownPropsType,
   ) => void;

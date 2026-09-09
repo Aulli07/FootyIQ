@@ -1,17 +1,18 @@
 import { buildIndexedComparisonsForPlayers } from "../engine/create-index-comps";
 import { buildHydratedComparisonStore } from "../engine/comparison-store";
-import { ComparisonStoredType } from "../types/comparison-main-type";
 
 import { Player } from "@/shared/types/stats-schema";
+
+import { QualityComparisonType } from "../types/comparison-main-type";
 
 
 
 export function getHistoryOfComparisons(
   foundPlayers: Player[],
-): ComparisonStoredType {
+): Record<string, QualityComparisonType> {
 
   const foundPlayerIds = foundPlayers.map((player) => player.id);
-  const compared: ComparisonStoredType = {};
+  const compared: Record<string, QualityComparisonType> = {};
 
   const hydratedComparisonStore = buildHydratedComparisonStore();
   const hydratedComparisons = Array.from(

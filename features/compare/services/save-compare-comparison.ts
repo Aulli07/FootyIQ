@@ -1,5 +1,5 @@
 import { manageComparisonInStorage } from "../services/comparison-storage";
-import { ComparisonType } from "../types/comparison-main-type";
+import { QualityComparisonType } from "../types/comparison-main-type";
 import {
   newComparisonType,
   newComparisonTypeForPlayer,
@@ -56,7 +56,7 @@ export function saveComparison({
       hasCompletedComparison,
       newComparison,
     );
-    setCurrentComparisonId(currentComparison?.comparisonId ?? null);
+    setCurrentComparisonId(currentComparison?.id ?? null);
     lastComparisonKeyRef.current = comparisonKey;
   }, [hasCompletedComparison, newComparison]);
 }
@@ -109,17 +109,17 @@ function normalizeNewComparison(comparison: newComparisonTypeForPlayer[]) {
 function buildComparisonEntry(
   id: string,
   comparison: newComparisonType,
-): ComparisonType {
+): QualityComparisonType {
   return {
-    comparisonId: id,
-
-    playerA: comparison.playerA,
-    playerB: comparison.playerB,
-    contextA: comparison.contextA,
-    contextB: comparison.contextB,
-
-    source: "user",
-
-    timestamp: Date.now(),
+    id,
+    context: string;
+    playerA: string;
+    playerB: string;
+    scope: {
+      seasonId?: string;
+      leagueId?: string;
+      competitionId?: string;
+    };
+    qualityScore: number;
   };
 }

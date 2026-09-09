@@ -2,7 +2,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
 import { renderPlayer } from "../ui/comp-image-card-ui";
-import { QualityComparison } from "../engine/filter-base-comps";
+import { QualityComparisonType } from "../types/comparison-main-type";
 import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
 
 export default function TopComparisonCard({
@@ -12,7 +12,7 @@ export default function TopComparisonCard({
   showAnalytics = true,
 }: {
   id: string;
-  comp: QualityComparison;
+  comp: QualityComparisonType;
   // comp: ComparisonCombinedType;
   rank?: number;
   showAnalytics?: boolean;

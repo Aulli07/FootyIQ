@@ -1,11 +1,11 @@
 import indexedComparisons from "@/features/compare/data/indexed-comparisons.json";
 import { getStoredComparisons } from "../services/comparison-storage";
-import { QualityComparison } from "./filter-base-comps";
+import { QualityComparisonType } from "../types/comparison-main-type";
 
-const precomputedComparisonStore = indexedComparisons as Record<string, QualityComparison>;
+const precomputedComparisonStore = indexedComparisons as Record<string, QualityComparisonType>;
 
 
 
-export function buildHydratedComparisonStore() {
+export function buildHydratedComparisonStore() : Record<string, QualityComparisonType> {
   return { ...precomputedComparisonStore, ...getStoredComparisons() };
 }

@@ -18,10 +18,12 @@ export default function ComparisonVotesSection({
   const leftPlayer = getCanonicalPlayerById(leftPlayerId);
   const rightPlayer = getCanonicalPlayerById(rightPlayerId);
 
+  if (!leftPlayer || !rightPlayer) return null;
+
   return (
     <div className="flex flex-col gap-3 px-4 mt-7 ">
       <TitleSection title="User Votes" />
-      <VotesBar players={[leftPlayer, rightPlayer]} />
+      <VotesBar leftPlayer={leftPlayer} rightPlayer={rightPlayer} />
     </div>
   );
 }

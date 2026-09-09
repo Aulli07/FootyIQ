@@ -6,6 +6,7 @@ import { renderStatPill, renderPlayerImage } from "../ui/comp-image-card-ui";
 import { formatStatLabel } from "../utils/format-stat";
 
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+import { getContext } from "../utils/get-comp-comtext";
 
 
 export function ComparisonImageCard({
@@ -35,8 +36,8 @@ export function ComparisonImageCard({
     ? getCanonicalPlayerById(rightPlayerId)
     : null;
 
-  const leftLabel = comparison?.contextA;
-  const rightLabel = comparison?.contextB;
+  const leftLabel = getContext(comparison.scope.seasonId, comparison.scope.competitionId, comparison.scope.leagueId);
+  const rightLabel = getContext(comparison.scope.seasonId, comparison.scope.competitionId, comparison.scope.leagueId);
 
   console.log(leftPlayer?.fullName);
   console.log(rightPlayer?.fullName)
