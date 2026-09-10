@@ -23,10 +23,10 @@ export function useUploadPost(shouldUpload: boolean, postInfo: PostInfoType) {
 
     const normalizedPostContent = postContent.trim();
     const hasCompletedUpload = normalizedPostContent.length > 0;
-    const compId = postInfo.selectedComparisonData?.comparisonId;
+    const compId = postInfo.selectedComparisonData?.id;
     const postKey = createPostKey([
       normalizedPostContent,
-      postInfo.selectedComparisonData?.comparisonId ?? "",
+      postInfo.selectedComparisonData?.id ?? "",
       JSON.stringify(postInfo.comparisonPostStats ?? {}),
     ]);
 

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import {
   ComparisonCombinedType,
-  ComparisonType,
+  QualityComparisonType,
 } from "@/features/compare/types/comparison-main-type";
 import TopComparisonCard from "@/features/compare/components/top-comparison-card";
 import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
@@ -160,8 +160,8 @@ export default function PlayerProfilePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {playerComparisons.map((comp, index) => (
               <TopComparisonCard
-                key={comp.comparisonId}
-                id={comp.comparisonId}
+                key={comp.id}
+                id={comp.id}
                 comp={comp}
                 rank={index + 1}
               />
@@ -223,7 +223,7 @@ function getPlayerComparisons(
 ) {
   const hydratedComparisons = Object.values(
     buildHydratedComparisonStore(),
-  ) as ComparisonType[];
+  ) as QualityComparisonType[];
 
   return hydratedComparisons
     .filter(
@@ -235,9 +235,9 @@ function getPlayerComparisons(
         ({
           ...comparison,
           viewCount:
-            comparisonAnalytics[comparison.comparisonId]?.viewCount ?? 0,
+            comparisonAnalytics[comparison.id]?.viewCount ?? 0,
           searchCount:
-            comparisonAnalytics[comparison.comparisonId]?.searchCount ?? 0,
+            comparisonAnalytics[comparison.id]?.searchCount ?? 0,
         }) as ComparisonCombinedType,
     )
     .sort(

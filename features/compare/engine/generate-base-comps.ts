@@ -1,6 +1,6 @@
 import canonicalStoreNew from "@/features/players/data/new/canonical-store.json"
 import { FootballDataStore, Player } from "@/shared/types/stats-schema"
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { BaseComparisonType, ComparisonContext, ComparisonScope } from "../types/comparison-main-type";
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
 
@@ -10,8 +10,8 @@ const stats = canonicalStore.totalPlayerStats;
 function pairUpComps(
   playerIds: Set<string>,
   playersById: Map<string, Player>,
-  contextId: string,
-  scope: BaseComparisonType["scope"]
+  contextId: ComparisonContext,
+  scope: ComparisonScope,
 ) {
 
   const comparisons: BaseComparisonType[] = [];
@@ -26,7 +26,8 @@ function pairUpComps(
         context: contextId,
         playerA: eligiblePlayers[i].id,
         playerB: eligiblePlayers[j].id,
-        scope
+        scopeA: scope,
+        scopeB: scope,
       })
     }
   }

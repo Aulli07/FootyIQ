@@ -1,125 +1,61 @@
-import { manageComparisonInStorage } from "../services/comparison-storage";
-import { QualityComparisonType } from "../types/comparison-main-type";
-import {
-  newComparisonType,
-  newComparisonTypeForPlayer,
-} from "../types/comp-save-type";
-
-import {
-  buildHashId,
-  createComparisonKey,
-  normalizeLabel as normalizeIdentityLabel,
-} from "@/shared/utils/identity";
-
 import { RefObject, useEffect } from "react";
+import { buildHashId, createComparisonKey, normalizeLabel } from "@/shared/utils/identity";
+import { manageComparisonInStorage } from "./comparison-storage";
+import { QualityComparisonType } from "../types/comparison-main-type";
+import { NewComparisonType, SelectedComparisonContext } from "../types/comp-save-type";
 
 export function saveComparison({
   selectedPlayers,
-  selectedSeasonLabels,
+  selectedContexts,
   setCurrentComparisonId,
   lastComparisonKeyRef,
 }: {
-  selectedPlayers: Array<string>;
-  selectedSeasonLabels: Array<string>;
+  selectedPlayers: string[];
+  selectedContexts: SelectedComparisonContext[];
   setCurrentComparisonId: React.Dispatch<React.SetStateAction<string | null>>;
   lastComparisonKeyRef: RefObject<string | null>;
 }) {
-  const hasCompletedComparison =
-    !!selectedPlayers[0] &&
-    !!selectedPlayers[1] &&
-    !!selectedSeasonLabels[0] &&
-    !!selectedSeasonLabels[1] &&
-    selectedSeasonLabels[0] !== "Season" &&
-    selectedSeasonLabels[1] !== "Season";
-
-  const newComparison = {
-    playerA: selectedPlayers[0],
-    playerB: selectedPlayers[1],
-    contextA: selectedSeasonLabels[0],
-    contextB: selectedSeasonLabels[1],
-  };
+  const left = selectedContexts[0];
+  const right = selectedContexts[1];
+  const isComplete = Boolean(
+    selectedPlayers[0] && selectedPlayers[1] && left?.context && right?.context &&
+      left.context === right.context,
+  );
 
   useEffect(() => {
-    if (!hasCompletedComparison) {
+    if (!isComplete || !left?.context || !right?.context) {
       lastComparisonKeyRef.current = null;
       setCurrentComparisonId(null);
       return;
     }
 
-    const comparisonKey = JSON.stringify(newComparison);
-
-    if (lastComparisonKeyRef.current === comparisonKey) {
-      return;
-    }
-
-    const currentComparison = saveComparisonFromCompare(
-      hasCompletedComparison,
-      newComparison,
-    );
-    setCurrentComparisonId(currentComparison?.id ?? null);
-    lastComparisonKeyRef.current = comparisonKey;
-  }, [hasCompletedComparison, newComparison]);
-}
-
-export function saveComparisonFromCompare(
-  hasCompletedComparison: boolean,
-  newComparison: newComparisonType,
-) {
-  if (hasCompletedComparison) {
-    const comparisonId = createNewComparisonId(newComparison);
-    const comparisonEntry = buildComparisonEntry(comparisonId, newComparison);
-    const newStoredComparison = manageComparisonInStorage(comparisonEntry);
-    return newStoredComparison;
-  }
-}
-
-function createNewComparisonId(newComparison: newComparisonType): string {
-  const comparison = [
-    {
-      player: newComparison.playerA,
-      context: newComparison.contextA,
-    },
-    {
-      player: newComparison.playerB,
-      context: newComparison.contextB,
-    },
-  ];
-
-  const normalizedComparison = normalizeNewComparison(comparison);
-  const id = createComparisonKey(normalizedComparison);
-
-  return buildHashId(id);
-}
-
-function normalizeNewComparison(comparison: newComparisonTypeForPlayer[]) {
-  return [...comparison].sort((a, b) => {
-    const playerA = normalizeIdentityLabel(a.player);
-    const playerB = normalizeIdentityLabel(b.player);
-
-    const contextA = normalizeIdentityLabel(a.context);
-    const contextB = normalizeIdentityLabel(b.context);
-
-    const playerCompared = playerA.localeCompare(playerB);
-    if (playerCompared !== 0) return playerCompared;
-
-    return contextA.localeCompare(contextB);
-  });
-}
-
-function buildComparisonEntry(
-  id: string,
-  comparison: newComparisonType,
-): QualityComparisonType {
-  return {
-    id,
-    context: string;
-    playerA: string;
-    playerB: string;
-    scope: {
-      seasonId?: string;
-      leagueId?: string;
-      competitionId?: string;
+    const comparison = {
+      playerA: selectedPlayers[0], 
+      playerB: selectedPlayers[1], 
+      context: left.context,
+      scopeA: left.scope, 
+      scopeB: right.scope,
     };
-    qualityScore: number;
-  };
+    
+    const key = JSON.stringify(comparison);
+    if (lastComparisonKeyRef.current === key) return;
+
+    const stored = saveComparisonFromCompare(comparison);
+    setCurrentComparisonId(stored.id);
+    lastComparisonKeyRef.current = key;
+  }, [isComplete, left, right, selectedPlayers, setCurrentComparisonId, lastComparisonKeyRef]);
+}
+
+export function saveComparisonFromCompare(comparison: NewComparisonType): QualityComparisonType {
+  const id = createNewComparisonId(comparison);
+  return manageComparisonInStorage({ ...comparison, id, qualityScore: 0 });
+}
+
+function createNewComparisonId(comparison: NewComparisonType): string {
+  const pairs = [
+    { player: comparison.playerA, scope: comparison.scopeA },
+    { player: comparison.playerB, scope: comparison.scopeB },
+  ].map(({ player, scope }) => `${normalizeLabel(player)}:${normalizeLabel(JSON.stringify(scope))}`)
+    .sort();
+  return buildHashId(createComparisonKey(pairs.map((pair) => ({ player: comparison.context, context: pair }))));
 }

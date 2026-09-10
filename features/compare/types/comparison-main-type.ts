@@ -1,40 +1,34 @@
-import { Player } from "@/shared/types/stats-schema";
-
-
-type ComparisonAnalyticsType = {
-  id: string;
-
-  viewCount: number;
-  searchCount: number;
+export type ComparisonScope = {
+  seasonId?: string;
+  leagueId?: string;
+  competitionId?: string;
 };
 
-export type ComparisonStoredAnalyticsType = Record<
-  string,
-  ComparisonAnalyticsType
->;
+export type ComparisonContext =
+  | "CTX-SEASON"
+  | "CTX-LEAGUE-SEASON"
+  | "CTX-COMPETITION-SEASON"
+  | "CTX-LEAGUE-CAREER"
+  | "CTX-COMPETITION-CAREER"
+  | "CTX-OVERALL-CAREER";
 
-export type ComparisonCombinedType = {
-  id: string;
-  viewCount: number;
-  searchCount: number;
-}
+export type ComparisonAnalyticsType = { id: string; viewCount: number; searchCount: number };
+export type ComparisonStoredAnalyticsType = Record<string, ComparisonAnalyticsType>;
+export type ComparisonCombinedType = QualityComparisonType & ComparisonAnalyticsType;
+export type ComparisonProps = { comparisonIds: string[]; title: string };
 
-export type ComparisonProps = {
-  comparisonIds: string[];
-  title: string;
-};
-
+/** Both players share a comparison mode but own independent stat scopes. */
 export type BaseComparisonType = {
   id: string;
-  context: string;
+  context: ComparisonContext;
   playerA: string;
   playerB: string;
-  scope: {
-    seasonId?: string;
-    leagueId?: string;
-    competitionId?: string;
-  }
-}
+  scopeA: ComparisonScope;
+  scopeB: ComparisonScope;
+};
 
-export type QualityComparisonType = BaseComparisonType & {
-  qualityScore: number;}
+export type QualityComparisonType = BaseComparisonType & { qualityScore: number };
+
+// Compatibility aliases for older feature consumers.
+export type ComparisonType = QualityComparisonType;
+export type ComparisonStoredType = Record<string, QualityComparisonType>;

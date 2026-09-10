@@ -1,3 +1,5 @@
+import { aggregateStats } from "@/features/compare/utils/aggregate-stat";
+import { getAverageRating, PositionGroup } from "@/features/compare/utils/avg-player-rating";
 import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
   getCanonicalClubDisplayNameById,
@@ -81,7 +83,9 @@ export function getAverageRatingOfPlayerBasedOnCareer(
 ) : string | number {
 
   const careerRows = getCanonicalPlayerCareerStats(player?.id ?? "");
-  return getAverageRatingFromRows(careerRows);
+  if (!careerRows || careerRows.length === 0) return "-";
+  const aggregatedRows = aggregateStats(careerRows);
+  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
 
 }
 
@@ -103,7 +107,9 @@ export function getAverageRatingOfPlayerBasedOnCompetitionAndSeason(
     competitionId,
   );
 
-  return getAverageRatingFromRows(competitionRows);
+  if (competitionRows.length === 0) return "-";
+  const aggregatedRows = aggregateStats(competitionRows);
+  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
 }
 
 export function getAverageRatingOfPlayerBasedOnSeason(
@@ -116,7 +122,9 @@ export function getAverageRatingOfPlayerBasedOnSeason(
     seasonPart || seasonLabel,
   );
 
-  return getAverageRatingFromRows(seasonRows);
+  if (seasonRows.length === 0) return "-";
+  const aggregatedRows = aggregateStats(seasonRows);
+  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
 }
 
 

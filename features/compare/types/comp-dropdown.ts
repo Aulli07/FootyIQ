@@ -1,6 +1,7 @@
 import { RefObject, ReactNode } from "react";
 
 import { ComparisonStoredType } from "./comparison-main-type";
+import { SelectedComparisonContext } from "./comp-save-type";
 import { ComparisonStatOption, ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
 
 
@@ -38,6 +39,6 @@ export type SeasonDropdownPanelProps = {
   label: string;
   players?: string[];
   playerSlot: number;
-  onSelectSeason: (season: string) => void;
+  onSelectSeason: (selection: SelectedComparisonContext) => void;
 };
 

@@ -50,13 +50,13 @@ export default function AddPost() {
   );
 
   const [selectedComparison, setSelectedComparison] = useState<string | null>(
-    prefilledComparison ? prefilledComparison.comparisonId : null,
+    prefilledComparison ? prefilledComparison.id : null,
   );
   const [selectedComparisonStats, setSelectedComparisonStats] = useState<
     ComparisonStatKey[]
   >([]);
   const [appliedComparisonId, setAppliedComparisonId] = useState<string | null>(
-    prefilledComparison ? prefilledComparison.comparisonId : null,
+    prefilledComparison ? prefilledComparison.id : null,
   );
   const [appliedComparisonStats, setAppliedComparisonStats] = useState<
     ComparisonStatKey[]
@@ -136,7 +136,7 @@ export default function AddPost() {
 
             {composerMode === "comparison" && selectedComparisonData ? (
               <ComparisonImageCard
-                comparisonId={selectedComparisonData.comparisonId}
+                comparisonId={selectedComparisonData.id}
                 compStats={comparisonPostStats ?? undefined}
               />
             ) : null}

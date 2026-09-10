@@ -31,8 +31,8 @@ export default function TopWeeklyComparisons() {
 
           return (
             <TopComparisonCard
-              key={comp.comparisonId}
-              id={comp.comparisonId}
+              key={comp.id}
+              id={comp.id}
               comp={comp}
               rank={index + 1}
             />

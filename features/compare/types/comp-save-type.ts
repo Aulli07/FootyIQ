@@ -1,11 +1,15 @@
-export type newComparisonType = {
-  playerA: string;
-  playerB: string;
-  contextA: string;
-  contextB: string;
+import { ComparisonContext, ComparisonScope } from "./comparison-main-type";
+
+export type SelectedComparisonContext = {
+  context: ComparisonContext | null;
+  scope: ComparisonScope;
+  label: string;
 };
 
-export type newComparisonTypeForPlayer = {
-  player: string;
-  context: string;
+export type NewComparisonType = {
+  playerA: string;
+  playerB: string;
+  context: ComparisonContext;
+  scopeA: ComparisonScope;
+  scopeB: ComparisonScope;
 };

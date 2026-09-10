@@ -7,7 +7,6 @@ import { Player } from "@/shared/types/stats-schema";
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
 import { QualityComparisonType } from "../types/comparison-main-type";
-import { getContext } from "../utils/get-comp-comtext";
 
 
 
@@ -66,8 +65,6 @@ export function ComparesCard({
   }
 
   const viewComparisonPath = comparisonId;
-  const context = getContext(comparison.scope.seasonId, comparison.scope.leagueId, comparison.scope.competitionId);
-
   return (
     <div
       key={`${leftPlayer.id}-${rightPlayer.id}`}

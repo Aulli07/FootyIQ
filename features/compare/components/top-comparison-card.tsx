@@ -4,6 +4,7 @@ import Link from "next/link";
 import { renderPlayer } from "../ui/comp-image-card-ui";
 import { QualityComparisonType } from "../types/comparison-main-type";
 import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
+import { getScopeLabel } from "../utils/get-comp-comtext";
 
 export default function TopComparisonCard({
   id,
@@ -23,7 +24,8 @@ export default function TopComparisonCard({
 
   const playerA = comp.playerA;
   const playerB = comp.playerB;
-  const context = comp.scope.competitionId || "" + comp.scope.leagueId || "" + comp.scope.seasonId || "";
+  const leftContext = getScopeLabel(comp.scopeA);
+  const rightContext = getScopeLabel(comp.scopeB);
 
   return (
     <Link
@@ -32,8 +34,8 @@ export default function TopComparisonCard({
         query: {
           leftPlayerId: playerA,
           rightPlayerId: playerB,
-          leftMetaLabel: context,
-          rightMetaLabel: context,
+          leftMetaLabel: leftContext,
+          rightMetaLabel: rightContext,
         },
       }}
       className="group relative flex flex-col gap-3 p-3 rounded-xl border border-light-ui-border bg-white dark:bg-dark-background-card/40 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all dark:border-white/5 overflow-hidden"
@@ -60,12 +62,12 @@ export default function TopComparisonCard({
       </div>
 
       <div className="relative flex flex-col gap-3">
-        {renderPlayer(playerA, context)}
+        {renderPlayer(playerA, leftContext)}
 
         {/* Connection line */}
         <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-emerald-500/20 via-emerald-500/40 to-emerald-500/20" />
 
-        {renderPlayer(playerB, context)}
+        {renderPlayer(playerB, rightContext)}
       </div>
 
       <div className="absolute flex flex-row gap-4 right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -16,15 +16,18 @@ import ComparisonShareSection from "@/features/compare/components/comp-share-sec
 import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
 
 import { saveComparison } from "@/features/compare/services/save-compare-comparison";
+import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 
 const Compare = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<Array<string>>([
     "",
     "",
   ]);
-  const [selectedSeasonLabels, setSelectedSeasonLabels] = useState<
-    Array<string>
-  >(["Season", "Season"]);
+  const [selectedContexts, setSelectedContexts] = useState<SelectedComparisonContext[]>([
+    { context: null, scope: {}, label: "Season" },
+    { context: null, scope: {}, label: "Season" },
+  ]);
+  const selectedSeasonLabels = selectedContexts.map((selection) => selection.label);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -37,7 +40,7 @@ const Compare = () => {
 
   saveComparison({
     selectedPlayers,
-    selectedSeasonLabels,
+    selectedContexts,
     setCurrentComparisonId,
     lastComparisonKeyRef,
   });
@@ -51,8 +54,8 @@ const Compare = () => {
             playerSlot={0}
             selectedPlayers={selectedPlayers}
             setSelectedPlayers={setSelectedPlayers}
-            setSelectedSeasonLabels={setSelectedSeasonLabels}
-            selectedSeasonLabels={selectedSeasonLabels}
+            setSelectedContexts={setSelectedContexts}
+            selectedContexts={selectedContexts}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             searchedPlayers={searchedPlayers}
@@ -61,8 +64,8 @@ const Compare = () => {
             playerSlot={1}
             selectedPlayers={selectedPlayers}
             setSelectedPlayers={setSelectedPlayers}
-            setSelectedSeasonLabels={setSelectedSeasonLabels}
-            selectedSeasonLabels={selectedSeasonLabels}
+            setSelectedContexts={setSelectedContexts}
+            selectedContexts={selectedContexts}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             searchedPlayers={searchedPlayers}
@@ -102,8 +105,8 @@ export function AddFieldBox({
   playerSlot,
   selectedPlayers,
   setSelectedPlayers,
-  setSelectedSeasonLabels,
-  selectedSeasonLabels,
+  setSelectedContexts,
+  selectedContexts,
   searchQuery,
   setSearchQuery,
   searchedPlayers,
@@ -111,8 +114,8 @@ export function AddFieldBox({
   playerSlot: number;
   selectedPlayers: Array<string>;
   setSelectedPlayers: React.Dispatch<React.SetStateAction<Array<string>>>;
-  setSelectedSeasonLabels: React.Dispatch<React.SetStateAction<Array<string>>>;
-  selectedSeasonLabels: Array<string>;
+  setSelectedContexts: React.Dispatch<React.SetStateAction<SelectedComparisonContext[]>>;
+  selectedContexts: SelectedComparisonContext[];
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   searchedPlayers: Array<string>;
@@ -132,9 +135,9 @@ export function AddFieldBox({
               next[playerSlot] = "";
               return next;
             });
-            setSelectedSeasonLabels((prev) => {
+            setSelectedContexts((prev) => {
               const next = [...prev];
-              next[playerSlot] = "All-time";
+              next[playerSlot] = { context: null, scope: {}, label: "Season" };
               return next;
             });
           }}
@@ -147,7 +150,7 @@ export function AddFieldBox({
         playerSlot={playerSlot}
         setSelectedPlayers={setSelectedPlayers}
         selectedPlayers={selectedPlayers}
-        setSelectedSeasonLabels={setSelectedSeasonLabels}
+        setSelectedContexts={setSelectedContexts}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         searchedPlayers={searchedPlayers}
@@ -156,10 +159,10 @@ export function AddFieldBox({
       <DropDown
         type="season"
         label="Season"
-        setSelectedSeasonLabels={setSelectedSeasonLabels}
+        setSelectedContexts={setSelectedContexts}
         playerSlot={playerSlot}
         selectedPlayers={selectedPlayers}
-        selectedSeasonLabels={selectedSeasonLabels}
+        selectedContexts={selectedContexts}
       />
     </div>
   );

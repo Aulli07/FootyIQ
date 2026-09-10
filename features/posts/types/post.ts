@@ -2,7 +2,7 @@ import { Dispatch, RefObject, SetStateAction } from "react";
 
 import { ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
 
-import { ComparisonType } from "@/features/compare/types/comparison-main-type";
+import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
 import { compStatRecord } from "@/features/compare/types/comp-image-type";
 
 
@@ -47,7 +47,7 @@ export type UploadPostAttachmentInput = {
 export type PostInfoType = {
   shouldUpload: boolean;
   setShouldUpload: Dispatch<SetStateAction<boolean>>;
-  selectedComparisonData: ComparisonType | null;
+  selectedComparisonData: QualityComparisonType | null;
   comparisonPostStats: compStatRecord | undefined;
   myPostRef: RefObject<HTMLTextAreaElement | null>;
   lastPostKeyRef: RefObject<string | null>;

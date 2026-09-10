@@ -14,7 +14,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import AddPost from "@/features/posts/components/add-post";
 import SearchBar from "@/features/search/components/search-bar";
 
-import { ComparisonStoredType } from "@/features/compare/types/comparison-main-type";
+import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
 import { getStoredComparisons } from "@/features/compare/services/comparison-storage";
 import { handleSearch } from "@/features/compare/utils/history-search-handler";
 import {
@@ -181,7 +181,7 @@ export const History = () => {
   const currentHistory = getStoredComparisons();
 
   const [, setIsSearch] = useState(false);
-  const [results, setResults] = useState<ComparisonStoredType>(
+  const [results, setResults] = useState<Record<string, QualityComparisonType>>(
     () => currentHistory,
   );
 
@@ -217,8 +217,8 @@ export const History = () => {
         {compHistory.map(comp => {
           return (
             <TopComparisonCard
-              key={comp.comparisonId}
-              id={comp.comparisonId}
+              key={comp.id}
+              id={comp.id}
               comp={comp}
               showAnalytics={false}
             />

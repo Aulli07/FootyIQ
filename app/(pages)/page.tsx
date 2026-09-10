@@ -18,6 +18,10 @@ import { buildCompData } from "@/features/compare/engine/build-comparisons";
 
 const themedComparisons = themeIndexedComparisons as Record<string, string[]>;
 
+export function getThemeMatchups(themeId: string): string[] {
+  return themedComparisons[themeId] ?? [];
+}
+
 buildCompData();
 
 /* This is the default home screen */
@@ -40,7 +44,7 @@ export default function Home() {
 }
 
 function ThemeComparisonSection({ theme }: { theme: ComparisonThemeType }) {
-  const matchups = themedComparisons[theme.id] ?? [];
+  const matchups = getThemeMatchups(theme.id);
   if (!matchups || matchups.length === 0) return null;
 
   return (

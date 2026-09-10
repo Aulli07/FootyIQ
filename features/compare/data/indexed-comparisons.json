@@ -1,778 +1,1031 @@
 {
-  "cmp-deeeb756": {
-    "id": "cmp-deeeb756",
+  "cmp-798adce1": {
+    "id": "cmp-798adce1",
     "context": "CTX-SEASON",
     "playerA": "bellingham",
     "playerB": "foden",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
       "seasonId": "22/23"
     },
     "qualityScore": 0.71
   },
-  "cmp-fb952fe7": {
-    "id": "cmp-fb952fe7",
+  "cmp-d6135190": {
+    "id": "cmp-d6135190",
     "context": "CTX-SEASON",
     "playerA": "doue",
     "playerB": "yamal",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
       "seasonId": "24/25"
     },
     "qualityScore": 0.7
   },
-  "cmp-8b7c1424": {
-    "id": "cmp-8b7c1424",
+  "cmp-f533f8bf": {
+    "id": "cmp-f533f8bf",
     "context": "CTX-SEASON",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
       "seasonId": "24/25"
     },
     "qualityScore": 0.7
   },
-  "cmp-498fe7fa": {
-    "id": "cmp-498fe7fa",
+  "cmp-30eb9fc4": {
+    "id": "cmp-30eb9fc4",
     "context": "CTX-SEASON",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
       "seasonId": "24/25"
     },
     "qualityScore": 0.7
   },
-  "cmp-15319e64": {
-    "id": "cmp-15319e64",
+  "cmp-d8417b3f": {
+    "id": "cmp-d8417b3f",
     "context": "CTX-SEASON",
     "playerA": "ronaldo",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
       "seasonId": "24/25"
     },
     "qualityScore": 0.69
   },
-  "cmp-4addbeaa": {
-    "id": "cmp-4addbeaa",
+  "cmp-88f0be60": {
+    "id": "cmp-88f0be60",
     "context": "CTX-SEASON",
     "playerA": "neymar",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
       "seasonId": "24/25"
     },
     "qualityScore": 0.69
   },
-  "cmp-bfb473ac": {
-    "id": "cmp-bfb473ac",
+  "cmp-2ae47d11": {
+    "id": "cmp-2ae47d11",
     "context": "CTX-SEASON",
     "playerA": "ronaldo",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24"
+    },
+    "scopeB": {
       "seasonId": "23/24"
     },
     "qualityScore": 0.69
   },
-  "cmp-830f1781": {
-    "id": "cmp-830f1781",
+  "cmp-44722e31": {
+    "id": "cmp-44722e31",
     "context": "CTX-SEASON",
     "playerA": "benzema",
     "playerB": "alvarez",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24"
+    },
+    "scopeB": {
       "seasonId": "23/24"
     },
     "qualityScore": 0.69
   },
-  "cmp-a2055426": {
-    "id": "cmp-a2055426",
+  "cmp-d146f36a": {
+    "id": "cmp-d146f36a",
     "context": "CTX-OVERALL-CAREER",
     "playerA": "ronaldo",
     "playerB": "mbappe",
-    "scope": {},
+    "scopeA": {},
+    "scopeB": {},
     "qualityScore": 0.69
   },
-  "cmp-cb0e715d": {
-    "id": "cmp-cb0e715d",
+  "cmp-b2cbea5d": {
+    "id": "cmp-b2cbea5d",
     "context": "CTX-OVERALL-CAREER",
     "playerA": "doue",
     "playerB": "yamal",
-    "scope": {},
+    "scopeA": {},
+    "scopeB": {},
     "qualityScore": 0.69
   },
-  "cmp-381e6691": {
-    "id": "cmp-381e6691",
+  "cmp-c76f7c8a": {
+    "id": "cmp-c76f7c8a",
     "context": "CTX-OVERALL-CAREER",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {},
+    "scopeA": {},
+    "scopeB": {},
     "qualityScore": 0.69
   },
-  "cmp-cd56a611": {
-    "id": "cmp-cd56a611",
+  "cmp-a3bbeaf5": {
+    "id": "cmp-a3bbeaf5",
     "context": "CTX-SEASON",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24"
+    },
+    "scopeB": {
       "seasonId": "23/24"
     },
     "qualityScore": 0.68
   },
-  "cmp-e2472405": {
-    "id": "cmp-e2472405",
+  "cmp-f4fb591e": {
+    "id": "cmp-f4fb591e",
     "context": "CTX-SEASON",
     "playerA": "ronaldo",
     "playerB": "alvarez",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24"
+    },
+    "scopeB": {
       "seasonId": "23/24"
     },
     "qualityScore": 0.68
   },
-  "cmp-2d39517f": {
-    "id": "cmp-2d39517f",
+  "cmp-876f7dc1": {
+    "id": "cmp-876f7dc1",
     "context": "CTX-SEASON",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
       "seasonId": "22/23"
     },
     "qualityScore": 0.68
   },
-  "cmp-e92980b7": {
-    "id": "cmp-e92980b7",
+  "cmp-80a7517e": {
+    "id": "cmp-80a7517e",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "spl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "spl"
     },
     "qualityScore": 0.68
   },
-  "cmp-bb50411e": {
-    "id": "cmp-bb50411e",
+  "cmp-49e6f9a7": {
+    "id": "cmp-49e6f9a7",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "laliga"
     },
     "qualityScore": 0.68
   },
-  "cmp-c0f96e28": {
-    "id": "cmp-c0f96e28",
+  "cmp-ad720aa9": {
+    "id": "cmp-ad720aa9",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "competitionId": "ucl"
     },
     "qualityScore": 0.68
   },
-  "cmp-6b0c0e8b": {
-    "id": "cmp-6b0c0e8b",
+  "cmp-d25be6c1": {
+    "id": "cmp-d25be6c1",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "leagueId": "laliga"
     },
     "qualityScore": 0.68
   },
-  "cmp-c22c3682": {
-    "id": "cmp-c22c3682",
+  "cmp-94c21cd1": {
+    "id": "cmp-94c21cd1",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "competitionId": "ucl"
     },
     "qualityScore": 0.68
   },
-  "cmp-16a7da2c": {
-    "id": "cmp-16a7da2c",
+  "cmp-4265d989": {
+    "id": "cmp-4265d989",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "competitionId": "ucl"
     },
     "qualityScore": 0.68
   },
-  "cmp-4674236a": {
-    "id": "cmp-4674236a",
+  "cmp-2b2320b7": {
+    "id": "cmp-2b2320b7",
     "context": "CTX-OVERALL-CAREER",
     "playerA": "ronaldo",
     "playerB": "alvarez",
-    "scope": {},
+    "scopeA": {},
+    "scopeB": {},
     "qualityScore": 0.68
   },
-  "cmp-ea02d06e": {
-    "id": "cmp-ea02d06e",
+  "cmp-e288c73f": {
+    "id": "cmp-e288c73f",
     "context": "CTX-OVERALL-CAREER",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {},
+    "scopeA": {},
+    "scopeB": {},
     "qualityScore": 0.68
   },
-  "cmp-dd79fc0b": {
-    "id": "cmp-dd79fc0b",
+  "cmp-5109a488": {
+    "id": "cmp-5109a488",
     "context": "CTX-SEASON",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24"
+    },
+    "scopeB": {
       "seasonId": "23/24"
     },
     "qualityScore": 0.67
   },
-  "cmp-c95f3357": {
-    "id": "cmp-c95f3357",
+  "cmp-f9fd7d62": {
+    "id": "cmp-f9fd7d62",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "laliga"
     },
     "qualityScore": 0.67
   },
-  "cmp-005b68e8": {
-    "id": "cmp-005b68e8",
+  "cmp-ee9f4ff7": {
+    "id": "cmp-ee9f4ff7",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "bellingham",
     "playerB": "foden",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "ucl"
     },
     "qualityScore": 0.67
   },
-  "cmp-f9d8f151": {
-    "id": "cmp-f9d8f151",
+  "cmp-94650911": {
+    "id": "cmp-94650911",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "ucl"
     },
     "qualityScore": 0.67
   },
-  "cmp-aabd8eac": {
-    "id": "cmp-aabd8eac",
+  "cmp-08c54b7f": {
+    "id": "cmp-08c54b7f",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "leagueId": "spl"
+    },
+    "scopeB": {
       "leagueId": "spl"
     },
     "qualityScore": 0.67
   },
-  "cmp-9ebb2bb7": {
-    "id": "cmp-9ebb2bb7",
+  "cmp-f8c1b06c": {
+    "id": "cmp-f8c1b06c",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "competitionId": "ucl"
     },
     "qualityScore": 0.67
   },
-  "cmp-06066104": {
-    "id": "cmp-06066104",
+  "cmp-510d0420": {
+    "id": "cmp-510d0420",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "spl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "spl"
     },
     "qualityScore": 0.66
   },
-  "cmp-97126237": {
-    "id": "cmp-97126237",
+  "cmp-eb71b86e": {
+    "id": "cmp-eb71b86e",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "doue",
     "playerB": "alvarez",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-6d9625c8": {
-    "id": "cmp-6d9625c8",
+  "cmp-6b4c5162": {
+    "id": "cmp-6b4c5162",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-36633dfe": {
-    "id": "cmp-36633dfe",
+  "cmp-d97ca9a2": {
+    "id": "cmp-d97ca9a2",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-33303d98": {
-    "id": "cmp-33303d98",
+  "cmp-3a86228d": {
+    "id": "cmp-3a86228d",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-91059c9c": {
-    "id": "cmp-91059c9c",
+  "cmp-5574e5d4": {
+    "id": "cmp-5574e5d4",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "haaland",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-20137bd9": {
-    "id": "cmp-20137bd9",
+  "cmp-8014e85d": {
+    "id": "cmp-8014e85d",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-f30d95da": {
-    "id": "cmp-f30d95da",
+  "cmp-cb640bdd": {
+    "id": "cmp-cb640bdd",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "competitionId": "ucl"
     },
     "qualityScore": 0.66
   },
-  "cmp-a91ac9e2": {
-    "id": "cmp-a91ac9e2",
+  "cmp-968bbb38": {
+    "id": "cmp-968bbb38",
     "context": "CTX-SEASON",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
       "seasonId": "22/23"
     },
     "qualityScore": 0.65
   },
-  "cmp-07928f09": {
-    "id": "cmp-07928f09",
+  "cmp-0931ebd5": {
+    "id": "cmp-0931ebd5",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "ucl"
     },
     "qualityScore": 0.65
   },
-  "cmp-46fd291d": {
-    "id": "cmp-46fd291d",
+  "cmp-c5f81a45": {
+    "id": "cmp-c5f81a45",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "foden",
     "playerB": "pedri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "ucl"
     },
     "qualityScore": 0.65
   },
-  "cmp-5fe7a1c6": {
-    "id": "cmp-5fe7a1c6",
+  "cmp-b9ea2b0e": {
+    "id": "cmp-b9ea2b0e",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "leagueId": "epl"
     },
     "qualityScore": 0.65
   },
-  "cmp-a7c99a98": {
-    "id": "cmp-a7c99a98",
+  "cmp-178b5bb0": {
+    "id": "cmp-178b5bb0",
     "context": "CTX-SEASON",
     "playerA": "ronaldo",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
       "seasonId": "22/23"
     },
     "qualityScore": 0.64
   },
-  "cmp-1b41b156": {
-    "id": "cmp-1b41b156",
+  "cmp-007760b5": {
+    "id": "cmp-007760b5",
     "context": "CTX-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
       "seasonId": "22/23"
     },
     "qualityScore": 0.64
   },
-  "cmp-4808a38e": {
-    "id": "cmp-4808a38e",
+  "cmp-da19e646": {
+    "id": "cmp-da19e646",
     "context": "CTX-SEASON",
     "playerA": "alvarez",
     "playerB": "haaland",
-    "scope": {
+    "scopeA": {
+      "seasonId": "21/22"
+    },
+    "scopeB": {
       "seasonId": "21/22"
     },
     "qualityScore": 0.64
   },
-  "cmp-a6fd2979": {
-    "id": "cmp-a6fd2979",
+  "cmp-793ceb3a": {
+    "id": "cmp-793ceb3a",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "lewandowski",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "laliga"
     },
     "qualityScore": 0.64
   },
-  "cmp-3db8f733": {
-    "id": "cmp-3db8f733",
+  "cmp-81fa9462": {
+    "id": "cmp-81fa9462",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "epl"
     },
     "qualityScore": 0.64
   },
-  "cmp-ef034ae6": {
-    "id": "cmp-ef034ae6",
+  "cmp-873cf46f": {
+    "id": "cmp-873cf46f",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "leagueId": "epl"
     },
     "qualityScore": 0.63
   },
-  "cmp-2011b289": {
-    "id": "cmp-2011b289",
+  "cmp-e5216c78": {
+    "id": "cmp-e5216c78",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "laliga"
     },
     "qualityScore": 0.63
   },
-  "cmp-6656d706": {
-    "id": "cmp-6656d706",
+  "cmp-b75fbd1c": {
+    "id": "cmp-b75fbd1c",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "bellingham",
     "playerB": "pedri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "ucl"
     },
     "qualityScore": 0.63
   },
-  "cmp-62ec7bfe": {
-    "id": "cmp-62ec7bfe",
+  "cmp-fdac2a0c": {
+    "id": "cmp-fdac2a0c",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "alvarez",
     "playerB": "haaland",
-    "scope": {
+    "scopeA": {
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "leagueId": "epl"
     },
     "qualityScore": 0.63
   },
-  "cmp-62539340": {
-    "id": "cmp-62539340",
+  "cmp-a669e922": {
+    "id": "cmp-a669e922",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "yamal",
     "playerB": "alvarez",
-    "scope": {
+    "scopeA": {
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "competitionId": "ucl"
     },
     "qualityScore": 0.63
   },
-  "cmp-119bec9a": {
-    "id": "cmp-119bec9a",
+  "cmp-97baf53f": {
+    "id": "cmp-97baf53f",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "alvarez",
     "playerB": "haaland",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "epl"
     },
     "qualityScore": 0.62
   },
-  "cmp-cc396736": {
-    "id": "cmp-cc396736",
+  "cmp-ad72848c": {
+    "id": "cmp-ad72848c",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "competitionId": "ucl"
     },
     "qualityScore": 0.62
   },
-  "cmp-f6e665af": {
-    "id": "cmp-f6e665af",
+  "cmp-7b2861b9": {
+    "id": "cmp-7b2861b9",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "doue",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "leagueId": "ligue1"
+    },
+    "scopeB": {
       "leagueId": "ligue1"
     },
     "qualityScore": 0.62
   },
-  "cmp-bee4619a": {
-    "id": "cmp-bee4619a",
+  "cmp-0ab05077": {
+    "id": "cmp-0ab05077",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "lewandowski",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "leagueId": "laliga"
     },
     "qualityScore": 0.62
   },
-  "cmp-fc41ce22": {
-    "id": "cmp-fc41ce22",
+  "cmp-2b3f0280": {
+    "id": "cmp-2b3f0280",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "doue",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "ligue1"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "ligue1"
     },
     "qualityScore": 0.61
   },
-  "cmp-97503806": {
-    "id": "cmp-97503806",
+  "cmp-6759bb69": {
+    "id": "cmp-6759bb69",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "bellingham",
     "playerB": "pedri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "laliga"
     },
     "qualityScore": 0.61
   },
-  "cmp-eda10833": {
-    "id": "cmp-eda10833",
+  "cmp-5531e7e2": {
+    "id": "cmp-5531e7e2",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "bellingham",
     "playerB": "pedri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "laliga"
     },
     "qualityScore": 0.61
   },
-  "cmp-cd5d5463": {
-    "id": "cmp-cd5d5463",
+  "cmp-245d828f": {
+    "id": "cmp-245d828f",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "bellingham",
     "playerB": "pedri",
-    "scope": {
+    "scopeA": {
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "leagueId": "laliga"
     },
     "qualityScore": 0.61
   },
-  "cmp-75638f30": {
-    "id": "cmp-75638f30",
+  "cmp-e9a073e4": {
+    "id": "cmp-e9a073e4",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "bellingham",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "competitionId": "ucl"
     },
     "qualityScore": 0.6
   },
-  "cmp-fa666c59": {
-    "id": "cmp-fa666c59",
+  "cmp-0dee53d7": {
+    "id": "cmp-0dee53d7",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "haaland",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "ucl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "competitionId": "ucl"
     },
     "qualityScore": 0.6
   },
-  "cmp-04f9088f": {
-    "id": "cmp-04f9088f",
+  "cmp-18156146": {
+    "id": "cmp-18156146",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "alvarez",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "leagueId": "laliga"
     },
     "qualityScore": 0.6
   },
-  "cmp-f2a69deb": {
-    "id": "cmp-f2a69deb",
+  "cmp-ba1f87e1": {
+    "id": "cmp-ba1f87e1",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "leagueId": "laliga"
     },
     "qualityScore": 0.6
   },
-  "cmp-baf86757": {
-    "id": "cmp-baf86757",
+  "cmp-537503b3": {
+    "id": "cmp-537503b3",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "alvarez",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "laliga"
     },
     "qualityScore": 0.59
   },
-  "cmp-60fa5459": {
-    "id": "cmp-60fa5459",
+  "cmp-9d6e2485": {
+    "id": "cmp-9d6e2485",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "lewandowski",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "laliga"
     },
     "qualityScore": 0.59
   },
-  "cmp-cf22b4f1": {
-    "id": "cmp-cf22b4f1",
+  "cmp-23f7f283": {
+    "id": "cmp-23f7f283",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "lewandowski",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "leagueId": "laliga"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "leagueId": "laliga"
     },
     "qualityScore": 0.59
   },
-  "cmp-2a9f6650": {
-    "id": "cmp-2a9f6650",
+  "cmp-14d2f851": {
+    "id": "cmp-14d2f851",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "acl"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "acl"
     },
     "qualityScore": 0.59
   },
-  "cmp-f9bba4b6": {
-    "id": "cmp-f9bba4b6",
+  "cmp-6ccadbc5": {
+    "id": "cmp-6ccadbc5",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "competitionId": "fa-cup"
+    },
+    "scopeB": {
       "competitionId": "fa-cup"
     },
     "qualityScore": 0.56
   },
-  "cmp-68f93009": {
-    "id": "cmp-68f93009",
+  "cmp-e194f6f3": {
+    "id": "cmp-e194f6f3",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "copa-del-rey"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "copa-del-rey"
     },
     "qualityScore": 0.55
   },
-  "cmp-364786a2": {
-    "id": "cmp-364786a2",
+  "cmp-a4c99eb3": {
+    "id": "cmp-a4c99eb3",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "lewandowski",
     "playerB": "mbappe",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "copa-del-rey"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "copa-del-rey"
     },
     "qualityScore": 0.54
   },
-  "cmp-2e787c69": {
-    "id": "cmp-2e787c69",
+  "cmp-eb57e54a": {
+    "id": "cmp-eb57e54a",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "alvarez",
     "playerB": "haaland",
-    "scope": {
+    "scopeA": {
+      "seasonId": "22/23",
+      "leagueId": "epl"
+    },
+    "scopeB": {
       "seasonId": "22/23",
       "leagueId": "epl"
     },
     "qualityScore": 0.53
   },
-  "cmp-ddbb8f7c": {
-    "id": "cmp-ddbb8f7c",
+  "cmp-c367a245": {
+    "id": "cmp-c367a245",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "foden",
     "playerB": "rodri",
-    "scope": {
+    "scopeA": {
+      "seasonId": "23/24",
+      "competitionId": "fa-cup"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "competitionId": "fa-cup"
     },
     "qualityScore": 0.53
   },
-  "cmp-f51a8a59": {
-    "id": "cmp-f51a8a59",
+  "cmp-7c6227a8": {
+    "id": "cmp-7c6227a8",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "yamal",
     "playerB": "vinicius",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "copa-del-rey"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "copa-del-rey"
     },
     "qualityScore": 0.52
   },
-  "cmp-20eed653": {
-    "id": "cmp-20eed653",
+  "cmp-6244c032": {
+    "id": "cmp-6244c032",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "bellingham",
     "playerB": "foden",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "fifa-club-world-cup"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "fifa-club-world-cup"
     },
     "qualityScore": 0.51
   },
-  "cmp-3a0fe84b": {
-    "id": "cmp-3a0fe84b",
+  "cmp-700e5e44": {
+    "id": "cmp-700e5e44",
     "context": "CTX-COMPETITION-SEASON",
     "playerA": "alvarez",
     "playerB": "lewandowski",
-    "scope": {
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "copa-del-rey"
+    },
+    "scopeB": {
       "seasonId": "24/25",
       "competitionId": "copa-del-rey"
     },
     "qualityScore": 0.5
   },
-  "cmp-5a0cf2a9": {
-    "id": "cmp-5a0cf2a9",
+  "cmp-b6bab393": {
+    "id": "cmp-b6bab393",
     "context": "CTX-COMPETITION-CAREER",
     "playerA": "ronaldo",
     "playerB": "benzema",
-    "scope": {
+    "scopeA": {
+      "competitionId": "acl"
+    },
+    "scopeB": {
       "competitionId": "acl"
     },
     "qualityScore": 0.5

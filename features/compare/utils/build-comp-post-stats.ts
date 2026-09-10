@@ -2,6 +2,7 @@ import { canonicalPlayers, getCanonicalPlayerById } from "@/shared/utils/canonic
 import { Player } from "@/shared/types/stats-schema";
 
 import { ComparisonType } from "../types/comparison-main-type";
+import { getScopeLabel } from "./get-comp-comtext";
 import { compStatRecord } from "../types/comp-image-type";
 
 import { ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
@@ -29,12 +30,12 @@ export function buildComparisonCardStats(
     (accumulator: compStatRecord, statKey: ComparisonStatKey) => {
       const leftValue = resolveComparisonStatValue(
         leftPlayer,
-        comparison.contextA,
+        getScopeLabel(comparison.scopeA),
         statKey,
       );
       const rightValue = resolveComparisonStatValue(
         rightPlayer,
-        comparison.contextB,
+        getScopeLabel(comparison.scopeB),
         statKey,
       );
 

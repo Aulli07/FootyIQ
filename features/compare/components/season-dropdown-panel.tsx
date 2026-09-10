@@ -5,6 +5,7 @@ import {
 } from "@/shared/utils/canonical-lookups";
 
 import { SeasonDropdownPanelProps } from "../types/comp-dropdown";
+import { createSelectedContext } from "../utils/get-comp-comtext";
 
 
 export function SeasonDropdownPanel({
@@ -34,7 +35,7 @@ export function SeasonDropdownPanel({
             <div key={seasonGroup.seasonId} className="flex flex-col gap-2">
               <button
                 type="button"
-                onClick={() => onSelectSeason(seasonGroup.seasonLabel)}
+                onClick={() => onSelectSeason(createSelectedContext(selectedPlayerId, seasonGroup.seasonId))}
                 className={`cursor-pointer rounded-lg px-3 py-2 text-left text-sm ${poppins.className} font-semibold text-light-text-primary hover:bg-emerald-500/10 dark:text-dark-text-primary dark:hover:bg-white/5`}
               >
                 {seasonGroup.seasonLabel}
@@ -46,9 +47,7 @@ export function SeasonDropdownPanel({
                     key={`${seasonGroup.seasonId}-${competition.competitionId}`}
                     type="button"
                     onClick={() =>
-                      onSelectSeason(
-                        `${competition.competitionId} ${seasonGroup.seasonLabel}`,
-                      )
+                      onSelectSeason(createSelectedContext(selectedPlayerId, seasonGroup.seasonId, competition.competitionId))
                     }
                     className={`cursor-pointer rounded-md px-2 py-1.5 text-left text-xs ${poppins.className} text-light-text-secondary hover:bg-emerald-500/10 dark:text-dark-text-secondary dark:hover:bg-white/5`}
                   >

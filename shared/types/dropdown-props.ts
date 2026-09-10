@@ -1,4 +1,5 @@
-import { ComparisonStoredType } from "../../features/compare/types/comparison-main-type";
+import { QualityComparisonType } from "../../features/compare/types/comparison-main-type";
+import { SelectedComparisonContext } from "../../features/compare/types/comp-save-type";
 import type {
   ComparisonStatKey,
   ComparisonStatOption,
@@ -8,12 +9,10 @@ export type DropDownPropsType =
   | {
       type: "season";
       label: string;
-      setSelectedSeasonLabels: React.Dispatch<
-        React.SetStateAction<Array<string>>
-      >;
+      setSelectedContexts: React.Dispatch<React.SetStateAction<SelectedComparisonContext[]>>;
       playerSlot: number;
       selectedPlayers?: Array<string>;
-      selectedSeasonLabels: Array<string>;
+      selectedContexts: SelectedComparisonContext[];
     }
   | {
       type: "player";
@@ -21,9 +20,7 @@ export type DropDownPropsType =
       playerSlot: number;
       setSelectedPlayers: React.Dispatch<React.SetStateAction<Array<string>>>;
       selectedPlayers: Array<string>;
-      setSelectedSeasonLabels: React.Dispatch<
-        React.SetStateAction<Array<string>>
-      >;
+      setSelectedContexts: React.Dispatch<React.SetStateAction<SelectedComparisonContext[]>>;
       searchQuery: string;
       setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
       // onSearchQueryChange: (query: string) => void;
@@ -34,7 +31,7 @@ export type DropDownPropsType =
       label: string;
       setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
       searchQuery: string;
-      searchedComparisons: ComparisonStoredType;
+      searchedComparisons: Record<string, QualityComparisonType>;
       selectedComparison: string | null;
       setSelectedComparison: React.Dispatch<
         React.SetStateAction<string | null>

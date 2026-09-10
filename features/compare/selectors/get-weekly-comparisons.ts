@@ -15,8 +15,8 @@ export function getTopWeeklyComparisons() {
   );
 
   const COMPARISONS = useMemo(() => {
-    const combined = hydratedComparisonsList.map((cmp) => ({
-      id: cmp.id,
+    const combined: ComparisonCombinedType[] = hydratedComparisonsList.map((cmp) => ({
+      ...cmp,
       viewCount: comparisonAnalytics[cmp.id]?.viewCount ?? 0,
       searchCount: comparisonAnalytics[cmp.id]?.searchCount ?? 0,
     }));

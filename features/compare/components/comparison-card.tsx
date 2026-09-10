@@ -8,6 +8,7 @@ import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
 import { renderPlayerUi } from "../ui/comp-card-ui";
+import { getScopeLabel } from "../utils/get-comp-comtext";
 
 export default function ComparisonCard({
   comparisonId,
@@ -29,7 +30,8 @@ export default function ComparisonCard({
   const rightPlayer = getCanonicalPlayerById(
     comparison.playerB,
   ) as Player | null;
-  const context = comparison.scope.competitionId || "" + comparison.scope.leagueId || "" + comparison.scope.seasonId || "";
+  const leftContext = getScopeLabel(comparison.scopeA);
+  const rightContext = getScopeLabel(comparison.scopeB);
 
   if (!leftPlayer || !rightPlayer) {
     return null;
@@ -45,7 +47,7 @@ export default function ComparisonCard({
           <span
             className={`text-[10px] font-medium tracking-wider ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
           >
-            {context}
+            {leftContext}
           </span>
         </div>
 
@@ -54,7 +56,7 @@ export default function ComparisonCard({
           <span
             className={`text-[10px] font-medium ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
           >
-            {context}
+            {rightContext}
           </span>
         </div>
       </div>

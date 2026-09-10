@@ -14,6 +14,7 @@ import ComparisonPostsSection from "@/features/compare/components/comp-posts-sec
 import ComparisonShareSection from "@/features/compare/components/comp-share-section";
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
 import { saveComparison } from "@/features/compare/services/save-compare-comparison";
+import { getScopeLabel } from "@/features/compare/utils/get-comp-comtext";
 
 
 
@@ -34,7 +35,10 @@ export default function ViewComparisonPage() {
 
   saveComparison({
     selectedPlayers: [comparison.playerA, comparison.playerB],
-    selectedSeasonLabels: [comparison.contextA, comparison.contextB],
+    selectedContexts: [
+      { context: comparison.context, scope: comparison.scopeA, label: getScopeLabel(comparison.scopeA) },
+      { context: comparison.context, scope: comparison.scopeB, label: getScopeLabel(comparison.scopeB) },
+    ],
     setCurrentComparisonId,
     lastComparisonKeyRef,
   });
@@ -49,18 +53,18 @@ export default function ViewComparisonPage() {
           <div className="grid grid-cols-2 gap-3 px-2">
             <FixedFieldBox
               playerId={comparison.playerA}
-              season={comparison.contextA}
+              season={getScopeLabel(comparison.scopeA)}
             />
             <FixedFieldBox
               playerId={comparison.playerB}
-              season={comparison.contextB}
+              season={getScopeLabel(comparison.scopeB)}
             />
           </div>
 
           <div className="px-3 pt-3">
             <ShowFullStat
               playerSet={[comparison.playerA, comparison.playerB]}
-              seasonLabels={[comparison.contextA, comparison.contextB]}
+              seasonLabels={[getScopeLabel(comparison.scopeA), getScopeLabel(comparison.scopeB)]}
             />
           </div>
 

@@ -5,22 +5,23 @@ import { ComparisonType } from "../types/comparison-main-type";
 
 import { canonicalPlayers } from "@/shared/utils/canonical-lookups";
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
+import { SelectedComparisonContext } from "../types/comp-save-type";
 
 
 export const handleSelect = (
-  value: string | ComparisonType,
+  value: string | ComparisonType | SelectedComparisonContext,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: DropDownPropsType,
 ) => {
 
   if (props.type === "player") {
     props.setSearchQuery("");
-    return handlePlayerSelect(value, setIsOpen, props);
+    return handlePlayerSelect(value as string | ComparisonType, setIsOpen, props);
   }
 
   if (props.type === "poll") {
     props.setSearchQuery("");
-    return handlePollSelect(value, setIsOpen, props);
+    return handlePollSelect(value as string | ComparisonType, setIsOpen, props);
   }
 
   if (props.type === "season") {
@@ -35,7 +36,7 @@ function resolvePlayerId(value: string) {
 }
 
 function handlePlayerSelect(
-  value: string | ComparisonType,
+  value: string | ComparisonType | SelectedComparisonContext,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: Extract<DropDownPropsType, { type: "player" }>,
 ) {
@@ -50,12 +51,17 @@ function handlePlayerSelect(
     next[props.playerSlot] = nextPlayer;
     return next;
   });
+  props.setSelectedContexts((prev) => {
+    const next = [...prev];
+    next[props.playerSlot] = { context: null, scope: {}, label: "Season" };
+    return next;
+  });
 
   setIsOpen(false);
 }
 
 function handlePollSelect(
-  value: string | ComparisonType,
+  value: string | ComparisonType | SelectedComparisonContext,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: Extract<DropDownPropsType, { type: "poll" }>,
 ) {
@@ -95,17 +101,20 @@ function handlePollSelect(
 }
 
 function handleSeasonSelect(
-  value: string | ComparisonType,
+  value: string | ComparisonType | SelectedComparisonContext,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: Extract<DropDownPropsType, { type: "season" }>,
 ) {
-  if (typeof value !== "string") {
+  if (typeof value === "string" || !("context" in value)) {
     return;
   }
+  const selection = value as SelectedComparisonContext;
 
-  props.setSelectedSeasonLabels((prev) => {
+  props.setSelectedContexts((prev) => {
+    const other = prev[props.playerSlot === 0 ? 1 : 0];
+    if (other?.context && other.context !== selection.context) return prev;
     const next = [...prev];
-    next[props.playerSlot] = value;
+    next[props.playerSlot] = selection;
     return next;
   });
 
@@ -113,13 +122,12 @@ function handleSeasonSelect(
 }
 
 function handleComparisonSelect(
-  value: string | ComparisonType,
+  value: string | ComparisonType | SelectedComparisonContext,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   props: Extract<DropDownPropsType, { type: "comparison" }>,
 ) {
-  props.setSelectedComparison(
-    typeof value === "string" ? value : value.comparisonId,
-  );
+  if (typeof value !== "string" && "scope" in value) return;
+  props.setSelectedComparison(typeof value === "string" ? value : value.id);
   // setIsOpen(false);
 }
 

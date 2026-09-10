@@ -1,7 +1,7 @@
 import canonicalStoreNew from "@/features/players/data/new/canonical-store.json"
 import { FootballDataStore, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import { AggregatedStatsType, aggregateStats } from "../utils/aggregate-stat";
-import { BaseComparisonType, QualityComparisonType } from "../types/comparison-main-type"; 
+import { BaseComparisonType, ComparisonContext, ComparisonScope, QualityComparisonType } from "../types/comparison-main-type";
 
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
@@ -47,8 +47,8 @@ const PROXIMITY_METRICS = [
 
 function statsInScope(
   playerId: string,
-  contextId: string,
-  scope: BaseComparisonType["scope"]
+  contextId: ComparisonContext,
+  scope: ComparisonScope,
 ): PlayerSeasonStats[] {
 
   return stats.filter(stat => {
@@ -138,15 +138,15 @@ function buildNotablePlayersByGroup(
 
   const groupPlayers = new Map<
   string,
-  { context: string; scope: BaseComparisonType["scope"]; playerIds: Set<string>}
+  { context: ComparisonContext; scope: ComparisonScope; playerIds: Set<string>}
   >();
 
   for (const comparison of baseComparisons) {
-    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`;
+    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
     if (!groupPlayers.has(groupKey)) {
       groupPlayers.set(groupKey, {
         context: comparison.context,
-        scope: comparison.scope,
+        scope: comparison.scopeA,
         playerIds: new Set()
       })
     }
@@ -196,15 +196,15 @@ export function filterBaseComparisons(
 
   const notableByGroup = buildNotablePlayersByGroup(baseComparisons);
   for (const comparison of baseComparisons) {
-    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`
+    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`
     const dedupeKey = `${groupKey}::${comparison.playerA}::${comparison.playerB}`;
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
 
     const floor = MIN_MINUTES_BY_CONTEXT[comparison.context] ?? 0;
 
-    const rowsA = statsInScope(comparison.playerA, comparison.context, comparison.scope);
-    const rowsB = statsInScope(comparison.playerB, comparison.context, comparison.scope);
+    const rowsA = statsInScope(comparison.playerA, comparison.context, comparison.scopeA);
+    const rowsB = statsInScope(comparison.playerB, comparison.context, comparison.scopeB);
     const aggA = aggregateStats(rowsA);
     const aggB = aggregateStats(rowsB);
 
@@ -234,7 +234,7 @@ export function filterBaseComparisons(
 
   const grouped = new Map<string, QualityComparisonType[]>();
   for (const comparison of scored) {
-    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scope)}`;
+    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
     if (!grouped.has(groupKey)) grouped.set(groupKey, []);
     grouped.get(groupKey)!.push(comparison);
   }

@@ -3,11 +3,11 @@ import { ComparisonThemeType } from "../types/comparison-theme-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
 import { filterBaseComparisons, playersById} from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
-import { BaseComparisonType, QualityComparisonType } from "../types/comparison-main-type"; 
+import { QualityComparisonType, ComparisonScope } from "../types/comparison-main-type";
 
 
 export function buildIndexedComparisonsForPlayers(
-  hydratedComparisons: BaseComparisonType[],
+  hydratedComparisons: QualityComparisonType[],
 ) {
   const playerIndexedComparisons: Record<string, string[]> = {};
 
@@ -47,13 +47,14 @@ function matchesTheme(
   const { positions, leagueIds, competitionIds, seasonId, nationalities } = theme.filters;
 
   if (seasonId && seasonId.length) {
-    if (!cmp.scope.seasonId || !seasonId.includes(cmp.scope.seasonId)) return false;
+    if (!cmp.scopeA.seasonId || !cmp.scopeB.seasonId || !seasonId.includes(cmp.scopeA.seasonId) || !seasonId.includes(cmp.scopeB.seasonId)) return false;
   }
 
   if ((leagueIds && leagueIds.length) || (competitionIds && competitionIds.length)) {
-    const scopeId = getScopeIdForContext(theme.context, cmp.scope);
+    const scopeAId = getScopeIdForContext(theme.context, cmp.scopeA);
+    const scopeBId = getScopeIdForContext(theme.context, cmp.scopeB);
     const relevantIds = leagueIds ?? competitionIds;
-    if (!scopeId || (!relevantIds?.includes(scopeId))) return false;
+    if (!scopeAId || !scopeBId || !relevantIds?.includes(scopeAId) || !relevantIds?.includes(scopeBId)) return false;
   }
 
   if (positions || nationalities) {
@@ -71,7 +72,7 @@ function matchesTheme(
 
 function getScopeIdForContext(
   context: string,
-  scope: QualityComparisonType["scope"]
+  scope: ComparisonScope
 ) {
   switch (context) {
     case "CTX-LEAGUE-SEASON":

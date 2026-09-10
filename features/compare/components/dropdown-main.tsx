@@ -2,6 +2,7 @@ import { Dispatch, RefObject, SetStateAction, useMemo } from "react";
 
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
 import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
+import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 
 import { getSuggestedPlayers } from "@/features/players/utils/suggested-players";
 import { getStoredComparisons } from "@/features/compare/services/comparison-storage";
@@ -23,7 +24,7 @@ export default function DropDownMain({
   menuRef: RefObject<HTMLUListElement | null>;
   props: DropDownPropsType;
   handleSelect: (
-    value: string | QualityComparisonType,
+    value: string | QualityComparisonType | SelectedComparisonContext,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     props: DropDownPropsType,
   ) => void;
@@ -39,7 +40,7 @@ export default function DropDownMain({
           label={props.label}
           players={props.selectedPlayers}
           playerSlot={props.playerSlot}
-          onSelectSeason={(season) => handleSelect(season, setIsOpen, props)}
+          onSelectSeason={(selection) => handleSelect(selection, setIsOpen, props)}
         />
       </DropdownShell>
     );

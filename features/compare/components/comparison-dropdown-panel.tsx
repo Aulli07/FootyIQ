@@ -4,6 +4,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import { getComparisonById } from "../selectors/get-comparison-by-id";
 import { renderPlayer } from "../ui/comp-image-card-ui";
 import { CompDropdownPanelProps } from "../types/comp-dropdown";
+import { getScopeLabel } from "../utils/get-comp-comtext";
 
 
 export function ComparisonDropdownPanel({
@@ -95,12 +96,12 @@ export function ComparisonDropdownPanel({
                     className={`group relative flex flex-col gap-3 p-3 rounded-xl border border-light-ui-border shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all dark:border-white/5 overflow-hidden ${isActive ? "border-emerald-500/30 bg-emerald-500/15" : "dark:bg-dark-background-card/40"} `}
                   >
                     <div className="relative flex flex-col gap-3">
-                      {renderPlayer(comp.playerA, comp.contextA)}
+                      {renderPlayer(comp.playerA, getScopeLabel(comp.scopeA))}
 
                       {/* Connection line */}
                       <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-emerald-500/20 via-emerald-500/40 to-emerald-500/20" />
 
-                      {renderPlayer(comp.playerB, comp.contextB)}
+                      {renderPlayer(comp.playerB, getScopeLabel(comp.scopeB))}
                     </div>
                   </div>
                 );
