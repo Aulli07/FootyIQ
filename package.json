@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "precompute:canonical": "tsx features/players/adapters/legacy-to-final-stats.ts",
     "precompute:comparisons": "tsx features/compare/engine/build-comparisons.ts",
     "precompute:indexedcomparisons": "tsx features/compare/engine/comparison-store.ts",

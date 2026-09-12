@@ -1,6 +1,6 @@
 "use client"
 
-import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-discussions-by-ids";
+import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-details-by-id";
 
 import { useParams } from "next/navigation";
 

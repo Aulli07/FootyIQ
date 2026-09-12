@@ -22,7 +22,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "International Kings",
     context: "CTX-COMPETITION-SEASON",
     filters: {
-      competitionIds: ["world-cup", "fifa-club-world-cup"],
+      competitionIds: ["world-cup", "euro"],
     },
   },
   {

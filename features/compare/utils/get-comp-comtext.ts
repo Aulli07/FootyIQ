@@ -1,4 +1,5 @@
 import { getCanonicalPlayerSeasonStats, getCanonicalSeasonById } from "@/shared/utils/canonical-lookups";
+import { getScopeTitle } from "../data/scope-title-map";
 import { ComparisonContext, ComparisonScope } from "../types/comparison-main-type";
 import { SelectedComparisonContext } from "../types/comp-save-type";
 
@@ -11,7 +12,7 @@ export function getContext(
   const seasonLabel = seasonId
     ? getCanonicalSeasonById(seasonId)?.label ?? seasonId
     : "";
-  const competition = competitionId ?? leagueId;
+  const competition = getScopeTitle(competitionId ?? leagueId);
 
   return [competition, seasonLabel].filter(Boolean).join(" ") || "All-time";
 }

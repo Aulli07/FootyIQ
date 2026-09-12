@@ -255,7 +255,7 @@ export const yamalStats = {
           },
         },
         {
-          id: "euro-2024",
+          id: "euro",
           name: "UEFA European Championship",
           type: "international",
           country: "Europe",

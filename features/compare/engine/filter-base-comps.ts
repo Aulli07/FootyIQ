@@ -8,6 +8,16 @@ const canonicalStore = canonicalStoreNew as FootballDataStore;
 const players = canonicalStore.players;
 const stats = canonicalStore.totalPlayerStats;
 
+const scopedStatsCache = new Map<string, PlayerSeasonStats[]>();
+const clubSeasonHistoryByPlayerId = new Map<string, Set<string>>();
+
+for (const stat of stats) {
+  if (!clubSeasonHistoryByPlayerId.has(stat.playerId)) {
+    clubSeasonHistoryByPlayerId.set(stat.playerId, new Set());
+  }
+  clubSeasonHistoryByPlayerId.get(stat.playerId)!.add(`${stat.clubId}::${stat.seasonId}`);
+}
+
 
 const MIN_MINUTES_BY_CONTEXT: Record<string, number> = {
   "CTX-SEASON": 450,
@@ -18,6 +28,13 @@ const MIN_MINUTES_BY_CONTEXT: Record<string, number> = {
   "CTX-OVERALL-CAREER": 900
 };
 
+// League-season data is sparse in the current dataset. Keep the stricter
+// global threshold for every other context while allowing viable cross-club
+// league comparisons to populate their theme.
+const MIN_QUALITY_SCORE_BY_CONTEXT: Partial<Record<ComparisonContext, number>> = {
+  "CTX-LEAGUE-SEASON": 0.5,
+};
+
 const POSITION_TIER: Record<string, string> = {
   Striker: "attack",
   Forward: "attack",
@@ -26,14 +43,16 @@ const POSITION_TIER: Record<string, string> = {
 };
 
 const QUALITY_WEIGHTS = {
-  sampleAdequacy: 0.4,
+  // These two signals now cover the full score range. Previously they added
+  // up to 0.75, so even a near-perfect comparison could never score above it.
+  sampleAdequacy: 0.5,
   positionMatch: 0.25,
-  statProximity: 0.35,
+  statProximity: 0.5,
   notabilityPercentile: 0.3,
   minNotablePerStat: 1,
   targetTotal: 50,
   minGroup: 5,
-  minQualityScore: 0.5
+  minQualityScore: 0.7
 };
 
 const PROXIMITY_METRICS = [
@@ -50,8 +69,11 @@ function statsInScope(
   contextId: ComparisonContext,
   scope: ComparisonScope,
 ): PlayerSeasonStats[] {
+  const cacheKey = `${playerId}::${contextId}::${JSON.stringify(scope)}`;
+  const cached = scopedStatsCache.get(cacheKey);
+  if (cached) return cached;
 
-  return stats.filter(stat => {
+  const matchingStats = stats.filter(stat => {
     if (stat.playerId !== playerId) return false;
     switch (contextId) {
       case "CTX-SEASON":
@@ -74,6 +96,8 @@ function statsInScope(
         return false;
     }
   });
+  scopedStatsCache.set(cacheKey, matchingStats);
+  return matchingStats;
 }
 
 // function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStats {
@@ -105,9 +129,16 @@ function sampleAdequacyScore(minSharedMinutes: number, floor: number): number {
   return Math.min(1, minSharedMinutes / confidenceCeiling);
 }
 
-function checkSameTeamScore(teamA: string, teamB: string): number {
-  const checkScore = (teamA === teamB) ? 0 : 1;
-  return checkScore; 
+function playersHaveSharedTeamHistory(playerA: typeof players[number], playerB: typeof players[number]): boolean {
+  if (playerA.currentClubId === playerB.currentClubId) return true;
+
+  const clubSeasonsA = clubSeasonHistoryByPlayerId.get(playerA.id);
+  const clubSeasonsB = clubSeasonHistoryByPlayerId.get(playerB.id);
+  if (!clubSeasonsA || !clubSeasonsB) return false;
+
+  const smallerHistory = clubSeasonsA.size <= clubSeasonsB.size ? clubSeasonsA : clubSeasonsB;
+  const largerHistory = smallerHistory === clubSeasonsA ? clubSeasonsB : clubSeasonsA;
+  return [...smallerHistory].some((clubSeason) => largerHistory.has(clubSeason));
 }
 
 function statProximityScore(a: AggregatedStatsType, b: AggregatedStatsType): number {
@@ -132,7 +163,7 @@ function per90Rate(agg: AggregatedStatsType, field: keyof AggregatedStatsType) {
 }
 
 
-function buildNotablePlayersByGroup(
+function buildNotablePlayersByScope(
   baseComparisons: BaseComparisonType[]
 ) : Map<string, Set<string>> {
 
@@ -142,21 +173,24 @@ function buildNotablePlayersByGroup(
   >();
 
   for (const comparison of baseComparisons) {
-    const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
-    if (!groupPlayers.has(groupKey)) {
-      groupPlayers.set(groupKey, {
-        context: comparison.context,
-        scope: comparison.scopeA,
-        playerIds: new Set()
-      })
+    const entries = [
+      { playerId: comparison.playerA, scope: comparison.scopeA },
+      { playerId: comparison.playerB, scope: comparison.scopeB },
+    ];
+    for (const entry of entries) {
+      const groupKey = `${comparison.context}::${JSON.stringify(entry.scope)}`;
+      if (!groupPlayers.has(groupKey)) {
+        groupPlayers.set(groupKey, {
+          context: comparison.context,
+          scope: entry.scope,
+          playerIds: new Set(),
+        });
+      }
+      groupPlayers.get(groupKey)!.playerIds.add(entry.playerId);
     }
-
-    const entries = groupPlayers.get(groupKey)!;
-    entries.playerIds.add(comparison.playerA);
-    entries.playerIds.add(comparison.playerB)
   }
 
-  const notableByGroup = new Map<string, Set<string>>()
+  const notableByScope = new Map<string, Set<string>>()
 
   for (const [groupKey, {context, scope, playerIds}] of groupPlayers) {
     const floor = MIN_MINUTES_BY_CONTEXT[context];
@@ -178,10 +212,10 @@ function buildNotablePlayersByGroup(
         notable.add(playerId);
       }
     }
-    notableByGroup.set(groupKey, notable);
+    notableByScope.set(groupKey, notable);
   }
 
-  return notableByGroup;
+  return notableByScope;
 }
 
 export const playersById = new Map(players.map(p => [p.id, p]));
@@ -194,7 +228,7 @@ export function filterBaseComparisons(
   const seen = new Set<string>(); // safety net against duplicate base comparisons
   const scored: QualityComparisonType[] = [];
 
-  const notableByGroup = buildNotablePlayersByGroup(baseComparisons);
+  const notableByScope = buildNotablePlayersByScope(baseComparisons);
   for (const comparison of baseComparisons) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`
     const dedupeKey = `${groupKey}::${comparison.playerA}::${comparison.playerB}`;
@@ -215,19 +249,28 @@ export function filterBaseComparisons(
     const playerB = playersById.get(comparison.playerB);
     if (!playerA || !playerB) continue;
 
-    const notableSet = notableByGroup.get(groupKey);
-    if (notableSet && !notableSet.has(comparison.playerA) && !notableSet.has(comparison.playerB)) continue;
+    // Do not compare current teammates or players with a shared club-season.
+    // Every competition row contributes to the recorded club-season history.
+    if (playersHaveSharedTeamHistory(playerA, playerB)) continue;
+
+    const notableA = notableByScope.get(`${comparison.context}::${JSON.stringify(comparison.scopeA)}`);
+    const notableB = notableByScope.get(`${comparison.context}::${JSON.stringify(comparison.scopeB)}`);
+    if (
+      (notableA && !notableA.has(comparison.playerA)) &&
+      (notableB && !notableB.has(comparison.playerB))
+    ) continue;
 
     const sampleScore = sampleAdequacyScore(Math.min(aggA.minutes, aggB.minutes), floor);
     const positionScore = positionMatchScore(playerA.primaryPosition, playerB.primaryPosition);
-    const sameTeamScore = checkSameTeamScore(playerA.currentClubId, playerB.currentClubId);
     const proximityScore = statProximityScore(aggA, aggB);
 
     const qualityScore =
       Number(((sampleScore * QUALITY_WEIGHTS.sampleAdequacy +
-      proximityScore * QUALITY_WEIGHTS.statProximity) * sameTeamScore * positionScore).toFixed(2));
+      proximityScore * QUALITY_WEIGHTS.statProximity) * positionScore).toFixed(2));
 
-    if (qualityScore < QUALITY_WEIGHTS.minQualityScore) continue;
+    const minQualityScore =
+      MIN_QUALITY_SCORE_BY_CONTEXT[comparison.context] ?? QUALITY_WEIGHTS.minQualityScore;
+    if (qualityScore < minQualityScore) continue;
 
     scored.push({ ...comparison, qualityScore });
   }

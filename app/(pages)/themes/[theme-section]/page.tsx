@@ -3,12 +3,14 @@
 import { useParams } from "next/navigation";
 import { useTheme } from "next-themes";
 
-import { getThemeMatchups } from "@/app/(pages)/page";
+import { getThemeMatchups } from "@/features/compare/selectors/get-theme-matchups";
 import { SYSTEM_COMPARISON_THEMES } from "@/features/compare/types/comparison-themes";
 
 import PageTitle from "@/shared/components/page-title";
 import ComparisonCard from "@/features/compare/components/comparison-card";
 import { ComparisonThemeType } from "@/features/compare/types/comparison-theme-type";
+
+
 
 export function ThemedComparisonsSection() {
   const params = useParams<{ "theme-section": string }>();

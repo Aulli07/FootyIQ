@@ -1,147 +1,115 @@
-import canonicalStoreNew from "@/features/players/data/new/canonical-store.json"
-import { FootballDataStore, Player } from "@/shared/types/stats-schema"
-import { BaseComparisonType, ComparisonContext, ComparisonScope } from "../types/comparison-main-type";
+import canonicalStoreNew from "@/features/players/data/new/canonical-store.json";
+import { FootballDataStore } from "@/shared/types/stats-schema";
+import {
+  BaseComparisonType,
+  ComparisonContext,
+  ComparisonScope,
+} from "../types/comparison-main-type";
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
-
-const players = canonicalStore.players;
 const stats = canonicalStore.totalPlayerStats;
 
-function pairUpComps(
-  playerIds: Set<string>,
-  playersById: Map<string, Player>,
-  contextId: ComparisonContext,
-  scope: ComparisonScope,
-) {
-
+type PlayerScopeEntry = {
+  playerId: string;
+  scope: ComparisonScope;
+};
+ 
+function pairScopeEntries(
+  entries: PlayerScopeEntry[],
+  context: ComparisonContext,
+): BaseComparisonType[] {
   const comparisons: BaseComparisonType[] = [];
-  const eligiblePlayers = [...playerIds]
-    .map(id => playersById.get(id))
-    .filter((p) : p is Player => Boolean(p));
 
-  for (let i = 0; i < eligiblePlayers.length; i++) {
-    for (let j = i + 1; j < eligiblePlayers.length; j++) {
+  for (let indexA = 0; indexA < entries.length; indexA += 1) {
+    for (let indexB = indexA + 1; indexB < entries.length; indexB += 1) {
+      const entryA = entries[indexA];
+      const entryB = entries[indexB];
+
+      // A player should never be compared to themself in another scope.j
+      if (entryA.playerId === entryB.playerId) continue;
+
       comparisons.push({
-        id: "cmp-" + crypto.randomUUID().slice(0, 8),
-        context: contextId,
-        playerA: eligiblePlayers[i].id,
-        playerB: eligiblePlayers[j].id,
-        scopeA: scope,
-        scopeB: scope,
-      })
+        id: `cmp-${crypto.randomUUID().slice(0, 8)}`,
+        context,
+        playerA: entryA.playerId,
+        playerB: entryB.playerId,
+        scopeA: entryA.scope,
+        scopeB: entryB.scope,
+      });
     }
   }
 
   return comparisons;
 }
 
-function generateSeasonComparisons() {
-  const seasonComps: BaseComparisonType[] = [];
-
-  const playersById = new Map(players.map(player => [player.id, player]));
-  const seasonIndex = new Map<string, Set<string>>();
-
-  for (const stat of stats) {
-    if (!seasonIndex.has(stat.seasonId)) seasonIndex.set(stat.seasonId, new Set());
-    seasonIndex.get(stat.seasonId)?.add(stat.playerId);
-  }
-
-  for (const [seasonId, playerIds] of seasonIndex) {
-    seasonComps.push(...pairUpComps(playerIds, playersById, "CTX-SEASON", {seasonId}))
-  }
-
-  return seasonComps;
+function uniqueEntries(entries: PlayerScopeEntry[]): PlayerScopeEntry[] {
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    const key = `${entry.playerId}:${JSON.stringify(entry.scope)}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
+function generateSeasonComparisons() {
+  return pairScopeEntries(
+    uniqueEntries(stats.map((stat) => ({
+      playerId: stat.playerId,
+      scope: { seasonId: stat.seasonId },
+    }))),
+    "CTX-SEASON",
+  );
+}
 
 function generateLeagueSeasonComparisons() {
-  const leagueSeasonComps: BaseComparisonType[] = [];
-
-  const playersById = new Map(players.map(player => [player.id, player]));
-  const leagueSeasonIndex = new Map<string, Set<string>>();
-
-  for (const stat of stats) {
-    if (stat.competitionType !== "league") continue;
-    const key = `${stat.seasonId}:${stat.competitionId}`;
-    if (!leagueSeasonIndex.has(key)) leagueSeasonIndex.set(key, new Set<string>());
-    leagueSeasonIndex.get(key)?.add(stat.playerId);
-  }
-
-  for (const [key, playerIds] of leagueSeasonIndex) {
-    const [seasonId, competitionId] = key.split(":");
-    leagueSeasonComps.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-SEASON", {seasonId, leagueId: competitionId}))
-  }
-
-  return leagueSeasonComps;
+  return pairScopeEntries(
+    uniqueEntries(stats
+      .filter((stat) => stat.competitionType === "league")
+      .map((stat) => ({
+        playerId: stat.playerId,
+        scope: { seasonId: stat.seasonId, leagueId: stat.competitionId },
+      }))),
+    "CTX-LEAGUE-SEASON",
+  );
 }
-
 
 function generateCompetitionSeasonComparisons() {
-  const compSeasonComps: BaseComparisonType[] = [];
-
-  const playersById = new Map(players.map(player => [player.id, player]));
-  const compSeasonIndex = new Map<string, Set<string>>();
-
-  for (const stat of stats) {
-    if (stat.competitionType === "league") continue;
-    const key = `${stat.seasonId}:${stat.competitionId}`;
-    if (!compSeasonIndex.has(key)) compSeasonIndex.set(key, new Set<string>());
-    compSeasonIndex.get(key)?.add(stat.playerId);
-  }
-
-  for (const [key, playerIds] of compSeasonIndex) {
-    const [seasonId, competitionId] = key.split(":");
-    compSeasonComps.push(...pairUpComps(playerIds, playersById, "CTX-COMPETITION-SEASON", {seasonId, competitionId}))
-  }
-
-  return compSeasonComps;
+  return pairScopeEntries(
+    uniqueEntries(stats
+      .filter((stat) => stat.competitionType !== "league")
+      .map((stat) => ({
+        playerId: stat.playerId,
+        scope: { seasonId: stat.seasonId, competitionId: stat.competitionId },
+      }))),
+    "CTX-COMPETITION-SEASON",
+  );
 }
-
 
 function generateLeagueCareerComparisons() {
-  const playersById = new Map(players.map(p => [p.id, p]));
-  const byLeague = new Map<string, Set<string>>();
-
-  for (const stat of stats) {
-    if (stat.competitionType !== "league") continue;
-    if (!byLeague.has(stat.competitionId)) byLeague.set(stat.competitionId, new Set());
-    byLeague.get(stat.competitionId)!.add(stat.playerId);
-  }
-  const comparisons: BaseComparisonType[] = [];
-  for (const [leagueId, playerIds] of byLeague) {
-    comparisons.push(...pairUpComps(playerIds, playersById, "CTX-LEAGUE-CAREER", { leagueId }));
-  }
-  return comparisons;
+  return pairScopeEntries(
+    uniqueEntries(stats
+      .filter((stat) => stat.competitionType === "league")
+      .map((stat) => ({ playerId: stat.playerId, scope: { leagueId: stat.competitionId } }))),
+    "CTX-LEAGUE-CAREER",
+  );
 }
-
 
 function generateCompetitionCareerComparisons() {
-  const playersById = new Map(players.map(p => [p.id, p]));
-  const byCompetition = new Map<string, Set<string>>();
-
-  for (const stat of stats) {
-    if (stat.competitionType === "league") continue;
-    if (!byCompetition.has(stat.competitionId)) byCompetition.set(stat.competitionId, new Set());
-    byCompetition.get(stat.competitionId)!.add(stat.playerId);
-  }
-
-  const comparisons: BaseComparisonType[] = [];
-  for (const [competitionId, playerIds] of byCompetition) {
-    comparisons.push(
-      ...pairUpComps(playerIds, playersById, "CTX-COMPETITION-CAREER", { competitionId })
-    );
-  }
-  return comparisons;
+  return pairScopeEntries(
+    uniqueEntries(stats
+      .filter((stat) => stat.competitionType !== "league")
+      .map((stat) => ({ playerId: stat.playerId, scope: { competitionId: stat.competitionId } }))),
+    "CTX-COMPETITION-CAREER",
+  );
 }
-
 
 function generateOverallCareerComparisons() {
-  const playersById = new Map(players.map(p => [p.id, p]));
-  const playerIds = new Set(stats.map(stat => stat.playerId));
-
-  return pairUpComps(playerIds, playersById, "CTX-OVERALL-CAREER", {});
+  return pairScopeEntries(
+    uniqueEntries(stats.map((stat) => ({ playerId: stat.playerId, scope: {} }))),
+    "CTX-OVERALL-CAREER",
+  );
 }
-
 
 export function generateAllBaseComparisons() {
   return [
@@ -150,6 +118,6 @@ export function generateAllBaseComparisons() {
     ...generateCompetitionSeasonComparisons(),
     ...generateLeagueCareerComparisons(),
     ...generateCompetitionCareerComparisons(),
-    ...generateOverallCareerComparisons()
+    ...generateOverallCareerComparisons(),
   ];
 }
