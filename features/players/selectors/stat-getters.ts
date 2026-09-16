@@ -1,43 +1,61 @@
 import { aggregateStats } from "@/features/compare/utils/aggregate-stat";
-import { getAverageRating, PositionGroup } from "@/features/compare/utils/avg-player-rating";
-import { Player, PlayerCareerStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
+import {
+  getAverageRating,
+  PositionGroup,
+} from "@/features/compare/utils/avg-player-rating";
+import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
+import { Player, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
   getCanonicalClubDisplayNameById,
-  getCanonicalPlayerCareerStats,
-  getCanonicalPlayerSeasonStatsBySeasonLabel,
-  getCanonicalPlayerStatsBySeasonLabelAndCompetitionId,
+  getCanonicalPlayerSeasonStats,
 } from "@/shared/utils/canonical-lookups";
 
 
 
-
-function parseSeasonSelection(seasonLabel: string) {
-  const trimmedValue = seasonLabel.trim();
-  if (!trimmedValue) {
-    return { seasonLabel: "", competitionId: null as string | null };
-  }
-
-  const parts = trimmedValue.split(/\s+/);
-  if (parts.length === 1) {
-    return { seasonLabel: parts[0], competitionId: null };
-  }
-
-  return {
-    seasonLabel: parts.slice(1).join(" "),
-    competitionId: parts[0].toLowerCase(),
-  };
-};
-
 export function computeStatRows(
-  rows: PlayerSeasonStats[], 
-  identifier: string
-) {
-  return rows.reduce<number>((total: number, row: PlayerSeasonStats) => {
+  rows: PlayerSeasonStats[],
+  identifier: string,
+): number {
+  return rows.reduce<number>((total, row) => {
     const value = row[identifier as keyof PlayerSeasonStats];
     return total + (typeof value === "number" ? value : 0);
   }, 0);
 }
 
+/** Returns a player's stat rows for the selected comparison scope. */
+export function getRowsForContext(
+  playerId: string,
+  selection: SelectedComparisonContext,
+): PlayerSeasonStats[] {
+  const playerRows = getCanonicalPlayerSeasonStats(playerId);
+  const { context, scope } = selection;
+  const competitionId = scope.leagueId ?? scope.competitionId;
+
+  switch (context) {
+    case "CTX-OVERALL-CAREER":
+      return playerRows;
+    case "CTX-SEASON":
+      return scope.seasonId
+        ? playerRows.filter((row) => row.seasonId === scope.seasonId)
+        : [];
+    case "CTX-LEAGUE-SEASON":
+    case "CTX-COMPETITION-SEASON":
+      return scope.seasonId && competitionId
+        ? playerRows.filter(
+            (row) =>
+              row.seasonId === scope.seasonId &&
+              row.competitionId === competitionId,
+          )
+        : [];
+    case "CTX-LEAGUE-CAREER":
+    case "CTX-COMPETITION-CAREER":
+      return competitionId
+        ? playerRows.filter((row) => row.competitionId === competitionId)
+        : [];
+    default:
+      return [];
+  }
+}
 
 
 
@@ -49,12 +67,11 @@ export function getAgeOfPlayer(player: Player | null): string | number {
       )
     : null;
 
-  return age !== null ? age : "-";
+  return age ?? "-";
 }
 
 export function getClubNameOfPlayer(player: Player | null): string {
   const clubId = player?.currentClubId;
-
   return clubId ? getCanonicalClubDisplayNameById(clubId) : "-";
 }
 
@@ -75,104 +92,28 @@ export function getPreferredFootOfPlayer(player: Player | null): string {
   return player?.preferredFoot ?? "-";
 }
 
-
-
-
-export function getAverageRatingOfPlayerBasedOnCareer(
+export function getAverageRatingForContext(
   player: Player | null,
-) : string | number {
-
-  const careerRows = getCanonicalPlayerCareerStats(player?.id ?? "");
-  if (!careerRows || careerRows.length === 0) return "-";
-  const aggregatedRows = aggregateStats(careerRows);
-  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
-
-}
-
-export function getAverageRatingOfPlayerBasedOnCompetitionAndSeason(
-  player: Player | null,
-  seasonLabel: string,
+  selection: SelectedComparisonContext,
 ): string | number {
-  const { seasonLabel: seasonPart, competitionId } = parseSeasonSelection(
-    seasonLabel,
+  if (!player) return "-";
+
+  const rows = getRowsForContext(player.id, selection);
+  if (rows.length === 0) return "-";
+
+  return getAverageRating(
+    aggregateStats(rows),
+    player.primaryPosition as PositionGroup,
   );
-
-  if (!competitionId) {
-    return getAverageRatingOfPlayerBasedOnSeason(player, seasonPart || seasonLabel);
-  }
-
-  const competitionRows = getCanonicalPlayerStatsBySeasonLabelAndCompetitionId(
-    player?.id ?? "",
-    seasonPart,
-    competitionId,
-  );
-
-  if (competitionRows.length === 0) return "-";
-  const aggregatedRows = aggregateStats(competitionRows);
-  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
 }
 
-export function getAverageRatingOfPlayerBasedOnSeason(
+export function getStatValueForContext(
   player: Player | null,
-  seasonLabel: string,
-): string | number {
-  const { seasonLabel: seasonPart } = parseSeasonSelection(seasonLabel);
-  const seasonRows = getCanonicalPlayerSeasonStatsBySeasonLabel(
-    player?.id ?? "",
-    seasonPart || seasonLabel,
-  );
-
-  if (seasonRows.length === 0) return "-";
-  const aggregatedRows = aggregateStats(seasonRows);
-  return getAverageRating(aggregatedRows, player?.primaryPosition as PositionGroup);
-}
-
-
-
-export function getStatValueBasedOnCareer(
-  player: Player | null,
+  selection: SelectedComparisonContext,
   identifier: string,
 ): string | number {
-  const careerStats = getCanonicalPlayerCareerStats(player?.id ?? "");
+  if (!player) return "-";
 
-  if (!careerStats) return "-";
-  return computeStatRows(careerStats, identifier);
-}
-
-export function getStatValueBasedOnCompetitionAndSeason(
-  player: Player | null,
-  seasonLabel: string,
-  identifier: string,
-): string | number {
-  const { seasonLabel: seasonPart, competitionId } = parseSeasonSelection(
-    seasonLabel,
-  );
-
-  if (!competitionId) {
-    return getStatValueBasedOnSeason(player, seasonPart || seasonLabel, identifier);
-  }
-
-  const seasonRows = getCanonicalPlayerStatsBySeasonLabelAndCompetitionId(
-    player?.id ?? "",
-    seasonPart,
-    competitionId,
-  );
-
-  if (seasonRows.length === 0) return "-";
-  return computeStatRows(seasonRows, identifier);
-}
-
-export function getStatValueBasedOnSeason(
-  player: Player | null,
-  seasonLabel: string,
-  identifier: string,
-): string | number {
-  const { seasonLabel: seasonPart } = parseSeasonSelection(seasonLabel);
-  const seasonRows = getCanonicalPlayerSeasonStatsBySeasonLabel(
-    player?.id ?? "",
-    seasonPart || seasonLabel,
-  );
-
-  if (seasonRows.length === 0) return "-";
-  return computeStatRows(seasonRows, identifier);
+  const rows = getRowsForContext(player.id, selection);
+  return rows.length > 0 ? computeStatRows(rows, identifier) : "-";
 }

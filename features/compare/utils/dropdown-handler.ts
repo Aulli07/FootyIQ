@@ -6,6 +6,7 @@ import { ComparisonType } from "../types/comparison-main-type";
 import { canonicalPlayers } from "@/shared/utils/canonical-lookups";
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
 import { SelectedComparisonContext } from "../types/comp-save-type";
+import { createSelectedContext } from "./get-comp-comtext";
 
 
 export const handleSelect = (
@@ -53,7 +54,7 @@ function handlePlayerSelect(
   });
   props.setSelectedContexts((prev) => {
     const next = [...prev];
-    next[props.playerSlot] = { context: null, scope: {}, label: "Season" };
+    next[props.playerSlot] = createSelectedContext(nextPlayer);
     return next;
   });
 
@@ -112,7 +113,19 @@ function handleSeasonSelect(
 
   props.setSelectedContexts((prev) => {
     const other = prev[props.playerSlot === 0 ? 1 : 0];
-    if (other?.context && other.context !== selection.context) return prev;
+    const isCareerContext = (context: SelectedComparisonContext["context"]) =>
+      context === "CTX-OVERALL-CAREER";
+
+    // Career is the default placeholder scope. It must not prevent the first
+    // player from switching to a season or competition scope.
+    if (
+      other?.context &&
+      !isCareerContext(other.context) &&
+      !isCareerContext(selection.context) &&
+      other.context !== selection.context
+    ) {
+      return prev;
+    }
     const next = [...prev];
     next[props.playerSlot] = selection;
     return next;

@@ -20,35 +20,34 @@ import {
 
 import {
   getAgeOfPlayer,
-  getAverageRatingOfPlayerBasedOnCareer,
-  getAverageRatingOfPlayerBasedOnCompetitionAndSeason,
-  getAverageRatingOfPlayerBasedOnSeason,
+  getAverageRatingForContext,
   getClubNameOfPlayer,
-  getStatValueBasedOnCareer,
-  getStatValueBasedOnCompetitionAndSeason,
-  getStatValueBasedOnSeason,
+  getStatValueForContext,
 } from "@/features/players/selectors/stat-getters";
+
+import { SelectedComparisonContext } from "../types/comp-save-type";
+
+
 
 
 export default function ShowFullStat({
   playerSet,
-  seasonLabels,
+  contexts,
 }: {
   playerSet: Array<string | null>;
-  seasonLabels: Array<string>;
+  contexts: SelectedComparisonContext[];
 }) {
   const [activeTab, setActiveTab] = useState<TabType>("general");
 
-  const players: Player[] = playerSet
-    .filter((player): player is string => player !== null)
-    .map((player) => getCanonicalPlayerById(player))
-    .filter((player): player is Player => player !== null);
+  const players = playerSet.map((playerId) =>
+    playerId ? getCanonicalPlayerById(playerId) : null,
+  );
 
   const compareTabContent = {
     general: (
       <StatsBoard
         players={players}
-        seasonLabels={seasonLabels}
+        contexts={contexts}
         stats={generalStats}
         isGeneral={true}
       />
@@ -56,7 +55,7 @@ export default function ShowFullStat({
     attacking: (
       <StatsBoard
         players={players}
-        seasonLabels={seasonLabels}
+        contexts={contexts}
         stats={attackingStats}
         isGeneral={false}
       />
@@ -64,7 +63,7 @@ export default function ShowFullStat({
     defending: (
       <StatsBoard
         players={players}
-        seasonLabels={seasonLabels}
+        contexts={contexts}
         stats={defendingStats}
         isGeneral={false}
       />
@@ -72,7 +71,7 @@ export default function ShowFullStat({
     cards: (
       <StatsBoard
         players={players}
-        seasonLabels={seasonLabels}
+        contexts={contexts}
         stats={cardStats}
         isGeneral={false}
       />
@@ -122,12 +121,12 @@ export default function ShowFullStat({
 
 export function StatsBoard({
   players,
-  seasonLabels,
+  contexts,
   stats,
   isGeneral,
 }: {
   players: Array<Player | null>;
-  seasonLabels: Array<string>;
+  contexts: SelectedComparisonContext[];
   stats: { key: string; label: string }[];
   isGeneral: boolean;
 }) {
@@ -140,8 +139,8 @@ export function StatsBoard({
           label={stat.label}
           playerA={players[0]}
           playerB={players[1]}
-          seasonLabelA={seasonLabels[0]}
-          seasonLabelB={seasonLabels[1]}
+          contextA={contexts[0]}
+          contextB={contexts[1]}
           isGeneral={isGeneral}
         />
       ))}
@@ -154,18 +153,19 @@ function StatBlock({
   identifier,
   playerA,
   playerB,
-  seasonLabelA,
-  seasonLabelB,
+  contextA,
+  contextB,
   isGeneral,
 }: {
   label: string;
   identifier: string;
   playerA: Player | null;
   playerB: Player | null;
-  seasonLabelA: string;
-  seasonLabelB: string;
+  contextA: SelectedComparisonContext;
+  contextB: SelectedComparisonContext;
   isGeneral: boolean;
 }) {
+
   const detailsA = playerA
     ? canonicalPlayers.find((p) => p.id === playerA.id) || null
     : null;
@@ -177,11 +177,11 @@ function StatBlock({
   let valueB: string | number = "-";
 
   if (isGeneral) {
-    valueA = getPlayerDetailValue(detailsA, identifier, seasonLabelA);
-    valueB = getPlayerDetailValue(detailsB, identifier, seasonLabelB);
+    valueA = getPlayerDetailValue(detailsA, identifier, contextA);
+    valueB = getPlayerDetailValue(detailsB, identifier, contextB);
   } else {
-    valueA = getStatValue(playerA, seasonLabelA, identifier);
-    valueB = getStatValue(playerB, seasonLabelB, identifier);
+    valueA = getStatValue(playerA, contextA, identifier);
+    valueB = getStatValue(playerB, contextB, identifier);
   }
 
   return (
@@ -208,7 +208,7 @@ function StatBlock({
 function getPlayerDetailValue(
   player: Player | null,
   key: string,
-  seasonLabel: string,
+  context: SelectedComparisonContext,
 ): string | number {
   if (key === "dateOfBirth") {
     return getAgeOfPlayer(player);
@@ -219,25 +219,7 @@ function getPlayerDetailValue(
   }
 
   if (key === "averageRating") {
-    if (
-      seasonLabel.trim().toLowerCase() === "career" ||
-      seasonLabel.trim().toLowerCase() === "all-time"
-    ) {
-      return getAverageRatingOfPlayerBasedOnCareer(player);
-    }
-
-    if (seasonLabel.trim().split(/\s+/).length >= 2) {
-      return getAverageRatingOfPlayerBasedOnCompetitionAndSeason(
-        player,
-        seasonLabel,
-      );
-    }
-
-    if (seasonLabel.trim()) {
-      return getAverageRatingOfPlayerBasedOnSeason(player, seasonLabel);
-    }
-
-    return "-";
+    return getAverageRatingForContext(player, context);
   }
 
   const value = player?.[key as keyof Player];
@@ -251,29 +233,8 @@ function getPlayerDetailValue(
 
 function getStatValue(
   player: Player | null,
-  seasonLabel: string,
+  context: SelectedComparisonContext,
   identifier: string,
 ): string | number {
-  if (!player) return "-";
-
-  if (
-    seasonLabel.trim().toLowerCase() === "career" ||
-    seasonLabel.trim().toLowerCase() === "all-time"
-  ) {
-    return getStatValueBasedOnCareer(player, identifier);
-  }
-
-  if (seasonLabel.trim().split(/\s+/).length >= 2) {
-    return getStatValueBasedOnCompetitionAndSeason(
-      player,
-      seasonLabel,
-      identifier,
-    );
-  }
-
-  if (seasonLabel.trim()) {
-    return getStatValueBasedOnSeason(player, seasonLabel, identifier);
-  }
-
-  return "-";
+  return getStatValueForContext(player, context, identifier);
 }

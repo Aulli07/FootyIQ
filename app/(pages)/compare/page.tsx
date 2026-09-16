@@ -18,16 +18,21 @@ import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
 import { saveComparison } from "@/features/compare/services/save-compare-comparison";
 import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 
+
+import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext";
+
+
+
+
 const Compare = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<Array<string>>([
     "",
     "",
   ]);
   const [selectedContexts, setSelectedContexts] = useState<SelectedComparisonContext[]>([
-    { context: null, scope: {}, label: "Season" },
-    { context: null, scope: {}, label: "Season" },
+    createSelectedContext(),
+    createSelectedContext(),
   ]);
-  const selectedSeasonLabels = selectedContexts.map((selection) => selection.label);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -76,14 +81,14 @@ const Compare = () => {
           <div className="relative z-0 flex flex-col gap-4 p-2 w-full ">
             <ShowFullStat
               playerSet={selectedPlayers}
-              seasonLabels={selectedSeasonLabels}
+              contexts={selectedContexts}
             />
           </div>
         </div>
 
         <ComparisonShareSection comparisonId={currentComparisonId} />
 
-        {!(selectedPlayers[0] === null) && !(selectedPlayers[1] === null) && (
+        {selectedPlayers.every(Boolean) && (
           <div className="flex flex-col gap-5 w-full">
             <ComparisonVotesSection
               leftPlayerId={selectedPlayers[0]}
@@ -101,7 +106,7 @@ const Compare = () => {
   );
 };
 
-export function AddFieldBox({
+function AddFieldBox({
   playerSlot,
   selectedPlayers,
   setSelectedPlayers,
@@ -137,7 +142,7 @@ export function AddFieldBox({
             });
             setSelectedContexts((prev) => {
               const next = [...prev];
-              next[playerSlot] = { context: null, scope: {}, label: "Season" };
+              next[playerSlot] = createSelectedContext();
               return next;
             });
           }}

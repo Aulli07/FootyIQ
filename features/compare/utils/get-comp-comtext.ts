@@ -21,11 +21,26 @@ export function getScopeLabel(scope: ComparisonScope): string {
   return getContext(scope.seasonId, scope.competitionId, scope.leagueId);
 }
 
+export function createSelectedContext(): SelectedComparisonContext;
+export function createSelectedContext(playerId: string): SelectedComparisonContext;
 export function createSelectedContext(
   playerId: string,
   seasonId: string,
   competitionId?: string,
+): SelectedComparisonContext;
+export function createSelectedContext(
+  playerId = "",
+  seasonId?: string,
+  competitionId?: string,
 ): SelectedComparisonContext {
+  if (!seasonId) {
+    return {
+      context: "CTX-OVERALL-CAREER",
+      scope: {},
+      label: "Career",
+    };
+  }
+
   if (!competitionId) {
     const scope = { seasonId };
     return { context: "CTX-SEASON", scope, label: getScopeLabel(scope) };

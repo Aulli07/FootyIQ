@@ -1,8 +1,8 @@
 import exactPlayerMap from "../data/exact-lookup-map.json";
-import tokenPlayerMap from "../data/prefix-lookup-map.json";
-import prefixPlayerMap from "../data/token-lookup-map.json";
+import tokenPlayerMap from "../data/token-lookup-map.json";
+import prefixPlayerMap from "../data/prefix-lookup-map.json";
 
-import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+import { canonicalPlayers } from "@/shared/utils/canonical-lookups";
 import { normalizeLabel } from "@/shared/utils/identity";
 
 /* We need to type the imports before usage */
@@ -79,16 +79,15 @@ function getSearchResultsFromFallbackQuery(
   query: string,
   results: Array<[string, number]>,
 ) {
-  const fallbackPrefixResults = prefixPlayerSearchMap[query.slice(0, 3)] ?? [];
-
-  fallbackPrefixResults.forEach((playerId) => {
-    let player = getCanonicalPlayerById(playerId)?.fullName;
-    if (!player) return [];
-
-    if (normalizeLabel(player!).includes(query)) {
-      if (!results.flat().includes(playerId)) {
-        results.push([playerId, 20]);
-      }
+  // The lookup maps make common searches fast, but the canonical store is the
+  // source of truth. Searching it here keeps every player dropdown accurate
+  // even when a lookup file has not yet been regenerated.
+  canonicalPlayers.forEach((player) => {
+    if (
+      normalizeLabel(player.fullName).includes(query) &&
+      !results.flat().includes(player.id)
+    ) {
+      results.push([player.id, 20]);
     }
   });
 

@@ -31,7 +31,15 @@ export function SeasonDropdownPanel({
 
       <div className="flex flex-col gap-3">
         {seasonGroups.length > 0 ? (
-          seasonGroups.map((seasonGroup) => (
+          <>
+            <button
+              type="button"
+              onClick={() => onSelectSeason(createSelectedContext(selectedPlayerId))}
+              className={`cursor-pointer rounded-lg px-3 py-2 text-left text-sm ${poppins.className} font-semibold text-light-text-primary hover:bg-emerald-500/10 dark:text-dark-text-primary dark:hover:bg-white/5`}
+            >
+              Career
+            </button>
+            {seasonGroups.map((seasonGroup) => (
             <div key={seasonGroup.seasonId} className="flex flex-col gap-2">
               <button
                 type="button"
@@ -56,7 +64,8 @@ export function SeasonDropdownPanel({
                 ))}
               </div>
             </div>
-          ))
+            ))}
+          </>
         ) : (
           <p
             className={`${poppins.className} px-1 text-xs text-light-text-muted dark:text-dark-text-muted`}

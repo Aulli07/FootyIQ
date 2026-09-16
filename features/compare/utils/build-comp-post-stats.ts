@@ -1,23 +1,16 @@
-import { canonicalPlayers, getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
+import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { Player } from "@/shared/types/stats-schema";
-
-import { ComparisonType } from "../types/comparison-main-type";
-import { getScopeLabel } from "./get-comp-comtext";
-import { compStatRecord } from "../types/comp-image-type";
 
 import { ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
 import {
   getAgeOfPlayer,
+  getAverageRatingForContext,
   getHeightOfPlayer,
-  getAverageRatingOfPlayerBasedOnCareer,
-  getAverageRatingOfPlayerBasedOnCompetitionAndSeason,
-  getAverageRatingOfPlayerBasedOnSeason,
-  getStatValueBasedOnCareer,
-  getStatValueBasedOnCompetitionAndSeason,
-  getStatValueBasedOnSeason
+  getStatValueForContext,
 } from "@/features/players/selectors/stat-getters";
-
-
+import { ComparisonType } from "../types/comparison-main-type";
+import { compStatRecord } from "../types/comp-image-type";
+import { SelectedComparisonContext } from "../types/comp-save-type";
 
 export function buildComparisonCardStats(
   comparison: ComparisonType,
@@ -25,83 +18,43 @@ export function buildComparisonCardStats(
 ) {
   const leftPlayer = getCanonicalPlayerById(comparison.playerA);
   const rightPlayer = getCanonicalPlayerById(comparison.playerB);
+  const leftContext: SelectedComparisonContext = {
+    context: comparison.context,
+    scope: comparison.scopeA,
+    label: "",
+  };
+  const rightContext: SelectedComparisonContext = {
+    context: comparison.context,
+    scope: comparison.scopeB,
+    label: "",
+  };
 
   return statKeys.reduce(
     (accumulator: compStatRecord, statKey: ComparisonStatKey) => {
-      const leftValue = resolveComparisonStatValue(
-        leftPlayer,
-        getScopeLabel(comparison.scopeA),
-        statKey,
-      );
-      const rightValue = resolveComparisonStatValue(
-        rightPlayer,
-        getScopeLabel(comparison.scopeB),
-        statKey,
-      );
-
-      accumulator[statKey] = [leftValue, rightValue];
+      accumulator[statKey] = [
+        resolveComparisonStatValue(leftPlayer, leftContext, statKey),
+        resolveComparisonStatValue(rightPlayer, rightContext, statKey),
+      ];
       return accumulator;
     },
     {} as compStatRecord,
   );
 }
 
-type playerStatKey = "age" | "height" | "footyRating";
+type PlayerStatKey = "age" | "height" | "footyRating";
 
 function resolveComparisonStatValue(
   player: Player | null,
-  context: string,
-  statKey: ComparisonStatKey | playerStatKey,
+  context: SelectedComparisonContext,
+  statKey: ComparisonStatKey | PlayerStatKey,
 ) {
-  if (!player) {
-    return 0;
-  }
+  if (!player) return 0;
 
-  if (statKey === "age") {
-    return Number(getAgeOfPlayer(player)) || 0;
-  }
-
-  if (statKey === "height") {
-    return Number(getHeightOfPlayer(player)) || 0;
-  }
-
+  if (statKey === "age") return Number(getAgeOfPlayer(player)) || 0;
+  if (statKey === "height") return Number(getHeightOfPlayer(player)) || 0;
   if (statKey === "footyRating") {
-    const rating = resolveRatingValue(player, context);
-    return Number(rating) || 0;
+    return Number(getAverageRatingForContext(player, context)) || 0;
   }
 
-  const rawValue = resolveStatValue(player, context, statKey);
-  return Number(rawValue) || 0;
-}
-
-function resolveRatingValue(player: Player, context: string) {
-  const trimmedContext = context.trim().toLowerCase();
-
-  if (trimmedContext === "career" || trimmedContext === "all-time") {
-    return getAverageRatingOfPlayerBasedOnCareer(player);
-  }
-
-  if (context.trim().split(/\s+/).length >= 2) {
-    return getAverageRatingOfPlayerBasedOnCompetitionAndSeason(player, context);
-  }
-
-  return getAverageRatingOfPlayerBasedOnSeason(player, context);
-}
-
-function resolveStatValue(
-  player: Player,
-  context: string,
-  statKey: ComparisonStatKey,
-) {
-  const trimmedContext = context.trim().toLowerCase();
-
-  if (trimmedContext === "career" || trimmedContext === "all-time") {
-    return getStatValueBasedOnCareer(player, statKey);
-  }
-
-  if (context.trim().split(/\s+/).length >= 2) {
-    return getStatValueBasedOnCompetitionAndSeason(player, context, statKey);
-  }
-
-  return getStatValueBasedOnSeason(player, context, statKey);
+  return Number(getStatValueForContext(player, context, statKey)) || 0;
 }
