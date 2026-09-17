@@ -32,13 +32,22 @@ export default function ViewComparisonPage() {
   }
 
   const fullPath = `/comparisons/${comparisonId}`;
+  const contexts = [
+    {
+      context: comparison.context,
+      scope: comparison.scopeA,
+      label: getScopeLabel(comparison.scopeA),
+    },
+    {
+      context: comparison.context,
+      scope: comparison.scopeB,
+      label: getScopeLabel(comparison.scopeB),
+    },
+  ];
 
   saveComparison({
     selectedPlayers: [comparison.playerA, comparison.playerB],
-    selectedContexts: [
-      { context: comparison.context, scope: comparison.scopeA, label: getScopeLabel(comparison.scopeA) },
-      { context: comparison.context, scope: comparison.scopeB, label: getScopeLabel(comparison.scopeB) },
-    ],
+    selectedContexts: contexts,
     setCurrentComparisonId,
     lastComparisonKeyRef,
   });
@@ -64,7 +73,7 @@ export default function ViewComparisonPage() {
           <div className="px-3 pt-3">
             <ShowFullStat
               playerSet={[comparison.playerA, comparison.playerB]}
-              seasonLabels={[getScopeLabel(comparison.scopeA), getScopeLabel(comparison.scopeB)]}
+              contexts={contexts}
             />
           </div>
 

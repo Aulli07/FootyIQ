@@ -1,7 +1,6 @@
 import { PlayerCompetitionStats } from "@/features/players/types/stats-legacy";
 
 export const statLabelMap: Partial<Record<keyof PlayerCompetitionStats, string>> = {
-  footyRating: "Footy Rating",
   shotsOnTarget: "Shots on Target",
   keyPasses: "Key Passes",
   chancesCreated: "Chances Created",

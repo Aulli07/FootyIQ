@@ -80,28 +80,44 @@ export default function ShowFullStat({
   } as const;
 
   return (
-    <div className={`relative flex flex-col gap-5 mt-3 ${poppins.className}`}>
-      <div className="flex flex-col">
-        <div className="flex flex-row gap-3 w-full relative overflow-x-auto scrollbar-none">
+    <section
+      className={`relative flex flex-col gap-4 rounded-2xl border border-light-ui-border bg-light-background-card/80 p-3 shadow-md shadow-slate-300/20 backdrop-blur dark:border-white/10 dark:bg-black/20 dark:shadow-black/20 ${poppins.className}`}
+    >
+      <div className="flex items-center justify-between gap-3 px-1">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
+            Head to Head
+          </p>
+          <h2 className="mt-1 text-sm font-semibold text-light-text-primary dark:text-dark-text-primary">
+            Performance Breakdown
+          </h2>
+        </div>
+        <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+          Selected scope
+        </span>
+      </div>
+
+      <div className="overflow-x-auto scrollbar-none">
+        <div className="flex w-max min-w-full gap-2">
           {compareTabs.map((tab) => (
             <button
               key={tab.key}
               type="button"
-              className={`flex justify-center items-center px-3 py-1 rounded-3xl border-2 h-9 cursor-pointer transition-colors ${
+              className={`flex h-9 items-center justify-center rounded-full border px-3 text-xs font-medium transition-colors ${
                 activeTab === tab.key
-                  ? "bg-emerald-500/15 border-emerald-500/60 dark:border-emerald-400 text-light-text-primary dark:text-dark-text-primary"
-                  : "bg-light-background-card border-light-ui-border text-light-text-secondary dark:bg-gray-200/30 dark:border-white/70 dark:text-dark-text-secondary"
+                  ? "border-emerald-500 bg-emerald-500 text-white shadow-sm shadow-emerald-600/25 dark:border-emerald-400 dark:bg-emerald-400 dark:text-slate-950"
+                  : "border-light-ui-border bg-light-background-main text-light-text-secondary hover:border-emerald-500/40 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-dark-text-secondary dark:hover:text-emerald-300"
               }`}
               onClick={() => setActiveTab(tab.key)}
             >
-              <span className="text-xs font-medium tracking-wide w-full whitespace-nowrap">
+              <span className="whitespace-nowrap tracking-wide">
                 {tab.label}
               </span>
             </button>
           ))}
         </div>
       </div>
-      <div className="relative w-full min-h-65 overflow-hidden">
+      <div className="relative min-h-65 w-full overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeTab}
@@ -109,13 +125,13 @@ export default function ShowFullStat({
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -48, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="flex flex-col gap-2 w-full relative"
+            className="relative flex w-full flex-col gap-2"
           >
             {compareTabContent[activeTab]}
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -131,7 +147,7 @@ export function StatsBoard({
   isGeneral: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-2 w-full relative">
+    <div className="relative flex w-full flex-col gap-2">
       {stats.map((stat) => (
         <StatBlock
           key={stat.key}
@@ -185,22 +201,20 @@ function StatBlock({
   }
 
   return (
-    <div className="relative z-0 grid w-full grid-cols-[minmax(0,1fr)_minmax(140px,180px)_minmax(0,1fr)] items-center gap-3 border-b border-light-ui-border py-2 px-3 dark:border-white/10">
-      <p
-        className={`min-w-0 truncate text-left text-sm text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
-      >
-        {valueA ?? "-"}
-      </p>
-      <p
-        className={`w-full text-center text-xs font-medium text-light-text-primary dark:text-dark-text-primary ${poppins.className}`}
-      >
+    <div className="relative grid w-full grid-cols-[minmax(0,1fr)_minmax(110px,140px)_minmax(0,1fr)] items-center gap-2 rounded-xl border border-light-ui-border/80 bg-light-background-main/70 px-2 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
+      <div className="min-w-0 rounded-lg bg-emerald-500/8 px-2.5 py-2 text-left dark:bg-emerald-400/10">
+        <p className="truncate text-sm font-semibold tabular-nums text-light-text-primary dark:text-dark-text-primary">
+          {valueA ?? "-"}
+        </p>
+      </div>
+      <p className="px-1 text-center text-[10px] font-semibold uppercase leading-4 tracking-wide text-light-text-secondary dark:text-dark-text-secondary">
         {label}
       </p>
-      <p
-        className={`min-w-0 truncate text-right text-sm text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
-      >
-        {valueB ?? "-"}
-      </p>
+      <div className="min-w-0 rounded-lg bg-emerald-500/8 px-2.5 py-2 text-right dark:bg-emerald-400/10">
+        <p className="truncate text-sm font-semibold tabular-nums text-light-text-primary dark:text-dark-text-primary">
+          {valueB ?? "-"}
+        </p>
+      </div>
     </div>
   );
 }

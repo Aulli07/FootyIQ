@@ -9,11 +9,13 @@ export function saveComparison({
   selectedContexts,
   setCurrentComparisonId,
   lastComparisonKeyRef,
+  isConfirmed = true,
 }: {
   selectedPlayers: string[];
   selectedContexts: SelectedComparisonContext[];
   setCurrentComparisonId: React.Dispatch<React.SetStateAction<string | null>>;
   lastComparisonKeyRef: RefObject<string | null>;
+  isConfirmed?: boolean;
 }) {
   const left = selectedContexts[0];
   const right = selectedContexts[1];
@@ -23,7 +25,7 @@ export function saveComparison({
   );
 
   useEffect(() => {
-    if (!isComplete || !left?.context || !right?.context) {
+    if (!isConfirmed || !isComplete || !left?.context || !right?.context) {
       lastComparisonKeyRef.current = null;
       setCurrentComparisonId(null);
       return;
@@ -43,7 +45,7 @@ export function saveComparison({
     const stored = saveComparisonFromCompare(comparison);
     setCurrentComparisonId(stored.id);
     lastComparisonKeyRef.current = key;
-  }, [isComplete, left, right, selectedPlayers, setCurrentComparisonId, lastComparisonKeyRef]);
+  }, [isConfirmed, isComplete, left, right, selectedPlayers, setCurrentComparisonId, lastComparisonKeyRef]);
 }
 
 export function saveComparisonFromCompare(comparison: NewComparisonType): QualityComparisonType {

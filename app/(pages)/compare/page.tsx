@@ -21,6 +21,24 @@ import { SelectedComparisonContext } from "@/features/compare/types/comp-save-ty
 
 import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext";
 
+function getComparisonReadinessMessage(
+  selectedPlayers: string[],
+  selectedContexts: SelectedComparisonContext[],
+): string | null {
+  if (!selectedPlayers[0] || !selectedPlayers[1]) {
+    return "Select two players to begin a comparison.";
+  }
+
+  if (!selectedContexts[0]?.context || !selectedContexts[1]?.context) {
+    return "Choose a comparison scope for both players.";
+  }
+
+  if (selectedContexts[0].context !== selectedContexts[1].context) {
+    return "Choose matching comparison scopes for both players.";
+  }
+
+  return null;
+}
 
 
 
@@ -39,15 +57,28 @@ const Compare = () => {
   const [currentComparisonId, setCurrentComparisonId] = useState<string | null>(
     null,
   );
+  const [confirmedComparisonKey, setConfirmedComparisonKey] = useState<string | null>(
+    null,
+  );
+  const [showReadinessMessage, setShowReadinessMessage] = useState(false);
   const lastComparisonKeyRef = useRef<string | null>(null);
 
   const searchedPlayers = getPlayerSearchResults(searchQuery);
+  const readinessMessage = getComparisonReadinessMessage(
+    selectedPlayers,
+    selectedContexts,
+  );
+  const isComparisonReady = readinessMessage === null;
+  const comparisonKey = JSON.stringify({ selectedPlayers, selectedContexts });
+  const isShowingResults =
+    isComparisonReady && confirmedComparisonKey === comparisonKey;
 
   saveComparison({
     selectedPlayers,
     selectedContexts,
     setCurrentComparisonId,
     lastComparisonKeyRef,
+    isConfirmed: isShowingResults,
   });
 
   return (
@@ -77,29 +108,61 @@ const Compare = () => {
           />
         </div>
 
-        <div className="relative z-0 text-light-text-secondary dark:text-dark-text-secondary flex flex-col text-center gap-3 px-3">
-          <div className="relative z-0 flex flex-col gap-4 p-2 w-full ">
-            <ShowFullStat
-              playerSet={selectedPlayers}
-              contexts={selectedContexts}
-            />
-          </div>
+        <div className="flex justify-center px-3 pt-2">
+          <button
+            type="button"
+            onClick={() => {
+              if (!isComparisonReady) {
+                setShowReadinessMessage(true);
+                return;
+              }
+
+              setShowReadinessMessage(false);
+              setConfirmedComparisonKey(comparisonKey);
+            }}
+            className={`w-full max-w-sm rounded-xl border px-5 py-3 text-sm font-semibold tracking-wide transition-all ${poppins.className} ${
+              isShowingResults
+                ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-700 dark:border-emerald-400/60 dark:text-emerald-300"
+                : isComparisonReady
+                  ? "border-emerald-600 bg-emerald-600 text-white shadow-md shadow-emerald-700/20 hover:bg-emerald-700 dark:border-emerald-400 dark:bg-emerald-500 dark:text-slate-950 dark:hover:bg-emerald-400"
+                  : "border-light-ui-border bg-light-background-card text-light-text-muted hover:border-emerald-500/50 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-dark-text-muted dark:hover:text-emerald-300"
+            }`}
+          >
+            {isShowingResults ? "RESULTS" : "COMPARE"}
+          </button>
         </div>
 
-        <ComparisonShareSection comparisonId={currentComparisonId} />
+        {showReadinessMessage && readinessMessage && (
+          <p className={`px-3 text-center text-xs text-amber-700 dark:text-amber-300 ${poppins.className}`}>
+            {readinessMessage}
+          </p>
+        )}
 
-        {selectedPlayers.every(Boolean) && (
-          <div className="flex flex-col gap-5 w-full">
-            <ComparisonVotesSection
-              leftPlayerId={selectedPlayers[0]}
-              rightPlayerId={selectedPlayers[1]}
-            />
+        {isShowingResults && (
+          <>
+            <div className="relative z-0 flex flex-col gap-3 px-3 text-center text-light-text-secondary dark:text-dark-text-secondary">
+              <ShowFullStat
+                playerSet={selectedPlayers}
+                contexts={selectedContexts}
+              />
+            </div>
 
-            <ComparisonPostsSection
-              leftPlayerId={selectedPlayers[0]}
-              rightPlayerId={selectedPlayers[1]}
-            />
-          </div>
+            {currentComparisonId && (
+              <ComparisonShareSection comparisonId={currentComparisonId} />
+            )}
+
+            <div className="flex flex-col gap-5 w-full">
+              <ComparisonVotesSection
+                leftPlayerId={selectedPlayers[0]}
+                rightPlayerId={selectedPlayers[1]}
+              />
+
+              <ComparisonPostsSection
+                leftPlayerId={selectedPlayers[0]}
+                rightPlayerId={selectedPlayers[1]}
+              />
+            </div>
+          </>
         )}
       </div>
     </main>
