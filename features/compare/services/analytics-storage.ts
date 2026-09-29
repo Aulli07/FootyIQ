@@ -8,9 +8,7 @@ export const ANALYTICS_KEY = "comparison_analytics";
 
 
 export function notifyComparisonAnalyticsChanged() {
-  if (typeof window === "undefined") {
-    return;
-  }
+  if (typeof window === "undefined") return;
 
   window.dispatchEvent(new Event("comparison-analytics-updated"));
 }
@@ -18,9 +16,7 @@ export function notifyComparisonAnalyticsChanged() {
 export function initializeComparisonAnalytics(
   hydratedComparisons: QualityComparisonType[],
 ) {
-  if (typeof window === "undefined") {
-    return;
-  }
+  if (typeof window === "undefined") return;
 
   const analyticsHistory = getStoredAnalyticsOfComparisons();
 
@@ -73,9 +69,7 @@ export function storeAnalyticsOfComparison(
 }
 
 export function getStoredAnalyticsOfComparisons(): ComparisonStoredAnalyticsType {
-  if (typeof window === "undefined") {
-    return {};
-  }
+  if (typeof window === "undefined") return {};
 
   const data = localStorage.getItem(ANALYTICS_KEY);
   return data ? JSON.parse(data) : {};

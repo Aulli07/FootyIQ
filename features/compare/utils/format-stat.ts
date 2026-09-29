@@ -1,6 +1,8 @@
 import { PlayerCompetitionStats } from "@/features/players/types/stats-legacy";
+import { ComparisonImageStatKey } from "@/features/compare/types/comp-image-type";
 
-export const statLabelMap: Partial<Record<keyof PlayerCompetitionStats, string>> = {
+export const statLabelMap: Partial<Record<ComparisonImageStatKey, string>> = {
+  footyRating: "Footy Rating",
   shotsOnTarget: "Shots on Target",
   keyPasses: "Key Passes",
   chancesCreated: "Chances Created",

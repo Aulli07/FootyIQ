@@ -1,8 +1,12 @@
 import { PlayerCompetitionStats } from "@/features/players/types/stats-legacy";
 
-export type compStatRecord = Record<keyof PlayerCompetitionStats, number[]>
+export type ComparisonImageStatKey =
+  | keyof PlayerCompetitionStats
+  | "footyRating";
 
-export type compStatKeys = [keyof PlayerCompetitionStats, number[]];
+export type compStatRecord = Record<ComparisonImageStatKey, number[]>;
+
+export type compStatKeys = [ComparisonImageStatKey, number[]];
 
 export type CompStatsForImageCardType = Partial<compStatRecord>;
 

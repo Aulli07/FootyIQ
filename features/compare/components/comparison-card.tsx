@@ -3,7 +3,6 @@
 import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
-import { Player } from "@/shared/types/stats-schema";
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
@@ -19,23 +18,14 @@ export default function ComparisonCard({
 }) {
   
   const comparison = getComparisonById(comparisonId);
+  if (!comparison) return null;
 
-  if (!comparison) {
-    return null;
-  }
-
-  const leftPlayer = getCanonicalPlayerById(
-    comparison.playerA,
-  ) as Player | null;
-  const rightPlayer = getCanonicalPlayerById(
-    comparison.playerB,
-  ) as Player | null;
+  const leftPlayer = getCanonicalPlayerById(comparison.playerA);
+  const rightPlayer = getCanonicalPlayerById(comparison.playerB);
   const leftContext = getScopeLabel(comparison.scopeA);
   const rightContext = getScopeLabel(comparison.scopeB);
 
-  if (!leftPlayer || !rightPlayer) {
-    return null;
-  }
+  if (!leftPlayer || !rightPlayer) return null;
 
   return (
     <div

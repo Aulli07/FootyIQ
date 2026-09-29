@@ -86,7 +86,7 @@ export function getPostAttachmentById(attachmentId: string): PostAttachmentType 
   return (
     Object.values(hydratedAttachmentsStore).find(
       (attachment) => attachment.id === attachmentId,
-    ) ?? { id: "", comparisonId: "", stats: undefined }
+    ) ?? { id: "", postId: "", comparisonId: "", stats: undefined }
   );
 }
 

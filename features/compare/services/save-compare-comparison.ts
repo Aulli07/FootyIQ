@@ -4,7 +4,7 @@ import { manageComparisonInStorage } from "./comparison-storage";
 import { QualityComparisonType } from "../types/comparison-main-type";
 import { NewComparisonType, SelectedComparisonContext } from "../types/comp-save-type";
 
-export function saveComparison({
+export function useSaveComparison({
   selectedPlayers,
   selectedContexts,
   setCurrentComparisonId,

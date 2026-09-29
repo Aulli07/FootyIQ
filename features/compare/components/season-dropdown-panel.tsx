@@ -1,6 +1,5 @@
 import { poppins } from "@/app/font-icons/fonts";
 import {
-  formatCompetitionIdToName,
   getCanonicalPlayerSeasonCompetitionOptions,
 } from "@/shared/utils/canonical-lookups";
 

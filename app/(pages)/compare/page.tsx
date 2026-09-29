@@ -1,6 +1,7 @@
 "use client";
 
 import { poppins } from "@/app/font-icons/fonts";
+import Image from "next/image";
 
 import { useState } from "react";
 import { useRef } from "react";
@@ -15,11 +16,13 @@ import ComparisonShareSection from "@/features/compare/components/comp-share-sec
 
 import { getPlayerSearchResults } from "@/features/search/engine/search-engine";
 
-import { saveComparison } from "@/features/compare/services/save-compare-comparison";
+import { useSaveComparison } from "@/features/compare/services/save-compare-comparison";
 import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 
 
 import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext";
+
+
 
 function getComparisonReadinessMessage(
   selectedPlayers: string[],
@@ -73,7 +76,7 @@ const Compare = () => {
   const isShowingResults =
     isComparisonReady && confirmedComparisonKey === comparisonKey;
 
-  saveComparison({
+  useSaveComparison({
     selectedPlayers,
     selectedContexts,
     setCurrentComparisonId,
@@ -193,10 +196,10 @@ function AddFieldBox({
       className={`relative z-0 h-55 focus-within:z-[9999] flex flex-col justify-center items-center gap-3 rounded-lg px-2 border border-light-ui-border bg-light-background-card/80 dark:border-white/30 dark:bg-black/20 ${poppins.className} shadow-md shadow-slate-300/35 dark:shadow-lg dark:shadow-black/20 backdrop-blur focus-within:border-emerald-500/50 dark:focus-within:border-emerald-400/40 focus-within:ring-4 focus-within:ring-emerald-500/15 dark:focus-within:ring-emerald-400/15`}
     >
       {selectedPlayers[playerSlot] && (
-        <img
-          src="/images/swap-light-fill.png"
-          alt="no pic"
-          className="absolute right-2 top-3 object-cover w-7 h-7"
+        <button
+          type="button"
+          aria-label="Remove selected player"
+          className="absolute right-2 top-3 h-7 w-7 cursor-pointer"
           onClick={() => {
             setSelectedPlayers((prev) => {
               const next = [...prev];
@@ -209,7 +212,15 @@ function AddFieldBox({
               return next;
             });
           }}
-        />
+        >
+          <Image
+            src="/images/swap-light-fill.png"
+            alt=""
+            width={28}
+            height={28}
+            className="object-cover"
+          />
+        </button>
       )}
 
       <DropDown

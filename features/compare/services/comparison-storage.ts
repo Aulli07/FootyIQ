@@ -46,9 +46,8 @@ export function storeComparisonInStorage(
 }
 
 export function getStoredComparisons(): Record<string, QualityComparisonType> {
-  if (typeof window === "undefined") {
-    return {};
-  }
+  if (typeof window === "undefined") return {};
+  
   const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return {};
 
