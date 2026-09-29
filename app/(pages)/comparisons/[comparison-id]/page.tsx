@@ -13,7 +13,7 @@ import ComparisonVotesSection from "@/features/compare/components/comp-votes-sec
 import ComparisonPostsSection from "@/features/compare/components/comp-posts-section";
 import ComparisonShareSection from "@/features/compare/components/comp-share-section";
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
-import { saveComparison } from "@/features/compare/services/save-compare-comparison";
+import { useSaveComparison } from "@/features/compare/services/save-compare-comparison";
 import { getScopeLabel } from "@/features/compare/utils/get-comp-comtext";
 
 
@@ -45,7 +45,7 @@ export default function ViewComparisonPage() {
     },
   ];
 
-  saveComparison({
+  useSaveComparison({
     selectedPlayers: [comparison.playerA, comparison.playerB],
     selectedContexts: contexts,
     setCurrentComparisonId,
@@ -53,13 +53,13 @@ export default function ViewComparisonPage() {
   });
 
   return (
-    <main className="px-3 pb-5 text-light-text-primary dark:text-dark-text-primary">
+    <main className="pb-5 px-4 text-light-text-primary dark:text-dark-text-primary">
       <div className="flex flex-col gap-3">
         <PageTitle
           title={`${comparison.playerA.toUpperCase()} & ${comparison.playerB.toUpperCase()} COMPARISON`}
         />
         <div className="flex flex-col gap-4 mt-6">
-          <div className="grid grid-cols-2 gap-3 px-2">
+          <div className="grid grid-cols-2 gap-3">
             <FixedFieldBox
               playerId={comparison.playerA}
               season={getScopeLabel(comparison.scopeA)}
@@ -70,7 +70,7 @@ export default function ViewComparisonPage() {
             />
           </div>
 
-          <div className="px-3 pt-3">
+          <div className="mt-3">
             <ShowFullStat
               playerSet={[comparison.playerA, comparison.playerB]}
               contexts={contexts}

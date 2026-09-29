@@ -81,22 +81,8 @@ export default function ShowFullStat({
 
   return (
     <section
-      className={`relative flex flex-col gap-4 rounded-2xl border border-light-ui-border bg-light-background-card/80 p-3 shadow-md shadow-slate-300/20 backdrop-blur dark:border-white/10 dark:bg-black/20 dark:shadow-black/20 ${poppins.className}`}
+      className={`relative flex flex-col gap-4 rounded-2xl ${poppins.className}`}
     >
-      <div className="flex items-center justify-between gap-3 px-1">
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
-            Head to Head
-          </p>
-          <h2 className="mt-1 text-sm font-semibold text-light-text-primary dark:text-dark-text-primary">
-            Performance Breakdown
-          </h2>
-        </div>
-        <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-          Selected scope
-        </span>
-      </div>
-
       <div className="overflow-x-auto scrollbar-none">
         <div className="flex w-max min-w-full gap-2">
           {compareTabs.map((tab) => (
@@ -117,7 +103,7 @@ export default function ShowFullStat({
           ))}
         </div>
       </div>
-      <div className="relative min-h-65 w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeTab}
@@ -147,7 +133,7 @@ export function StatsBoard({
   isGeneral: boolean;
 }) {
   return (
-    <div className="relative flex w-full flex-col gap-2">
+    <div className="relative flex w-full flex-col gap-2 bg-light-background-main/70 dark:bg-white/[0.03]">
       {stats.map((stat) => (
         <StatBlock
           key={stat.key}
@@ -201,8 +187,8 @@ function StatBlock({
   }
 
   return (
-    <div className="relative grid w-full grid-cols-[minmax(0,1fr)_minmax(110px,140px)_minmax(0,1fr)] items-center gap-2 rounded-xl border border-light-ui-border/80 bg-light-background-main/70 px-2 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
-      <div className="min-w-0 rounded-lg bg-emerald-500/8 px-2.5 py-2 text-left dark:bg-emerald-400/10">
+    <div className="relative grid w-full grid-cols-[minmax(0,1fr)_minmax(110px,140px)_minmax(0,1fr)] items-center gap-2 rounded-xl px-4 py-2.5 ">
+      <div className="min-w-0 text-left">
         <p className="truncate text-sm font-semibold tabular-nums text-light-text-primary dark:text-dark-text-primary">
           {valueA ?? "-"}
         </p>
@@ -210,7 +196,7 @@ function StatBlock({
       <p className="px-1 text-center text-[10px] font-semibold uppercase leading-4 tracking-wide text-light-text-secondary dark:text-dark-text-secondary">
         {label}
       </p>
-      <div className="min-w-0 rounded-lg bg-emerald-500/8 px-2.5 py-2 text-right dark:bg-emerald-400/10">
+      <div className="min-w-0 text-right">
         <p className="truncate text-sm font-semibold tabular-nums text-light-text-primary dark:text-dark-text-primary">
           {valueB ?? "-"}
         </p>

@@ -18,11 +18,11 @@ import HomePageClient from "@/features/home/components/home-page-client";
 /* This is the default home screen */
 export default function Home() {
   return (
-    <main className="w-full pt-2 text-light-text-primary dark:text-dark-text-primary">
+    <main className="w-full mt-3 px-4 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="FOOTY IQ" showLightMode />
 
       <HomePageClient>
-        <div className="mt-3">
+        <div className="mt-2">
           {SYSTEM_COMPARISON_THEMES.map((theme) => (
             <ThemeComparisonSection key={theme.id} theme={theme} />
           ))}
@@ -39,8 +39,11 @@ function ThemeComparisonSection({ theme }: { theme: ComparisonThemeType }) {
   if (!matchups || matchups.length === 0) return null;
 
   return (
-    <Link href={{ pathname: `/themes/${theme.id}` }}>
+    <div>
       <Comparison comparisonIds={matchups} title={theme.title} />
-    </Link>
+    </div>
   );
 }
+
+
+// href={{ pathname: `/themes/${theme.id}` }}

@@ -22,26 +22,8 @@ import { SelectedComparisonContext } from "@/features/compare/types/comp-save-ty
 
 import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext";
 
+import { getComparisonReadinessMessage } from "@/features/compare/selectors/get-comp-readiness";
 
-
-function getComparisonReadinessMessage(
-  selectedPlayers: string[],
-  selectedContexts: SelectedComparisonContext[],
-): string | null {
-  if (!selectedPlayers[0] || !selectedPlayers[1]) {
-    return "Select two players to begin a comparison.";
-  }
-
-  if (!selectedContexts[0]?.context || !selectedContexts[1]?.context) {
-    return "Choose a comparison scope for both players.";
-  }
-
-  if (selectedContexts[0].context !== selectedContexts[1].context) {
-    return "Choose matching comparison scopes for both players.";
-  }
-
-  return null;
-}
 
 
 
@@ -85,10 +67,11 @@ const Compare = () => {
   });
 
   return (
-    <main className="flex flex-col w-full gap-5 px-3 text-light-text-primary dark:text-dark-text-primary ">
+    <main className="flex flex-col w-full px-4 gap-4 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="Compare" />
-      <div className="mt-5 gap-3 flex flex-col">
-        <div className="grid grid-cols-2 gap-3 px-2">
+
+      <div className="gap-4 flex flex-col">
+        <div className="grid grid-cols-2 gap-3">
           <AddFieldBox
             playerSlot={0}
             selectedPlayers={selectedPlayers}
@@ -111,7 +94,7 @@ const Compare = () => {
           />
         </div>
 
-        <div className="flex justify-center px-3 pt-2">
+        <div className="flex justify-center mt-2">
           <button
             type="button"
             onClick={() => {
@@ -123,7 +106,7 @@ const Compare = () => {
               setShowReadinessMessage(false);
               setConfirmedComparisonKey(comparisonKey);
             }}
-            className={`w-full max-w-sm rounded-xl border px-5 py-3 text-sm font-semibold tracking-wide transition-all ${poppins.className} ${
+            className={`w-full max-w-sm rounded-xl border py-2.5 text-sm font-semibold tracking-wide transition-all ${poppins.className} ${
               isShowingResults
                 ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-700 dark:border-emerald-400/60 dark:text-emerald-300"
                 : isComparisonReady
@@ -136,35 +119,33 @@ const Compare = () => {
         </div>
 
         {showReadinessMessage && readinessMessage && (
-          <p className={`px-3 text-center text-xs text-amber-700 dark:text-amber-300 ${poppins.className}`}>
+          <p className={`text-center text-xs text-amber-700 dark:text-amber-300 ${poppins.className}`}>
             {readinessMessage}
           </p>
         )}
-
+        
         {isShowingResults && (
           <>
-            <div className="relative z-0 flex flex-col gap-3 px-3 text-center text-light-text-secondary dark:text-dark-text-secondary">
+            <div className="relative z-0 mt-3 flex flex-col text-center text-light-text-secondary dark:text-dark-text-secondary">
               <ShowFullStat
                 playerSet={selectedPlayers}
                 contexts={selectedContexts}
               />
             </div>
-
+            
             {currentComparisonId && (
               <ComparisonShareSection comparisonId={currentComparisonId} />
             )}
 
-            <div className="flex flex-col gap-5 w-full">
-              <ComparisonVotesSection
-                leftPlayerId={selectedPlayers[0]}
-                rightPlayerId={selectedPlayers[1]}
-              />
+            <ComparisonVotesSection
+              leftPlayerId={selectedPlayers[0]}
+              rightPlayerId={selectedPlayers[1]}
+            />
 
-              <ComparisonPostsSection
-                leftPlayerId={selectedPlayers[0]}
-                rightPlayerId={selectedPlayers[1]}
-              />
-            </div>
+            <ComparisonPostsSection
+              leftPlayerId={selectedPlayers[0]}
+              rightPlayerId={selectedPlayers[1]}
+            />
           </>
         )}
       </div>

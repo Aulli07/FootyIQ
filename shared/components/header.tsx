@@ -31,7 +31,7 @@ const Header = ({
 
   
   return (
-    <div className="flex flex-row items-center justify-between px-3 h-18 backdrop-blur bg-light-background-main/80 dark:bg-dark-background-main/80">
+    <div className="flex flex-row items-center justify-between h-17 backdrop-blur bg-light-background-main/80 dark:bg-dark-background-main/80">
       <div>
         <h1
           className={`font-semibold text-2xl ${oswald.className} leading-relaxed text-light-text-primary dark:text-dark-text-primary`}
@@ -42,7 +42,7 @@ const Header = ({
 
       <div className="flex items-center">
         {showLightMode ? (
-          <div className="relative h-11 w-11 rounded-full border border-light-ui-border bg-light-background-card shadow-sm shadow-slate-300/50 dark:border-white/20 dark:bg-white/10 dark:shadow-none">
+          <div className="relative h-12 w-12">
             <Image
               src={
                 theme === "dark"

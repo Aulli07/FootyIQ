@@ -1,5 +1,7 @@
 "use client";
 
+import { toast } from "sonner";
+
 import PageTitle from "@/shared/components/page-title";
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -117,6 +119,9 @@ export default function AddPost() {
   }
 
   const newPost = useUploadPost(postUploadInfo.shouldUpload, postUploadInfo);
+  if (Boolean(newPost)) {
+    toast.success("Post Sent");
+  }
   useEffect(() => {
     if (newPost) {
       setPostStore(prev => [...prev, newPost]);
