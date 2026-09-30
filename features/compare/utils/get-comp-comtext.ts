@@ -14,7 +14,7 @@ export function getContext(
     : "";
   const competition = getScopeTitle(competitionId ?? leagueId);
 
-  return [competition, seasonLabel].filter(Boolean).join(" ") || "All-time";
+  return [competition, seasonLabel].filter(Boolean).join(" ") || "Career";
 }
 
 export function getScopeLabel(scope: ComparisonScope): string {
@@ -28,6 +28,8 @@ export function createSelectedContext(
   seasonId: string,
   competitionId?: string,
 ): SelectedComparisonContext;
+
+
 export function createSelectedContext(
   playerId = "",
   seasonId?: string,

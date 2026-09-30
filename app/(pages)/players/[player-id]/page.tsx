@@ -31,6 +31,8 @@ import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-detail
 import { PostType } from "@/features/posts/types/post";
 import { PostDisplay } from "@/features/posts/components/post-display";
 
+
+
 export default function PlayerProfilePage() {
   const params = useParams();
   const id = params["player-id"] as string;
@@ -61,7 +63,7 @@ export default function PlayerProfilePage() {
 
   const playerComparisons = getPlayerComparisons(id, comparisonAnalytics);
 
-  const fullPath = `/players/${player.id}`;
+  const fullPath = `/players/${id}`;
   const playerPostDiscussions = getPostsInDiscussion(player.id);
 
   return (
@@ -91,7 +93,10 @@ export default function PlayerProfilePage() {
 
             <div className="group flex flex-wrap items-center gap-3">
               <Link
-                href={`/compare?playerA=${player.id}`}
+                href={{
+                  pathname: "/compare",
+                  query: {id},
+                }}
                 className={`w-max flex flex-row gap-2 border border-emerald-500/10 rounded-xl px-3 py-1 bg-light-background-card dark:border-white/10 dark:bg-white/5`}
               >
                 <span

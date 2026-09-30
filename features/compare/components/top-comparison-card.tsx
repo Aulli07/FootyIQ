@@ -5,6 +5,7 @@ import { renderPlayer } from "../ui/comp-image-card-ui";
 import { QualityComparisonType } from "../types/comparison-main-type";
 import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
 import { getScopeLabel } from "../utils/get-comp-comtext";
+import { useEffect, useState } from "react";
 
 export default function TopComparisonCard({
   id,
@@ -18,6 +19,12 @@ export default function TopComparisonCard({
   rank?: number;
   showAnalytics?: boolean;
 }) {
+
+  const [ mounted, setMounted ] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
 
   const compAnalyticsHistory = getStoredAnalyticsOfComparisons();
   const comparisonId = comp.id;
@@ -55,7 +62,7 @@ export default function TopComparisonCard({
             <span
               className={`text-[12px] font-bold ${poppins.className} text-emerald-600/70 dark:text-emerald-400/70`}
             >
-              {compAnalyticsHistory[comparisonId]?.viewCount || 0} VIEWS
+              {mounted ? compAnalyticsHistory[comparisonId]?.viewCount || 0 : 0} VIEWS
             </span>
           </div>
         )}

@@ -23,13 +23,17 @@ import { SelectedComparisonContext } from "@/features/compare/types/comp-save-ty
 import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext";
 
 import { getComparisonReadinessMessage } from "@/features/compare/selectors/get-comp-readiness";
+import { useSearchParams } from "next/navigation";
 
 
 
 
 const Compare = () => {
+  const searchParams = useSearchParams();
+  const playerId = searchParams.get("id");
+
   const [selectedPlayers, setSelectedPlayers] = useState<Array<string>>([
-    "",
+    playerId ?? "",
     "",
   ]);
   const [selectedContexts, setSelectedContexts] = useState<SelectedComparisonContext[]>([
