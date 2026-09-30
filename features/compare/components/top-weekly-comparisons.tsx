@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { poppins } from "@/app/font-icons/fonts";
 
 import TopComparisonCard from "./top-comparison-card";
@@ -10,7 +12,14 @@ import { getCanonicalPlayerById, getCanonicalPlayerIdByName } from "@/shared/uti
 
 
 export default function TopWeeklyComparisons() {
+  const [ mounted, setMounted ] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
   const weeklyComparisons = getTopWeeklyComparisons();
+  if (!mounted) return null;
 
   return (
     <section className="mt-8 mb-12">

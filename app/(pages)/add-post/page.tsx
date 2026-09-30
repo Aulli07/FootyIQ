@@ -119,12 +119,11 @@ export default function AddPost() {
   }
 
   const newPost = useUploadPost(postUploadInfo.shouldUpload, postUploadInfo);
-  if (Boolean(newPost)) {
-    toast.success("Post Sent");
-  }
+  
   useEffect(() => {
     if (newPost) {
       setPostStore(prev => [...prev, newPost]);
+      toast.success("Post Sent");
     }
   }, [newPost]);
 

@@ -12,7 +12,7 @@ export const statLabelMap: Partial<Record<ComparisonImageStatKey, string>> = {
   yellowToRedCards: "Yellow to Red",
 };
 
-export function formatStatLabel(statKey: keyof PlayerCompetitionStats) {
+export function formatStatLabel(statKey: keyof PlayerCompetitionStats | "footyRating") {
   return (
     statLabelMap[statKey] ??
     statKey

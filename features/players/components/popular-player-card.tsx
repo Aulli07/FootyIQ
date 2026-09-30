@@ -11,6 +11,7 @@ export default function PopularPlayerCard({
   player,
   searchCount,
 }: PopularPlayerCardProps) {
+  
   return (
 
     <Link

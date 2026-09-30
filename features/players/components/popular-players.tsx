@@ -1,7 +1,7 @@
 "use client";
 
 import { poppins } from "@/app/font-icons/fonts";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 import { canonicalPlayers, getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 
@@ -15,6 +15,7 @@ import { usePlayerAnalytics } from "@/providers/providers";
 function getPopularPlayers(
   playerAnalytics: PlayerFullAnalyticsType,
 ): PlayerCombinedType[] {
+
   const combined = canonicalPlayers.map((player) => ({
     ...player,
     searchCount: playerAnalytics[player.id]?.searchCount ?? 0,
@@ -49,10 +50,18 @@ function getPopularPlayers(
 export default function PopularPlayers() {
   const { playerAnalytics } = usePlayerAnalytics();
 
+  const [ mounted, setMounted ] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
   const POPULAR_PLAYERS = useMemo(
     () => getPopularPlayers(playerAnalytics),
     [playerAnalytics],
   );
+
+  if (!mounted) return [];
 
   return (
     <section className="mt-12 mb-12">
