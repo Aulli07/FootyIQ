@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 import PageTitle from "@/shared/components/page-title";
 import { useState, useRef, useEffect } from "react";
@@ -32,6 +33,8 @@ import { buildComparisonCardStats } from "@/features/compare/utils/build-comp-po
 export default function AddPost() {
   const searchParams = useSearchParams();
   const comparisonId = searchParams.get("comparisonId");
+
+  const router = useRouter();
 
   
   const [isOpen, setIsOpen] = useState(false);
@@ -123,7 +126,8 @@ export default function AddPost() {
   useEffect(() => {
     if (newPost) {
       setPostStore(prev => [...prev, newPost]);
-      toast.success("Post Sent");
+      toast.success("Post Sent Successfully");
+      router.push(`/posts`);
     }
   }, [newPost]);
 
@@ -149,7 +153,7 @@ export default function AddPost() {
           </div>
 
           <div className="mt-5 flex gap-3">
-            <div
+            <button
               className="flex items-center justify-center rounded-xl border border-light-ui-border bg-light-background-card px-4 py-3 text-sm font-medium text-light-text-primary transition hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-dark-text-primary dark:hover:bg-white/15"
               onClick={() => {
                 setSelectedPollPlayers(["", ""]);
@@ -161,7 +165,7 @@ export default function AddPost() {
               }}
             >
               Select Comparison
-            </div>
+            </button>
           </div>
         </div>
         <div className="flex items-center justify-end gap-3 pt-4 dark:border-white/10">

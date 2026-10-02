@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${oswald.variable}`.trim()}>
+    <html lang="en" className={`${poppins.variable} ${oswald.variable}`.trim()} suppressHydrationWarning>
       <body className="flex flex-col bg-light-background-main dark:bg-dark-background-main min-h-screen">
         <ThemeProvider>
           <AppShell>{children}</AppShell>
