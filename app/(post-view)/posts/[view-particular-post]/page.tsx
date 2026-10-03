@@ -46,7 +46,7 @@ export function PostTimeDesign({ post }: { post: PostType }) {
 export default function ParticularPost() {
   const params = useParams<{ "view-particular-post": string; posts: string }>();
   const { theme, resolvedTheme } = useTheme();
-  const mounted = true;
+  const [ mounted, setMounted ] = useState<boolean>(false);
 
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
@@ -80,6 +80,8 @@ export default function ParticularPost() {
   };
 
   useEffect(() => {
+    setMounted(true);
+
     if (!post || !user) return;
     if (hasTrackedViewRef.current) return;
 
@@ -118,7 +120,7 @@ export default function ParticularPost() {
     setLocalLikeCount((prev) => prev + 1);
   }
 
-
+  if (!mounted) return null;
   return (
     <main className="relative px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">
       <div className="max-w-3xl mx-auto flex flex-col h-full gap-1">
@@ -127,17 +129,18 @@ export default function ParticularPost() {
         <div className="py-3 shrink-0 px-3">
           <article className="w-full rounded-2xl backdrop-blur md:p-7 shadow-md flex flex-col h-auto space-y-3">
             <div className="flex justify-start items-start gap-4">
-              <div className="relative h-14 w-14">
+              <div className="relative">
                 <Image
                   src={user?.avatarUrl ?? "/images/default-avatar.png"}
                   alt={user?.name ?? "User Avatar"}
-                  fill
-                  sizes="56px"
+                  width={60}
+                  height={60}
                   className="object-cover rounded-full border border-emerald-700 shadow-md"
+                  
                 />
               </div>
 
-              <div className="flex flex-wrap items-start gap-3 md:gap-4">
+              <div className="w-full flex flex-row justify-between">
                 <div>
                   <p
                     className={`text-lg text-light-text-primary dark:text-dark-text-primary ${poppins.className} font-semibold`}
@@ -150,7 +153,11 @@ export default function ParticularPost() {
                     @{user?.username}
                   </p>
                 </div>
-                <PostTimeDesign post={post} />
+                <div className="mr-2">
+                  <PostTimeDesign post={post} />
+                </div>
+                
+                
               </div>
             </div>
 
@@ -174,7 +181,7 @@ export default function ParticularPost() {
         </div>
 
         <div className="py-4 px-3 flex items-center gap-3 shrink-0">
-          <div className="flex flex-1 flex-wrap items-center gap-2 md:gap-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3">
             {postStatChips.map((chip) => (
               <p
                 key={chip.label}
@@ -189,9 +196,9 @@ export default function ParticularPost() {
             type="button"
             onClick={handleLike}
             disabled={hasCurrentUserLiked}
-            className="ml-auto flex items-center justify-center gap-2 rounded-full border border-light-ui-border dark:border-white/20 bg-light-background-card/80 dark:bg-white/4 px-3 py-2 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary disabled:opacity-60 disabled:cursor-not-allowed"
+            className="ml-auto flex items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <span className={`${poppins.className}`}>{hasCurrentUserLiked ? "Liked" : "Like"}</span>
+            {/* <span className={`${poppins.className}`}>{hasCurrentUserLiked ? "Liked" : "Like"}</span> */}
             <Image
               src={mounted && !isDark ? "/images/like-dark.png" : "/images/like-light.png"}
               alt="Like"
@@ -226,7 +233,7 @@ export default function ParticularPost() {
             )}
           </div>
 
-          <div className="fixed bottom-10 left-0 right-0 flex items-center gap-2 px-5">
+          <div className="fixed bottom-0 left-0 right-0 flex items-center gap-2 px-5 pb-7 pt-2 backdrop-blur">
             <input
               ref={myCommentRef}
               placeholder="Add a comment"

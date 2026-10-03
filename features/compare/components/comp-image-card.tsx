@@ -42,7 +42,7 @@ export function ComparisonImageCard({
   return (
     <div className="overflow-hidden rounded-2xl border border-light-ui-border bg-light-background-card shadow-lg shadow-slate-300/25 dark:border-white/10 dark:bg-white/5 dark:shadow-black/20">
       <div className="grid grid-cols-2">
-        <div className="flex h-full flex-col gap-5 bg-gradient-to-br from-emerald-500/[0.06] via-transparent to-transparent px-4 py-5 sm:px-6 sm:py-6">
+        <div className="flex flex-col gap-5 bg-gradient-to-br from-emerald-500/[0.06] via-transparent to-transparent px-4 py-5 sm:px-6 sm:py-6">
           <div className="flex flex-col items-center justify-center gap-4">
             {renderPlayerImage(leftPlayer, leftLabel)}
           </div>

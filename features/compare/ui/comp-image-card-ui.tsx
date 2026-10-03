@@ -34,9 +34,13 @@ export function renderPlayerImage(player: Player | null, label: string | undefin
   const imageUrl = player?.imageUrl ?? "/images/default-avatar.png";
   const name = player?.fullName ?? label ?? "Player profile";
 
+  const nameParts = name.trim().split(/\s+/);
+    const firstName = nameParts[0] ?? name;
+    const lastName = nameParts.slice(1).join(" ") || nameParts[0] || name;
+
   return (
     <div className="flex flex-col items-center gap-3 text-center">
-      <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+      <div className="relative size-22 sm:h-28 sm:w-28">
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500/30 via-transparent to-transparent blur-xl" />
         <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-black/10 shadow-md shadow-slate-300/20 dark:ring-white/10 dark:shadow-black/20">
           <Image
@@ -53,10 +57,11 @@ export function renderPlayerImage(player: Player | null, label: string | undefin
         <p
           className={`text-md sm:text-xl font-semibold tracking-tight ${poppins.className} text-light-text-primary dark:text-dark-text-primary`}
         >
-          {name}
+          <span className="block leading-tight">{firstName}</span>
+          <span className="block leading-tight">{lastName}</span>
         </p>
         <p
-          className={`text-[11px] sm:text-xs font-medium uppercase ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
+          className={`text-[12px] md:text-md mt-2 md:mt-4 font-medium uppercase ${poppins.className} text-emerald-600/80 dark:text-emerald-400/80`}
         >
           {label ?? "Player profile"}
         </p>

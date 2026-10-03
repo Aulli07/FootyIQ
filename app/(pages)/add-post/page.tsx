@@ -138,8 +138,8 @@ export default function AddPost() {
       </div>
 
       <div className="mx-auto mt-4 flex w-full max-w-2xl flex-1 flex-col gap-3">
-        <div className="flex min-h-0 flex-col mt-4 rounded-2xl border border-light-ui-border bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-          <div className="flex min-h-0 flex-col gap-5 px-2 py-3">
+        <div className="flex min-h-0 flex-col mt-4 rounded-2xl border border-light-ui-border bg-white/70 py-3 px-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+          <div className="flex min-h-0 flex-col gap-5  py-3">
             <PostTextAreaUI myPostRef={myPostRef} />
 
             {composerMode === "comparison" && selectedComparisonData ? (
@@ -152,9 +152,9 @@ export default function AddPost() {
             {/* For the Poll UI */}
           </div>
 
-          <div className="mt-5 flex gap-3">
+          <div className="mt-1 flex gap-3">
             <button
-              className="flex items-center justify-center rounded-xl border border-light-ui-border bg-light-background-card px-4 py-3 text-sm font-medium text-light-text-primary transition hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-dark-text-primary dark:hover:bg-white/15"
+              className="flex items-center justify-center rounded-xl border border-light-ui-border bg-light-background-card px-3 py-2 text-[13px] font-medium text-light-text-primary transition hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-dark-text-primary dark:hover:bg-white/15"
               onClick={() => {
                 setSelectedPollPlayers(["", ""]);
                 setPollSearchQuery("");

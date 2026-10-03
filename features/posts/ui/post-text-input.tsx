@@ -10,7 +10,7 @@ export function PostTextAreaUI({myPostRef}: {myPostRef: RefObject<HTMLTextAreaEl
         <textarea
           ref={myPostRef}
           placeholder="What's happening?"
-          className="overflow-hidden min-h-30 auto w-full resize-none bg-transparent text-lg text-light-text-primary placeholder:text-light-text-muted focus:outline-none dark:text-dark-text-primary dark:placeholder:text-dark-text-muted"
+          className="overflow-hidden min-h-20 auto w-full resize-none bg-transparent text-lg text-light-text-primary placeholder:text-light-text-muted focus:outline-none dark:text-dark-text-primary dark:placeholder:text-dark-text-muted"
           onChange={() => {
             const current = myPostRef.current;
             if (current) {
