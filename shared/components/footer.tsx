@@ -38,8 +38,8 @@ function Footer() {
       alt: "home-icon",
       header: "Footy IQ",
       title: "Home",
-      width: 5,
-      height: 5,
+      width: 4,
+      height: 4,
     },
     {
       to: "/compare",
@@ -50,8 +50,8 @@ function Footer() {
       alt: "compare-icon",
       header: "Compare",
       title: "Compare",
-      width: 5,
-      height: 5,
+      width: 4,
+      height: 4,
     },
     {
       to: "/posts",
@@ -62,8 +62,8 @@ function Footer() {
       alt: "posts-icon",
       header: "Posts",
       title: "Posts",
-      width: 5,
-      height: 5,
+      width: 4,
+      height: 4,
     },
     {
       to: "/profile",
@@ -74,8 +74,8 @@ function Footer() {
       alt: "profile-icon",
       header: "Profile",
       title: "Profile",
-      width: 5,
-      height: 5,
+      width: 4,
+      height: 4,
     },
   ];
 

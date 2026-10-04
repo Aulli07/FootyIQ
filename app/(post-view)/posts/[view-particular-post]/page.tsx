@@ -28,6 +28,8 @@ import { CommentInfoType } from "@/features/posts/types/comment";
 import { handleCommentUpload } from "@/features/posts/engine/handle-comment-upload";
 import { createLikePayload, saveLikeFromUpload } from "@/features/posts/services/uploadLikes";
 import { createViewPayload, saveViewFromUpload } from "@/features/posts/services/uploadViews";
+import { handleLike } from "@/features/posts/utils/post-handlers";
+import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
 
 
 
@@ -98,7 +100,7 @@ export default function ParticularPost() {
   const hasCurrentUserLiked = getPostLikesById(post.id).some((like) => like.userId === user.id);
 
   const statChipValues = {
-    likes: postCounts.likeCount + localLikeCount,
+    likes: postCounts.likeCount,
     comments: postCounts.commentCount,
     views: postCounts.viewCount,
   };
@@ -109,17 +111,6 @@ export default function ParticularPost() {
     handleCommentUpload(commentUploadInfo);
   }
 
-  function handleLike() {
-    if (!post || !user || hasCurrentUserLiked) return;
-
-    const likePayload = createLikePayload(post.id, user.id);
-
-    const savedLike = saveLikeFromUpload(likePayload);
-    if (!savedLike) return;
-
-    setLocalLikeCount((prev) => prev + 1);
-  }
-
   if (!mounted) return null;
   return (
     <main className="relative px-4 md:px-6 text-light-text-primary dark:text-dark-text-primary overflow-y-auto">
@@ -127,16 +118,15 @@ export default function ParticularPost() {
         <PageTitle title="POST" />
 
         <div className="py-3 shrink-0 px-3">
-          <article className="w-full rounded-2xl backdrop-blur md:p-7 shadow-md flex flex-col h-auto space-y-3">
-            <div className="flex justify-start items-start gap-4">
-              <div className="relative">
+          <article className="w-full md:p-7 flex flex-col h-auto space-y-3">
+            <div className="flex justify-start gap-4">
+              <div className="relative shrink-0">
                 <Image
                   src={user?.avatarUrl ?? "/images/default-avatar.png"}
                   alt={user?.name ?? "User Avatar"}
                   width={60}
                   height={60}
-                  className="object-cover rounded-full border border-emerald-700 shadow-md"
-                  
+                  className="object-cover aspect-square rounded-full" 
                 />
               </div>
 
@@ -194,23 +184,22 @@ export default function ParticularPost() {
 
           <button
             type="button"
-            onClick={handleLike}
+            onClick={() => handleLike(post.id, user.id, hasCurrentUserLiked, setLocalLikeCount)}
             disabled={hasCurrentUserLiked}
             className="ml-auto flex items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {/* <span className={`${poppins.className}`}>{hasCurrentUserLiked ? "Liked" : "Like"}</span> */}
             <Image
-              src={mounted && !isDark ? "/images/like-dark.png" : "/images/like-light.png"}
+              src={getQuickActionIcon("like", mounted, isDark)}
               alt="Like"
               width={30}
               height={30}
-              className="object-cover"
+              className={`object-cover ${hasCurrentUserLiked && "bg-red-400"}`}
             />
           </button>
         </div>
 
         <section className="relative mt-5 w-full flex-1 min-h-0 flex flex-col px-3 relative">
-          <div className="flex items-center justify-between pb-3 px-1 border-b border-light-ui-border dark:border-white/10">
+          <div className="flex items-center justify-between pb-3 px-1 ">
             <h2
               className={`${oswald.className} text-md text-light-text-primary dark:text-dark-text-primary font-semibold`}
             >
@@ -223,7 +212,7 @@ export default function ParticularPost() {
             </p>
           </div>
 
-          <div className="mt-3 flex-1 pr-1 min-h-0 rounded-xl bg-light-background-card/40 dark:bg-white/[0.02]">
+          <div className="mt-3 flex-1 space-y-3 pr-1 min-h-0">
             {commentStore.length > 0 ? (
               commentStore.map((comment) => (
                 <CommentDisplay key={comment.id} comment={comment} mounted={mounted} isDark={isDark} />

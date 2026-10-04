@@ -42,6 +42,8 @@ export function PostDisplay({ post }: { post: PostType }) {
   const hasAttachment =
     postAttachment?.comparisonId && postAttachment.comparisonId.length > 0;
 
+  if (!mounted) return null;
+
   return (
     <Link
       href={`/posts/${post.id}`}

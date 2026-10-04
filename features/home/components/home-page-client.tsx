@@ -20,7 +20,7 @@ export default function HomePageClient({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 pt-1">
       <div className="flex flex-col gap-4">
         <SearchInput
           setIsSearch={setIsSearch}

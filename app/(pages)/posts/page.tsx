@@ -1,15 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { create } from "zustand";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 
 import { poppins } from "@/app/font-icons/fonts";
 import { postTabs } from "@/features/posts/selectors/post-tabs";
 import { buildForYouPosts } from "@/features/posts/selectors/build-for-you-posts";
 import { buildPublicPosts } from "@/features/posts/selectors/build-public-posts";
 
-import { PostMappedType } from "@/features/posts/types/post";
+import { PostMappedType, PostType } from "@/features/posts/types/post";
 import { PostTabType } from "@/features/posts/types/post-tabs";
 
 import AddPost from "@/features/posts/components/add-post";
@@ -22,13 +22,53 @@ const MAIN_USER_ID = "u-1";
 
 
 
+type PostState = {
+  posts: PostMappedType;
+  followingPosts: PostType[];
+  forYouPosts: PostType[];
+  hasLoaded: boolean;
+  loadPosts: () => Promise<void>;
+}
+
+const usePostStore = create<PostState>((set, get) => ({
+  posts: {},
+  forYouPosts: [],
+  followingPosts: [],
+  hasLoaded: false,
+  loadPosts: async () => {
+    if (get().hasLoaded) return;
+
+    const posts = buildHydratedPostsStore();
+    const forYouPosts = buildForYouPosts({
+      postsStore: posts,
+      userId: MAIN_USER_ID,
+    });
+    const followingPosts = buildPublicPosts({
+      postsStore: posts,
+      userId: MAIN_USER_ID,
+    });
+
+    set({ posts, forYouPosts, followingPosts, hasLoaded: true });
+  }
+}))
+ 
 function PostsPage() {
   const [postTab, setPostTab] = useState<PostTabType["key"]>("for_you");
-  const postsStore = useMemo(() => buildHydratedPostsStore(), []);
+
+  const forYouPosts = usePostStore((s) => s.forYouPosts);
+  const followingPosts = usePostStore((s) => s.followingPosts);
+  const hasLoaded = usePostStore((s) => s.hasLoaded);
+  const loadPosts = usePostStore((s) => s.loadPosts);
+
+  useEffect(() => {
+    loadPosts()
+  }, [loadPosts])
+
+  if (!hasLoaded) return null;
 
   const postTabContent: Record<string, React.ReactNode> = {
-    for_you: <ForYouPosts postsStore={postsStore} />,
-    following: <PublicPosts userId={MAIN_USER_ID} postsStore={postsStore} />,
+    for_you: <ForYouPosts posts={forYouPosts} />,
+    following: <PublicPosts posts={followingPosts} />,
   };
 
   return (
@@ -74,38 +114,21 @@ function PostsPage() {
   );
 }
 
-function ForYouPosts({ postsStore }: { postsStore: PostMappedType }) {
-  const shuffledForYouPosts = buildForYouPosts({
-    postsStore,
-    userId: MAIN_USER_ID,
-  });
-
+function ForYouPosts({ posts }: { posts: PostType[] }) {
   return (
     <div className="display flex flex-col gap-5">
-      {shuffledForYouPosts.map((post) => (
-        <Link href={{ pathname: `/posts/${post.id}` }} key={post.id}>
-          <PostDisplay post={post} />
-        </Link>
+      {posts.map((post) => (
+        <PostDisplay key={post.id} post={post} />
       ))}
     </div>
   );
 }
 
-function PublicPosts({
-  userId,
-  postsStore,
-}: {
-  userId: string;
-  postsStore: PostMappedType;
-}) {
-  const followingPosts = buildPublicPosts({ postsStore, userId });
-
+function PublicPosts({ posts }: { posts: PostType[] }) {
   return (
     <div className="display flex flex-col gap-4">
-      {followingPosts.map((post) => (
-        <Link href={{ pathname: `/posts/${post.id}` }} key={post.id}>
-          <PostDisplay post={post} />
-        </Link>
+      {posts.map((post) => (
+        <PostDisplay key={post.id} post={post} />
       ))}
     </div>
   );

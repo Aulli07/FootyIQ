@@ -3,7 +3,7 @@
 import { poppins } from "@/app/font-icons/fonts";
 import Image from "next/image";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRef } from "react";
 
 import Header from "@/shared/components/header";
@@ -24,7 +24,43 @@ import { createSelectedContext } from "@/features/compare/utils/get-comp-comtext
 
 import { getComparisonReadinessMessage } from "@/features/compare/selectors/get-comp-readiness";
 import { useSearchParams } from "next/navigation";
+import { create } from "zustand/react";
 
+type ComparisonState = {
+  selectedPlayers: string[];
+  selectedContexts: SelectedComparisonContext[];
+  setSelectedPlayers: Dispatch<SetStateAction<string[]>>;
+  setSelectedContexts: Dispatch<SetStateAction<SelectedComparisonContext[]>>;
+  confirmedComparisonKey: string | null;
+  setConfirmedComparisonKey: Dispatch<SetStateAction<string | null>>;
+};
+
+const useComparisonStore = create<ComparisonState>((set) => ({
+  selectedPlayers: ["", ""],
+  selectedContexts: [createSelectedContext(), createSelectedContext()],
+  setSelectedPlayers: (nextPlayers) =>
+    set((state) => ({
+      selectedPlayers:
+        typeof nextPlayers === "function"
+          ? nextPlayers(state.selectedPlayers)
+          : nextPlayers,
+    })),
+  setSelectedContexts: (nextContexts) =>
+    set((state) => ({
+      selectedContexts:
+        typeof nextContexts === "function"
+          ? nextContexts(state.selectedContexts)
+          : nextContexts,
+    })),
+  confirmedComparisonKey: null,
+  setConfirmedComparisonKey: (nextKey) => 
+    set((state) => ({
+      confirmedComparisonKey:
+        typeof nextKey === "function"
+          ? nextKey(state.confirmedComparisonKey)
+          : nextKey,
+    }))
+}));
 
 
 
@@ -32,31 +68,42 @@ const Compare = () => {
   const searchParams = useSearchParams();
   const playerId = searchParams.get("id");
 
-  const [selectedPlayers, setSelectedPlayers] = useState<Array<string>>([
-    playerId ?? "",
-    "",
-  ]);
-  const [selectedContexts, setSelectedContexts] = useState<SelectedComparisonContext[]>([
-    createSelectedContext(),
-    createSelectedContext(),
-  ]);
-
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const [currentComparisonId, setCurrentComparisonId] = useState<string | null>(
-    null,
+  const selectedPlayers = useComparisonStore((state) => state.selectedPlayers);
+  const selectedContexts = useComparisonStore((state) => state.selectedContexts);
+  const setSelectedPlayers = useComparisonStore(
+    (state) => state.setSelectedPlayers,
   );
-  const [confirmedComparisonKey, setConfirmedComparisonKey] = useState<string | null>(
-    null,
+  const setSelectedContexts = useComparisonStore(
+    (state) => state.setSelectedContexts,
   );
-  const [showReadinessMessage, setShowReadinessMessage] = useState(false);
+  const confirmedComparisonKey = useComparisonStore(
+    (state) => state.confirmedComparisonKey,
+  );
+  const setConfirmedComparisonKey = useComparisonStore(
+    (state) => state.setConfirmedComparisonKey,
+  );
+
+  useEffect(() => {
+    if (!playerId) return;
+    setSelectedPlayers((previousPlayers) => {
+      if (previousPlayers[0] === playerId) return previousPlayers;
+      return [playerId, previousPlayers[1]];
+    });
+  }, [playerId, setSelectedPlayers]);
+
+
+  const [currentComparisonId, setCurrentComparisonId] = useState<string | null>(null); // State to hold the current comparison ID for shares
   const lastComparisonKeyRef = useRef<string | null>(null);
 
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const searchedPlayers = getPlayerSearchResults(searchQuery);
+
+  const [showReadinessMessage, setShowReadinessMessage] = useState(false);
   const readinessMessage = getComparisonReadinessMessage(
     selectedPlayers,
     selectedContexts,
   );
+
   const isComparisonReady = readinessMessage === null;
   const comparisonKey = JSON.stringify({ selectedPlayers, selectedContexts });
   const isShowingResults =
@@ -70,6 +117,8 @@ const Compare = () => {
     isConfirmed: isShowingResults,
   });
 
+
+  
   return (
     <main className="flex flex-col w-full px-4 gap-4 text-light-text-primary dark:text-dark-text-primary">
       <Header headerText="Compare" />
