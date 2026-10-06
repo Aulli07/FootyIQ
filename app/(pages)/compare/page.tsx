@@ -26,6 +26,8 @@ import { getComparisonReadinessMessage } from "@/features/compare/selectors/get-
 import { useSearchParams } from "next/navigation";
 import { create } from "zustand/react";
 
+
+
 type ComparisonState = {
   selectedPlayers: string[];
   selectedContexts: SelectedComparisonContext[];
@@ -38,27 +40,27 @@ type ComparisonState = {
 const useComparisonStore = create<ComparisonState>((set) => ({
   selectedPlayers: ["", ""],
   selectedContexts: [createSelectedContext(), createSelectedContext()],
-  setSelectedPlayers: (nextPlayers) =>
+  setSelectedPlayers: (nextPlayers) => 
     set((state) => ({
-      selectedPlayers:
-        typeof nextPlayers === "function"
+      selectedPlayers: 
+        typeof nextPlayers === "function" 
           ? nextPlayers(state.selectedPlayers)
           : nextPlayers,
     })),
   setSelectedContexts: (nextContexts) =>
     set((state) => ({
-      selectedContexts:
+      selectedContexts: 
         typeof nextContexts === "function"
           ? nextContexts(state.selectedContexts)
-          : nextContexts,
+          : nextContexts
     })),
   confirmedComparisonKey: null,
-  setConfirmedComparisonKey: (nextKey) => 
+  setConfirmedComparisonKey: (nextKey) =>
     set((state) => ({
       confirmedComparisonKey:
-        typeof nextKey === "function"
+        typeof nextKey === "function" 
           ? nextKey(state.confirmedComparisonKey)
-          : nextKey,
+          : nextKey
     }))
 }));
 

@@ -135,3 +135,29 @@ function PublicPosts({ posts }: { posts: PostType[] }) {
 }
 
 export default PostsPage;
+
+
+
+
+// setSelectedPlayers: (nextPlayers) =>
+//     set((state) => ({
+//       selectedPlayers:
+//         typeof nextPlayers === "function"
+//           ? nextPlayers(state.selectedPlayers)
+//           : nextPlayers,
+//     })),
+//   setSelectedContexts: (nextContexts) =>
+//     set((state) => ({
+//       selectedContexts:
+//         typeof nextContexts === "function"
+//           ? nextContexts(state.selectedContexts)
+//           : nextContexts,
+//     })),
+//   confirmedComparisonKey: null,
+//   setConfirmedComparisonKey: (nextKey) => 
+//     set((state) => ({
+//       confirmedComparisonKey:
+//         typeof nextKey === "function"
+//           ? nextKey(state.confirmedComparisonKey)
+//           : nextKey,
+//     }))
