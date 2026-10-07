@@ -1,8 +1,8 @@
 import { fetchPlayersPage } from "./lib/api";
 import { loadPage, loadProgress, savePage, saveProgress } from "./lib/storage";
 
-const league = 39; // Premier League
-const season = 2023; // 2023-2024 season
+const league = 140; // Premier League
+const season = 2024; // 2023-2024 season
 const MAX_PAGES_PER_TEAM = 3;
 
 async function main() {
@@ -12,8 +12,8 @@ async function main() {
   saveProgress(progress);
   const completed = new Set(progress[key] ?? []);
 
-  const teams = [33, 34, 35, 36, 39, 40, 42, 44, 45, 47, 48, 49, 50, 51, 52, 55, 62, 63, 65, 66, 1359];
-  const REQUEST_LIMIT = 96;
+  const teams = [529, 530, 531, 532, 533, 534, 536, 538, 540, 541, 542, 543, 546, 547, 548, 720, 727, 728, 745, 798];
+  const REQUEST_LIMIT = 98;
   let requests = 0;
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
