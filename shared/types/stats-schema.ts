@@ -3,6 +3,7 @@
 // export type CompetitionType = "league" | "cup" | "continental" | "international" | "other";
 
 export interface Player {
+  // id: string;
   id: string;
   fullName: string;
   nationality: string;
@@ -12,7 +13,7 @@ export interface Player {
   preferredFoot?: string;
   imageUrl: string;
   currentClubId: string;
-  active: boolean;
+  // active: boolean;
 }
 
 export interface Club {
@@ -27,8 +28,10 @@ export interface Club {
 export interface Competition {
   id: string;
   name: string;
+  country: string;
   type: string;
-  aliases: string[];
+  logoUrl: string;
+  aliases?: string[];
 }
 
 export interface Season {
@@ -50,22 +53,24 @@ export interface PlayerSeasonStats {
   minutes: number;
   goals: number;
   assists: number;
+  saves: number;
+  conceded: number;
   shots: number;
   shotsOnTarget: number;
+  passes: number;
   keyPasses: number;
-  chancesCreated: number;
   dribbles: number;
-  dribblesCompleted?: number;
+  dribblesCompleted: number;
   interceptions: number;
   tackles: number;
-  dribbledPast: number;
-  clearances: number;
-  groundDuelsWon: number;
-  blockedShots: number;
+  blocks: number;
+  duels: number;
+  duelsWon: number
   yellowCards: number;
   yellowToRedCards: number;
   redCards: number;
   source: "legacy" | "manual" | "api-football";
+  rating: number;
   updatedAt: string;
 }
 

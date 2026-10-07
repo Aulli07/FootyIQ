@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:players": "tsx scripts/build-players.ts",
     "fetch:players": "tsx --env-file=.env.local scripts/fetch-players.ts",
     "dev": "next dev --webpack",
     "precompute:canonical": "tsx features/players/adapters/legacy-to-final-stats.ts",
