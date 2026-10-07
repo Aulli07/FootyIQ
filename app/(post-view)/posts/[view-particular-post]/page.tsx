@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { oswald, poppins } from "@/app/font-icons/fonts";
 import PageTitle from "@/shared/components/page-title";
+import { PostTimeDesign } from "@/features/posts/components/post-time-design";
 
 import { postStatChips } from "@/features/posts/selectors/post-stat-chips";
 
@@ -32,18 +33,6 @@ import { handleLike } from "@/features/posts/utils/post-handlers";
 import { getQuickActionIcon } from "@/features/posts/utils/quick-actions";
 
 
-
-export function PostTimeDesign({ post }: { post: PostType }) {
-  return (
-    <div className="flex border border-emerald-400/20 bg-emerald-500/10 rounded-full px-3 h-6 items-center gap-2">
-      <p
-        className={`text-xs text-light-text-secondary dark:text-dark-text-secondary ${poppins.className}`}
-      >
-        {timeAgo(post.createdAt)}
-      </p>
-    </div>
-  );
-}
 
 export default function ParticularPost() {
   const params = useParams<{ "view-particular-post": string; posts: string }>();

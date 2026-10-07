@@ -6,7 +6,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { PostTimeDesign } from "@/app/(post-view)/posts/[view-particular-post]/page";
+import { PostTimeDesign } from "@/features/posts/components/post-time-design";
 import {
   getPostCountsById,
   getPostAttachmentById,
