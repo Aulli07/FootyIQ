@@ -61,7 +61,7 @@
       "nationality": "Spain",
       "dateOfBirth": "2007-01-01",
       "heightCm": 170,
-      "primaryPosition": "Winger",
+      "primaryPosition": "Forward",
       "imageUrl": "/images/lamine-yamal.jpg",
       "currentClubId": "barcelona",
       "active": true
@@ -561,7 +561,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.544Z"
+      "updatedAt": "2026-10-07T02:15:09.613Z"
     },
     {
       "id": "ronaldo:24/25:acl-elite",
@@ -590,7 +590,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:24/25:kings-cup",
@@ -619,7 +619,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:23/24:spl",
@@ -648,7 +648,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:23/24:acl",
@@ -677,7 +677,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:23/24:arab-club-champions-cup",
@@ -706,7 +706,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:23/24:kings-cup",
@@ -735,7 +735,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:23/24:saudi-super-cup",
@@ -764,7 +764,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:22/23:epl",
@@ -793,7 +793,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:22/23:uel",
@@ -822,7 +822,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:22/23:spl",
@@ -851,7 +851,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:22/23:kings-cup",
@@ -880,7 +880,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "ronaldo:22/23:saudi-super-cup",
@@ -909,7 +909,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:24/25:mls",
@@ -938,7 +938,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:24/25:leagues-cup",
@@ -967,7 +967,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:24/25:concacaf-champions-cup",
@@ -996,7 +996,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:24/25:us-open-cup",
@@ -1025,7 +1025,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:23/24:mls",
@@ -1054,7 +1054,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:23/24:leagues-cup",
@@ -1083,7 +1083,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "messi:23/24:us-open-cup",
@@ -1112,7 +1112,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:24/25:brasileirao",
@@ -1141,7 +1141,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:24/25:campeonato-paulista",
@@ -1170,7 +1170,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:24/25:copa-do-brasil",
@@ -1199,7 +1199,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:24/25:afc-champions-league",
@@ -1228,7 +1228,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:23/24:saudi-pro-league",
@@ -1257,7 +1257,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "neymar:23/24:afc-champions-league",
@@ -1286,7 +1286,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:24/25:spl",
@@ -1315,7 +1315,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:24/25:acl",
@@ -1344,7 +1344,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:24/25:king-cup",
@@ -1373,7 +1373,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:23/24:spl",
@@ -1402,7 +1402,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:23/24:acl",
@@ -1431,7 +1431,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "benzema:23/24:king-cup",
@@ -1460,7 +1460,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:24/25:ligue1",
@@ -1489,7 +1489,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:24/25:ucl",
@@ -1518,7 +1518,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:24/25:coupe-de-france",
@@ -1547,7 +1547,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:23/24:ligue1",
@@ -1576,7 +1576,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:23/24:uel",
@@ -1605,7 +1605,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "doue:23/24:coupe-de-france",
@@ -1634,7 +1634,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:24/25:laliga",
@@ -1663,7 +1663,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:24/25:ucl",
@@ -1692,7 +1692,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:24/25:copa-del-rey",
@@ -1721,7 +1721,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.547Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:24/25:spanish-super-cup",
@@ -1750,7 +1750,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:23/24:laliga",
@@ -1779,7 +1779,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:23/24:ucl",
@@ -1808,7 +1808,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:23/24:copa-del-rey",
@@ -1837,7 +1837,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:23/24:spanish-super-cup",
@@ -1866,7 +1866,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.616Z"
     },
     {
       "id": "yamal:23/24:euro",
@@ -1895,7 +1895,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:24/25:laliga",
@@ -1924,7 +1924,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:24/25:ucl",
@@ -1953,7 +1953,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:24/25:copa-del-rey",
@@ -1982,7 +1982,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:24/25:fifa-club-world-cup",
@@ -2011,7 +2011,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:23/24:epl",
@@ -2040,7 +2040,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:23/24:ucl",
@@ -2069,7 +2069,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:23/24:fa-cup",
@@ -2098,7 +2098,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:23/24:carabao-cup",
@@ -2127,7 +2127,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:23/24:fifa-club-world-cup",
@@ -2156,7 +2156,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:22/23:epl",
@@ -2185,7 +2185,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:22/23:ucl",
@@ -2214,7 +2214,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:22/23:fa-cup",
@@ -2243,7 +2243,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:22/23:carabao-cup",
@@ -2272,7 +2272,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:22/23:world-cup",
@@ -2301,7 +2301,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "alvarez:21/22:argentine-primera",
@@ -2330,7 +2330,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:24/25:laliga",
@@ -2359,7 +2359,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:24/25:ucl",
@@ -2388,7 +2388,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:24/25:copa-del-rey",
@@ -2417,7 +2417,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:24/25:fifa-club-world-cup",
@@ -2446,7 +2446,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:23/24:laliga",
@@ -2475,7 +2475,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:23/24:ucl",
@@ -2504,7 +2504,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:23/24:copa-del-rey",
@@ -2533,7 +2533,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:23/24:supercopa-de-espana",
@@ -2562,7 +2562,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:22/23:bundesliga",
@@ -2591,7 +2591,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:22/23:ucl",
@@ -2620,7 +2620,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:22/23:dfb-pokal",
@@ -2649,7 +2649,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "bellingham:22/23:world-cup",
@@ -2678,7 +2678,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:24/25:epl",
@@ -2707,7 +2707,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:24/25:ucl",
@@ -2736,7 +2736,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:24/25:fa-cup",
@@ -2765,7 +2765,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:24/25:carabao-cup",
@@ -2794,7 +2794,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:24/25:fifa-club-world-cup",
@@ -2823,7 +2823,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:23/24:epl",
@@ -2852,7 +2852,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:23/24:ucl",
@@ -2881,7 +2881,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:23/24:fa-cup",
@@ -2910,7 +2910,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:23/24:carabao-cup",
@@ -2939,7 +2939,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:23/24:fifa-club-world-cup",
@@ -2968,7 +2968,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:22/23:epl",
@@ -2997,7 +2997,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:22/23:ucl",
@@ -3026,7 +3026,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:22/23:fa-cup",
@@ -3055,7 +3055,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:22/23:carabao-cup",
@@ -3084,7 +3084,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:22/23:world-cup",
@@ -3113,7 +3113,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:21/22:epl",
@@ -3142,7 +3142,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:21/22:ucl",
@@ -3171,7 +3171,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:21/22:fa-cup",
@@ -3200,7 +3200,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "foden:21/22:carabao-cup",
@@ -3229,7 +3229,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:24/25:epl",
@@ -3258,7 +3258,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:24/25:ucl",
@@ -3287,7 +3287,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:24/25:fa-cup",
@@ -3316,7 +3316,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:24/25:fifa-club-world-cup",
@@ -3345,7 +3345,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:23/24:epl",
@@ -3374,7 +3374,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:23/24:ucl",
@@ -3403,7 +3403,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:23/24:fa-cup",
@@ -3432,7 +3432,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:23/24:carabao-cup",
@@ -3461,7 +3461,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:22/23:epl",
@@ -3490,7 +3490,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:22/23:ucl",
@@ -3519,7 +3519,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:22/23:fa-cup",
@@ -3548,7 +3548,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:22/23:carabao-cup",
@@ -3577,7 +3577,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:21/22:bundesliga",
@@ -3606,7 +3606,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:21/22:ucl",
@@ -3635,7 +3635,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "haaland:21/22:dfb-pokal",
@@ -3664,7 +3664,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:24/25:laliga",
@@ -3693,7 +3693,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:24/25:ucl",
@@ -3722,7 +3722,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:24/25:copa-del-rey",
@@ -3751,7 +3751,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:24/25:supercopa-de-espana",
@@ -3780,7 +3780,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:23/24:laliga",
@@ -3809,7 +3809,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:23/24:ucl",
@@ -3838,7 +3838,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:23/24:copa-del-rey",
@@ -3867,7 +3867,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:23/24:supercopa-de-espana",
@@ -3896,7 +3896,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:22/23:laliga",
@@ -3925,7 +3925,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:22/23:ucl",
@@ -3954,7 +3954,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:22/23:uel",
@@ -3983,7 +3983,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:22/23:copa-del-rey",
@@ -4012,7 +4012,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "lewandowski:22/23:supercopa-de-espana",
@@ -4041,7 +4041,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:laliga",
@@ -4070,7 +4070,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:ucl",
@@ -4099,7 +4099,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:copa-del-rey",
@@ -4128,7 +4128,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:supercopa-de-espana",
@@ -4157,7 +4157,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:uefa-super-cup",
@@ -4186,7 +4186,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:fifa-intercontinental-cup",
@@ -4215,7 +4215,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:24/25:fifa-club-world-cup",
@@ -4244,7 +4244,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:23/24:ligue1",
@@ -4273,7 +4273,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:23/24:ucl",
@@ -4302,7 +4302,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:23/24:coupe-de-france",
@@ -4331,7 +4331,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:23/24:trophee-des-champions",
@@ -4360,7 +4360,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:22/23:ligue1",
@@ -4389,7 +4389,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.617Z"
     },
     {
       "id": "mbappe:22/23:ucl",
@@ -4418,7 +4418,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "mbappe:22/23:coupe-de-france",
@@ -4447,7 +4447,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "mbappe:22/23:trophee-des-champions",
@@ -4476,7 +4476,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:24/25:laliga",
@@ -4505,7 +4505,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:24/25:ucl",
@@ -4534,7 +4534,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:24/25:copa-del-rey",
@@ -4563,7 +4563,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:24/25:supercopa-de-espana",
@@ -4592,7 +4592,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:23/24:laliga",
@@ -4621,7 +4621,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:23/24:ucl",
@@ -4650,7 +4650,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:23/24:copa-del-rey",
@@ -4679,7 +4679,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:23/24:supercopa-de-espana",
@@ -4708,7 +4708,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:22/23:laliga",
@@ -4737,7 +4737,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:22/23:ucl",
@@ -4766,7 +4766,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:22/23:uel",
@@ -4795,7 +4795,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:22/23:copa-del-rey",
@@ -4824,7 +4824,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "pedri:22/23:supercopa-de-espana",
@@ -4853,7 +4853,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:24/25:epl",
@@ -4882,7 +4882,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:24/25:ucl",
@@ -4911,7 +4911,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:24/25:fifa-club-world-cup",
@@ -4940,7 +4940,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:epl",
@@ -4969,7 +4969,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.548Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:ucl",
@@ -4998,7 +4998,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:fa-cup",
@@ -5027,7 +5027,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:carabao-cup",
@@ -5056,7 +5056,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:fifa-club-world-cup",
@@ -5085,7 +5085,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:23/24:euro",
@@ -5114,7 +5114,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.618Z"
     },
     {
       "id": "rodri:22/23:epl",
@@ -5143,7 +5143,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "rodri:22/23:ucl",
@@ -5172,7 +5172,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "rodri:22/23:fa-cup",
@@ -5201,7 +5201,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "rodri:22/23:world-cup",
@@ -5230,7 +5230,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:24/25:laliga",
@@ -5259,7 +5259,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:24/25:ucl",
@@ -5288,7 +5288,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:24/25:copa-del-rey",
@@ -5317,7 +5317,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:24/25:spanish-super-cup",
@@ -5346,7 +5346,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:24/25:fifa-club-world-cup",
@@ -5375,7 +5375,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:23/24:laliga",
@@ -5404,7 +5404,7 @@
       "yellowToRedCards": 0,
       "redCards": 1,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:23/24:ucl",
@@ -5433,7 +5433,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:23/24:copa-del-rey",
@@ -5462,7 +5462,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:23/24:spanish-super-cup",
@@ -5491,7 +5491,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:22/23:laliga",
@@ -5520,7 +5520,7 @@
       "yellowToRedCards": 0,
       "redCards": 1,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:22/23:ucl",
@@ -5549,7 +5549,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:22/23:copa-del-rey",
@@ -5578,7 +5578,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:22/23:spanish-super-cup",
@@ -5607,7 +5607,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     },
     {
       "id": "vinicius:22/23:uefa-super-cup",
@@ -5636,7 +5636,7 @@
       "yellowToRedCards": 0,
       "redCards": 0,
       "source": "legacy",
-      "updatedAt": "2026-09-12T02:14:02.549Z"
+      "updatedAt": "2026-10-07T02:15:09.619Z"
     }
   ]
 }

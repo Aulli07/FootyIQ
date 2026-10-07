@@ -1,6 +1,6 @@
 "use client";
 
-import { Profile } from "../../page";
+import { Profile } from "@/features/users/components/profile";
 import { useParams } from "next/navigation";
 import { getProfileUserByUsername } from "@/features/users/selectors/profile-meta";
 
