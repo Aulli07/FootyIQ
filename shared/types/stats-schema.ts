@@ -10,10 +10,8 @@ export interface Player {
   dateOfBirth: string;
   heightCm: number;
   primaryPosition: string;
-  preferredFoot?: string;
   imageUrl: string;
   currentClubId: string;
-  // active: boolean;
 }
 
 export interface Club {
@@ -70,9 +68,33 @@ export interface PlayerSeasonStats {
   yellowToRedCards: number;
   redCards: number;
   source: "legacy" | "manual" | "api-football";
-  rating: number;
+  rating: number
   updatedAt: string;
 }
+
+export type PlayerAggregateStats = {
+  appearances: number;
+  minutes: number;
+  goals: number;
+  assists: number;
+  saves: number;
+  conceded: number;
+  shots: number;
+  shotsOnTarget: number;
+  passes: number;
+  keyPasses: number;
+  dribbles: number;
+  dribblesCompleted: number;
+  interceptions: number;
+  tackles: number;
+  blocks: number;
+  duels: number;
+  duelsWon: number
+  yellowCards: number;
+  yellowToRedCards: number;
+  redCards: number;
+  rating: number;
+};
 
 export interface PlayerCareerStats {
   id: string;
@@ -117,7 +139,7 @@ export interface FootballDataStore {
   clubs: Club[];
   competitions: Competition[];
   seasons: Season[];
-  totalPlayerStats: PlayerSeasonStats[];
+  stats: PlayerSeasonStats[];
 }
 
 export type SeasonCompetitionGroup = {

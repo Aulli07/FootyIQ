@@ -14,7 +14,7 @@ export type ComparisonContext =
 
 export type ComparisonAnalyticsType = { id: string; viewCount: number; searchCount: number };
 export type ComparisonStoredAnalyticsType = Record<string, ComparisonAnalyticsType>;
-export type ComparisonCombinedType = QualityComparisonType & ComparisonAnalyticsType;
+export type ComparisonCombinedType = BaseComparisonType & ComparisonAnalyticsType;
 export type ComparisonProps = { comparisonIds: string[]; title: string };
 
 /** Both players share a comparison mode but own independent stat scopes. */
@@ -27,7 +27,7 @@ export type BaseComparisonType = {
   scopeB: ComparisonScope;
 };
 
-export type QualityComparisonType = BaseComparisonType & { qualityScore: number };
+export type QualityComparisonType = BaseComparisonType;
 
 // Compatibility aliases for older feature consumers.
 export type ComparisonType = QualityComparisonType;

@@ -1,9 +1,11 @@
 import { initializeComparisonAnalytics } from "../services/analytics-storage";
 import { ComparisonThemeType } from "../types/comparison-theme-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
-import { filterBaseComparisons, playersById} from "./filter-base-comps";
+import { filterBaseComparisons } from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
 import { QualityComparisonType, ComparisonScope } from "../types/comparison-main-type";
+
+import { playersById } from "../data/comp-engine-data";
 
 
 export function buildIndexedComparisonsForPlayers(

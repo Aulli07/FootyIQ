@@ -1,4 +1,4 @@
-import canonicalStoreNew from "@/features/players/data/new/canonical-store.json";
+import canonicalStoreNew from "@/data/processed/canonical-store.json";
 import { FootballDataStore } from "@/shared/types/stats-schema";
 import {
   BaseComparisonType,
@@ -7,7 +7,77 @@ import {
 } from "../types/comparison-main-type";
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
-const stats = canonicalStore.totalPlayerStats;
+const stats = canonicalStore.stats;
+
+
+
+export function generateAllBaseComparisons() {
+  return [
+    ...generateSeasonComparisons(),
+    ...generateLeagueSeasonComparisons(),
+    ...generateCompetitionSeasonComparisons(),
+    ...generateLeagueCareerComparisons(),
+    ...generateCompetitionCareerComparisons(),
+    ...generateOverallCareerComparisons(),
+  ];
+}
+
+
+function generateSeasonComparisons() {
+  const entry = stats.map((stat) => ({
+    playerId: stat.playerId,
+    scope: { seasonId: stat.seasonId }
+  }))
+  return pairScopeEntries(uniqueEntries(entry), "CTX-SEASON")
+}
+
+function generateLeagueSeasonComparisons() {
+  const entry = stats
+    .filter((stat) => stat.competitionType === "league")
+    .map((stat) => ({
+      playerId: stat.playerId,
+      scope: { seasonId: stat.seasonId, leagueId: stat.competitionId },
+      }));
+  return pairScopeEntries(uniqueEntries(entry), "CTX-LEAGUE-SEASON");
+}
+
+function generateCompetitionSeasonComparisons() {
+  const entry = stats
+    .filter((stat) => stat.competitionType !== "league")
+    .map((stat) => ({
+      playerId: stat.playerId,
+      scope: { seasonId: stat.seasonId, competitionId: stat.competitionId },
+    }))
+  return pairScopeEntries(uniqueEntries(entry), "CTX-COMPETITION-SEASON");
+}
+
+function generateLeagueCareerComparisons() {
+  const entry = stats
+    .filter((stat) => stat.competitionType === "league")
+    .map((stat) => ({ 
+      playerId: stat.playerId, 
+      scope: { leagueId: stat.competitionId } 
+    }))
+  return pairScopeEntries(uniqueEntries(entry), "CTX-LEAGUE-CAREER");
+}
+
+function generateCompetitionCareerComparisons() {
+  const entry = stats
+    .filter((stat) => stat.competitionType !== "league")
+    .map((stat) => ({ 
+      playerId: stat.playerId, 
+      scope: { competitionId: stat.competitionId } 
+    }));
+  return pairScopeEntries(uniqueEntries(entry), "CTX-COMPETITION-CAREER");
+}
+
+function generateOverallCareerComparisons() {
+  const entry = stats.map((stat) => ({ 
+    playerId: stat.playerId, scope: {} 
+  }))
+  return pairScopeEntries(uniqueEntries(entry), "CTX-OVERALL-CAREER");
+}
+
 
 type PlayerScopeEntry = {
   playerId: string;
@@ -25,7 +95,6 @@ function pairScopeEntries(
       const entryA = entries[indexA];
       const entryB = entries[indexB];
 
-      // A player should never be compared to themself in another scope.j
       if (entryA.playerId === entryB.playerId) continue;
 
       comparisons.push({
@@ -50,74 +119,4 @@ function uniqueEntries(entries: PlayerScopeEntry[]): PlayerScopeEntry[] {
     seen.add(key);
     return true;
   });
-}
-
-function generateSeasonComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats.map((stat) => ({
-      playerId: stat.playerId,
-      scope: { seasonId: stat.seasonId },
-    }))),
-    "CTX-SEASON",
-  );
-}
-
-function generateLeagueSeasonComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats
-      .filter((stat) => stat.competitionType === "league")
-      .map((stat) => ({
-        playerId: stat.playerId,
-        scope: { seasonId: stat.seasonId, leagueId: stat.competitionId },
-      }))),
-    "CTX-LEAGUE-SEASON",
-  );
-}
-
-function generateCompetitionSeasonComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats
-      .filter((stat) => stat.competitionType !== "league")
-      .map((stat) => ({
-        playerId: stat.playerId,
-        scope: { seasonId: stat.seasonId, competitionId: stat.competitionId },
-      }))),
-    "CTX-COMPETITION-SEASON",
-  );
-}
-
-function generateLeagueCareerComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats
-      .filter((stat) => stat.competitionType === "league")
-      .map((stat) => ({ playerId: stat.playerId, scope: { leagueId: stat.competitionId } }))),
-    "CTX-LEAGUE-CAREER",
-  );
-}
-
-function generateCompetitionCareerComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats
-      .filter((stat) => stat.competitionType !== "league")
-      .map((stat) => ({ playerId: stat.playerId, scope: { competitionId: stat.competitionId } }))),
-    "CTX-COMPETITION-CAREER",
-  );
-}
-
-function generateOverallCareerComparisons() {
-  return pairScopeEntries(
-    uniqueEntries(stats.map((stat) => ({ playerId: stat.playerId, scope: {} }))),
-    "CTX-OVERALL-CAREER",
-  );
-}
-
-export function generateAllBaseComparisons() {
-  return [
-    ...generateSeasonComparisons(),
-    ...generateLeagueSeasonComparisons(),
-    ...generateCompetitionSeasonComparisons(),
-    ...generateLeagueCareerComparisons(),
-    ...generateCompetitionCareerComparisons(),
-    ...generateOverallCareerComparisons(),
-  ];
 }

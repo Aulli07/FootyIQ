@@ -1,51 +1,39 @@
-import { PlayerSeasonStats } from "@/shared/types/stats-schema";
+import { PlayerAggregateStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
 
 
-export type AggregatedStatsType = {
-  minutes: number;
-  appearances: number;
-  goals: number;
-  assists: number;
-  shots: number;
-  shotsOnTarget: number;
-  chancesCreated: number;
-  dribbles: number;
-  dribblesCompleted: number;
-  keyPasses: number;
-  interceptions: number;
-  tackles: number;
-  dribbledPast: number;
-  clearances: number;
-  groundDuelsWon: number;
-  blockedShots: number;
-  yellowCards: number;
-  yellowToRedCards: number;
-  redCards: number;
-};
 
-export function aggregateStats(rows: PlayerSeasonStats[]): AggregatedStatsType {
+export function aggregateStats(rows: PlayerSeasonStats[]): PlayerAggregateStats {
   const sum = (field: string) =>
     rows.reduce((total, row) => total + (Number(row[field as keyof PlayerSeasonStats]) || 0), 0);
+  const minutes = sum("minutes");
+  const rating = minutes > 0
+    ? rows.reduce(
+        (total, row) => total + (Number(row.rating) || 0) * (Number(row.minutes) || 0),
+        0,
+      ) / minutes
+    : 0;
 
   return {
-    minutes: sum("minutes"),
+    minutes,
     appearances: sum("appearances"),
     goals: sum("goals"),
     assists: sum("assists"),
+    saves: sum("saves"),
+    conceded: sum("conceded"),
     shots: sum("shots"),
     shotsOnTarget: sum("shotsOnTarget"),
+    passes: sum("passes"),
     keyPasses: sum("keyPasses"),
-    chancesCreated: sum("chancesCreated"),
     dribbles: sum("dribbles"),
     dribblesCompleted: sum("dribblesCompleted"),
     interceptions: sum("interceptions"),
     tackles: sum("tackles"),
-    dribbledPast: sum("dribbledPast"),
-    clearances: sum("clearances"),
-    groundDuelsWon: sum("groundDuelsWon"),
-    blockedShots: sum("blockedShots"),
+    blocks: sum("blocks"),
+    duels: sum("duels"),
+    duelsWon: sum("duelsWon"),
     yellowCards: sum("yellowCards"),
     yellowToRedCards: sum("yellowToRedCards"),
-    redCards: sum("redCards")
+    redCards: sum("redCards"),
+    rating
   };
 }

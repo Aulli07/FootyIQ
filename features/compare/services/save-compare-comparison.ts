@@ -50,7 +50,7 @@ export function useSaveComparison({
 
 export function saveComparisonFromCompare(comparison: NewComparisonType): QualityComparisonType {
   const id = createNewComparisonId(comparison);
-  return manageComparisonInStorage({ ...comparison, id, qualityScore: 0 });
+  return manageComparisonInStorage({ ...comparison, id });
 }
 
 function createNewComparisonId(comparison: NewComparisonType): string {

@@ -2,7 +2,7 @@ import { fetchPlayersPage } from "./lib/api";
 import { loadPage, loadProgress, savePage, saveProgress } from "./lib/storage";
 
 const league = 135; // Premier League
-const season = 2023; // 2023-2024 season
+const season = 2024; // 2023-2024 season
 const MAX_PAGES_PER_TEAM = 3;
 
 async function main() {

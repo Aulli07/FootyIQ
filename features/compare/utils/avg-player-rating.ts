@@ -1,4 +1,4 @@
-import { AggregatedStatsType } from "./aggregate-stat";
+import { PlayerAggregateStats } from "@/shared/types/stats-schema";
 
 export type PositionGroup = "Defender" | "Midfielder" | "Winger" | "Striker";
 
@@ -92,7 +92,7 @@ function getProfile(position: PositionGroup): RatingProfile {
  * on-ball and defensive metrics; no default rating is added.
  */
 export function getAverageRating(
-  aggStats: AggregatedStatsType,
+  aggStats: PlayerAggregateStats,
   position: PositionGroup,
 ): number {
   const { minutes } = aggStats;

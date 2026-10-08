@@ -79,7 +79,6 @@ function isStoredComparison(value: unknown): value is QualityComparisonType {
       typeof comparison.context === "string" &&
       typeof comparison.playerA === "string" &&
       typeof comparison.playerB === "string" &&
-      typeof comparison.qualityScore === "number" &&
       comparison.scopeA && typeof comparison.scopeA === "object" &&
       comparison.scopeB && typeof comparison.scopeB === "object",
   );
