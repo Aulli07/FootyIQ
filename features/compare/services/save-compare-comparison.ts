@@ -5,7 +5,7 @@ import {
   normalizeLabel,
 } from "@/shared/utils/identity";
 import { manageComparisonInStorage } from "./comparison-storage";
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 import {
   NewComparisonType,
   SelectedComparisonContext,
@@ -68,7 +68,7 @@ export function useSaveComparison({
 
 export function saveComparisonFromCompare(
   comparison: NewComparisonType,
-): BaseComparisonType {
+): ComparisonType {
   const id = createNewComparisonId(comparison);
   return manageComparisonInStorage({ ...comparison, id });
 }

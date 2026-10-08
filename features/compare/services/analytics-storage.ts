@@ -1,7 +1,7 @@
 "use client";
 
 import { ComparisonStoredAnalyticsType } from "@/features/compare/types/comparison-main-type";
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 
 export const ANALYTICS_KEY = "comparison_analytics";
 
@@ -12,7 +12,7 @@ export function notifyComparisonAnalyticsChanged() {
 }
 
 export function initializeComparisonAnalytics(
-  hydratedComparisons: BaseComparisonType[],
+  hydratedComparisons: ComparisonType[],
 ) {
   if (typeof window === "undefined") return;
 
@@ -27,7 +27,7 @@ export function initializeComparisonAnalytics(
 }
 
 export function manageAnalyticsOfComparisonsInStorage(
-  entry: BaseComparisonType,
+  entry: ComparisonType,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
   if (!analyticsHistory[entry.id]) {
@@ -36,7 +36,7 @@ export function manageAnalyticsOfComparisonsInStorage(
 }
 
 export function incrementViewCountOfComparison(
-  comparison: BaseComparisonType,
+  comparison: ComparisonType,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
   analyticsHistory[comparison.id].viewCount =
@@ -46,7 +46,7 @@ export function incrementViewCountOfComparison(
 }
 
 export function incrementSearchCountOfComparison(
-  comparison: BaseComparisonType,
+  comparison: ComparisonType,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
   analyticsHistory[comparison.id].searchCount =
@@ -56,7 +56,7 @@ export function incrementSearchCountOfComparison(
 }
 
 export function storeAnalyticsOfComparison(
-  entry: BaseComparisonType,
+  entry: ComparisonType,
   analyticsHistory: ComparisonStoredAnalyticsType,
 ) {
   analyticsHistory[entry.id] = {

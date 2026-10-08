@@ -3,15 +3,12 @@ import { ComparisonThemeType } from "../types/comparison-theme-type";
 import { SYSTEM_COMPARISON_THEMES } from "../types/comparison-themes";
 import { filterBaseComparisons } from "./filter-base-comps";
 import { generateAllBaseComparisons } from "./generate-base-comps";
-import {
-  BaseComparisonType,
-  ComparisonScope,
-} from "../types/comparison-main-type";
+import { ComparisonType, ComparisonScope } from "../types/comparison-main-type";
 
 import { playersById } from "../data/comp-engine-data";
 
 export function buildIndexedComparisonsForPlayers(
-  hydratedComparisons: BaseComparisonType[],
+  hydratedComparisons: ComparisonType[],
 ) {
   const playerIndexedComparisons: Record<string, string[]> = {};
 
@@ -31,7 +28,7 @@ export function buildIndexedComparisonsForPlayers(
 }
 
 export function buildThemeIndexedComparisons(
-  baseComparisons: BaseComparisonType[],
+  baseComparisons: ComparisonType[],
 ) {
   const themeIndexedComparisons: Record<string, string[]> = {};
   for (const theme of SYSTEM_COMPARISON_THEMES) {
@@ -45,7 +42,7 @@ export function buildThemeIndexedComparisons(
   return themeIndexedComparisons;
 }
 
-function matchesTheme(cmp: BaseComparisonType, theme: ComparisonThemeType) {
+function matchesTheme(cmp: ComparisonType, theme: ComparisonThemeType) {
   const { positions, leagueIds, competitionIds, seasonId, nationalities } =
     theme.filters;
 
@@ -121,7 +118,7 @@ export function buildComparisons() {
   const baseComparisons = generateAllBaseComparisons();
   const qualityComparisons = filterBaseComparisons(baseComparisons);
 
-  const indexedComparisons: Record<string, BaseComparisonType> = {};
+  const indexedComparisons: Record<string, ComparisonType> = {};
   qualityComparisons.forEach((cmp) => {
     indexedComparisons[cmp.id] = cmp;
   });

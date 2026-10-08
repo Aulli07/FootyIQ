@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { BaseComparisonType } from "@/features/compare/types/comparison-main-type";
+import { ComparisonType } from "@/features/compare/types/comparison-main-type";
 import { getStoredComparisons } from "@/features/compare/services/comparison-storage";
 import { handleSearch } from "@/features/compare/utils/history-search-handler";
 import TopComparisonCard from "@/features/compare/components/top-comparison-card";
@@ -13,7 +13,7 @@ export const History = () => {
   const currentHistory = getStoredComparisons();
 
   const [, setIsSearch] = useState(false);
-  const [results, setResults] = useState<Record<string, BaseComparisonType>>(
+  const [results, setResults] = useState<Record<string, ComparisonType>>(
     () => currentHistory,
   );
 

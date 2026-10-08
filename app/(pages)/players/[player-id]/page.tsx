@@ -5,8 +5,8 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 
 import {
-  BaseComparisonType,
   ComparisonCombinedType,
+  ComparisonType,
 } from "@/features/compare/types/comparison-main-type";
 import TopComparisonCard from "@/features/compare/components/top-comparison-card";
 import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
@@ -226,7 +226,7 @@ function getPlayerComparisons(
 ) {
   const hydratedComparisons = Object.values(
     buildHydratedComparisonStore(),
-  ) as BaseComparisonType[];
+  ) as ComparisonType[];
 
   return hydratedComparisons
     .filter(

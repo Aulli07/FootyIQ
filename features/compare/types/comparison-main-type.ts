@@ -21,8 +21,7 @@ export type ComparisonStoredAnalyticsType = Record<
   string,
   ComparisonAnalyticsType
 >;
-export type ComparisonCombinedType = BaseComparisonType &
-  ComparisonAnalyticsType;
+export type ComparisonCombinedType = ComparisonType & ComparisonAnalyticsType;
 export type ComparisonProps = { comparisonIds: string[]; title: string };
 
 /** Both players share a comparison mode but own independent stat scopes. */
@@ -35,4 +34,4 @@ export type ComparisonType = {
   scopeB: ComparisonScope;
 };
 
-export type ComparisonStoredType = Record<string, BaseComparisonType>;
+export type ComparisonStoredType = Record<string, ComparisonType>;

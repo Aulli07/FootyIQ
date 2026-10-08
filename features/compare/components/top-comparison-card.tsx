@@ -2,7 +2,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
 import { renderPlayer } from "../ui/comp-image-card-ui";
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
 import { getScopeLabel } from "../utils/get-comp-comtext";
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ export default function TopComparisonCard({
   showAnalytics = true,
 }: {
   id: string;
-  comp: BaseComparisonType;
+  comp: ComparisonType;
   // comp: ComparisonCombinedType;
   rank?: number;
   showAnalytics?: boolean;

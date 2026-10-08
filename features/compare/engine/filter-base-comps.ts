@@ -14,16 +14,16 @@ import {
 } from "@/shared/types/stats-schema";
 import { aggregateStats } from "../utils/aggregate-stat";
 import {
-  BaseComparisonType,
+  ComparisonType,
   ComparisonContext,
   ComparisonScope,
 } from "../types/comparison-main-type";
 
 export function filterBaseComparisons(
-  baseComparisons: BaseComparisonType[],
-): BaseComparisonType[] {
+  baseComparisons: ComparisonType[],
+): ComparisonType[] {
   const seen = new Set<string>(); // safety net
-  const scored: BaseComparisonType[] = [];
+  const scored: ComparisonType[] = [];
 
   for (const comparison of baseComparisons) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
@@ -52,7 +52,7 @@ export function filterBaseComparisons(
     scored.push(comparison);
   }
 
-  const grouped = new Map<string, BaseComparisonType[]>();
+  const grouped = new Map<string, ComparisonType[]>();
   for (const comparison of scored) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
     if (!grouped.has(groupKey)) grouped.set(groupKey, []);
@@ -63,8 +63,8 @@ export function filterBaseComparisons(
     group.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
   }
 
-  const reserved: BaseComparisonType[] = [];
-  const remainder: BaseComparisonType[] = [];
+  const reserved: ComparisonType[] = [];
+  const remainder: ComparisonType[] = [];
 
   for (const group of grouped.values()) {
     reserved.push(...group.slice(0, QUALITY_WEIGHTS.minGroup));
@@ -84,7 +84,7 @@ export function filterBaseComparisons(
 }
 
 function buildNotablePlayersByScope(
-  baseComparisons: BaseComparisonType[],
+  baseComparisons: ComparisonType[],
 ): Map<string, Set<string>> {
   const scopedPlayers = buildScopedPlayers(baseComparisons);
   const notableByScope = new Map<string, Set<string>>();
@@ -114,7 +114,7 @@ function buildNotablePlayersByScope(
   return notableByScope;
 }
 
-function buildScopedPlayers(baseComparisons: BaseComparisonType[]) {
+function buildScopedPlayers(baseComparisons: ComparisonType[]) {
   const groupPlayers = new Map<
     string,
     {
@@ -214,7 +214,7 @@ function getScopeConfirmation(
   }
 }
 
-function checkMinutesOfPlayers(comparison: BaseComparisonType) {
+function checkMinutesOfPlayers(comparison: ComparisonType) {
   const floor = MIN_MINUTES_BY_CONTEXT[comparison.context] ?? 0;
 
   const rowsA = statsInScope(
@@ -252,8 +252,8 @@ function playersHaveSharedTeamHistory(playerA: Player, playerB: Player) {
 }
 
 function checkNotabilityOfPlayers(
-  baseComparisons: BaseComparisonType[],
-  comparison: BaseComparisonType,
+  baseComparisons: ComparisonType[],
+  comparison: ComparisonType,
 ) {
   const notableByScope = buildNotablePlayersByScope(baseComparisons);
 
@@ -280,7 +280,7 @@ function positionMatchScore(posA: string, posB: string): number {
   return tierA === tierB ? 1 : 0; // cross-tier is down-weighted, never excluded
 }
 
-function ratingProximityScore(comparison: BaseComparisonType): number {
+function ratingProximityScore(comparison: ComparisonType): number {
   const rowsA = statsInScope(
     comparison.playerA,
     comparison.context,

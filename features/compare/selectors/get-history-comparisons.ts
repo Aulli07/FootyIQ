@@ -3,13 +3,13 @@ import { buildHydratedComparisonStore } from "../engine/comparison-store";
 
 import { Player } from "@/shared/types/stats-schema";
 
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 
 export function getHistoryOfComparisons(
   foundPlayers: Player[],
-): Record<string, BaseComparisonType> {
+): Record<string, ComparisonType> {
   const foundPlayerIds = foundPlayers.map((player) => player.id);
-  const compared: Record<string, BaseComparisonType> = {};
+  const compared: Record<string, ComparisonType> = {};
 
   const hydratedComparisonStore = buildHydratedComparisonStore();
   const hydratedComparisons = Array.from(

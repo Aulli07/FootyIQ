@@ -6,14 +6,14 @@ import { Player } from "@/shared/types/stats-schema";
 
 import { getCanonicalPlayerById } from "@/shared/utils/canonical-lookups";
 import { getComparisonById } from "@/features/compare/selectors/get-comparison-by-id";
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 
 const Compares = ({
   compareList,
   categoryType,
   compactNames = false,
 }: {
-  compareList: Record<string, BaseComparisonType>;
+  compareList: Record<string, ComparisonType>;
   categoryType: string;
   compactNames?: boolean;
 }) => {

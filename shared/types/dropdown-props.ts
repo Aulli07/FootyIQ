@@ -1,4 +1,4 @@
-import { BaseComparisonType } from "../../features/compare/types/comparison-main-type";
+import { ComparisonType } from "../../features/compare/types/comparison-main-type";
 import { SelectedComparisonContext } from "../../features/compare/types/comp-save-type";
 import type {
   ComparisonStatKey,
@@ -35,7 +35,7 @@ export type DropDownPropsType =
       label: string;
       setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
       searchQuery: string;
-      searchedComparisons: Record<string, BaseComparisonType>;
+      searchedComparisons: Record<string, ComparisonType>;
       selectedComparison: string | null;
       setSelectedComparison: React.Dispatch<
         React.SetStateAction<string | null>

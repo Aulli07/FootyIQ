@@ -1,6 +1,6 @@
 "use client";
 
-import { BaseComparisonType } from "../types/comparison-main-type";
+import { ComparisonType } from "../types/comparison-main-type";
 
 import {
   ANALYTICS_KEY,
@@ -13,7 +13,7 @@ import {
 
 const STORAGE_KEY = "comparison_storage";
 
-export function manageComparisonInStorage(entry: BaseComparisonType) {
+export function manageComparisonInStorage(entry: ComparisonType) {
   const comparisonHistory = getStoredComparisons();
   const analyticsHistory = getStoredAnalyticsOfComparisons();
   const existingComparison = comparisonHistory[entry.id];
@@ -36,13 +36,13 @@ export function manageComparisonInStorage(entry: BaseComparisonType) {
 }
 
 export function storeComparisonInStorage(
-  entry: BaseComparisonType,
-  comparisonHistory: Record<string, BaseComparisonType>,
+  entry: ComparisonType,
+  comparisonHistory: Record<string, ComparisonType>,
 ) {
   comparisonHistory[entry.id] = entry;
 }
 
-export function getStoredComparisons(): Record<string, BaseComparisonType> {
+export function getStoredComparisons(): Record<string, ComparisonType> {
   if (typeof window === "undefined") return {};
 
   const data = localStorage.getItem(STORAGE_KEY);
@@ -57,7 +57,7 @@ export function getStoredComparisons(): Record<string, BaseComparisonType> {
       Object.entries(parsed).filter(([, comparison]) =>
         isStoredComparison(comparison),
       ),
-    ) as Record<string, BaseComparisonType>;
+    ) as Record<string, ComparisonType>;
 
     // A legacy entry has one `scope`; removing it prevents old records from
     // leaking into the new per-player scope model.
@@ -71,9 +71,9 @@ export function getStoredComparisons(): Record<string, BaseComparisonType> {
   }
 }
 
-function isStoredComparison(value: unknown): value is BaseComparisonType {
+function isStoredComparison(value: unknown): value is ComparisonType {
   if (!value || typeof value !== "object") return false;
-  const comparison = value as Partial<BaseComparisonType>;
+  const comparison = value as Partial<ComparisonType>;
   return Boolean(
     typeof comparison.id === "string" &&
     typeof comparison.context === "string" &&
@@ -87,8 +87,8 @@ function isStoredComparison(value: unknown): value is BaseComparisonType {
 }
 
 export function findComparisonFromHistory(
-  comparison: BaseComparisonType,
-): BaseComparisonType | null {
+  comparison: ComparisonType,
+): ComparisonType | null {
   const currentHistory = getStoredComparisons();
 
   if (currentHistory[comparison.id]) {
