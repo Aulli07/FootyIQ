@@ -1,6 +1,6 @@
 "use client";
 
-import { QualityComparisonType } from "../types/comparison-main-type";
+import { BaseComparisonType } from "../types/comparison-main-type";
 
 import {
   ANALYTICS_KEY,
@@ -13,10 +13,7 @@ import {
 
 const STORAGE_KEY = "comparison_storage";
 
-
-
-
-export function manageComparisonInStorage(entry: QualityComparisonType) {
+export function manageComparisonInStorage(entry: BaseComparisonType) {
   const comparisonHistory = getStoredComparisons();
   const analyticsHistory = getStoredAnalyticsOfComparisons();
   const existingComparison = comparisonHistory[entry.id];
@@ -39,25 +36,28 @@ export function manageComparisonInStorage(entry: QualityComparisonType) {
 }
 
 export function storeComparisonInStorage(
-  entry: QualityComparisonType,
-  comparisonHistory: Record<string, QualityComparisonType>,
+  entry: BaseComparisonType,
+  comparisonHistory: Record<string, BaseComparisonType>,
 ) {
   comparisonHistory[entry.id] = entry;
 }
 
-export function getStoredComparisons(): Record<string, QualityComparisonType> {
+export function getStoredComparisons(): Record<string, BaseComparisonType> {
   if (typeof window === "undefined") return {};
-  
+
   const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return {};
 
   try {
     const parsed: unknown = JSON.parse(data);
-    if (!parsed || typeof parsed !== "object") throw new Error("Invalid comparison history");
+    if (!parsed || typeof parsed !== "object")
+      throw new Error("Invalid comparison history");
 
     const comparisons = Object.fromEntries(
-      Object.entries(parsed).filter(([, comparison]) => isStoredComparison(comparison)),
-    ) as Record<string, QualityComparisonType>;
+      Object.entries(parsed).filter(([, comparison]) =>
+        isStoredComparison(comparison),
+      ),
+    ) as Record<string, BaseComparisonType>;
 
     // A legacy entry has one `scope`; removing it prevents old records from
     // leaking into the new per-player scope model.
@@ -71,22 +71,24 @@ export function getStoredComparisons(): Record<string, QualityComparisonType> {
   }
 }
 
-function isStoredComparison(value: unknown): value is QualityComparisonType {
+function isStoredComparison(value: unknown): value is BaseComparisonType {
   if (!value || typeof value !== "object") return false;
-  const comparison = value as Partial<QualityComparisonType>;
+  const comparison = value as Partial<BaseComparisonType>;
   return Boolean(
     typeof comparison.id === "string" &&
-      typeof comparison.context === "string" &&
-      typeof comparison.playerA === "string" &&
-      typeof comparison.playerB === "string" &&
-      comparison.scopeA && typeof comparison.scopeA === "object" &&
-      comparison.scopeB && typeof comparison.scopeB === "object",
+    typeof comparison.context === "string" &&
+    typeof comparison.playerA === "string" &&
+    typeof comparison.playerB === "string" &&
+    comparison.scopeA &&
+    typeof comparison.scopeA === "object" &&
+    comparison.scopeB &&
+    typeof comparison.scopeB === "object",
   );
 }
 
 export function findComparisonFromHistory(
-  comparison: QualityComparisonType,
-): QualityComparisonType | null {
+  comparison: BaseComparisonType,
+): BaseComparisonType | null {
   const currentHistory = getStoredComparisons();
 
   if (currentHistory[comparison.id]) {

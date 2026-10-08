@@ -3,23 +3,20 @@ import { buildHydratedComparisonStore } from "../engine/comparison-store";
 
 import { Player } from "@/shared/types/stats-schema";
 
-import { QualityComparisonType } from "../types/comparison-main-type";
-
-
+import { BaseComparisonType } from "../types/comparison-main-type";
 
 export function getHistoryOfComparisons(
   foundPlayers: Player[],
-): Record<string, QualityComparisonType> {
-
+): Record<string, BaseComparisonType> {
   const foundPlayerIds = foundPlayers.map((player) => player.id);
-  const compared: Record<string, QualityComparisonType> = {};
+  const compared: Record<string, BaseComparisonType> = {};
 
   const hydratedComparisonStore = buildHydratedComparisonStore();
   const hydratedComparisons = Array.from(
     Object.values(hydratedComparisonStore),
   );
-  const indexedPlayerComparisons = buildIndexedComparisonsForPlayers(hydratedComparisons);
-  
+  const indexedPlayerComparisons =
+    buildIndexedComparisonsForPlayers(hydratedComparisons);
 
   foundPlayerIds.forEach((id) => {
     const foundComparisons = indexedPlayerComparisons[id] ?? [];
@@ -31,6 +28,6 @@ export function getHistoryOfComparisons(
       }
     });
   });
-  
+
   return compared;
 }

@@ -1,7 +1,7 @@
 import { Dispatch, RefObject, SetStateAction, useMemo } from "react";
 
 import { DropDownPropsType } from "@/shared/types/dropdown-props";
-import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
+import { BaseComparisonType } from "@/features/compare/types/comparison-main-type";
 import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 
 import { getSuggestedPlayers } from "@/features/players/utils/suggested-players";
@@ -13,7 +13,6 @@ import { ComparisonDropdownPanel } from "./comparison-dropdown-panel";
 import { SeasonDropdownPanel } from "./season-dropdown-panel";
 import { PlayerSelectionDropdownPanel } from "./player-selection-dropdown-panel";
 
-
 export default function DropDownMain({
   setIsOpen,
   menuRef,
@@ -24,12 +23,11 @@ export default function DropDownMain({
   menuRef: RefObject<HTMLUListElement | null>;
   props: DropDownPropsType;
   handleSelect: (
-    value: string | QualityComparisonType | SelectedComparisonContext,
+    value: string | BaseComparisonType | SelectedComparisonContext,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     props: DropDownPropsType,
   ) => void;
 }) {
-
   const suggestedPlayers = useMemo(() => getSuggestedPlayers(), []);
   const storedComparisons = useMemo(() => getStoredComparisons(), []);
 
@@ -40,7 +38,9 @@ export default function DropDownMain({
           label={props.label}
           players={props.selectedPlayers}
           playerSlot={props.playerSlot}
-          onSelectSeason={(selection) => handleSelect(selection, setIsOpen, props)}
+          onSelectSeason={(selection) =>
+            handleSelect(selection, setIsOpen, props)
+          }
         />
       </DropdownShell>
     );

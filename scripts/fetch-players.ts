@@ -12,7 +12,7 @@ async function main() {
   saveProgress(progress);
   const completed = new Set(progress[key] ?? []);
 
-  const teams = [487, 488, 489, 490, 492, 494, 495, 496, 497, 499, 500, 502, 503, 504, 505, 511, 512, 514, 867, 1579];
+  const teams = [130, 487, 489, 490, 492, 494, 495, 496, 497, 499, 500, 502, 503, 504, 505, 511, 517, 867, 895, 1579];
   const REQUEST_LIMIT = 98;
   let requests = 0;
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

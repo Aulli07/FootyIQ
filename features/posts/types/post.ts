@@ -2,9 +2,8 @@ import { Dispatch, RefObject, SetStateAction } from "react";
 
 import { ComparisonStatKey } from "@/features/players/types/comparison-stat-options";
 
-import { QualityComparisonType } from "@/features/compare/types/comparison-main-type";
+import { BaseComparisonType } from "@/features/compare/types/comparison-main-type";
 import { compStatRecord } from "@/features/compare/types/comp-image-type";
-
 
 export type PostType = {
   id: string;
@@ -19,14 +18,13 @@ export type PostType = {
 
   tags: string[];
   createdAt: string;
-} 
-
+};
 
 export type PostReferencesType = {
   players: string[];
   clubs?: string[];
   comparisons?: string[];
-}
+};
 
 export type PostMappedType = Record<string, PostType>;
 
@@ -38,7 +36,7 @@ export type UploadPostInput = {
 };
 
 export type UploadPostAttachmentInput = {
-  id: string
+  id: string;
   postId: string;
   comparisonId: string;
   stats?: Partial<Record<ComparisonStatKey, number[]>>;
@@ -47,11 +45,11 @@ export type UploadPostAttachmentInput = {
 export type PostInfoType = {
   shouldUpload: boolean;
   setShouldUpload: Dispatch<SetStateAction<boolean>>;
-  selectedComparisonData: QualityComparisonType | null;
+  selectedComparisonData: BaseComparisonType | null;
   comparisonPostStats: compStatRecord | undefined;
   myPostRef: RefObject<HTMLTextAreaElement | null>;
   lastPostKeyRef: RefObject<string | null>;
-}
+};
 
 export type PostCountsType = {
   likeCount: number;

@@ -2,7 +2,7 @@ import { poppins } from "@/app/font-icons/fonts";
 import Link from "next/link";
 
 import { renderPlayer } from "../ui/comp-image-card-ui";
-import { QualityComparisonType } from "../types/comparison-main-type";
+import { BaseComparisonType } from "../types/comparison-main-type";
 import { getStoredAnalyticsOfComparisons } from "../services/analytics-storage";
 import { getScopeLabel } from "../utils/get-comp-comtext";
 import { useEffect, useState } from "react";
@@ -14,17 +14,16 @@ export default function TopComparisonCard({
   showAnalytics = true,
 }: {
   id: string;
-  comp: QualityComparisonType;
+  comp: BaseComparisonType;
   // comp: ComparisonCombinedType;
   rank?: number;
   showAnalytics?: boolean;
 }) {
-
-  const [ mounted, setMounted ] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
-  }, [])
+  }, []);
 
   const compAnalyticsHistory = getStoredAnalyticsOfComparisons();
   const comparisonId = comp.id;
@@ -62,7 +61,8 @@ export default function TopComparisonCard({
             <span
               className={`text-[12px] font-bold ${poppins.className} text-emerald-600/70 dark:text-emerald-400/70`}
             >
-              {mounted ? compAnalyticsHistory[comparisonId]?.viewCount || 0 : 0} VIEWS
+              {mounted ? compAnalyticsHistory[comparisonId]?.viewCount || 0 : 0}{" "}
+              VIEWS
             </span>
           </div>
         )}

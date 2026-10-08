@@ -1,17 +1,29 @@
-import { canonicalStats, clubSeasonHistoryByPlayerId, MIN_MINUTES_BY_CONTEXT, playersById, POSITION_TIER, QUALITY_WEIGHTS } from "../data/comp-engine-data";
+import {
+  canonicalStats,
+  clubSeasonHistoryByPlayerId,
+  MIN_MINUTES_BY_CONTEXT,
+  playersById,
+  POSITION_TIER,
+  QUALITY_WEIGHTS,
+} from "../data/comp-engine-data";
 
-import { Player, PlayerAggregateStats, PlayerSeasonStats } from "@/shared/types/stats-schema";
+import {
+  Player,
+  PlayerAggregateStats,
+  PlayerSeasonStats,
+} from "@/shared/types/stats-schema";
 import { aggregateStats } from "../utils/aggregate-stat";
-import { BaseComparisonType, ComparisonContext, ComparisonScope, QualityComparisonType } from "../types/comparison-main-type";
-
-
+import {
+  BaseComparisonType,
+  ComparisonContext,
+  ComparisonScope,
+} from "../types/comparison-main-type";
 
 export function filterBaseComparisons(
   baseComparisons: BaseComparisonType[],
-): QualityComparisonType[] {
-
-  const seen = new Set<string>(); // safety net 
-  const scored: QualityComparisonType[] = [];
+): BaseComparisonType[] {
+  const seen = new Set<string>(); // safety net
+  const scored: BaseComparisonType[] = [];
 
   for (const comparison of baseComparisons) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
@@ -20,7 +32,7 @@ export function filterBaseComparisons(
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
 
-    const { floor, aggA, aggB, isMinutes } = checkMinutesOfPlayers(comparison); 
+    const { floor, aggA, aggB, isMinutes } = checkMinutesOfPlayers(comparison);
     if (!isMinutes) continue;
 
     const playerA = playersById.get(comparison.playerA);
@@ -31,14 +43,16 @@ export function filterBaseComparisons(
 
     const isNotable = checkNotabilityOfPlayers(baseComparisons, comparison);
     if (!isNotable) continue;
-    
 
-    if (positionMatchScore(playerA.primaryPosition, playerB.primaryPosition) === 0) continue;
+    if (
+      positionMatchScore(playerA.primaryPosition, playerB.primaryPosition) === 0
+    )
+      continue;
 
     scored.push(comparison);
   }
 
-  const grouped = new Map<string, QualityComparisonType[]>();
+  const grouped = new Map<string, BaseComparisonType[]>();
   for (const comparison of scored) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
     if (!grouped.has(groupKey)) grouped.set(groupKey, []);
@@ -47,11 +61,10 @@ export function filterBaseComparisons(
 
   for (const group of grouped.values()) {
     group.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
-  
   }
 
-  const reserved: QualityComparisonType[] = [];
-  const remainder: QualityComparisonType[] = [];
+  const reserved: BaseComparisonType[] = [];
+  const remainder: BaseComparisonType[] = [];
 
   for (const group of grouped.values()) {
     reserved.push(...group.slice(0, QUALITY_WEIGHTS.minGroup));
@@ -59,25 +72,38 @@ export function filterBaseComparisons(
   }
 
   remainder.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
-  const remainingSlots = Math.max(0, QUALITY_WEIGHTS.targetTotal - reserved.length);
+  const remainingSlots = Math.max(
+    0,
+    QUALITY_WEIGHTS.targetTotal - reserved.length,
+  );
   const result = [...reserved, ...remainder.slice(0, remainingSlots)];
 
-  return result.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
+  return result.sort(
+    (a, b) => ratingProximityScore(b) - ratingProximityScore(a),
+  );
 }
 
 function buildNotablePlayersByScope(
-  baseComparisons: BaseComparisonType[]
-) : Map<string, Set<string>> {
-
+  baseComparisons: BaseComparisonType[],
+): Map<string, Set<string>> {
   const scopedPlayers = buildScopedPlayers(baseComparisons);
-  const notableByScope = new Map<string, Set<string>>()
+  const notableByScope = new Map<string, Set<string>>();
 
-  for (const [groupKey, {context, scope, playerIds}] of scopedPlayers) {
-    const playerAggStats = buildScopedStatsForPlayers(playerIds, context, scope);
+  for (const [groupKey, { context, scope, playerIds }] of scopedPlayers) {
+    const playerAggStats = buildScopedStatsForPlayers(
+      playerIds,
+      context,
+      scope,
+    );
 
     const notable = new Set<string>();
-    const ranked = [...playerAggStats].sort((a, b) => b.agg.rating - a.agg.rating);
-    const cutoff = Math.max(QUALITY_WEIGHTS.minNotablePerStat, Math.ceil(ranked.length * QUALITY_WEIGHTS.notabilityPercentile));
+    const ranked = [...playerAggStats].sort(
+      (a, b) => b.agg.rating - a.agg.rating,
+    );
+    const cutoff = Math.max(
+      QUALITY_WEIGHTS.minNotablePerStat,
+      Math.ceil(ranked.length * QUALITY_WEIGHTS.notabilityPercentile),
+    );
 
     for (const { playerId } of ranked.slice(0, cutoff)) {
       notable.add(playerId);
@@ -89,8 +115,14 @@ function buildNotablePlayersByScope(
 }
 
 function buildScopedPlayers(baseComparisons: BaseComparisonType[]) {
-  const groupPlayers = new Map<string,
-  { context: ComparisonContext; scope: ComparisonScope; playerIds: Set<string>}>();
+  const groupPlayers = new Map<
+    string,
+    {
+      context: ComparisonContext;
+      scope: ComparisonScope;
+      playerIds: Set<string>;
+    }
+  >();
 
   for (const comparison of baseComparisons) {
     const entries = [
@@ -115,7 +147,7 @@ function buildScopedPlayers(baseComparisons: BaseComparisonType[]) {
 function buildScopedStatsForPlayers(
   playerIds: Set<string>,
   context: ComparisonContext,
-  scope: ComparisonScope
+  scope: ComparisonScope,
 ) {
   const floor = MIN_MINUTES_BY_CONTEXT[context];
   const playerAggs: { playerId: string; agg: PlayerAggregateStats }[] = [];
@@ -129,20 +161,18 @@ function buildScopedStatsForPlayers(
 
   return playerAggs;
 }
-    
 
 function statsInScope(
   playerId: string,
   context: ComparisonContext,
   scope: ComparisonScope,
-  scopedStatsCache = new Map<string, PlayerSeasonStats[]>()
+  scopedStatsCache = new Map<string, PlayerSeasonStats[]>(),
 ): PlayerSeasonStats[] {
-  
   const cacheKey = `${playerId}::${context}::${JSON.stringify(scope)}`;
   const cached = scopedStatsCache.get(cacheKey);
   if (cached) return cached;
 
-  const matchingStats = canonicalStats.filter(stat => {
+  const matchingStats = canonicalStats.filter((stat) => {
     if (stat.playerId !== playerId) return false;
     return getScopeConfirmation(stat, context, scope);
   });
@@ -151,7 +181,11 @@ function statsInScope(
   return matchingStats;
 }
 
-function getScopeConfirmation(stat: PlayerSeasonStats, context: ComparisonContext, scope: ComparisonScope) {
+function getScopeConfirmation(
+  stat: PlayerSeasonStats,
+  context: ComparisonContext,
+  scope: ComparisonScope,
+) {
   switch (context) {
     case "CTX-SEASON":
       return stat.seasonId === scope.seasonId;
@@ -162,9 +196,15 @@ function getScopeConfirmation(stat: PlayerSeasonStats, context: ComparisonContex
         stat.competitionType === "league"
       );
     case "CTX-COMPETITION-SEASON":
-      return stat.seasonId === scope.seasonId && stat.competitionId === scope.competitionId;
+      return (
+        stat.seasonId === scope.seasonId &&
+        stat.competitionId === scope.competitionId
+      );
     case "CTX-LEAGUE-CAREER":
-      return stat.competitionId === scope.leagueId && stat.competitionType === "league";
+      return (
+        stat.competitionId === scope.leagueId &&
+        stat.competitionType === "league"
+      );
     case "CTX-COMPETITION-CAREER":
       return stat.competitionId === scope.competitionId;
     case "CTX-OVERALL-CAREER":
@@ -174,16 +214,24 @@ function getScopeConfirmation(stat: PlayerSeasonStats, context: ComparisonContex
   }
 }
 
-
 function checkMinutesOfPlayers(comparison: BaseComparisonType) {
   const floor = MIN_MINUTES_BY_CONTEXT[comparison.context] ?? 0;
 
-  const rowsA = statsInScope(comparison.playerA, comparison.context, comparison.scopeA);
-  const rowsB = statsInScope(comparison.playerB, comparison.context, comparison.scopeB);
+  const rowsA = statsInScope(
+    comparison.playerA,
+    comparison.context,
+    comparison.scopeA,
+  );
+  const rowsB = statsInScope(
+    comparison.playerB,
+    comparison.context,
+    comparison.scopeB,
+  );
   const aggA = aggregateStats(rowsA);
   const aggB = aggregateStats(rowsB);
 
-  if (aggA.minutes < floor || aggB.minutes < floor) return { floor, aggA, aggB, status: false };
+  if (aggA.minutes < floor || aggB.minutes < floor)
+    return { floor, aggA, aggB, status: false };
   return { floor, aggA, aggB, isMinutes: true };
 }
 
@@ -194,24 +242,36 @@ function playersHaveSharedTeamHistory(playerA: Player, playerB: Player) {
   const clubSeasonsB = clubSeasonHistoryByPlayerId.get(playerB.id);
   if (!clubSeasonsA || !clubSeasonsB) return false;
 
-  const smallerHistory = clubSeasonsA.size <= clubSeasonsB.size ? clubSeasonsA : clubSeasonsB;
-  const largerHistory = smallerHistory === clubSeasonsA ? clubSeasonsB : clubSeasonsA;
-  return [...smallerHistory].some((clubSeason) => largerHistory.has(clubSeason));
+  const smallerHistory =
+    clubSeasonsA.size <= clubSeasonsB.size ? clubSeasonsA : clubSeasonsB;
+  const largerHistory =
+    smallerHistory === clubSeasonsA ? clubSeasonsB : clubSeasonsA;
+  return [...smallerHistory].some((clubSeason) =>
+    largerHistory.has(clubSeason),
+  );
 }
 
-function checkNotabilityOfPlayers(baseComparisons: BaseComparisonType[], comparison: BaseComparisonType) {
+function checkNotabilityOfPlayers(
+  baseComparisons: BaseComparisonType[],
+  comparison: BaseComparisonType,
+) {
   const notableByScope = buildNotablePlayersByScope(baseComparisons);
 
-  const notableA = notableByScope.get(`${comparison.context}::${JSON.stringify(comparison.scopeA)}`);
-  const notableB = notableByScope.get(`${comparison.context}::${JSON.stringify(comparison.scopeB)}`);
+  const notableA = notableByScope.get(
+    `${comparison.context}::${JSON.stringify(comparison.scopeA)}`,
+  );
+  const notableB = notableByScope.get(
+    `${comparison.context}::${JSON.stringify(comparison.scopeB)}`,
+  );
   if (
-    (notableA && !notableA.has(comparison.playerA)) &&
-    (notableB && !notableB.has(comparison.playerB))
-  ) return false;
+    notableA &&
+    !notableA.has(comparison.playerA) &&
+    notableB &&
+    !notableB.has(comparison.playerB)
+  )
+    return false;
   return true;
 }
-
-
 
 function positionMatchScore(posA: string, posB: string): number {
   const tierA = POSITION_TIER[posA];
@@ -221,8 +281,16 @@ function positionMatchScore(posA: string, posB: string): number {
 }
 
 function ratingProximityScore(comparison: BaseComparisonType): number {
-  const rowsA = statsInScope(comparison.playerA, comparison.context, comparison.scopeA);
-  const rowsB = statsInScope(comparison.playerB, comparison.context, comparison.scopeB);
+  const rowsA = statsInScope(
+    comparison.playerA,
+    comparison.context,
+    comparison.scopeA,
+  );
+  const rowsB = statsInScope(
+    comparison.playerB,
+    comparison.context,
+    comparison.scopeB,
+  );
   const ratingA = aggregateStats(rowsA).rating;
   const ratingB = aggregateStats(rowsB).rating;
   const averageRating = (ratingA + ratingB) / 2;
@@ -230,6 +298,3 @@ function ratingProximityScore(comparison: BaseComparisonType): number {
 
   return (averageRating / 10) * ratingSimilarity;
 }
-
-
-

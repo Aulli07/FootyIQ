@@ -5,8 +5,8 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 
 import {
+  BaseComparisonType,
   ComparisonCombinedType,
-  QualityComparisonType,
 } from "@/features/compare/types/comparison-main-type";
 import TopComparisonCard from "@/features/compare/components/top-comparison-card";
 import { buildHydratedComparisonStore } from "@/features/compare/engine/comparison-store";
@@ -30,8 +30,6 @@ import { getPostsInDiscussion } from "@/features/posts/selectors/get-post-detail
 
 import { PostType } from "@/features/posts/types/post";
 import { PostDisplay } from "@/features/posts/components/post-display";
-
-
 
 export default function PlayerProfilePage() {
   const params = useParams();
@@ -95,7 +93,7 @@ export default function PlayerProfilePage() {
               <Link
                 href={{
                   pathname: "/compare",
-                  query: {id},
+                  query: { id },
                 }}
                 className={`w-max flex flex-row gap-2 border border-emerald-500/10 rounded-xl px-3 py-1 bg-light-background-card dark:border-white/10 dark:bg-white/5`}
               >
@@ -228,7 +226,7 @@ function getPlayerComparisons(
 ) {
   const hydratedComparisons = Object.values(
     buildHydratedComparisonStore(),
-  ) as QualityComparisonType[];
+  ) as BaseComparisonType[];
 
   return hydratedComparisons
     .filter(
@@ -239,10 +237,8 @@ function getPlayerComparisons(
       (comparison) =>
         ({
           ...comparison,
-          viewCount:
-            comparisonAnalytics[comparison.id]?.viewCount ?? 0,
-          searchCount:
-            comparisonAnalytics[comparison.id]?.searchCount ?? 0,
+          viewCount: comparisonAnalytics[comparison.id]?.viewCount ?? 0,
+          searchCount: comparisonAnalytics[comparison.id]?.searchCount ?? 0,
         }) as ComparisonCombinedType,
     )
     .sort(

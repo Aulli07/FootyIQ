@@ -1,8 +1,15 @@
 import { RefObject, useEffect } from "react";
-import { buildHashId, createComparisonKey, normalizeLabel } from "@/shared/utils/identity";
+import {
+  buildHashId,
+  createComparisonKey,
+  normalizeLabel,
+} from "@/shared/utils/identity";
 import { manageComparisonInStorage } from "./comparison-storage";
-import { QualityComparisonType } from "../types/comparison-main-type";
-import { NewComparisonType, SelectedComparisonContext } from "../types/comp-save-type";
+import { BaseComparisonType } from "../types/comparison-main-type";
+import {
+  NewComparisonType,
+  SelectedComparisonContext,
+} from "../types/comp-save-type";
 
 export function useSaveComparison({
   selectedPlayers,
@@ -20,8 +27,11 @@ export function useSaveComparison({
   const left = selectedContexts[0];
   const right = selectedContexts[1];
   const isComplete = Boolean(
-    selectedPlayers[0] && selectedPlayers[1] && left?.context && right?.context &&
-      left.context === right.context,
+    selectedPlayers[0] &&
+    selectedPlayers[1] &&
+    left?.context &&
+    right?.context &&
+    left.context === right.context,
   );
 
   useEffect(() => {
@@ -32,23 +42,33 @@ export function useSaveComparison({
     }
 
     const comparison = {
-      playerA: selectedPlayers[0], 
-      playerB: selectedPlayers[1], 
+      playerA: selectedPlayers[0],
+      playerB: selectedPlayers[1],
       context: left.context,
-      scopeA: left.scope, 
+      scopeA: left.scope,
       scopeB: right.scope,
     };
-    
+
     const key = JSON.stringify(comparison);
     if (lastComparisonKeyRef.current === key) return;
 
     const stored = saveComparisonFromCompare(comparison);
     setCurrentComparisonId(stored.id);
     lastComparisonKeyRef.current = key;
-  }, [isConfirmed, isComplete, left, right, selectedPlayers, setCurrentComparisonId, lastComparisonKeyRef]);
+  }, [
+    isConfirmed,
+    isComplete,
+    left,
+    right,
+    selectedPlayers,
+    setCurrentComparisonId,
+    lastComparisonKeyRef,
+  ]);
 }
 
-export function saveComparisonFromCompare(comparison: NewComparisonType): QualityComparisonType {
+export function saveComparisonFromCompare(
+  comparison: NewComparisonType,
+): BaseComparisonType {
   const id = createNewComparisonId(comparison);
   return manageComparisonInStorage({ ...comparison, id });
 }
@@ -57,7 +77,15 @@ function createNewComparisonId(comparison: NewComparisonType): string {
   const pairs = [
     { player: comparison.playerA, scope: comparison.scopeA },
     { player: comparison.playerB, scope: comparison.scopeB },
-  ].map(({ player, scope }) => `${normalizeLabel(player)}:${normalizeLabel(JSON.stringify(scope))}`)
+  ]
+    .map(
+      ({ player, scope }) =>
+        `${normalizeLabel(player)}:${normalizeLabel(JSON.stringify(scope))}`,
+    )
     .sort();
-  return buildHashId(createComparisonKey(pairs.map((pair) => ({ player: comparison.context, context: pair }))));
+  return buildHashId(
+    createComparisonKey(
+      pairs.map((pair) => ({ player: comparison.context, context: pair })),
+    ),
+  );
 }
