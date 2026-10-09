@@ -6,7 +6,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "PL Best Players",
     context: "CTX-LEAGUE-SEASON",
     filters: {
-      leagueIds: ["epl"],
+      leagueIds: ["39"],
     }
   },
   {
@@ -14,7 +14,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "UCL Monsters",
     context: "CTX-COMPETITION-SEASON",
     filters: {
-      competitionIds: ["ucl"]
+      competitionIds: ["2"]
     }
   },
   {
@@ -22,7 +22,7 @@ export const SYSTEM_COMPARISON_THEMES: ComparisonThemeType[] = [
     title: "International Kings",
     context: "CTX-COMPETITION-SEASON",
     filters: {
-      competitionIds: ["world-cup", "euro"],
+      competitionIds: ["1", "4"],
     },
   },
   {

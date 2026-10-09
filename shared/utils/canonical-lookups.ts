@@ -13,7 +13,7 @@ import {
 } from "@/shared/types/stats-schema";
 import { normalizeLabel } from "@/shared/utils/identity";
 
-import footballDataStore from "@/features/players/data/new/canonical-store.json";
+import footballDataStore from "@/data/processed/canonical-store.json";
 
 
 
@@ -23,7 +23,7 @@ export const canonicalPlayers = canonicalStore.players;
 export const canonicalClubs = canonicalStore.clubs;
 export const canonicalCompetitions = canonicalStore.competitions;
 export const canonicalSeasons = canonicalStore.seasons;
-export const canonicalPlayerSeasonStats = canonicalStore.totalPlayerStats;
+export const canonicalPlayerSeasonStats = canonicalStore.stats;
 
 
 
