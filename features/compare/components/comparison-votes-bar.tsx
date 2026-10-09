@@ -5,9 +5,6 @@ import { getCanonicalPlayerCareerStats } from "@/shared/utils/canonical-lookups"
 
 import { aggregateStats } from "../utils/aggregate-stat";
 import { formatShortName } from "../utils/format-name";
-import { getAverageRating } from "../utils/avg-player-rating";
-
-import { PositionGroup } from "../utils/avg-player-rating";
 
 
 
@@ -71,8 +68,8 @@ const getPreferenceForPair = (pair: Array<Player>) => {
   const leftAgg = aggregateStats(leftPlayerStats);
   const rightAgg = aggregateStats(rightPlayerStats);
 
-  const leftAvgRating = getAverageRating(leftAgg, left.primaryPosition as PositionGroup);
-  const rightAvgRating = getAverageRating(rightAgg, right.primaryPosition as PositionGroup);
+  const leftAvgRating = leftAgg.rating;
+  const rightAvgRating = rightAgg.rating;
 
   // Use average rating as a proxy until vote data exists.
   const total = Math.max(1, leftAvgRating + rightAvgRating);

@@ -1,8 +1,4 @@
 import { aggregateStats } from "@/features/compare/utils/aggregate-stat";
-import {
-  getAverageRating,
-  PositionGroup,
-} from "@/features/compare/utils/avg-player-rating";
 import { SelectedComparisonContext } from "@/features/compare/types/comp-save-type";
 import { Player, PlayerSeasonStats } from "@/shared/types/stats-schema";
 import {
@@ -88,10 +84,6 @@ export function getHeightOfPlayer(player: Player | null): string | number {
   return typeof height === "number" ? height : "-";
 }
 
-export function getPreferredFootOfPlayer(player: Player | null): string {
-  return player?.preferredFoot ?? "-";
-}
-
 export function getAverageRatingForContext(
   player: Player | null,
   selection: SelectedComparisonContext,
@@ -101,10 +93,8 @@ export function getAverageRatingForContext(
   const rows = getRowsForContext(player.id, selection);
   if (rows.length === 0) return "-";
 
-  return getAverageRating(
-    aggregateStats(rows),
-    player.primaryPosition as PositionGroup,
-  );
+  const agg = aggregateStats(rows);
+  return agg.minutes > 0 ? agg.rating : "-";
 }
 
 export function getStatValueForContext(

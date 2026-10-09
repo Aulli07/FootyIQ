@@ -1,5 +1,10 @@
 import canonicalStoreNew from "@/data/processed/canonical-store.json";
-import { FootballDataStore } from "@/shared/types/stats-schema";
+import {
+  FootballDataStore,
+  PlayerSeasonStats,
+} from "@/shared/types/stats-schema";
+import { aggregateStats } from "../utils/aggregate-stat";
+import { MIN_MINUTES_BY_CONTEXT } from "../data/comp-engine-data";
 import {
   ComparisonType,
   ComparisonContext,
@@ -21,65 +26,114 @@ export function generateAllBaseComparisons() {
 }
 
 function generateSeasonComparisons() {
-  const entry = stats.map((stat) => ({
-    playerId: stat.playerId,
-    scope: { seasonId: stat.seasonId },
-  }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-SEASON");
+  return generateFilteredComparisons(
+    stats,
+    "CTX-SEASON",
+    (stat) => stat.seasonId,
+    (stat) => ({ seasonId: stat.seasonId }),
+  );
 }
 
 function generateLeagueSeasonComparisons() {
-  const entry = stats
-    .filter((stat) => stat.competitionType === "league")
-    .map((stat) => ({
-      playerId: stat.playerId,
-      scope: { seasonId: stat.seasonId, leagueId: stat.competitionId },
-    }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-LEAGUE-SEASON");
+  return generateFilteredComparisons(
+    stats.filter((stat) => stat.competitionType === "league"),
+    "CTX-LEAGUE-SEASON",
+    (stat) => `${stat.seasonId}::${stat.competitionId}`,
+    (stat) => ({
+      seasonId: stat.seasonId,
+      leagueId: stat.competitionId,
+    }),
+  );
 }
 
 function generateCompetitionSeasonComparisons() {
-  const entry = stats
-    .filter((stat) => stat.competitionType !== "league")
-    .map((stat) => ({
-      playerId: stat.playerId,
-      scope: { seasonId: stat.seasonId, competitionId: stat.competitionId },
-    }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-COMPETITION-SEASON");
+  return generateFilteredComparisons(
+    stats.filter((stat) => stat.competitionType !== "league"),
+    "CTX-COMPETITION-SEASON",
+    (stat) => `${stat.seasonId}::${stat.competitionId}`,
+    (stat) => ({
+      seasonId: stat.seasonId,
+      competitionId: stat.competitionId,
+    }),
+  );
 }
 
 function generateLeagueCareerComparisons() {
-  const entry = stats
-    .filter((stat) => stat.competitionType === "league")
-    .map((stat) => ({
-      playerId: stat.playerId,
-      scope: { leagueId: stat.competitionId },
-    }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-LEAGUE-CAREER");
+  return generateFilteredComparisons(
+    stats.filter((stat) => stat.competitionType === "league"),
+    "CTX-LEAGUE-CAREER",
+    (stat) => stat.competitionId,
+    (stat) => ({ leagueId: stat.competitionId }),
+  );
 }
 
 function generateCompetitionCareerComparisons() {
-  const entry = stats
-    .filter((stat) => stat.competitionType !== "league")
-    .map((stat) => ({
-      playerId: stat.playerId,
-      scope: { competitionId: stat.competitionId },
-    }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-COMPETITION-CAREER");
+  return generateFilteredComparisons(
+    stats.filter((stat) => stat.competitionType !== "league"),
+    "CTX-COMPETITION-CAREER",
+    (stat) => stat.competitionId,
+    (stat) => ({ competitionId: stat.competitionId }),
+  );
 }
 
 function generateOverallCareerComparisons() {
-  const entry = stats.map((stat) => ({
-    playerId: stat.playerId,
-    scope: {},
-  }));
-  return pairScopeEntries(uniqueEntries(entry), "CTX-OVERALL-CAREER");
+  return generateFilteredComparisons(
+    stats,
+    "CTX-OVERALL-CAREER",
+    () => "overall",
+    () => ({}),
+  );
 }
 
 type PlayerScopeEntry = {
   playerId: string;
   scope: ComparisonScope;
 };
+
+type RatedPlayerScopeEntry = PlayerScopeEntry & { rating: number };
+
+function generateFilteredComparisons(
+  sourceStats: PlayerSeasonStats[],
+  context: ComparisonContext,
+  getScopeKey: (stat: PlayerSeasonStats) => string,
+  getScope: (stat: PlayerSeasonStats) => ComparisonScope,
+): ComparisonType[] {
+  const rowsByScopeAndPlayer = new Map<string, PlayerSeasonStats[]>();
+
+  for (const stat of sourceStats) {
+    const key = `${getScopeKey(stat)}::${stat.playerId}`;
+    const rows = rowsByScopeAndPlayer.get(key) ?? [];
+    rows.push(stat);
+    rowsByScopeAndPlayer.set(key, rows);
+  }
+
+  const candidatesByScope = new Map<string, RatedPlayerScopeEntry[]>();
+  const minimumMinutes = MIN_MINUTES_BY_CONTEXT[context];
+
+  for (const [key, rows] of rowsByScopeAndPlayer) {
+    const separatorIndex = key.lastIndexOf("::");
+    const scopeKey = key.slice(0, separatorIndex);
+    const firstRow = rows[0];
+    if (!firstRow) continue;
+
+    const aggregate = aggregateStats(rows);
+    if (aggregate.minutes < minimumMinutes) continue;
+
+    const candidates = candidatesByScope.get(scopeKey) ?? [];
+    candidates.push({
+      playerId: firstRow.playerId,
+      scope: getScope(firstRow),
+      rating: aggregate.rating,
+    });
+    candidatesByScope.set(scopeKey, candidates);
+  }
+
+  const candidates = [...candidatesByScope.values()].flatMap((scopeCandidates) =>
+    scopeCandidates.sort((a, b) => b.rating - a.rating).slice(0, 8),
+  );
+
+  return pairScopeEntries(candidates, context);
+}
 
 function pairScopeEntries(
   entries: PlayerScopeEntry[],
@@ -108,12 +162,3 @@ function pairScopeEntries(
   return comparisons;
 }
 
-function uniqueEntries(entries: PlayerScopeEntry[]): PlayerScopeEntry[] {
-  const seen = new Set<string>();
-  return entries.filter((entry) => {
-    const key = `${entry.playerId}:${JSON.stringify(entry.scope)}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}

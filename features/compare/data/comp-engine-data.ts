@@ -1,5 +1,6 @@
 import { FootballDataStore } from "@/shared/types/stats-schema";
 import canonicalStoreNew from "@/data/processed/canonical-store.json";
+import type { ComparisonContext } from "../types/comparison-main-type";
 
 const canonicalStore = canonicalStoreNew as FootballDataStore;
 export const MULTIPLIER: { spl: number; epl: number; cl: number } = {
@@ -28,9 +29,20 @@ export const POSITION_TIER: Record<string, string> = {
 export const QUALITY_WEIGHTS = {
   notabilityPercentile: 0.3,
   minNotablePerStat: 1,
-  targetTotal: 50,
+  targetTotal: 30,
   minGroup: 5
 };
+
+export const COMPARISONS_PER_CONTEXT: Record<ComparisonContext, number> = {
+  "CTX-SEASON": 10,
+  "CTX-LEAGUE-SEASON": 10,
+  "CTX-COMPETITION-SEASON": 10,
+  "CTX-LEAGUE-CAREER": 10,
+  "CTX-COMPETITION-CAREER": 10,
+  "CTX-OVERALL-CAREER": 10,
+};
+
+
 
 export const canonicalPlayers = canonicalStore.players;
 export const canonicalStats = canonicalStore.stats

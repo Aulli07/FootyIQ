@@ -22,7 +22,6 @@ import {
   getHeightOfPlayer,
   getNationalityOfPlayer,
   getPositionOfPlayer,
-  getPreferredFootOfPlayer,
 } from "@/features/players/selectors/stat-getters";
 import { manageAnalyticsOfPlayersInStorage } from "@/features/players/services/player-search-analytics";
 
@@ -55,8 +54,7 @@ export default function PlayerProfilePage() {
     { label: "Club", value: () => getClubNameOfPlayer(player) },
     { label: "Nationality", value: () => getNationalityOfPlayer(player) },
     { label: "Height", value: () => `${getHeightOfPlayer(player)}cm` },
-    { label: "Position", value: () => getPositionOfPlayer(player) },
-    { label: "Preferred Foot", value: () => getPreferredFootOfPlayer(player) },
+    { label: "Position", value: () => getPositionOfPlayer(player) }
   ];
 
   const playerComparisons = getPlayerComparisons(id, comparisonAnalytics);
