@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/FootyIQ",
+  // basePath: "/FootyIQ",
   turbopack: {
     root: projectRoot,
   }
