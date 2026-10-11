@@ -3,13 +3,13 @@
  * whenever a competition or league needs a shorter UI label.
  */
 export const SCOPE_TITLE_BY_ID: Record<string, string> = {
-  "epl": "EPL",
+  "39": "EPL",
   "spl": "SPL",
   "mls": "MLS",
-  "laliga": "La Liga",
-  "ligue1": "Ligue 1",
+  "140": "La Liga",
+  "61": "Ligue 1",
   "brasileirao": "Brasileirão",
-  "ucl": "UCL",
+  "2": "UCL",
   "uel": "UEL",
   "acl": "ACL",
   "acl-elite": "ACL Elite",
@@ -30,8 +30,9 @@ export const SCOPE_TITLE_BY_ID: Record<string, string> = {
   "fa-cup": "FA Cup",
   "carabao-cup": "Carabao Cup",
   "uefa-super-cup": "Super Cup",
-  "bundesliga": "Bundesliga",
-  "dfb-pokal": "DFB Pokal"
+  "78": "Bundesliga",
+  "dfb-pokal": "DFB Pokal",
+  "135": "Seria A"
 };
 
 export function getScopeTitle(scopeId?: string): string | undefined {

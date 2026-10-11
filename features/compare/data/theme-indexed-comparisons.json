@@ -1,10 +1,14 @@
 {
-  "premier-league-best-players": [],
+  "premier-league-best-players": [
+    "cmp-a92db48f",
+    "cmp-15020aaf",
+    "cmp-2922e9b5"
+  ],
   "champions-league-monsters": [],
   "international-kings": [],
   "best-in-24-25": [
-    "cmp-f98ad439",
-    "cmp-3bf79fe1",
-    "cmp-70ab0dc4"
+    "cmp-3b26c983",
+    "cmp-1436fd02",
+    "cmp-b16cfee1"
   ]
 }

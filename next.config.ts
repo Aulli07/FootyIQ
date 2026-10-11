@@ -6,7 +6,6 @@ import type { NextConfig } from "next";
 const projectRoot = __dirname;
 
 const nextConfig: NextConfig = {
-  output: "export",
   images: {
     unoptimized: true,
   },
