@@ -10,7 +10,7 @@ export const SCOPE_TITLE_BY_ID: Record<string, string> = {
   "61": "Ligue 1",
   "brasileirao": "Brasileirão",
   "2": "UCL",
-  "uel": "UEL",
+  "3": "UEL",
   "acl": "ACL",
   "acl-elite": "ACL Elite",
   "arab-club-champions-cup": "ACC",
