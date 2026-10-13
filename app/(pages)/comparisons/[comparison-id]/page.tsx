@@ -24,6 +24,9 @@ export default function ViewComparisonPage() {
 
   const comparison = comparisonId ? getComparisonById(comparisonId) : null;
 
+  const playerA = getCanonicalPlayerById(comparison?.playerA ?? "");
+  const playerB = getCanonicalPlayerById(comparison?.playerB ?? "");
+  
   const [, setCurrentComparisonId] = useState<string | null>(null);
   const lastComparisonKeyRef = useRef<string | null>(null);
 
@@ -31,7 +34,7 @@ export default function ViewComparisonPage() {
     return <div className="p-4">Comparison not found</div>;
   }
 
-  const fullPath = `/comparisons/${comparisonId}`;
+  // const fullPath = `/comparisons/${comparisonId}`;
   const contexts = [
     {
       context: comparison.context,
@@ -56,7 +59,7 @@ export default function ViewComparisonPage() {
     <main className="pb-5 px-4 text-light-text-primary dark:text-dark-text-primary">
       <div className="flex flex-col gap-3">
         <PageTitle
-          title={`${comparison.playerA.toUpperCase()} & ${comparison.playerB.toUpperCase()} COMPARISON`}
+          title={`${playerA?.fullName} & ${playerB?.fullName?.toUpperCase()} COMPARISON`}
         />
         <div className="flex flex-col gap-4 mt-6">
           <div className="grid grid-cols-2 gap-3">
