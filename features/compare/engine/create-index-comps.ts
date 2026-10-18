@@ -42,6 +42,9 @@ export function buildThemeIndexedComparisons(
   return themeIndexedComparisons;
 }
 
+
+
+
 function matchesTheme(cmp: ComparisonType, theme: ComparisonThemeType) {
   const { positions, leagueIds, competitionIds, seasonId, nationalities } =
     theme.filters;

@@ -1,9 +1,45 @@
 {
-  "cmp-c27dc113": {
-    "id": "cmp-c27dc113",
+  "cmp-2458c74f": {
+    "id": "cmp-2458c74f",
     "context": "CTX-SEASON",
-    "playerA": "129718",
-    "playerB": "44",
+    "playerA": "162037",
+    "playerB": "1485",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "23/24"
+    }
+  },
+  "cmp-ea2ea1a6": {
+    "id": "cmp-ea2ea1a6",
+    "context": "CTX-SEASON",
+    "playerA": "1485",
+    "playerB": "129718",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "23/24"
+    }
+  },
+  "cmp-a022e82a": {
+    "id": "cmp-a022e82a",
+    "context": "CTX-SEASON",
+    "playerA": "162037",
+    "playerB": "1485",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "24/25"
+    }
+  },
+  "cmp-0a9ed81f": {
+    "id": "cmp-0a9ed81f",
+    "context": "CTX-SEASON",
+    "playerA": "1485",
+    "playerB": "129718",
     "scopeA": {
       "seasonId": "23/24"
     },
@@ -11,427 +47,659 @@
       "seasonId": "23/24"
     }
   },
-  "cmp-66cc4530": {
-    "id": "cmp-66cc4530",
+  "cmp-91718c65": {
+    "id": "cmp-91718c65",
     "context": "CTX-SEASON",
-    "playerA": "129718",
+    "playerA": "1496",
     "playerB": "629",
     "scopeA": {
-      "seasonId": "23/24"
+      "seasonId": "24/25"
     },
     "scopeB": {
       "seasonId": "23/24"
     }
   },
-  "cmp-f4ae05ef": {
-    "id": "cmp-f4ae05ef",
+  "cmp-f6c1992d": {
+    "id": "cmp-f6c1992d",
     "context": "CTX-SEASON",
+    "playerA": "154",
+    "playerB": "1496",
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
+      "seasonId": "24/25"
+    }
+  },
+  "cmp-c0327b77": {
+    "id": "cmp-c0327b77",
+    "context": "CTX-SEASON",
+    "playerA": "502",
+    "playerB": "129718",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "23/24"
+    }
+  },
+  "cmp-9209c7fd": {
+    "id": "cmp-9209c7fd",
+    "context": "CTX-SEASON",
+    "playerA": "1485",
+    "playerB": "502",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "24/25"
+    }
+  },
+  "cmp-7b09f5cf": {
+    "id": "cmp-7b09f5cf",
+    "context": "CTX-SEASON",
+    "playerA": "162037",
+    "playerB": "129718",
+    "scopeA": {
+      "seasonId": "24/25"
+    },
+    "scopeB": {
+      "seasonId": "23/24"
+    }
+  },
+  "cmp-7aec9c9b": {
+    "id": "cmp-7aec9c9b",
+    "context": "CTX-SEASON",
+    "playerA": "66021",
+    "playerB": "607",
+    "scopeA": {
+      "seasonId": "22/23"
+    },
+    "scopeB": {
+      "seasonId": "22/23"
+    }
+  },
+  "cmp-a3f3f3fd": {
+    "id": "cmp-a3f3f3fd",
+    "context": "CTX-LEAGUE-SEASON",
+    "playerA": "629",
+    "playerB": "154",
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "seasonId": "22/23",
+      "leagueId": "61"
+    }
+  },
+  "cmp-3d89c57c": {
+    "id": "cmp-3d89c57c",
+    "context": "CTX-LEAGUE-SEASON",
     "playerA": "1496",
     "playerB": "306",
     "scopeA": {
-      "seasonId": "24/25"
+      "seasonId": "24/25",
+      "leagueId": "140"
     },
     "scopeB": {
-      "seasonId": "24/25"
+      "seasonId": "24/25",
+      "leagueId": "39"
     }
   },
-  "cmp-fc6d28ac": {
-    "id": "cmp-fc6d28ac",
-    "context": "CTX-SEASON",
-    "playerA": "306",
-    "playerB": "386828",
-    "scopeA": {
-      "seasonId": "24/25"
-    },
-    "scopeB": {
-      "seasonId": "24/25"
-    }
-  },
-  "cmp-a309b4cc": {
-    "id": "cmp-a309b4cc",
-    "context": "CTX-SEASON",
-    "playerA": "629",
-    "playerB": "19617",
-    "scopeA": {
-      "seasonId": "22/23"
-    },
-    "scopeB": {
-      "seasonId": "23/24"
-    }
-  },
-  "cmp-f3454a26": {
-    "id": "cmp-f3454a26",
-    "context": "CTX-SEASON",
-    "playerA": "179139",
-    "playerB": "616",
-    "scopeA": {
-      "seasonId": "24/25"
-    },
-    "scopeB": {
-      "seasonId": "23/24"
-    }
-  },
-  "cmp-fa26b0f0": {
-    "id": "cmp-fa26b0f0",
-    "context": "CTX-SEASON",
-    "playerA": "129718",
-    "playerB": "631",
-    "scopeA": {
-      "seasonId": "23/24"
-    },
-    "scopeB": {
-      "seasonId": "23/24"
-    }
-  },
-  "cmp-17fce6d8": {
-    "id": "cmp-17fce6d8",
-    "context": "CTX-SEASON",
-    "playerA": "44",
-    "playerB": "19617",
-    "scopeA": {
-      "seasonId": "23/24"
-    },
-    "scopeB": {
-      "seasonId": "23/24"
-    }
-  },
-  "cmp-1e307664": {
-    "id": "cmp-1e307664",
-    "context": "CTX-SEASON",
-    "playerA": "306",
-    "playerB": "278",
-    "scopeA": {
-      "seasonId": "24/25"
-    },
-    "scopeB": {
-      "seasonId": "24/25"
-    }
-  },
-  "cmp-38b4498a": {
-    "id": "cmp-38b4498a",
-    "context": "CTX-SEASON",
-    "playerA": "56",
-    "playerB": "1460",
-    "scopeA": {
-      "seasonId": "22/23"
-    },
-    "scopeB": {
-      "seasonId": "23/24"
-    }
-  },
-  "cmp-d2c80be6": {
-    "id": "cmp-d2c80be6",
+  "cmp-9d5fca08": {
+    "id": "cmp-9d5fca08",
     "context": "CTX-LEAGUE-SEASON",
-    "playerA": "44",
-    "playerB": "129718",
+    "playerA": "386828",
+    "playerB": "306",
     "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "seasonId": "24/25",
+      "leagueId": "39"
+    }
+  },
+  "cmp-84aaf3eb": {
+    "id": "cmp-84aaf3eb",
+    "context": "CTX-LEAGUE-SEASON",
+    "playerA": "1496",
+    "playerB": "629",
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "140"
+    },
+    "scopeB": {
       "seasonId": "23/24",
       "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "23/24",
-      "leagueId": "140"
     }
   },
-  "cmp-f6c51c7e": {
-    "id": "cmp-f6c51c7e",
+  "cmp-a5f5530e": {
+    "id": "cmp-a5f5530e",
+    "context": "CTX-LEAGUE-SEASON",
+    "playerA": "386828",
+    "playerB": "629",
+    "scopeA": {
+      "seasonId": "24/25",
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "seasonId": "22/23",
+      "leagueId": "39"
+    }
+  },
+  "cmp-6e58b632": {
+    "id": "cmp-6e58b632",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "629",
-    "playerB": "129718",
-    "scopeA": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "23/24",
-      "leagueId": "140"
-    }
-  },
-  "cmp-bae6c54d": {
-    "id": "cmp-bae6c54d",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "306",
-    "playerB": "1496",
-    "scopeA": {
-      "seasonId": "24/25",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "24/25",
-      "leagueId": "140"
-    }
-  },
-  "cmp-cc90810a": {
-    "id": "cmp-cc90810a",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "306",
-    "playerB": "386828",
-    "scopeA": {
-      "seasonId": "24/25",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "24/25",
-      "leagueId": "140"
-    }
-  },
-  "cmp-332e0ed7": {
-    "id": "cmp-332e0ed7",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "629",
-    "playerB": "19617",
+    "playerB": "306",
     "scopeA": {
       "seasonId": "22/23",
       "leagueId": "39"
     },
     "scopeB": {
-      "seasonId": "23/24",
+      "seasonId": "24/25",
       "leagueId": "39"
     }
   },
-  "cmp-395c3b8c": {
-    "id": "cmp-395c3b8c",
+  "cmp-4b4709c4": {
+    "id": "cmp-4b4709c4",
     "context": "CTX-LEAGUE-SEASON",
-    "playerA": "616",
-    "playerB": "179139",
+    "playerA": "1496",
+    "playerB": "629",
     "scopeA": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    },
-    "scopeB": {
       "seasonId": "24/25",
       "leagueId": "140"
+    },
+    "scopeB": {
+      "seasonId": "22/23",
+      "leagueId": "39"
     }
   },
-  "cmp-e35e165f": {
-    "id": "cmp-e35e165f",
+  "cmp-e1a9008e": {
+    "id": "cmp-e1a9008e",
     "context": "CTX-LEAGUE-SEASON",
     "playerA": "631",
-    "playerB": "129718",
-    "scopeA": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "23/24",
-      "leagueId": "140"
-    }
-  },
-  "cmp-c8068811": {
-    "id": "cmp-c8068811",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "629",
-    "playerB": "19617",
-    "scopeA": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    }
-  },
-  "cmp-c52fa550": {
-    "id": "cmp-c52fa550",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "44",
-    "playerB": "19617",
-    "scopeA": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "seasonId": "23/24",
-      "leagueId": "39"
-    }
-  },
-  "cmp-49a19e34": {
-    "id": "cmp-49a19e34",
-    "context": "CTX-LEAGUE-SEASON",
-    "playerA": "386828",
     "playerB": "278",
     "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "leagueId": "61"
+    }
+  },
+  "cmp-0fc8c5ed": {
+    "id": "cmp-0fc8c5ed",
+    "context": "CTX-LEAGUE-SEASON",
+    "playerA": "629",
+    "playerB": "306",
+    "scopeA": {
+      "seasonId": "23/24",
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "seasonId": "24/25",
+      "leagueId": "39"
+    }
+  },
+  "cmp-ff96797a": {
+    "id": "cmp-ff96797a",
+    "context": "CTX-LEAGUE-SEASON",
+    "playerA": "386828",
+    "playerB": "629",
+    "scopeA": {
       "seasonId": "24/25",
       "leagueId": "140"
     },
     "scopeB": {
+      "seasonId": "23/24",
+      "leagueId": "39"
+    }
+  },
+  "cmp-4a15b6dc": {
+    "id": "cmp-4a15b6dc",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "153",
+    "playerB": "747",
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "143"
+    },
+    "scopeB": {
       "seasonId": "24/25",
-      "leagueId": "140"
+      "competitionId": "48"
     }
   },
-  "cmp-239d0567": {
-    "id": "cmp-239d0567",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "629",
-    "playerB": "129718",
+  "cmp-0dd14b60": {
+    "id": "cmp-0dd14b60",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "18742",
+    "playerB": "18771",
     "scopeA": {
-      "leagueId": "39"
+      "seasonId": "23/24",
+      "competitionId": "48"
     },
     "scopeB": {
-      "leagueId": "140"
+      "seasonId": "24/25",
+      "competitionId": "48"
     }
   },
-  "cmp-fb729cea": {
-    "id": "cmp-fb729cea",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "152982",
-    "playerB": "129718",
-    "scopeA": {
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "leagueId": "140"
-    }
-  },
-  "cmp-e5713e33": {
-    "id": "cmp-e5713e33",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "44",
-    "playerB": "129718",
-    "scopeA": {
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "leagueId": "140"
-    }
-  },
-  "cmp-7e6a6ec6": {
-    "id": "cmp-7e6a6ec6",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "44",
-    "playerB": "1485",
-    "scopeA": {
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "leagueId": "39"
-    }
-  },
-  "cmp-51d9aafe": {
-    "id": "cmp-51d9aafe",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "152982",
-    "playerB": "1485",
-    "scopeA": {
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "leagueId": "39"
-    }
-  },
-  "cmp-93bd1d5f": {
-    "id": "cmp-93bd1d5f",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "629",
-    "playerB": "1485",
-    "scopeA": {
-      "leagueId": "39"
-    },
-    "scopeB": {
-      "leagueId": "39"
-    }
-  },
-  "cmp-59d75802": {
-    "id": "cmp-59d75802",
-    "context": "CTX-LEAGUE-CAREER",
+  "cmp-5ce399b9": {
+    "id": "cmp-5ce399b9",
+    "context": "CTX-COMPETITION-SEASON",
     "playerA": "1485",
-    "playerB": "129718",
+    "playerB": "304853",
     "scopeA": {
-      "leagueId": "39"
+      "seasonId": "23/24",
+      "competitionId": "45"
     },
     "scopeB": {
-      "leagueId": "140"
+      "seasonId": "23/24",
+      "competitionId": "45"
     }
   },
-  "cmp-aa1b0afa": {
-    "id": "cmp-aa1b0afa",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "278",
+  "cmp-33422a8a": {
+    "id": "cmp-33422a8a",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "1485",
+    "playerB": "304853",
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "1"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "competitionId": "45"
+    }
+  },
+  "cmp-2e797d0f": {
+    "id": "cmp-2e797d0f",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "153",
+    "playerB": "1485",
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "143"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "competitionId": "45"
+    }
+  },
+  "cmp-32d0b88d": {
+    "id": "cmp-32d0b88d",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "747",
+    "playerB": "304853",
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "48"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "competitionId": "45"
+    }
+  },
+  "cmp-b7569df0": {
+    "id": "cmp-b7569df0",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "1485",
+    "playerB": "304853",
+    "scopeA": {
+      "seasonId": "24/25",
+      "competitionId": "48"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "competitionId": "45"
+    }
+  },
+  "cmp-27c3004e": {
+    "id": "cmp-27c3004e",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "153",
+    "playerB": "304853",
+    "scopeA": {
+      "seasonId": "22/23",
+      "competitionId": "143"
+    },
+    "scopeB": {
+      "seasonId": "23/24",
+      "competitionId": "45"
+    }
+  },
+  "cmp-5b8ba4cf": {
+    "id": "cmp-5b8ba4cf",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "629",
     "playerB": "386828",
     "scopeA": {
-      "leagueId": "140"
+      "seasonId": "23/24",
+      "competitionId": "2"
     },
     "scopeB": {
-      "leagueId": "140"
+      "seasonId": "24/25",
+      "competitionId": "143"
     }
   },
-  "cmp-e94bdc7f": {
-    "id": "cmp-e94bdc7f",
-    "context": "CTX-LEAGUE-CAREER",
-    "playerA": "44",
-    "playerB": "752",
+  "cmp-338f552c": {
+    "id": "cmp-338f552c",
+    "context": "CTX-COMPETITION-SEASON",
+    "playerA": "19136",
+    "playerB": "386828",
     "scopeA": {
-      "leagueId": "39"
+      "seasonId": "24/25",
+      "competitionId": "45"
     },
     "scopeB": {
-      "leagueId": "140"
+      "seasonId": "24/25",
+      "competitionId": "143"
     }
   },
-  "cmp-78f49d3e": {
-    "id": "cmp-78f49d3e",
+  "cmp-c87bd28c": {
+    "id": "cmp-c87bd28c",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "129718",
+    "playerB": "276",
+    "scopeA": {
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "leagueId": "61"
+    }
+  },
+  "cmp-9f9f07d1": {
+    "id": "cmp-9f9f07d1",
     "context": "CTX-LEAGUE-CAREER",
     "playerA": "152982",
-    "playerB": "752",
+    "playerB": "278",
     "scopeA": {
       "leagueId": "39"
     },
     "scopeB": {
-      "leagueId": "140"
+      "leagueId": "61"
     }
   },
-  "cmp-9ae6babf": {
-    "id": "cmp-9ae6babf",
-    "context": "CTX-OVERALL-CAREER",
+  "cmp-de06e0e2": {
+    "id": "cmp-de06e0e2",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "278",
+    "playerB": "152982",
+    "scopeA": {
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "leagueId": "39"
+    }
+  },
+  "cmp-2653b476": {
+    "id": "cmp-2653b476",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "152982",
+    "playerB": "276",
+    "scopeA": {
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "leagueId": "61"
+    }
+  },
+  "cmp-6052c637": {
+    "id": "cmp-6052c637",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "1485",
+    "playerB": "278",
+    "scopeA": {
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "leagueId": "61"
+    }
+  },
+  "cmp-1c9c7d74": {
+    "id": "cmp-1c9c7d74",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "152982",
+    "playerB": "1485",
+    "scopeA": {
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "leagueId": "39"
+    }
+  },
+  "cmp-043a3ee4": {
+    "id": "cmp-043a3ee4",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "386828",
+    "playerB": "629",
+    "scopeA": {
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "leagueId": "39"
+    }
+  },
+  "cmp-8a5b244c": {
+    "id": "cmp-8a5b244c",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "278",
+    "playerB": "1485",
+    "scopeA": {
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "leagueId": "39"
+    }
+  },
+  "cmp-5d3757bb": {
+    "id": "cmp-5d3757bb",
+    "context": "CTX-LEAGUE-CAREER",
+    "playerA": "1485",
+    "playerB": "276",
+    "scopeA": {
+      "leagueId": "39"
+    },
+    "scopeB": {
+      "leagueId": "61"
+    }
+  },
+  "cmp-04619864": {
+    "id": "cmp-04619864",
+    "context": "CTX-LEAGUE-CAREER",
     "playerA": "129718",
+    "playerB": "1485",
+    "scopeA": {
+      "leagueId": "140"
+    },
+    "scopeB": {
+      "leagueId": "39"
+    }
+  },
+  "cmp-d679a46d": {
+    "id": "cmp-d679a46d",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "156477",
+    "playerB": "1485",
+    "scopeA": {
+      "competitionId": "3"
+    },
+    "scopeB": {
+      "competitionId": "48"
+    }
+  },
+  "cmp-3bd6680f": {
+    "id": "cmp-3bd6680f",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "156477",
+    "playerB": "1485",
+    "scopeA": {
+      "competitionId": "3"
+    },
+    "scopeB": {
+      "competitionId": "45"
+    }
+  },
+  "cmp-2d5b08d8": {
+    "id": "cmp-2d5b08d8",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "156477",
+    "playerB": "328",
+    "scopeA": {
+      "competitionId": "3"
+    },
+    "scopeB": {
+      "competitionId": "4"
+    }
+  },
+  "cmp-66c6b3ea": {
+    "id": "cmp-66c6b3ea",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "1485",
+    "playerB": "328",
+    "scopeA": {
+      "competitionId": "48"
+    },
+    "scopeB": {
+      "competitionId": "4"
+    }
+  },
+  "cmp-f25d9f40": {
+    "id": "cmp-f25d9f40",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "1496",
+    "playerB": "635",
+    "scopeA": {
+      "competitionId": "2"
+    },
+    "scopeB": {
+      "competitionId": "45"
+    }
+  },
+  "cmp-8d318293": {
+    "id": "cmp-8d318293",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "386828",
+    "playerB": "635",
+    "scopeA": {
+      "competitionId": "143"
+    },
+    "scopeB": {
+      "competitionId": "45"
+    }
+  },
+  "cmp-0830d57f": {
+    "id": "cmp-0830d57f",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "1485",
+    "playerB": "328",
+    "scopeA": {
+      "competitionId": "45"
+    },
+    "scopeB": {
+      "competitionId": "4"
+    }
+  },
+  "cmp-03343958": {
+    "id": "cmp-03343958",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "1496",
+    "playerB": "154",
+    "scopeA": {
+      "competitionId": "2"
+    },
+    "scopeB": {
+      "competitionId": "2"
+    }
+  },
+  "cmp-fee674b8": {
+    "id": "cmp-fee674b8",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "154",
+    "playerB": "635",
+    "scopeA": {
+      "competitionId": "2"
+    },
+    "scopeB": {
+      "competitionId": "45"
+    }
+  },
+  "cmp-4cfc0789": {
+    "id": "cmp-4cfc0789",
+    "context": "CTX-COMPETITION-CAREER",
+    "playerA": "386828",
+    "playerB": "154",
+    "scopeA": {
+      "competitionId": "143"
+    },
+    "scopeB": {
+      "competitionId": "1"
+    }
+  },
+  "cmp-753ebc31": {
+    "id": "cmp-753ebc31",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "1485",
+    "playerB": "502",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-ac85a11f": {
+    "id": "cmp-ac85a11f",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "1485",
+    "playerB": "203224",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-c1ab6ed3": {
+    "id": "cmp-c1ab6ed3",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "502",
+    "playerB": "129718",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-02372ce8": {
+    "id": "cmp-02372ce8",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "1485",
+    "playerB": "129718",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-1e0d8505": {
+    "id": "cmp-1e0d8505",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "502",
+    "playerB": "278",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-87cb642c": {
+    "id": "cmp-87cb642c",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "1485",
+    "playerB": "278",
+    "scopeA": {},
+    "scopeB": {}
+  },
+  "cmp-d3f780d7": {
+    "id": "cmp-d3f780d7",
+    "context": "CTX-OVERALL-CAREER",
+    "playerA": "154",
     "playerB": "629",
     "scopeA": {},
     "scopeB": {}
   },
-  "cmp-2ebd675a": {
-    "id": "cmp-2ebd675a",
+  "cmp-fe5b1b3c": {
+    "id": "cmp-fe5b1b3c",
     "context": "CTX-OVERALL-CAREER",
-    "playerA": "129718",
-    "playerB": "152982",
-    "scopeA": {},
-    "scopeB": {}
-  },
-  "cmp-bce9a469": {
-    "id": "cmp-bce9a469",
-    "context": "CTX-OVERALL-CAREER",
-    "playerA": "129718",
-    "playerB": "44",
-    "scopeA": {},
-    "scopeB": {}
-  },
-  "cmp-e836e778": {
-    "id": "cmp-e836e778",
-    "context": "CTX-OVERALL-CAREER",
-    "playerA": "629",
-    "playerB": "1485",
-    "scopeA": {},
-    "scopeB": {}
-  },
-  "cmp-5d96003c": {
-    "id": "cmp-5d96003c",
-    "context": "CTX-OVERALL-CAREER",
-    "playerA": "129718",
-    "playerB": "1485",
-    "scopeA": {},
-    "scopeB": {}
-  },
-  "cmp-0aeb8dac": {
-    "id": "cmp-0aeb8dac",
-    "context": "CTX-OVERALL-CAREER",
-    "playerA": "278",
-    "playerB": "386828",
-    "scopeA": {},
-    "scopeB": {}
-  },
-  "cmp-ac79d7f9": {
-    "id": "cmp-ac79d7f9",
-    "context": "CTX-OVERALL-CAREER",
-    "playerA": "629",
-    "playerB": "752",
+    "playerA": "154",
+    "playerB": "1496",
     "scopeA": {},
     "scopeB": {}
   }

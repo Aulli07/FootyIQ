@@ -6,7 +6,7 @@
     "build:players": "tsx scripts/build-players.ts",
     "fetch:players": "tsx --env-file=.env.local scripts/fetch-players.ts",
     "dev": "next dev --webpack",
-    "precompute:canonical": "tsx features/players/adapters/legacy-to-final-stats.ts",
+    "precompute:canonical": "tsx scripts/build-canonical-store.ts",
     "precompute:comparisons": "tsx features/compare/engine/build-comparisons.ts",
     "precompute:indexedcomparisons": "tsx features/compare/engine/comparison-store.ts",
     "precompute:lookups": "tsx features/search/engine/search-lookups.ts",

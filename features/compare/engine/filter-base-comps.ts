@@ -25,6 +25,8 @@ export function filterBaseComparisons(
 ): ComparisonType[] {
   const seen = new Set<string>(); // safety net
   const scored: ComparisonType[] = [];
+  const cache = new Map<string, PlayerSeasonStats[]>();
+  const notableByScope = buildNotablePlayersByScope(baseComparisons, cache);
 
   for (const comparison of baseComparisons) {
     const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
@@ -33,7 +35,8 @@ export function filterBaseComparisons(
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
 
-    const { floor, aggA, aggB, isMinutes } = checkMinutesOfPlayers(comparison);
+
+    const { floor, aggA, aggB, isMinutes } = checkMinutesOfPlayers(comparison, cache);
     if (!isMinutes) continue;
 
     const playerA = playersById.get(comparison.playerA);
@@ -42,8 +45,20 @@ export function filterBaseComparisons(
 
     if (playersHaveSharedTeamHistory(playerA, playerB)) continue;
 
-    const isNotable = checkNotabilityOfPlayers(baseComparisons, comparison);
-    if (!isNotable) continue;
+    const notableA = notableByScope.get(
+      getScopeKey(comparison.context, comparison.scopeA),
+    );
+    const notableB = notableByScope.get(
+      getScopeKey(comparison.context, comparison.scopeB),
+    );
+    if (
+      notableA &&
+      notableB &&
+      !notableA.has(comparison.playerA) &&
+      !notableB.has(comparison.playerB)
+    ) {
+      continue;
+    }
 
     if (
       positionMatchScore(playerA.primaryPosition, playerB.primaryPosition) === 0
@@ -62,7 +77,7 @@ export function filterBaseComparisons(
 
   const result: ComparisonType[] = [];
   for (const [context, comparisons] of groupedByContext) {
-    comparisons.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
+    comparisons.sort((a, b) => ratingProximityScore(b, cache) - ratingProximityScore(a, cache));
     result.push(...comparisons.slice(0, COMPARISONS_PER_CONTEXT[context]),);
   }
 
@@ -99,8 +114,11 @@ export function filterBaseComparisons(
   // ).slice(0, QUALITY_WEIGHTS.targetTotal);
 }
 
+
+
 function buildNotablePlayersByScope(
   baseComparisons: ComparisonType[],
+  cache: Map<string, PlayerSeasonStats[]>,
 ): Map<string, Set<string>> {
   const scopedPlayers = buildScopedPlayers(baseComparisons);
   const notableByScope = new Map<string, Set<string>>();
@@ -110,6 +128,7 @@ function buildNotablePlayersByScope(
       playerIds,
       context,
       scope,
+      cache,
     );
 
     const notable = new Set<string>();
@@ -146,7 +165,7 @@ function buildScopedPlayers(baseComparisons: ComparisonType[]) {
       { playerId: comparison.playerB, scope: comparison.scopeB },
     ];
     for (const entry of entries) {
-      const groupKey = `${comparison.context}::${JSON.stringify(entry.scope)}`;
+      const groupKey = getScopeKey(comparison.context, entry.scope);
       if (!groupPlayers.has(groupKey)) {
         groupPlayers.set(groupKey, {
           context: comparison.context,
@@ -164,12 +183,13 @@ function buildScopedStatsForPlayers(
   playerIds: Set<string>,
   context: ComparisonContext,
   scope: ComparisonScope,
+  cache: Map<string, PlayerSeasonStats[]>,
 ) {
   const floor = MIN_MINUTES_BY_CONTEXT[context];
   const playerAggs: { playerId: string; agg: PlayerAggregateStats }[] = [];
 
   for (const playerId of playerIds) {
-    const rows = statsInScope(playerId, context, scope);
+    const rows = statsInScope(playerId, context, scope, cache);
     const agg = aggregateStats(rows);
     if (agg.minutes < floor) continue;
     playerAggs.push({ playerId, agg });
@@ -182,10 +202,10 @@ function statsInScope(
   playerId: string,
   context: ComparisonContext,
   scope: ComparisonScope,
-  scopedStatsCache = new Map<string, PlayerSeasonStats[]>(),
+  cache: Map<string, PlayerSeasonStats[]>
 ): PlayerSeasonStats[] {
   const cacheKey = `${playerId}::${context}::${JSON.stringify(scope)}`;
-  const cached = scopedStatsCache.get(cacheKey);
+  const cached = cache.get(cacheKey);
   if (cached) return cached;
 
   const matchingStats = canonicalStats.filter((stat) => {
@@ -193,7 +213,7 @@ function statsInScope(
     return getScopeConfirmation(stat, context, scope);
   });
 
-  scopedStatsCache.set(cacheKey, matchingStats);
+  cache.set(cacheKey, matchingStats);
   return matchingStats;
 }
 
@@ -230,18 +250,20 @@ function getScopeConfirmation(
   }
 }
 
-function checkMinutesOfPlayers(comparison: ComparisonType) {
+function checkMinutesOfPlayers(comparison: ComparisonType, cache: Map<string, PlayerSeasonStats[]>) {
   const floor = MIN_MINUTES_BY_CONTEXT[comparison.context] ?? 0;
 
   const rowsA = statsInScope(
     comparison.playerA,
     comparison.context,
     comparison.scopeA,
+    cache
   );
   const rowsB = statsInScope(
     comparison.playerB,
     comparison.context,
     comparison.scopeB,
+    cache
   );
   const aggA = aggregateStats(rowsA);
   const aggB = aggregateStats(rowsB);
@@ -267,26 +289,8 @@ function playersHaveSharedTeamHistory(playerA: Player, playerB: Player) {
   );
 }
 
-function checkNotabilityOfPlayers(
-  baseComparisons: ComparisonType[],
-  comparison: ComparisonType,
-) {
-  const notableByScope = buildNotablePlayersByScope(baseComparisons);
-
-  const notableA = notableByScope.get(
-    `${comparison.context}::${JSON.stringify(comparison.scopeA)}`,
-  );
-  const notableB = notableByScope.get(
-    `${comparison.context}::${JSON.stringify(comparison.scopeB)}`,
-  );
-  if (
-    notableA &&
-    !notableA.has(comparison.playerA) &&
-    notableB &&
-    !notableB.has(comparison.playerB)
-  )
-    return false;
-  return true;
+function getScopeKey(context: ComparisonContext, scope: ComparisonScope) {
+  return `${context}::${JSON.stringify(scope)}`;
 }
 
 function positionMatchScore(posA: string, posB: string): number {
@@ -296,16 +300,19 @@ function positionMatchScore(posA: string, posB: string): number {
   return tierA === tierB ? 1 : 0; // cross-tier is down-weighted, never excluded
 }
 
-function ratingProximityScore(comparison: ComparisonType): number {
+function ratingProximityScore(comparison: ComparisonType, cache: Map<string, PlayerSeasonStats[]>): number {
+
   const rowsA = statsInScope(
     comparison.playerA,
     comparison.context,
     comparison.scopeA,
+    cache
   );
   const rowsB = statsInScope(
     comparison.playerB,
     comparison.context,
     comparison.scopeB,
+    cache
   );
   const ratingA = aggregateStats(rowsA).rating;
   const ratingB = aggregateStats(rowsB).rating;
