@@ -7,6 +7,11 @@ import { ComparisonType, ComparisonScope } from "../types/comparison-main-type";
 
 import { playersById } from "../data/comp-engine-data";
 
+
+
+
+
+
 export function buildIndexedComparisonsForPlayers(
   hydratedComparisons: ComparisonType[],
 ) {
@@ -131,13 +136,7 @@ export function buildComparisons() {
 
 export function buildIndexedComparisons() {
   const plainComparisons = buildComparisons();
-
   const hydratedComparisons = Object.values(plainComparisons).flat();
-
-  // const hydratedComparisons = Array.from(
-  //   Object.values(plainComparisons),
-  // );
-  // initializeComparisonAnalytics(hydratedComparisons);
 
   const themeIndexedComparisons =
     buildThemeIndexedComparisons(hydratedComparisons);

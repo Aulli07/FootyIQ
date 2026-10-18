@@ -6,7 +6,6 @@ import { buildIndexedComparisons } from "./create-index-comps";
 
 
 export function buildCompData() {
-
   const { plainComparisons, themeIndexedComparisons, playerIndexedComparisons } = buildIndexedComparisons();
 
   fs.writeFileSync(

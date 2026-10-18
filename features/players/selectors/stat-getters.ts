@@ -94,7 +94,7 @@ export function getAverageRatingForContext(
   if (rows.length === 0) return "-";
 
   const agg = aggregateStats(rows);
-  return agg.minutes > 0 ? agg.rating : "-";
+  return agg.minutes > 0 ? agg.rating.toFixed(2) : "-";
 }
 
 export function getStatValueForContext(

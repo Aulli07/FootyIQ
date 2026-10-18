@@ -20,6 +20,9 @@ import {
   ComparisonScope,
 } from "../types/comparison-main-type";
 
+
+
+
 export function filterBaseComparisons(
   baseComparisons: ComparisonType[],
 ): ComparisonType[] {
@@ -82,36 +85,6 @@ export function filterBaseComparisons(
   }
 
   return result;
-
-  // const grouped = new Map<string, ComparisonType[]>();
-  // for (const comparison of scored) {
-  //   const groupKey = `${comparison.context}::${JSON.stringify(comparison.scopeA)}::${JSON.stringify(comparison.scopeB)}`;
-  //   if (!grouped.has(groupKey)) grouped.set(groupKey, []);
-  //   grouped.get(groupKey)!.push(comparison);
-  // }
-
-  // for (const group of grouped.values()) {
-  //   group.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
-  // }
-
-  // const reserved: ComparisonType[] = [];
-  // const remainder: ComparisonType[] = [];
-
-  // for (const group of grouped.values()) {
-  //   reserved.push(...group.slice(0, QUALITY_WEIGHTS.minGroup));
-  //   remainder.push(...group.slice(QUALITY_WEIGHTS.minGroup));
-  // }
-
-  // remainder.sort((a, b) => ratingProximityScore(b) - ratingProximityScore(a));
-  // const remainingSlots = Math.max(
-  //   0,
-  //   QUALITY_WEIGHTS.targetTotal - reserved.length,
-  // );
-  // const result = [...reserved, ...remainder.slice(0, remainingSlots)];
-
-  // return result.sort(
-  //   (a, b) => ratingProximityScore(b) - ratingProximityScore(a),
-  // ).slice(0, QUALITY_WEIGHTS.targetTotal);
 }
 
 
@@ -125,10 +98,7 @@ function buildNotablePlayersByScope(
 
   for (const [groupKey, { context, scope, playerIds }] of scopedPlayers) {
     const playerAggStats = buildScopedStatsForPlayers(
-      playerIds,
-      context,
-      scope,
-      cache,
+      playerIds, context, scope, cache,
     );
 
     const notable = new Set<string>();

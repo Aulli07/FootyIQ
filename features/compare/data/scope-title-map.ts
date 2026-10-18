@@ -9,8 +9,10 @@ export const SCOPE_TITLE_BY_ID: Record<string, string> = {
   "140": "La Liga",
   "61": "Ligue 1",
   "brasileirao": "Brasileirão",
+  "1": "WC",
   "2": "UCL",
   "3": "UEL",
+  "4": "Euro",
   "acl": "ACL",
   "acl-elite": "ACL Elite",
   "arab-club-champions-cup": "ACC",
@@ -32,7 +34,10 @@ export const SCOPE_TITLE_BY_ID: Record<string, string> = {
   "uefa-super-cup": "Super Cup",
   "78": "Bundesliga",
   "dfb-pokal": "DFB Pokal",
-  "135": "Seria A"
+  "45": "Fa Cup",
+  "135": "Seria A",
+  "48": "Carabao Cup",
+  "143": "Copa Del Rey",
 };
 
 export function getScopeTitle(scopeId?: string): string | undefined {
